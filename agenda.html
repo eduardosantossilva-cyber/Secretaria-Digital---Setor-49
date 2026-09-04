@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agenda — Setor 49</title>
+<style>
+:root{--blue:#159dd1;--green:#079447;--gold:#f9c414;--orange:#f47a20;--red:#b51e2a;--navy:#073c66;--ink:#17212b;--muted:#667085;--bg:#f6f8fa}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
+header{position:relative;background:#fff;border-bottom:1px solid #e8edf2;position:sticky;top:0;z-index:20}.nav{max-width:1180px;margin:auto;padding:11px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--navy);font-weight:900}.brand img{width:50px;height:50px;object-fit:contain}.brand small{display:block;color:var(--muted);font-weight:650;font-size:11px}
+nav{display:flex;flex-wrap:wrap;gap:16px}nav a{color:#344054;text-decoration:none;font-weight:750;font-size:14px}nav a:hover{color:var(--green)}
+.hero{background:linear-gradient(135deg,var(--navy),var(--blue),var(--green));color:#fff;padding:58px 22px}.hero-inner{max-width:1180px;margin:auto}.eyebrow{font-size:12px;font-weight:900;letter-spacing:1.7px;text-transform:uppercase;opacity:.9}.hero h1{font-size:clamp(35px,5vw,52px);margin:9px 0 10px}.hero p{font-size:17px;line-height:1.5;max-width:720px;margin:0}
+main{max-width:1180px;margin:auto;padding:32px 22px 70px}
+.sede-highlight{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,#fff,#eef9fc);border:1px solid #cfe7f0;border-left:6px solid var(--blue);border-radius:18px;padding:18px 20px;margin:0 0 25px;box-shadow:0 7px 22px rgba(16,24,40,.05)}
+.sede-icon{width:50px;height:50px;flex:none;border-radius:14px;display:grid;place-items:center;background:#e7f6fb;font-size:25px}.sede-highlight strong{display:block;color:var(--navy);font-size:12px;letter-spacing:1px;margin-bottom:4px}.sede-highlight p{margin:0;color:#475467;font-size:13px;line-height:1.5}
+.filters{background:#fff;border:1px solid #e8edf2;border-radius:18px;padding:17px;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;box-shadow:0 7px 22px rgba(16,24,40,.045)}
+select{width:100%;padding:13px 14px;border:1px solid #d7dee4;border-radius:11px;background:#fff;font:inherit;outline:none}select:focus{border-color:var(--blue)}
+.month{margin:30px 0 12px;display:flex;align-items:center;gap:10px}.month h2{margin:0;color:var(--navy);font-size:24px}.month span{font-size:11px;color:#fff;background:var(--green);padding:5px 8px;border-radius:999px;font-weight:900}
+.events{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.event{background:#fff;border:1px solid #e8edf2;border-radius:17px;padding:18px;display:flex;gap:14px;box-shadow:0 6px 20px rgba(16,24,40,.04)}
+.date{width:58px;height:64px;flex:none;border-radius:13px;background:#eef8fc;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--navy);font-weight:900}.date b{font-size:22px;line-height:1}.date small{font-size:10px;margin-top:4px}
+.event h3{margin:0 0 5px;font-size:16px}.event p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}.type{display:inline-block;margin-top:9px;font-size:10px;font-weight:900;text-transform:uppercase;color:var(--green);letter-spacing:.6px}
+.no-results{display:none;background:#fff;border:1px dashed #cbd5df;border-radius:16px;padding:35px;text-align:center;color:var(--muted)}
+footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font-size:13px}
+@media(max-width:700px){.filters{grid-template-columns:1fr}.events{grid-template-columns:1fr}}
+@media(max-width:620px){.nav{padding:10px 15px}.brand img{width:43px;height:43px}nav{display:none}.hero{padding:43px 18px}main{padding:25px 16px 55px}.sede-highlight{align-items:flex-start}.sede-icon{width:44px;height:44px;font-size:22px}}
+
+/* Menu mobile */
+.menu-toggle{display:none;border:0;background:#eef8fc;color:var(--navy);width:42px;height:42px;border-radius:11px;font-size:22px;cursor:pointer}
+.mobile-menu{display:none}
+@media(max-width:650px){
+  .menu-toggle{display:grid;place-items:center}
+  .mobile-menu{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid #e8edf2;box-shadow:0 12px 24px rgba(16,24,40,.10);padding:10px 15px}
+  .mobile-menu.open{display:grid}
+  .mobile-menu a{padding:12px 10px;color:#344054;text-decoration:none;font-weight:800;font-size:14px;border-radius:9px}
+  .mobile-menu a:hover{background:#f4f9fb;color:var(--green)}
+}
+</style>
+</head>
+<body>
+<header><div class="nav">
+<a class="brand" href="index.html"><img src="logo.png" onerror="this.style.display='none'"><span>SECRETARIA DO SETOR 49<small>Jardim dos Pimentas</small></span></a>
+<nav><a href="index.html">Início</a><a href="agenda.html">Agenda</a><a href="congregacoes.html">Congregações</a><a href="central-secretario.html">Central do Secretário</a><a href="avisos.html">Avisos</a><a href="diretoria.html">Diretoria</a></nav><button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="mobile-menu" id="mobileMenu"><a href="index.html">Início</a><a href="agenda.html">Agenda</a><a href="congregacoes.html">Congregações</a><a href="central-secretario.html">Central do Secretário</a><a href="avisos.html">Avisos</a><a href="diretoria.html">Diretoria</a></div>
+</div></header>
+
+<section class="hero"><div class="hero-inner">
+<div class="eyebrow">Setor 49 · Jardim dos Pimentas</div><h1>Agenda 2026</h1><p>Principais eventos e programações setoriais do Ministério do Belém — Setor 49.</p>
+</div></section>
+
+<main>
+<div class="sede-highlight"><div class="sede-icon">🏛️</div><div><strong>CONGREGAÇÃO SEDE</strong><p><b>PARQUE SÃO MIGUEL — SEDE</b> · Rua Antonio Bittencourt, 684 — Jardim dos Pimentas — Parque São Miguel — Guarulhos/SP.<br>É onde acontecem os principais eventos e programações setoriais.</p></div></div>
+
+<div class="filters">
+<select id="monthFilter"><option value="all">Todos os meses</option><option value="02">Fevereiro</option><option value="03">Março</option><option value="04">Abril</option><option value="05">Maio</option><option value="06">Junho</option><option value="07">Julho</option><option value="08">Agosto</option><option value="09">Setembro</option><option value="10">Outubro</option><option value="11">Novembro</option></select>
+<select id="typeFilter"><option value="all">Todos os tipos</option><option value="juventude">Juventude</option><option value="batismo">Batismos</option><option value="eventos">Eventos setoriais</option><option value="aniversario">Aniversários</option><option value="casais">Casais</option><option value="regionais">Regionais</option></select>
+</div>
+
+<div class="month"><h2>Fevereiro</h2><span>2026</span></div>
+<div class="events">
+<div class="event" data-month="02" data-type="juventude"><div class="date"><b>16–18</b><small>FEV</small></div><div><h3>Semana da Juventude</h3><p>16, 17 e 18 de fevereiro.</p><span class="type">Juventude</span></div></div>
+<div class="event" data-month="02" data-type="batismo"><div class="date"><b>22</b><small>FEV</small></div><div><h3>Batismo nas Águas</h3><p>Primeira data de batismo prevista na agenda setorial.</p><span class="type">Batismos</span></div></div>
+</div>
+
+<div class="month"><h2>Março</h2><span>2026</span></div>
+<div class="events"><div class="event" data-month="03" data-type="aniversario"><div class="date"><b>31</b><small>MAR</small></div><div><h3>Aniversário — Irmã Ana Paula</h3><p>31 de março.</p><span class="type">Aniversário</span></div></div></div>
+
+<div class="month"><h2>Abril</h2><span>2026</span></div>
+<div class="events">
+<div class="event" data-month="04" data-type="aniversario"><div class="date"><b>28</b><small>ABR</small></div><div><h3>Aniversário — Pastor Eliseu Almeida</h3><p>28 de abril.</p><span class="type">Aniversário</span></div></div>
+<div class="event" data-month="04" data-type="regionais"><div class="date"><b>18–19</b><small>ABR</small></div><div><h3>UMADEB — Regional 4 · Moriá</h3><p>18 e 19 de abril.</p><span class="type">Regional</span></div></div>
+<div class="event" data-month="04" data-type="regionais"><div class="date"><b>18–19</b><small>ABR</small></div><div><h3>UFADEB — Regional 2 · Betel</h3><p>18 e 19 de abril.</p><span class="type">Regional</span></div></div>
+<div class="event" data-month="04" data-type="regionais"><div class="date"><b>25–26</b><small>ABR</small></div><div><h3>UFADEB — Regional 3 · Hebron</h3><p>25 e 26 de abril.</p><span class="type">Regional</span></div></div>
+</div>
+
+<div class="month"><h2>Maio</h2><span>2026</span></div>
+<div class="events">
+<div class="event" data-month="05" data-type="regionais"><div class="date"><b>02–03</b><small>MAI</small></div><div><h3>UMADEB — Regional 3 · Hebron</h3><p>02 e 03 de maio.</p><span class="type">Regional</span></div></div>
+<div class="event" data-month="05" data-type="regionais"><div class="date"><b>16–17</b><small>MAI</small></div><div><h3>UFADEB — Regional 4 · Moriá</h3><p>16 e 17 de maio.</p><span class="type">Regional</span></div></div>
+<div class="event" data-month="05" data-type="batismo"><div class="date"><b>31</b><small>MAI</small></div><div><h3>Batismo nas Águas</h3><p>Segunda data de batismo prevista na agenda setorial.</p><span class="type">Batismos</span></div></div>
+<div class="event" data-month="05" data-type="regionais"><div class="date"><b>23–24</b><small>MAI</small></div><div><h3>UMADEB — Regional 2 · Betel</h3><p>23 e 24 de maio.</p><span class="type">Regional</span></div></div>
+</div>
+
+<div class="month"><h2>Junho</h2><span>2026</span></div>
+<div class="events">
+<div class="event" data-month="06" data-type="casais"><div class="date"><b>12</b><small>JUN</small></div><div><h3>Encontro de Casais</h3><p>12 de junho.</p><span class="type">Casais</span></div></div>
+<div class="event" data-month="06" data-type="regionais"><div class="date"><b>06–07</b><small>JUN</small></div><div><h3>UMADEB — Regional 1 · Siquém</h3><p>06 e 07 de junho.</p><span class="type">Regional</span></div></div>
+<div class="event" data-month="06" data-type="regionais"><div class="date"><b>20–21</b><small>JUN</small></div><div><h3>CREIO — Regional 1 · Siquém</h3><p>20 e 21 de junho.</p><span class="type">Regional</span></div></div>
+</div>
+
+<div class="month"><h2>Julho</h2><span>2026</span></div>
+<div class="events">
+<div class="event" data-month="07" data-type="eventos"><div class="date"><b>03–05</b><small>JUL</small></div><div><h3>MISSÕES</h3><p>03 a 05 de julho.</p><span class="type">Evento setorial</span></div></div>
+<div class="event" data-month="07" data-type="regionais"><div class="date"><b>11–12</b><small>JUL</small></div><div><h3>CREIO — Regional 2 · Betel</h3><p>11 e 12 de julho.</p><span class="type">Regional</span></div></div>
+<div class="event" data-month="07" data-type="regionais"><div class="date"><b>18–19</b><small>JUL</small></div><div><h3>CREIO — Regional 4 · Moriá</h3><p>18 e 19 de julho.</p><span class="type">Regional</span></div></div>
+</div>
+
+<div class="month"><h2>Agosto</h2><span>2026</span></div>
+<div class="events">
+<div class="event" data-month="08" data-type="eventos"><div class="date"><b>29</b><small>AGO</small></div><div><h3>EBOM</h3><p>29 de agosto.</p><span class="type">Evento setorial</span></div></div>
+<div class="event" data-month="08" data-type="regionais"><div class="date"><b>01–02</b><small>AGO</small></div><div><h3>CREIO — Regional 3 · Hebron</h3><p>01 e 02 de agosto.</p><span class="type">Regional</span></div></div>
+<div class="event" data-month="08" data-type="batismo"><div class="date"><b>30</b><small>AGO</small></div><div><h3>Batismo nas Águas</h3><p>Terceira data de batismo prevista na agenda setorial.</p><span class="type">Batismos</span></div></div>
+</div>
+
+<div class="month"><h2>Setembro</h2><span>2026</span></div>
+<div class="events">
+<div class="event" data-month="09" data-type="eventos"><div class="date"><b>04–06</b><small>SET</small></div><div><h3>CREIO</h3><p>29º Congresso CREIO Pimentas — Setor 49.</p><span class="type">Evento setorial</span></div></div>
+</div>
+
+<div class="month"><h2>Outubro</h2><span>2026</span></div>
+<div class="events">
+<div class="event" data-month="10" data-type="eventos"><div class="date"><b>03</b><small>OUT</small></div><div><h3>KIDS</h3><p>03 de outubro.</p><span class="type">Evento setorial</span></div></div>
+<div class="event" data-month="10" data-type="eventos"><div class="date"><b>23–25</b><small>OUT</small></div><div><h3>UFADEB</h3><p>23 a 25 de outubro.</p><span class="type">Evento setorial</span></div></div>
+</div>
+
+<div class="month"><h2>Novembro</h2><span>2026</span></div>
+<div class="events">
+<div class="event" data-month="11" data-type="eventos"><div class="date"><b>27–29</b><small>NOV</small></div><div><h3>UMADEB</h3><p>27 a 29 de novembro.</p><span class="type">Evento setorial</span></div></div>
+<div class="event" data-month="11" data-type="batismo"><div class="date"><b>29</b><small>NOV</small></div><div><h3>Batismo nas Águas</h3><p>Quarta data de batismo prevista na agenda setorial.</p><span class="type">Batismos</span></div></div>
+</div>
+
+<div class="no-results" id="noResults">Nenhum evento corresponde aos filtros selecionados.</div>
+</main>
+<footer>Secretaria da Igreja · Setor 49 — Jardim dos Pimentas</footer>
+<script>
+const mf=document.getElementById('monthFilter'),tf=document.getElementById('typeFilter'),events=[...document.querySelectorAll('.event')],months=[...document.querySelectorAll('.month')],no=document.getElementById('noResults');
+function filter(){let n=0;events.forEach(e=>{let ok=(mf.value==='all'||e.dataset.month===mf.value)&&(tf.value==='all'||e.dataset.type===tf.value);e.style.display=ok?'flex':'none';if(ok)n++});months.forEach(m=>{let next=m.nextElementSibling, visible=false;while(next&& !next.classList.contains('month')){if(next.classList.contains('events')&&[...next.querySelectorAll('.event')].some(e=>e.style.display!=='none'))visible=true;next=next.nextElementSibling}m.style.display=visible?'flex':'none'});no.style.display=n?'none':'block'}mf.addEventListener('change',filter);tf.addEventListener('change',filter);filter();
+</script>
+<script>
+const menuToggle=document.getElementById('menuToggle');
+const mobileMenu=document.getElementById('mobileMenu');
+if(menuToggle&&mobileMenu){
+ menuToggle.addEventListener('click',()=>{const open=mobileMenu.classList.toggle('open');menuToggle.setAttribute('aria-expanded',open?'true':'false');menuToggle.textContent=open?'✕':'☰';});
+ mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileMenu.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.textContent='☰';}));
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Secretaria — Setor 49</title>
+<style>
+:root{--blue:#159dd1;--green:#079447;--gold:#f9c414;--orange:#f47a20;--red:#b51e2a;--navy:#073c66;--ink:#17212b;--muted:#667085;--bg:#f6f8fa;--white:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
+header{position:relative;background:#fff;border-bottom:1px solid #e8edf2;position:sticky;top:0;z-index:20}
+.nav{max-width:1180px;margin:auto;padding:11px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--navy);font-weight:900}
+.brand img{width:50px;height:50px;object-fit:contain}.brand small{display:block;color:var(--muted);font-weight:650;font-size:11px;margin-top:2px}
+nav{display:flex;flex-wrap:wrap;gap:16px}nav a{color:#344054;text-decoration:none;font-weight:750;font-size:14px}nav a:hover{color:var(--green)}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--navy),var(--blue) 58%,var(--green));color:#fff;padding:72px 22px 76px}
+.hero:after{content:"";position:absolute;width:360px;height:360px;border-radius:50%;right:-110px;top:-140px;background:rgba(255,255,255,.08)}
+.hero-inner{max-width:1180px;margin:auto;position:relative;z-index:1}
+.eyebrow{font-size:12px;font-weight:900;letter-spacing:1.8px;text-transform:uppercase;opacity:.88}
+.hero h1{font-size:clamp(38px,6vw,62px);line-height:1.04;margin:10px 0 15px;max-width:760px}
+.hero p{font-size:18px;line-height:1.55;max-width:720px;margin:0 0 25px;opacity:.96}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-block;text-decoration:none;border-radius:11px;padding:11px 15px;background:var(--blue);color:#fff;font-size:12px;font-weight:900;border:1px solid transparent}
+.btn:hover{background:var(--green)}
+.btn.light{background:#fff;color:var(--navy)}.btn.light:hover{background:#f1f5f9}
+main{max-width:1180px;margin:auto;padding:34px 22px 70px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:0 0 18px}
+.section-title{margin:0;font-size:28px}.section-link{color:var(--blue);font-size:13px;font-weight:850;text-decoration:none}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.quick-card{background:#fff;border:1px solid #e8edf2;border-radius:18px;padding:20px 17px;text-decoration:none;color:inherit;min-height:155px;box-shadow:0 7px 20px rgba(16,24,40,.045);transition:.2s}
+.quick-card:hover{transform:translateY(-3px);border-color:#cfe7f0;box-shadow:0 12px 26px rgba(16,24,40,.08)}
+.icon{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:#eaf7fc;font-size:21px;margin-bottom:14px}
+.quick-card:nth-child(2) .icon{background:#edf9f3}.quick-card:nth-child(3) .icon{background:#fff8df}.quick-card:nth-child(4) .icon{background:#fff0f1}.quick-card:nth-child(5) .icon{background:#f0f2ff}
+.quick-card h3{margin:0 0 6px;font-size:16px}.quick-card p{margin:0;color:var(--muted);font-size:12px;line-height:1.45}
+.columns{display:grid;grid-template-columns:1.35fr .65fr;gap:20px;margin-top:38px}
+.panel{background:#fff;border:1px solid #e8edf2;border-radius:20px;padding:24px;box-shadow:0 8px 24px rgba(16,24,40,.045)}
+.panel h2{margin:0 0 6px;font-size:23px}.panel-sub{margin:0 0 18px;color:var(--muted);font-size:13px}
+.notice-main{border-left:5px solid var(--red);padding:14px 16px;background:#fff7f7;border-radius:12px;margin-bottom:12px}
+.notice-main strong{display:block;margin-bottom:5px}.notice-main p{margin:0;color:#475467;font-size:13px;line-height:1.5}
+.events{display:grid;gap:10px}.event{display:flex;gap:12px;align-items:center;border:1px solid #edf0f2;border-radius:13px;padding:12px}
+.date{min-width:55px;text-align:center;border-radius:10px;background:#eef8fc;padding:8px 5px;color:var(--navy);font-weight:900;font-size:12px}.date b{display:block;font-size:19px;line-height:1}.event strong{font-size:14px}.event span{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+.location{background:linear-gradient(145deg,#fff,#f4fafc);border:1px solid #dcecf2}.location .pin{font-size:31px;margin-bottom:10px}.location p{color:var(--muted);font-size:13px;line-height:1.55;margin:5px 0 18px}
+footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font-size:13px}
+@media(max-width:1050px){.grid{grid-template-columns:repeat(3,1fr)}.columns{grid-template-columns:1fr}}
+@media(max-width:650px){.nav{padding:10px 15px}.brand img{width:43px;height:43px}nav{display:none}.hero{padding:48px 18px 55px}main{padding:26px 16px 55px}.grid{grid-template-columns:repeat(2,1fr)}.quick-card{min-height:145px}.section-head{align-items:start}.section-title{font-size:24px}}
+@media(max-width:420px){.grid{grid-template-columns:1fr}.quick-card{min-height:auto}.hero h1{font-size:40px}}
+
+/* Menu mobile */
+.menu-toggle{display:none;border:0;background:#eef8fc;color:var(--navy);width:42px;height:42px;border-radius:11px;font-size:22px;cursor:pointer}
+.mobile-menu{display:none}
+@media(max-width:650px){
+  .menu-toggle{display:grid;place-items:center}
+  .mobile-menu{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid #e8edf2;box-shadow:0 12px 24px rgba(16,24,40,.10);padding:10px 15px}
+  .mobile-menu.open{display:grid}
+  .mobile-menu a{padding:12px 10px;color:#344054;text-decoration:none;font-weight:800;font-size:14px;border-radius:9px}
+  .mobile-menu a:hover{background:#f4f9fb;color:var(--green)}
+}
+</style>
+</head>
+<body>
+<header><div class="nav">
+<a class="brand" href="index.html"><img src="logo.png" onerror="this.style.display='none'"><span>SECRETARIA DO SETOR 49<small>Jardim dos Pimentas</small></span></a>
+<nav><a href="index.html">Início</a><a href="agenda.html">Agenda</a><a href="congregacoes.html">Congregações</a><a href="central-secretario.html">Central do Secretário</a><a href="avisos.html">Avisos</a><a href="diretoria.html">Diretoria</a></nav><button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="mobile-menu" id="mobileMenu"><a href="index.html">Início</a><a href="agenda.html">Agenda</a><a href="congregacoes.html">Congregações</a><a href="central-secretario.html">Central do Secretário</a><a href="avisos.html">Avisos</a><a href="diretoria.html">Diretoria</a></div>
+</div></header>
+
+<section class="hero"><div class="hero-inner">
+<div class="eyebrow">Assembleia de Deus · Ministério do Belém</div>
+<h1>Secretaria do Setor 49</h1>
+<p>Jardim dos Pimentas — um portal para facilitar a comunicação, a organização e o acesso às informações das congregações.</p>
+<div class="hero-actions"><a class="btn light" href="avisos.html">VER AVISOS</a><a class="btn" href="agenda.html">CONSULTAR AGENDA</a></div>
+</div></section>
+
+<main>
+<div class="section-head"><h2 class="section-title">Acesso rápido</h2></div>
+<div class="grid">
+<a class="quick-card" href="agenda.html"><div class="icon">📅</div><h3>Agenda</h3><p>Eventos e programações do Setor 49.</p></a>
+<a class="quick-card" href="congregacoes.html"><div class="icon">📍</div><h3>Congregações</h3><p>Endereços das congregações em Guarulhos.</p></a>
+<a class="quick-card" href="central-secretario.html"><div class="icon">📁</div><h3>Central do Secretário</h3><p>Modelos e documentos compartilhados.</p></a>
+<a class="quick-card" href="avisos.html"><div class="icon">📢</div><h3>Avisos</h3><p>Comunicados importantes da Secretaria.</p></a>
+<a class="quick-card" href="diretoria.html"><div class="icon">👥</div><h3>Diretoria</h3><p>Liderança do Ministério e do Setor 49.</p></a>
+</div>
+
+<div class="columns">
+<section class="panel">
+<h2>📢 Avisos importantes</h2>
+<p class="panel-sub">Confira as informações mais recentes da Secretaria.</p>
+<div class="notice-main"><strong>Quinta da Conquista — 03/09</strong><p>O culto foi excepcionalmente suspenso devido aos preparativos para a abertura do Congresso dos Adolescentes CREIO.</p></div>
+<div class="notice-main"><strong>Congresso CREIO — 04 a 06/09</strong><p>A programação acontece na sede do Setor 49. Na sexta-feira, 04/09, a abertura será às 19h.</p></div>
+<a class="btn" href="avisos.html">VER TODOS OS AVISOS →</a>
+</section>
+
+<section class="panel">
+<h2>📅 Próximos eventos</h2>
+<p class="panel-sub">Principais eventos setoriais.</p>
+<div class="events">
+<div class="event"><div class="date"><b>04</b>SET</div><div><strong>CREIO</strong><span>04 a 06 de setembro</span></div></div>
+<div class="event"><div class="date"><b>03</b>OUT</div><div><strong>KIDS</strong><span>03 de outubro</span></div></div>
+<div class="event"><div class="date"><b>23</b>OUT</div><div><strong>UFADEB</strong><span>23 a 25 de outubro</span></div></div>
+<div class="event"><div class="date"><b>27</b>NOV</div><div><strong>UMADEB</strong><span>27 a 29 de novembro</span></div></div>
+</div>
+</section>
+</div>
+
+<div class="panel location" style="margin-top:20px">
+<div class="pin">📍</div>
+<h2>Sede do Setor 49</h2>
+<p>Rua Antonio Bittencourt, 684 — Jardim dos Pimentas — Parque São Miguel — Guarulhos/SP.</p>
+<a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Rua+Antonio+Bittencourt%2C+684%2C+Jardim+dos+Pimentas%2C+Guarulhos+-+SP">COMO CHEGAR →</a>
+</div>
+</main>
+<footer>Secretaria da Igreja · Setor 49 — Jardim dos Pimentas</footer>
+<script>
+const menuToggle=document.getElementById('menuToggle');
+const mobileMenu=document.getElementById('mobileMenu');
+if(menuToggle&&mobileMenu){
+ menuToggle.addEventListener('click',()=>{const open=mobileMenu.classList.toggle('open');menuToggle.setAttribute('aria-expanded',open?'true':'false');menuToggle.textContent=open?'✕':'☰';});
+ mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileMenu.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.textContent='☰';}));
+}
+</script>
+</body>
+</html>

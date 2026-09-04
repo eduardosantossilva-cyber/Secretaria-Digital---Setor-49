@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Avisos — Setor 49</title>
+<style>
+:root{--blue:#159dd1;--green:#079447;--gold:#f9c414;--orange:#f47a20;--red:#b51e2a;--ink:#252525;--muted:#667085;--bg:#f6f8fa;--white:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
+header{position:relative;background:#fff;border-bottom:1px solid #e8edf2;position:sticky;top:0;z-index:20}
+.nav{max-width:1180px;margin:auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--blue);font-weight:850}
+.brand img{width:48px;height:48px;object-fit:contain}.brand small{display:block;color:#667085;font-weight:650;font-size:11px}
+nav{display:flex;flex-wrap:wrap;gap:16px}nav a{color:#344054;text-decoration:none;font-weight:700;font-size:14px}nav a:hover{color:var(--green)}
+.hero{background:linear-gradient(135deg,#159dd1,#079447);color:#fff;padding:58px 22px}
+.hero-inner{max-width:1180px;margin:auto}.eyebrow{font-size:13px;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;opacity:.9}
+.hero h1{font-size:clamp(34px,5vw,54px);margin:8px 0 10px}.hero p{font-size:18px;max-width:760px;opacity:.96}
+main{max-width:1180px;margin:auto;padding:36px 22px 70px}.section-title{margin:0 0 18px;font-size:28px}.muted{color:var(--muted)}
+.notice{background:#fff;border:1px solid #e9edf1;border-left:6px solid var(--blue);border-radius:18px;padding:22px;margin:16px 0;box-shadow:0 8px 24px rgba(16,24,40,.05)}
+.notice.att{border-left-color:var(--gold)}.notice.urg{border-left-color:var(--red)}
+.notice h2{margin:0 0 8px;font-size:22px}.notice h3{margin:0 0 8px;font-size:18px}
+.tag{display:inline-block;margin:5px 0 12px;padding:5px 9px;border-radius:999px;background:#eef8fc;color:#0879a5;font-size:11px;font-weight:850;text-transform:uppercase}
+.notice p{line-height:1.55}.notice ul{line-height:1.7;padding-left:20px}
+.notice-img{display:block;width:100%;max-width:720px;margin:18px auto 4px;border-radius:14px;border:1px solid #e5e7eb;box-shadow:0 6px 18px rgba(16,24,40,.08)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.grid .notice{margin:0}
+footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font-size:13px}
+@media(max-width:800px){.grid{grid-template-columns:1fr}}
+@media(max-width:620px){.nav{padding:10px 15px}.brand img{width:42px;height:42px}nav{display:none}.hero{padding:43px 18px}main{padding:26px 16px 55px}}
+
+/* Menu mobile */
+.menu-toggle{display:none;border:0;background:#eef8fc;color:var(--navy);width:42px;height:42px;border-radius:11px;font-size:22px;cursor:pointer}
+.mobile-menu{display:none}
+@media(max-width:650px){
+  .menu-toggle{display:grid;place-items:center}
+  .mobile-menu{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid #e8edf2;box-shadow:0 12px 24px rgba(16,24,40,.10);padding:10px 15px}
+  .mobile-menu.open{display:grid}
+  .mobile-menu a{padding:12px 10px;color:#344054;text-decoration:none;font-weight:800;font-size:14px;border-radius:9px}
+  .mobile-menu a:hover{background:#f4f9fb;color:var(--green)}
+}
+</style>
+</head>
+<body>
+<header><div class="nav">
+<a class="brand" href="index.html"><img src="logo.png" onerror="this.style.display='none'"><span>SECRETARIA DO SETOR 49<small>Jardim dos Pimentas</small></span></a>
+<nav><a href="index.html">Início</a><a href="agenda.html">Agenda</a><a href="congregacoes.html">Congregações</a><a href="central-secretario.html">Central do Secretário</a><a href="avisos.html">Avisos</a><a href="diretoria.html">Diretoria</a></nav><button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="mobile-menu" id="mobileMenu"><a href="index.html">Início</a><a href="agenda.html">Agenda</a><a href="congregacoes.html">Congregações</a><a href="central-secretario.html">Central do Secretário</a><a href="avisos.html">Avisos</a><a href="diretoria.html">Diretoria</a></div>
+</div></header>
+
+<section class="hero"><div class="hero-inner">
+<div class="eyebrow">Setor 49 · Jardim dos Pimentas</div>
+<h1>Avisos</h1>
+<p>Comunicados e informações importantes da Secretaria.</p>
+</div></section>
+
+<main>
+<div class="notice">
+<h2>📅 Cronograma da Semana</h2>
+<span class="tag">Aviso da Semana · 31/08 a 06/09/2026</span>
+<p><strong>Destaques da programação:</strong></p>
+<ul>
+<li><strong>31/08 · 20h00:</strong> Reunião com dirigentes e esposas — Salão B, sede do Setor 49.</li>
+<li><strong>01/09 · 19h00:</strong> Culto de Ensino na sede — Cooperação: Grupo 1.</li>
+<li><strong>02/09 · 14h00:</strong> Círculo de Oração na sede.</li>
+<li><strong>03/09 · 19h00:</strong> Quinta da Conquista na sede — <strong>suspensa excepcionalmente.</strong></li>
+<li><strong>04/09 · 19h00:</strong> 29º Congresso CREIO Pimentas — Setor 49. <strong>Não haverá Culto de Ação de Graças.</strong></li>
+<li><strong>05/09 · 19h00:</strong> 29º Congresso CREIO Pimentas — Setor 49.</li>
+<li><strong>06/09 · 17h30:</strong> 29º Congresso CREIO Pimentas — Setor 49.</li>
+</ul>
+
+</div>
+
+<div class="grid">
+<div class="notice att">
+<h3>⚠️ Reunião de Obreiros — 07/09</h3>
+<span class="tag">Atenção</span>
+<p>Excepcionalmente na <strong>segunda-feira, 07 de setembro</strong>, não haverá a tradicional <strong>Reunião de Obreiros</strong>, devido à realização da <strong>80ª EBO — Escola Bíblica de Obreiros</strong>.</p>
+<p>O comunicado também convida a todos para o culto de abertura no <strong>domingo, 20 de setembro, às 18h</strong>.</p>
+<img class="notice-img" src="assets/aviso-reuniao-obreiros.jpg" alt="Aviso sobre o cancelamento da Reunião de Obreiros em 7 de setembro">
+</div>
+
+<div class="notice urg">
+<h3>🚨 Quinta da Conquista — 03/09</h3>
+<span class="tag">Urgente</span>
+<p>Nesta <strong>quinta-feira, 03 de setembro</strong>, não haverá o culto <strong>Quinta da Conquista</strong>. A programação foi excepcionalmente suspensa devido aos preparativos para a abertura do <strong>Congresso dos Adolescentes CREIO</strong>.</p>
+<p>Na <strong>sexta-feira, 04 de setembro, às 19h</strong>, acontecerá a grande abertura do congresso.</p>
+<img class="notice-img" src="assets/comunicado-quinta-conquista.jpg" alt="Comunicado sobre a suspensão da Quinta da Conquista em 3 de setembro">
+</div>
+</div>
+</main>
+<footer>Secretaria da Igreja · Setor 49 — Jardim dos Pimentas</footer>
+<script>
+const menuToggle=document.getElementById('menuToggle');
+const mobileMenu=document.getElementById('mobileMenu');
+if(menuToggle&&mobileMenu){
+ menuToggle.addEventListener('click',()=>{const open=mobileMenu.classList.toggle('open');menuToggle.setAttribute('aria-expanded',open?'true':'false');menuToggle.textContent=open?'✕':'☰';});
+ mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileMenu.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.textContent='☰';}));
+}
+</script>
+</body>
+</html>
