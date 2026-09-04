@@ -67,34 +67,131 @@ footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font
 <li><strong>06/09 · 17h30:</strong> 29º Congresso CREIO Pimentas — Setor 49.</li>
 </ul>
 
+<div class="grid" id="avisos-dinamicos">
+  <div class="notice">
+    <h3>📢 Carregando avisos...</h3>
+    <p>Aguarde enquanto os avisos da Secretaria são carregados.</p>
+  </div>
 </div>
 
-<div class="grid">
-<div class="notice att">
-<h3>⚠️ Reunião de Obreiros — 07/09</h3>
-<span class="tag">Atenção</span>
-<p>Excepcionalmente na <strong>segunda-feira, 07 de setembro</strong>, não haverá a tradicional <strong>Reunião de Obreiros</strong>, devido à realização da <strong>80ª EBO — Escola Bíblica de Obreiros</strong>.</p>
-<p>O comunicado também convida a todos para o culto de abertura no <strong>domingo, 20 de setembro, às 18h</strong>.</p>
-<img class="notice-img" src="assets/aviso-reuniao-obreiros.jpg" alt="Aviso sobre o cancelamento da Reunião de Obreiros em 7 de setembro">
-</div>
-
-<div class="notice urg">
-<h3>🚨 Quinta da Conquista — 03/09</h3>
-<span class="tag">Urgente</span>
-<p>Nesta <strong>quinta-feira, 03 de setembro</strong>, não haverá o culto <strong>Quinta da Conquista</strong>. A programação foi excepcionalmente suspensa devido aos preparativos para a abertura do <strong>Congresso dos Adolescentes CREIO</strong>.</p>
-<p>Na <strong>sexta-feira, 04 de setembro, às 19h</strong>, acontecerá a grande abertura do congresso.</p>
-<img class="notice-img" src="assets/comunicado-quinta-conquista.jpg" alt="Comunicado sobre a suspensão da Quinta da Conquista em 3 de setembro">
-</div>
-</div>
+  
 </main>
 <footer>ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM · SETOR 49 - JARDIM DOS PIMENTAS</footer>
 <footer><small>SECRETARIA DIGITAL</small><footer>
 <script>
-const menuToggle=document.getElementById('menuToggle');
-const mobileMenu=document.getElementById('mobileMenu');
-if(menuToggle&&mobileMenu){
- menuToggle.addEventListener('click',()=>{const open=mobileMenu.classList.toggle('open');menuToggle.setAttribute('aria-expanded',open?'true':'false');menuToggle.textContent=open?'✕':'☰';});
- mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileMenu.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.textContent='☰';}));
+const API_AVISOS = 'https://script.google.com/macros/s/AKfycbwhDTWlqpHpAdItooW9ygIJbHkshncKbfWDMg_2QrWVCy6UfadLXUfgbwhLYqdkW-ZDlg/exec';
+
+const containerAvisos = document.getElementById('avisos-dinamicos');
+
+function escaparHTML(texto) {
+  const div = document.createElement('div');
+  div.textContent = texto ?? '';
+  return div.innerHTML;
+}
+
+function criarAviso(aviso) {
+  const artigo = document.createElement('div');
+  artigo.className = 'notice';
+
+  let conteudo = '';
+
+  conteudo += `<h3>📢 ${escaparHTML(aviso.titulo)}</h3>`;
+
+  if (aviso.tipo) {
+    conteudo += `<span class="tag">${escaparHTML(aviso.tipo)}</span>`;
+  }
+
+  if (aviso.data || aviso.horario) {
+    conteudo += `<p><strong>`;
+
+    if (aviso.data) {
+      conteudo += escaparHTML(aviso.data);
+    }
+
+    if (aviso.horario) {
+      conteudo += ` • ${escaparHTML(aviso.horario)}`;
+    }
+
+    conteudo += `</strong></p>`;
+  }
+
+  if (aviso.texto) {
+    conteudo += `<p>${escaparHTML(aviso.texto)}</p>`;
+  }
+
+  if (aviso.imagem) {
+    conteudo += `
+      <img
+        class="notice-img"
+        src="${escaparHTML(aviso.imagem)}"
+        alt="${escaparHTML(aviso.titulo)}"
+      >
+    `;
+  }
+
+  artigo.innerHTML = conteudo;
+
+  return artigo;
+}
+
+async function carregarAvisos() {
+  try {
+    const resposta = await fetch(API_AVISOS);
+    const avisos = await resposta.json();
+
+    containerAvisos.innerHTML = '';
+
+    if (!avisos.length) {
+      containerAvisos.innerHTML = `
+        <div class="notice">
+          <h3>📢 Nenhum aviso no momento</h3>
+          <p>Não há comunicados ativos publicados pela Secretaria.</p>
+        </div>
+      `;
+      return;
+    }
+
+    avisos.forEach(aviso => {
+      containerAvisos.appendChild(criarAviso(aviso));
+    });
+
+  } catch (erro) {
+    console.error('Erro ao carregar avisos:', erro);
+
+    containerAvisos.innerHTML = `
+      <div class="notice">
+        <h3>⚠️ Não foi possível carregar os avisos</h3>
+        <p>Tente atualizar a página novamente.</p>
+      </div>
+    `;
+  }
+}
+
+carregarAvisos();
+
+
+const menuToggle = document.getElementById('menuToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+
+if(menuToggle && mobileMenu){
+  menuToggle.addEventListener('click',()=>{
+    const open = mobileMenu.classList.toggle('open');
+
+    menuToggle.setAttribute(
+      'aria-expanded',
+      open ? 'true' : 'false'
+    );
+
+    menuToggle.textContent = open ? '×' : '☰';
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click',()=>{
+      mobileMenu.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded','false');
+      menuToggle.textContent='☰';
+    });
+  });
 }
 </script>
 </body>
