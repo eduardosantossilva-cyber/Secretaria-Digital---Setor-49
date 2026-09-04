@@ -5,6 +5,83 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Secretaria — Setor 49</title>
 <style>
+.location{
+  margin-top:20px;
+  padding:28px;
+  background:linear-gradient(145deg,#ffffff,#f4fafc);
+  border:1px solid #dcecf2;
+  border-radius:18px;
+  box-shadow:0 8px 24px rgba(7,60,102,.08);
+}
+
+.location-pin{
+  font-size:30px;
+  margin-bottom:12px;
+}
+
+.location-info h2{
+  color:#073c66;
+  font-size:24px;
+  margin:0 0 14px;
+}
+
+.location-info p{
+  color:#667085;
+  font-size:13px;
+  line-height:1.6;
+  margin:0 0 20px;
+}
+
+.location-button{
+  display:inline-block;
+  width:max-content;
+  padding:11px 18px;
+  background:#159dd1;
+  color:#fff;
+  text-decoration:none;
+  border-radius:9px;
+  font-weight:700;
+  font-size:12px;
+  transition:.2s;
+}
+
+.location-button:hover{
+  transform:translateY(-2px);
+  opacity:.9;
+}
+
+.location-map{
+  overflow:hidden;
+  border-radius:16px;
+  border:1px solid #dce8ef;
+  height:260px;
+  box-shadow:0 4px 14px rgba(7,60,102,.08);
+}
+
+.location-map iframe{
+  display:block;
+  width:100%;
+  height:100%;
+  border:0;
+}
+
+@media(max-width:800px){
+  .location{
+    padding:20px;
+  }
+
+  .location-content{
+    grid-template-columns:1fr;
+  }
+
+  .location-map{
+    height:240px;
+  }
+
+  .location-info h2{
+    font-size:21px;
+  }
+}
   .location-content{
   display:grid;
   grid-template-columns:1fr 420px;
