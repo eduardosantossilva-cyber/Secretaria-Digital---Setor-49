@@ -94,7 +94,49 @@ footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font
   border-radius:12px;
   border:1px solid #dce8ef;
 }
-  
+.notice.aviso-urgente{
+  border-left:6px solid #d62828;
+  border-color:#d62828;
+  background:linear-gradient(135deg,#fff5f5,#ffffff);
+}
+
+.notice.aviso-urgente .tag{
+  background:#d62828;
+  color:#ffffff;
+}
+
+.notice.aviso-importante{
+  border-left:6px solid #f2c200;
+  border-color:#f2c200;
+  background:linear-gradient(135deg,#fffbea,#ffffff);
+}
+
+.notice.aviso-importante .tag{
+  background:#f2c200;
+  color:#073c66;
+}
+
+.notice.aviso-informativo{
+  border-left:6px solid #159dd1;
+  border-color:#159dd1;
+  background:linear-gradient(135deg,#f2faff,#ffffff);
+}
+
+.notice.aviso-informativo .tag{
+  background:#159dd1;
+  color:#ffffff;
+}
+
+.notice.aviso-agenda{
+  border-left:6px solid #079447;
+  border-color:#079447;
+  background:linear-gradient(135deg,#f3fff8,#ffffff);
+}
+
+.notice.aviso-agenda .tag{
+  background:#079447;
+  color:#ffffff;
+}
 </style>
 </head>
 <body>
@@ -156,8 +198,23 @@ function escaparHTML(texto) {
 }
 
 function criarAviso(aviso) {
-  const artigo = document.createElement('div');
-  artigo.className = 'notice';
+ const artigo = document.createElement('div');
+
+const tipoAviso = String(aviso.tipo || '')
+  .trim()
+  .toUpperCase();
+
+artigo.className = 'notice';
+
+if (tipoAviso === 'URGENTE') {
+  artigo.classList.add('aviso-urgente');
+} else if (tipoAviso === 'IMPORTANTE') {
+  artigo.classList.add('aviso-importante');
+} else if (tipoAviso === 'INFORMATIVO') {
+  artigo.classList.add('aviso-informativo');
+} else if (tipoAviso === 'AGENDA') {
+  artigo.classList.add('aviso-agenda');
+}
 
   let conteudo = '';
 
