@@ -129,7 +129,7 @@ footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font
 <div class="no-results" id="noResults">Nenhum evento corresponde aos filtros selecionados.</div>
 </main>
 <footer>ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM · SETOR 49 - JARDIM DOS PIMENTAS</footer>
-<footer>SECRETARIA DIGITAL</footer>
+<footer><small>SECRETARIA DIGITAL</small><footer>
 <script>
 const mf=document.getElementById('monthFilter'),tf=document.getElementById('typeFilter'),events=[...document.querySelectorAll('.event')],months=[...document.querySelectorAll('.month')],no=document.getElementById('noResults');
 function filter(){let n=0;events.forEach(e=>{let ok=(mf.value==='all'||e.dataset.month===mf.value)&&(tf.value==='all'||e.dataset.type===tf.value);e.style.display=ok?'flex':'none';if(ok)n++});months.forEach(m=>{let next=m.nextElementSibling, visible=false;while(next&& !next.classList.contains('month')){if(next.classList.contains('events')&&[...next.querySelectorAll('.event')].some(e=>e.style.display!=='none'))visible=true;next=next.nextElementSibling}m.style.display=visible?'flex':'none'});no.style.display=n?'none':'block'}mf.addEventListener('change',filter);tf.addEventListener('change',filter);filter();
