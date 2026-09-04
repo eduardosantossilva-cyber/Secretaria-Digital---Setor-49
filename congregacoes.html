@@ -14,6 +14,29 @@ nav{display:flex;gap:16px;flex-wrap:wrap}nav a{color:#344054;text-decoration:non
 main{max-width:1180px;margin:auto;padding:32px 22px 70px}
 .tools{background:#fff;border:1px solid #e8edf2;border-radius:18px;padding:17px;display:flex;gap:12px;align-items:center;box-shadow:0 7px 22px rgba(16,24,40,.05);margin-bottom:22px}
 input{width:100%;padding:13px 15px;border:1px solid #d7dee4;border-radius:11px;font:inherit;outline:none}input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(21,157,209,.12)}
+select{
+  width:280px;
+  padding:13px 15px;
+  border:1px solid #d7dee4;
+  border-radius:11px;
+  font:inherit;
+  outline:none;
+  background:#fff;
+  color:#344054;
+  cursor:pointer;
+}
+
+select:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(21,157,209,.12);
+}
+
+@media(max-width:650px){
+  select{
+    width:100%;
+    margin-top:10px;
+  }
+}
 .count{white-space:nowrap;color:var(--muted);font-size:13px;font-weight:800}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .church-card{background:#fff;border:1px solid #e8edf2;border-radius:18px;padding:20px;display:flex;gap:14px;min-height:205px;box-shadow:0 7px 20px rgba(16,24,40,.045);transition:.2s}
@@ -46,7 +69,19 @@ footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font
 </div></header>
 <section class="hero"><div class="hero-inner"><div class="eyebrow">SECRETARIA DIGITAL - SETOR 49</div><h1>Nossas Congregações</h1><p>Consulte os endereços das congregações do Setor 49 e abra diretamente a rota no Google Maps.</p></div></section>
 <main>
-<div class="tools"><input id="search" type="search" placeholder="🔎 Pesquisar pelo nome ou endereço..." aria-label="Pesquisar congregação ou endereço"><div class="count" id="count">37 congregações</div></div>
+<div class="tools">
+  <input id="search" type="search" placeholder="🔎 Pesquisar pelo nome ou endereço..." aria-label="Pesquisar congregação ou endereço">
+
+  <select id="regionalFilter" aria-label="Filtrar por regional">
+    <option value="">Todas as regionais</option>
+    <option value="regional-01">Regional 01 — Siquém</option>
+    <option value="regional-02">Regional 02 — Betel</option>
+    <option value="regional-03">Regional 03 — Hebron</option>
+    <option value="regional-04">Regional 04 — Moriá</option>
+  </select>
+
+  <div class="count" id="count">37 congregações</div>
+</div>
 <section class="grid" id="grid">
 <article class="church-card" data-name="parque são miguel - sede">
 <div class="church-icon">⌖</div>
