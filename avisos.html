@@ -82,6 +82,19 @@ footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font
     grid-column:auto;
   }
 }
+
+.notice-img{
+  display:block;
+  width:100%;
+  max-width:100%;
+  height:auto;
+  max-height:600px;
+  object-fit:contain;
+  margin:20px auto 0;
+  border-radius:12px;
+  border:1px solid #dce8ef;
+}
+  
 </style>
 </head>
 <body>
@@ -172,15 +185,27 @@ function criarAviso(aviso) {
     conteudo += `<p>${escaparHTML(aviso.texto)}</p>`;
   }
 
-  if (aviso.imagem) {
-    conteudo += `
-      <img
-        class="notice-img"
-        src="${escaparHTML(aviso.imagem)}"
-        alt="${escaparHTML(aviso.titulo)}"
-      >
-    `;
+ if (aviso.imagem) {
+  let imagemURL = String(aviso.imagem).trim();
+
+  // Converte links do Google Drive para um formato próprio para exibição
+  const matchDrive = imagemURL.match(
+    /(?:\/file\/d\/|id=|\/open\?id=)([a-zA-Z0-9_-]+)/
+  );
+
+  if (matchDrive) {
+    imagemURL = `https://drive.google.com/thumbnail?id=${matchDrive[1]}&sz=w1200`;
   }
+
+  conteudo += `
+    <img
+      class="notice-img"
+      src="${imagemURL}"
+      alt="${escaparHTML(aviso.titulo)}"
+      loading="lazy"
+    >
+  `;
+}
 
   artigo.innerHTML = conteudo;
 
