@@ -351,13 +351,117 @@ footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font
 <footer>ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM · SETOR 49 - JARDIM DOS PIMENTAS</footer>
 <footer><small>SECRETARIA DIGITAL</small><footer>
 <script>
-const input=document.getElementById('search'), cards=[...document.querySelectorAll('.church-card')], count=document.getElementById('count'), empty=document.getElementById('empty');
-function filter(){
- const q=input.value.toLowerCase().trim(); let n=0;
- cards.forEach(c=>{const ok=!q||c.innerText.toLowerCase().includes(q);c.style.display=ok?'flex':'none';if(ok)n++;});
- count.textContent=n+' congregação(ões)'; empty.style.display=n?'none':'block';
+const input = document.getElementById('search');
+const regionalFilter = document.getElementById('regionalFilter');
+const cards = [...document.querySelectorAll('.church-card')];
+const count = document.getElementById('count');
+const empty = document.getElementById('empty');
+
+const regionais = {
+  'regional-01': [
+    'JD. DINAMARCA',
+    'JD. LEBLON',
+    'JD. MARIA DO CARMO',
+    'JD. NORMANDIA 1',
+    'JD. NOVA CIDADE',
+    'JD. PAULISTA',
+    'VILA REAL',
+    'PARQUE SÃO MIGUEL'
+  ],
+
+  'regional-02': [
+    'JD. ALICE',
+    'JD. DAS OLIVAS',
+    'JD. GUARACY',
+    'JD. JACY',
+    'JD. MARCOS FREIRE',
+    'JD. PIRATININGA',
+    'JD. POR DO SOL',
+    'VILA ANY',
+    'JD. SÃO FRANCISCO'
+  ],
+
+  'regional-03': [
+    'JD. ANGÉLICA',
+    'JD. CUMBICA',
+    'JD. GUILHERMINO',
+    'JD. MONTE ALEGRE',
+    'JD. PARAÍSO',
+    'JD. SANTA MARIA',
+    'PQ. BRASÍLIA',
+    'PQ. ESTELA',
+    'PQ. JUREMA',
+    'VILA ISABEL'
+  ],
+
+  'regional-04': [
+    'JD. ALZIRA',
+    'JD. ARAPONGAS',
+    'JD. DONA LUIZA',
+    'JD. NOVA CUMBICA',
+    'JD. OTTAWA',
+    'JD. SANTO AFONSO',
+    'JD. SÃO GABRIEL',
+    'JD. TERRA BOA',
+    'JD. TIJUCO PRETO',
+    'JD. VERMELHÃO'
+  ]
+};
+
+function normalizar(texto) {
+  return texto
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toUpperCase()
+    .trim();
 }
-input.addEventListener('input',filter);
+
+function obterRegional(card) {
+  const nome = card.querySelector('h2')?.textContent || '';
+  const nomeNormalizado = normalizar(nome);
+
+  for (const regional in regionais) {
+    const lista = regionais[regional].map(normalizar);
+
+    if (lista.includes(nomeNormalizado)) {
+      return regional;
+    }
+  }
+
+  return '';
+}
+
+function filter() {
+  const q = normalizar(input.value);
+  const regionalSelecionada = regionalFilter.value;
+  let n = 0;
+
+  cards.forEach(card => {
+    const texto = normalizar(card.innerText);
+    const regional = obterRegional(card);
+
+    const correspondePesquisa =
+      !q || texto.includes(q);
+
+    const correspondeRegional =
+      !regionalSelecionada || regional === regionalSelecionada;
+
+    const mostrar =
+      correspondePesquisa && correspondeRegional;
+
+    card.style.display = mostrar ? 'flex' : 'none';
+
+    if (mostrar) n++;
+  });
+
+  count.textContent = n + (n === 1 ? ' congregação' : ' congregações');
+  empty.style.display = n ? 'none' : 'block';
+}
+
+input.addEventListener('input', filter);
+regionalFilter.addEventListener('change', filter);
+
+filter();
 </script>
 <script>
 const menuToggle=document.getElementById('menuToggle');
