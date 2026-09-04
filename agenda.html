@@ -17,11 +17,54 @@ main{max-width:1180px;margin:auto;padding:32px 22px 70px}
 select{width:100%;padding:13px 14px;border:1px solid #d7dee4;border-radius:11px;background:#fff;font:inherit;outline:none}select:focus{border-color:var(--blue)}
 .month{margin:30px 0 12px;display:flex;align-items:center;gap:10px}.month h2{margin:0;color:var(--navy);font-size:24px}.month span{font-size:11px;color:#fff;background:var(--green);padding:5px 8px;border-radius:999px;font-weight:900}
 .events{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.event{background:#fff;border:1px solid #e8edf2;border-radius:17px;padding:18px;display:flex;gap:14px;box-shadow:0 6px 20px rgba(16,24,40,.04)}
-.date{width:58px;height:64px;flex:none;border-radius:13px;background:#eef8fc;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--navy);font-weight:900}.date b{font-size:22px;line-height:1}.date small{font-size:10px;margin-top:4px}
+.date{
+  width:105px;
+  height:78px;
+  flex:none;
+  border-radius:15px;
+  background:#eef8fc;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:var(--navy);
+  font-weight:900;
+  border:1px solid #d9eef5;
+  box-sizing:border-box;
+}
+
+.date b{
+  font-size:20px;
+  line-height:1;
+  white-space:nowrap;
+  letter-spacing:0;
+}
+
+.date small{
+  font-size:10px;
+  margin-top:8px;
+  letter-spacing:.8px;
+  font-weight:900;
+  white-space:nowrap;
+}
 .event h3{margin:0 0 5px;font-size:16px}.event p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}.type{display:inline-block;margin-top:9px;font-size:10px;font-weight:900;text-transform:uppercase;color:var(--green);letter-spacing:.6px}
 .no-results{display:none;background:#fff;border:1px dashed #cbd5df;border-radius:16px;padding:35px;text-align:center;color:var(--muted)}
 footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font-size:13px}
-@media(max-width:700px){.filters{grid-template-columns:1fr}.events{grid-template-columns:1fr}}
+@media(max-width:700px){
+  .events{grid-template-columns:1fr}
+  .event{padding:15px;gap:12px}
+  .date{
+    width:100px;
+    height:76px;
+  }
+  .date b{
+    font-size:19px;
+  }
+  .date small{
+    font-size:9px;
+    letter-spacing:.7px;
+  }
+}
 @media(max-width:620px){.nav{padding:10px 15px}.brand img{width:43px;height:43px}nav{display:none}.hero{padding:43px 18px}main{padding:25px 16px 55px}.sede-highlight{align-items:flex-start}.sede-icon{width:44px;height:44px;font-size:22px}}
 
 /* Menu mobile */
