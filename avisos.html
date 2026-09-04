@@ -38,6 +38,50 @@ footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font
   .mobile-menu a{padding:12px 10px;color:#344054;text-decoration:none;font-weight:800;font-size:14px;border-radius:9px}
   .mobile-menu a:hover{background:#f4f9fb;color:var(--green)}
 }
+/* Avisos dinâmicos da Secretaria */
+.avisos-secao{
+  margin-top:36px;
+}
+
+.avisos-secao-header{
+  margin-bottom:18px;
+}
+
+.avisos-secao-header h2{
+  margin:0 0 6px;
+  color:#073c66;
+  font-size:28px;
+}
+
+.avisos-secao-header p{
+  margin:0;
+  color:#667085;
+  font-size:14px;
+}
+
+#avisos-dinamicos{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+}
+
+#avisos-dinamicos .notice{
+  margin:0;
+}
+
+#avisos-dinamicos .notice:only-child{
+  grid-column:1 / -1;
+}
+
+@media(max-width:800px){
+  #avisos-dinamicos{
+    grid-template-columns:1fr;
+  }
+
+  #avisos-dinamicos .notice:only-child{
+    grid-column:auto;
+  }
+}
 </style>
 </head>
 <body>
@@ -67,12 +111,21 @@ footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font
 <li><strong>06/09 · 17h30:</strong> 29º Congresso CREIO Pimentas — Setor 49.</li>
 </ul>
 
-<div class="grid" id="avisos-dinamicos">
-  <div class="notice">
-    <h3>📢 Carregando avisos...</h3>
-    <p>Aguarde enquanto os avisos da Secretaria são carregados.</p>
+<section class="avisos-secao">
+
+  <div class="avisos-secao-header">
+    <h2>📢 Avisos da Secretaria</h2>
+    <p>Comunicados e informações atualizadas do Setor 49.</p>
   </div>
-</div>
+
+  <div id="avisos-dinamicos">
+    <div class="notice">
+      <h3>📢 Carregando avisos...</h3>
+      <p>Aguarde enquanto os avisos da Secretaria são carregados.</p>
+    </div>
+  </div>
+
+</section>
 
   
 </main>
