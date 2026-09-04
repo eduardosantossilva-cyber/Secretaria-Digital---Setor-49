@@ -38,16 +38,16 @@ footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font
 </head>
 <body>
 <header><div class="nav">
-<a class="brand" href="index.html"><img src="logo.png" onerror="this.style.display='none'"><span>SECRETARIA DO SETOR 49<small>Jardim dos Pimentas</small></span></a>
+<a class="brand" href="index.html"><img src="logo.png" onerror="this.style.display='none'"><span>ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM<small>SETOR 49 - JARDIM DOS PIMNETAS</small></span></a>
 <nav><a href="index.html">Início</a><a href="agenda.html">Agenda</a><a href="congregacoes.html">Congregações</a><a href="central-secretario.html">Central do Secretário</a><a href="avisos.html">Avisos</a><a href="diretoria.html">Diretoria</a></nav><button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="mobile-menu" id="mobileMenu"><a href="index.html">Início</a><a href="agenda.html">Agenda</a><a href="congregacoes.html">Congregações</a><a href="central-secretario.html">Central do Secretário</a><a href="avisos.html">Avisos</a><a href="diretoria.html">Diretoria</a></div>
 </div></header>
 
 <section class="hero"><div class="hero-inner">
-<div class="eyebrow">Setor 49 · Jardim dos Pimentas</div><h1>Agenda 2026</h1><p>Principais eventos e programações setoriais do Ministério do Belém — Setor 49.</p>
+<div class="eyebrow">SECRETARIA DIGITAL - SETOR 49</div><h1>Agenda 2026</h1><p>Principais eventos e programações setoriais.</p>
 </div></section>
 
 <main>
-<div class="sede-highlight"><div class="sede-icon">🏛️</div><div><strong>CONGREGAÇÃO SEDE</strong><p><b>PARQUE SÃO MIGUEL — SEDE</b> · Rua Antonio Bittencourt, 684 — Jardim dos Pimentas — Parque São Miguel — Guarulhos/SP.<br>É onde acontecem os principais eventos e programações setoriais.</p></div></div>
+<div class="sede-highlight"><div class="sede-icon">🏛️</div><div><strong>SEDE</strong><p><b>PARQUE SÃO MIGUEL — SEDE</b> · Rua Antonio Bittencourt, 684 — Jardim dos Pimentas — Parque São Miguel — Guarulhos/SP.<br></p></div></div>
 
 <div class="filters">
 <select id="monthFilter"><option value="all">Todos os meses</option><option value="02">Fevereiro</option><option value="03">Março</option><option value="04">Abril</option><option value="05">Maio</option><option value="06">Junho</option><option value="07">Julho</option><option value="08">Agosto</option><option value="09">Setembro</option><option value="10">Outubro</option><option value="11">Novembro</option></select>
@@ -103,23 +103,33 @@ footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font
 <div class="month"><h2>Setembro</h2><span>2026</span></div>
 <div class="events">
 <div class="event" data-month="09" data-type="eventos"><div class="date"><b>04–06</b><small>SET</small></div><div><h3>CREIO</h3><p>29º Congresso CREIO Pimentas — Setor 49.</p><span class="type">Evento setorial</span></div></div>
+<div class="event" data-month="09" data-type="eventos"><div class="date"><b>13</b><small>SET</small></div><div><h3>SANTA CEIA SETORIAL</h3><p></p><span class="type">Evento setorial</span></div></div>
+</div>
 </div>
 
 <div class="month"><h2>Outubro</h2><span>2026</span></div>
 <div class="events">
 <div class="event" data-month="10" data-type="eventos"><div class="date"><b>03</b><small>OUT</small></div><div><h3>KIDS</h3><p>03 de outubro.</p><span class="type">Evento setorial</span></div></div>
+<div class="event" data-month="10" data-type="eventos"><div class="date"><b>11</b><small>OUT</small></div><div><h3>SANTA CEIA SETORIAL</h3><p></p><span class="type">Evento setorial</span></div></div>
 <div class="event" data-month="10" data-type="eventos"><div class="date"><b>23–25</b><small>OUT</small></div><div><h3>UFADEB</h3><p>23 a 25 de outubro.</p><span class="type">Evento setorial</span></div></div>
 </div>
 
 <div class="month"><h2>Novembro</h2><span>2026</span></div>
 <div class="events">
+<div class="event" data-month="11" data-type="eventos"><div class="date"><b>08</b><small>NOV</small></div><div><h3>SANTA CEIA SETORIAL</h3><p></p><span class="type">Evento setorial</span></div></div>
 <div class="event" data-month="11" data-type="eventos"><div class="date"><b>27–29</b><small>NOV</small></div><div><h3>UMADEB</h3><p>27 a 29 de novembro.</p><span class="type">Evento setorial</span></div></div>
 <div class="event" data-month="11" data-type="batismo"><div class="date"><b>29</b><small>NOV</small></div><div><h3>Batismo nas Águas</h3><p>Quarta data de batismo prevista na agenda setorial.</p><span class="type">Batismos</span></div></div>
 </div>
 
+<div class="month"><h2>Dezembro</h2><span>2026</span></div>
+<div class="events">
+<div class="event" data-month="12" data-type="eventos"><div class="date"><b>13</b><small>NOV</small></div><div><h3>SANTA CEIA SETORIAL</h3><p></p><span class="type">Evento setorial</span></div></div>
+</div>
+
 <div class="no-results" id="noResults">Nenhum evento corresponde aos filtros selecionados.</div>
 </main>
-<footer>Secretaria da Igreja · Setor 49 — Jardim dos Pimentas</footer>
+<footer>ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM · SETOR 49 - JARDIM DOS PIMENTAS</footer>
+<footer>SECRETARIA DIGITAL</footer>
 <script>
 const mf=document.getElementById('monthFilter'),tf=document.getElementById('typeFilter'),events=[...document.querySelectorAll('.event')],months=[...document.querySelectorAll('.month')],no=document.getElementById('noResults');
 function filter(){let n=0;events.forEach(e=>{let ok=(mf.value==='all'||e.dataset.month===mf.value)&&(tf.value==='all'||e.dataset.type===tf.value);e.style.display=ok?'flex':'none';if(ok)n++});months.forEach(m=>{let next=m.nextElementSibling, visible=false;while(next&& !next.classList.contains('month')){if(next.classList.contains('events')&&[...next.querySelectorAll('.event')].some(e=>e.style.display!=='none'))visible=true;next=next.nextElementSibling}m.style.display=visible?'flex':'none'});no.style.display=n?'none':'block'}mf.addEventListener('change',filter);tf.addEventListener('change',filter);filter();
