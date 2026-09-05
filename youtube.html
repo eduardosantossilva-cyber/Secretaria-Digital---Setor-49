@@ -248,7 +248,86 @@
       height:100%;
       border:0;
     }
+/* ÚLTIMOS VÍDEOS */
 
+.videos-recentes{
+  margin-top:25px;
+}
+
+.videos-recentes h2{
+  color:var(--navy);
+  font-size:21px;
+  margin-bottom:8px;
+}
+
+.videos-recentes > p{
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:18px;
+}
+
+.videos-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+
+.video-card{
+  background:#fff;
+  border:1px solid #e1e8ed;
+  border-radius:20px;
+  padding:16px;
+  box-shadow:0 8px 24px rgba(7,60,102,.05);
+  overflow:hidden;
+}
+
+.video-thumb{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  overflow:hidden;
+  border-radius:14px;
+  background:#111;
+}
+
+.video-thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.video-card h3{
+  color:var(--navy);
+  font-size:16px;
+  margin:15px 0 12px;
+}
+
+.video-btn{
+  display:inline-block;
+  padding:10px 15px;
+  background:#ff0000;
+  color:#fff;
+  text-decoration:none;
+  border-radius:8px;
+  font-weight:800;
+  font-size:11px;
+  transition:.2s;
+}
+
+.video-btn:hover{
+  transform:translateY(-2px);
+  opacity:.9;
+}
+
+@media(max-width:700px){
+
+  .videos-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+    
     /* FOOTER */
 
     footer{
@@ -366,7 +445,86 @@
 
   </section>
 
+<section class="videos-recentes">
 
+  <h2>🎬 Últimos vídeos</h2>
+
+  <p>
+    Confira outros conteúdos publicados pelo canal oficial
+    da Assembleia de Deus — Ministério do Belém, Setor 49.
+  </p>
+
+  <div class="videos-grid">
+
+    <!-- VÍDEO 01 -->
+
+    <div class="video-card">
+
+      <a
+        href="https://www.youtube.com/watch?v=ZuqklsQS7xo"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div class="video-thumb">
+
+          <img
+            src="https://img.youtube.com/vi/ZuqklsQS7xo/hqdefault.jpg"
+            alt="Vídeo do canal AD Belém 49"
+          >
+
+        </div>
+      </a>
+
+      <h3>Vídeo do Canal AD Belém 49</h3>
+
+      <a
+        class="video-btn"
+        href="https://www.youtube.com/watch?v=ZuqklsQS7xo"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        ASSISTIR NO YOUTUBE →
+      </a>
+
+    </div>
+
+
+    <!-- VÍDEO 02 -->
+
+    <div class="video-card">
+
+      <a
+        href="https://www.youtube.com/watch?v=fYyyERA-j6k"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div class="video-thumb">
+
+          <img
+            src="https://img.youtube.com/vi/fYyyERA-j6k/hqdefault.jpg"
+            alt="Vídeo do canal AD Belém 49"
+          >
+
+        </div>
+      </a>
+
+      <h3>Vídeo do Canal AD Belém 49</h3>
+
+      <a
+        class="video-btn"
+        href="https://www.youtube.com/watch?v=fYyyERA-j6k"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        ASSISTIR NO YOUTUBE →
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+  
   <section class="youtube-card">
 
     <div class="youtube-icon">
