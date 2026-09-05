@@ -4,516 +4,733 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Central de Mídia | Secretaria Digital - Setor 49</title>
+  <title>Central de Mídia - Setor 49</title>
 
   <style>
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    body{
-      font-family:Arial, Helvetica, sans-serif;
-      background:#f6f8fa;
-      color:#172033;
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f6f8fa;
+      color: #073c66;
     }
 
-    header{
-      background:#ffffff;
-      border-bottom:1px solid #e5e7eb;
-      padding:18px 5%;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-      position:sticky;
-      top:0;
-      z-index:10;
+    /* =========================
+       CABEÇALHO
+    ========================= */
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e1e7eb;
+      min-height: 113px;
+      padding: 18px 5.5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
     }
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      text-decoration:none;
-      color:#073c66;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 18px;
     }
 
-    .brand img{
-      width:52px;
-      height:52px;
-      object-fit:contain;
+    .brand img {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
     }
 
-    .brand-text strong{
-      display:block;
-      font-size:17px;
+    .brand-text h1 {
+      color: #073c66;
+      font-size: 25px;
+      font-weight: 800;
+      margin-bottom: 5px;
+      white-space: nowrap;
     }
 
-    .brand-text span{
-      display:block;
-      margin-top:3px;
-      font-size:12px;
-      color:#667085;
+    .brand-text p {
+      color: #667085;
+      font-size: 16px;
     }
 
-    nav{
-      display:flex;
-      align-items:center;
-      gap:20px;
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
     }
 
-    nav a{
-      color:#344054;
-      text-decoration:none;
-      font-size:13px;
-      font-weight:600;
+    nav a {
+      color: #16283d;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: .2s;
     }
 
-    nav a:hover{
-      color:#159dd1;
+    nav a:hover {
+      color: #159dd1;
     }
 
-    .menu-toggle{
-      display:none;
-      border:0;
-      background:transparent;
-      font-size:28px;
-      cursor:pointer;
-      color:#073c66;
+    /* =========================
+       BANNER
+    ========================= */
+
+    .hero {
+      width: 100%;
+      min-height: 365px;
+      padding: 78px 6.2% 65px;
+
+      background:
+        linear-gradient(
+          105deg,
+          #073c66 0%,
+          #159dd1 52%,
+          #079447 100%
+        );
+
+      color: #ffffff;
     }
 
-    .mobile-menu{
-      display:none;
-      position:absolute;
-      top:100%;
-      left:0;
-      right:0;
-      background:#ffffff;
-      border-top:1px solid #e5e7eb;
-      padding:15px 5%;
-      box-shadow:0 8px 20px rgba(7,60,102,.08);
+    .hero-content {
+      max-width: 1200px;
     }
 
-    .mobile-menu.open{
-      display:flex;
-      flex-direction:column;
-      gap:15px;
+    .hero-label {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin-bottom: 32px;
     }
 
-    .mobile-menu a{
-      color:#344054;
-      text-decoration:none;
-      font-weight:600;
-      padding:8px 0;
+    .hero h2 {
+      font-size: 58px;
+      line-height: 1.05;
+      font-weight: 800;
+      margin-bottom: 25px;
     }
 
-    main{
-      width:min(1100px,92%);
-      margin:0 auto;
-      padding:45px 0 60px;
+    .hero p {
+      font-size: 23px;
+      line-height: 1.5;
+      font-weight: 400;
     }
 
-    .hero{
-      background:linear-gradient(135deg,#073c66,#159dd1);
-      border-radius:22px;
-      padding:38px;
-      color:#ffffff;
-      margin-bottom:30px;
-      box-shadow:0 12px 30px rgba(7,60,102,.12);
+    /* =========================
+       CONTEÚDO
+    ========================= */
+
+    main {
+      width: 90%;
+      max-width: 1690px;
+      margin: 0 auto;
+      padding: 42px 0 70px;
     }
 
-    .hero h1{
-      font-size:32px;
-      margin-bottom:10px;
+    .section-title {
+      margin-bottom: 30px;
     }
 
-    .hero p{
-      font-size:15px;
-      line-height:1.6;
-      opacity:.95;
+    .section-title h2 {
+      color: #073c66;
+      font-size: 34px;
+      margin-bottom: 10px;
+      font-weight: 800;
     }
 
-    .section-title{
-      color:#073c66;
-      font-size:25px;
-      margin-bottom:8px;
+    .section-title p {
+      color: #667085;
+      font-size: 17px;
+      line-height: 1.5;
     }
 
-    .section-description{
-      color:#667085;
-      font-size:14px;
-      margin-bottom:22px;
+    /* =========================
+       CARDS
+    ========================= */
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
     }
 
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:18px;
+    .media-card {
+      background: #ffffff;
+      border: 1px solid #dce5ea;
+      border-left: 6px solid #159dd1;
+      border-radius: 20px;
+      min-height: 340px;
+      padding: 26px 28px 28px;
+
+      display: flex;
+      flex-direction: column;
+
+      box-shadow: 0 8px 24px rgba(7, 60, 102, 0.06);
+      transition: .2s ease;
     }
 
-    .drive-card{
-      display:block;
-      text-decoration:none;
-      color:inherit;
-      background:#ffffff;
-      border:1px solid #e0e7ed;
-      border-radius:18px;
-      padding:22px;
-      min-height:145px;
-      box-shadow:0 6px 20px rgba(7,60,102,.06);
-      transition:.2s ease;
-      position:relative;
-      overflow:hidden;
+    .media-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px rgba(7, 60, 102, 0.11);
+      border-left-color: #079447;
     }
 
-    .drive-card::before{
-      content:"";
-      position:absolute;
-      left:0;
-      top:0;
-      bottom:0;
-      width:5px;
-      background:#159dd1;
+    /* =========================
+       LOGOS
+    ========================= */
+
+    .logo-area {
+      height: 125px;
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      margin-bottom: 16px;
     }
 
-    .drive-card:hover{
-      transform:translateY(-4px);
-      box-shadow:0 12px 28px rgba(7,60,102,.12);
-      border-color:#b9ddea;
+    .logo-area img {
+      display: block;
+
+      max-width: 210px;
+      max-height: 115px;
+
+      width: auto;
+      height: auto;
+
+      object-fit: contain;
     }
 
-    .drive-icon{
-      font-size:32px;
-      margin-bottom:14px;
+    .logo-placeholder {
+      font-size: 48px;
+      line-height: 1;
     }
 
-    .drive-card h3{
-      color:#073c66;
-      font-size:19px;
-      margin-bottom:7px;
+    /* =========================
+       TEXTO DOS CARDS
+    ========================= */
+
+    .media-card h3 {
+      color: #073c66;
+      font-size: 25px;
+      font-weight: 800;
+      margin-bottom: 10px;
     }
 
-    .drive-card p{
-      color:#667085;
-      font-size:13px;
-      line-height:1.5;
-      margin-bottom:15px;
+    .media-card p {
+      color: #667085;
+      font-size: 16px;
+      line-height: 1.55;
+      margin-bottom: 20px;
     }
 
-    .drive-link{
-      color:#159dd1;
-      font-size:12px;
-      font-weight:700;
+    .media-card a {
+      margin-top: auto;
+
+      color: #159dd1;
+      text-decoration: none;
+
+      font-size: 16px;
+      font-weight: 800;
+
+      transition: .2s;
     }
 
-    footer{
-      text-align:center;
-      padding:25px 20px;
-      color:#667085;
-      font-size:12px;
+    .media-card a:hover {
+      color: #079447;
+      transform: translateX(3px);
     }
 
-    @media(max-width:800px){
+    /* =========================
+       RODAPÉ
+    ========================= */
 
-      header{
-        padding:14px 5%;
+    footer {
+      background: #073c66;
+      color: #ffffff;
+      text-align: center;
+      padding: 28px 20px;
+    }
+
+    footer p {
+      font-size: 14px;
+      line-height: 1.6;
+      opacity: .9;
+    }
+
+    /* =========================
+       TABLET
+    ========================= */
+
+    @media (max-width: 1150px) {
+
+      header {
+        padding-left: 4%;
+        padding-right: 4%;
       }
 
-      nav{
-        display:none;
+      .brand-text h1 {
+        font-size: 21px;
       }
 
-      .menu-toggle{
-        display:block;
+      nav {
+        gap: 18px;
       }
 
-      main{
-        padding-top:30px;
+      nav a {
+        font-size: 14px;
       }
 
-      .hero{
-        padding:28px 22px;
+      .hero h2 {
+        font-size: 50px;
       }
 
-      .hero h1{
-        font-size:26px;
-      }
-
-      .grid{
-        grid-template-columns:1fr;
+      .media-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
+
+    /* =========================
+       CELULAR
+    ========================= */
+
+    @media (max-width: 800px) {
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 5%;
+      }
+
+      .brand {
+        width: 100%;
+      }
+
+      .brand img {
+        width: 62px;
+        height: 62px;
+      }
+
+      .brand-text h1 {
+        font-size: 18px;
+        white-space: normal;
+      }
+
+      .brand-text p {
+        font-size: 13px;
+      }
+
+      nav {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 14px 20px;
+      }
+
+      nav a {
+        font-size: 14px;
+      }
+
+      .hero {
+        min-height: 320px;
+        padding: 55px 7%;
+      }
+
+      .hero-label {
+        font-size: 14px;
+        margin-bottom: 25px;
+      }
+
+      .hero h2 {
+        font-size: 40px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+
+      main {
+        width: 92%;
+        padding-top: 35px;
+      }
+
+      .section-title h2 {
+        font-size: 29px;
+      }
+
+      .media-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* =========================
+       CELULAR PEQUENO
+    ========================= */
+
+    @media (max-width: 500px) {
+
+      .brand-text h1 {
+        font-size: 16px;
+      }
+
+      .brand-text p {
+        font-size: 11px;
+      }
+
+      nav {
+        gap: 12px 16px;
+      }
+
+      nav a {
+        font-size: 12px;
+      }
+
+      .hero {
+        padding: 45px 7%;
+      }
+
+      .hero h2 {
+        font-size: 32px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .media-card {
+        padding: 24px;
+      }
+    }
+
   </style>
 </head>
 
 <body>
 
-<header>
+  <!-- =========================
+       CABEÇALHO
+  ========================= -->
 
-  <a href="index.html" class="brand">
+  <header>
 
-    <img src="logo.png" alt="Logo">
+    <div class="brand">
 
-    <div class="brand-text">
-      <strong>ASSEMBLIEIA DE DEUS - MINISTERIO DO BELÉM</strong>
-      <span>SETOR 49 - JARDIM DOS PIMENTAS</span>
+      <img
+        src="logo.png"
+        alt="Assembleia de Deus - Ministério do Belém"
+      >
+
+      <div class="brand-text">
+
+        <h1>
+          ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM
+        </h1>
+
+        <p>
+          SETOR 49 - JARDIM DOS PIMENTAS
+        </p>
+
+      </div>
+
     </div>
 
-  </a>
 
-  <nav>
-    <a href="index.html">Início</a>
-    <a href="agenda.html">Agenda</a>
-    <a href="congregacoes.html">Congregações</a>
-    <a href="central-secretario.html">Secretaria</a>
-    <a href="avisos.html">Avisos</a>
-    <a href="diretoria.html">Diretoria</a>
-  </nav>
+    <nav>
 
-  <button
-    class="menu-toggle"
-    id="menuToggle"
-    aria-label="Abrir menu"
-    aria-expanded="false"
-  >
-    ☰
-  </button>
+      <a href="index.html">Início</a>
 
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">Início</a>
-    <a href="agenda.html">Agenda</a>
-    <a href="congregacoes.html">Congregações</a>
-    <a href="central-secretario.html">Central do Secretário</a>
-    <a href="avisos.html">Avisos</a>
-    <a href="diretoria.html">Diretoria</a>
-  </div>
+      <a href="agenda.html">Agenda</a>
 
-</header>
+      <a href="congregacoes.html">Congregações</a>
+
+      <a href="central-secretario.html">
+        Central do Secretário
+      </a>
+
+      <a href="avisos.html">Avisos</a>
+
+      <a href="ia.html">Diretoria</a>
+
+    </nav>
+
+  </header>
 
 
-<main>
+  <!-- =========================
+       BANNER
+  ========================= -->
 
   <section class="hero">
-    <h1>📸 Central de Mídia</h1>
 
-    <p>
-      Acesse fotos oficiais, logotipos e materiais
-      disponibilizados para a equipe de Mídia do Setor 49.
-    </p>
+    <div class="hero-content">
+
+      <div class="hero-label">
+        SECRETARIA DIGITAL - SETOR 49
+      </div>
+
+      <h2>
+        Central de Mídia
+      </h2>
+
+      <p>
+        Fotos oficiais, logotipos e materiais para divulgação.
+      </p>
+
+    </div>
+
   </section>
 
 
-  <section>
+  <!-- =========================
+       CONTEÚDO
+  ========================= -->
 
-    <h2 class="section-title">Materiais para Mídia</h2>
+  <main>
 
-    <p class="section-description">
-      Selecione uma das pastas abaixo para acessar os materiais oficiais.
-    </p>
+    <section class="section-title">
+
+      <h2>
+        Materiais para Mídia
+      </h2>
+
+      <p>
+        Selecione uma das pastas abaixo para acessar os materiais oficiais.
+      </p>
+
+    </section>
 
 
-    <div class="grid">
+    <section class="media-grid">
 
 
-      <!-- CREIO -->
+      <!-- =====================
+           CREIO
+      ====================== -->
 
-      <a
-        class="drive-card"
-        href="https://drive.google.com/drive/folders/1tk19nB-8ysqLhfxCNLHEpN2E8xN3zS8r?usp=drive_link"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <article class="media-card">
 
-        <div class="drive-icon">📸</div>
+        <div class="logo-area">
 
-        <h3>CREIO</h3>
+          <img
+            src="ativos/Logos do Creio Preto.png"
+            alt="Logo CREIO"
+          >
+
+        </div>
+
+        <h3>
+          CREIO
+        </h3>
 
         <p>
           Fotos e materiais oficiais do CREIO.
         </p>
 
-        <span class="drive-link">
+        <a
+          href="https://drive.google.com/drive/folders/1tk19nB-8ysqLhfxCNLHEpN2E8xN3zS8r?usp=drive_link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Acessar pasta →
-        </span>
+        </a>
 
-      </a>
+      </article>
 
 
-      <!-- LOGO BELÉM -->
+      <!-- =====================
+           LOGO BELÉM
+      ====================== -->
 
-      <a
-        class="drive-card"
-        href="https://drive.google.com/drive/folders/1TvZgrCeObPYSbCjC0irJX9pq27c18upx?usp=drive_link"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <article class="media-card">
 
-        <div class="drive-icon">🏷️</div>
+        <div class="logo-area">
 
-        <h3>LOGO BELÉM</h3>
+          <img
+            src="ativos/Logo-AD Belém-Atualizada.png"
+            alt="Logo AD Belém"
+          >
+
+        </div>
+
+        <h3>
+          LOGO BELÉM
+        </h3>
 
         <p>
           Logotipos e elementos da identidade visual.
         </p>
 
-        <span class="drive-link">
+        <a
+          href="https://drive.google.com/drive/folders/1TvZgrCeObPYSbCjC0irJX9pq27c18upx?usp=drive_link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Acessar pasta →
-        </span>
+        </a>
 
-      </a>
+      </article>
 
 
-      <!-- PASTORES -->
+      <!-- =====================
+           PASTORES
+      ====================== -->
 
-      <a
-        class="drive-card"
-        href="https://drive.google.com/drive/folders/1bAxDV5VKzvqhWC12Rzzq47eBOLWMcrPR?usp=drive_link"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <article class="media-card">
 
-        <div class="drive-icon">👨‍💼</div>
+        <div class="logo-area">
 
-        <h3>PASTORES</h3>
+          <div class="logo-placeholder">
+            👨‍💼
+          </div>
+
+        </div>
+
+        <h3>
+          PASTORES
+        </h3>
 
         <p>
           Fotos e materiais oficiais dos pastores.
         </p>
 
-        <span class="drive-link">
+        <a
+          href="https://drive.google.com/drive/folders/1bAxDV5VKzvqhWC12Rzzq47eBOLWMcrPR?usp=drive_link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Acessar pasta →
-        </span>
+        </a>
 
-      </a>
+      </article>
 
 
-      <!-- UCADEP -->
+      <!-- =====================
+           UCADEP
+      ====================== -->
 
-      <a
-        class="drive-card"
-        href="https://drive.google.com/drive/folders/15KIg1V_CSMQUQ_OboIyquA6Nr1MqOEGx?usp=drive_link"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <article class="media-card">
 
-        <div class="drive-icon">📁</div>
+        <div class="logo-area">
 
-        <h3>UCADEP</h3>
+          <img
+            src="ativos/UCADEP.LOGO.PRETO.png"
+            alt="Logo UCADEP"
+          >
+
+        </div>
+
+        <h3>
+          UCADEP
+        </h3>
 
         <p>
-          Materiais e arquivos oficiais da UCADEP.
+          Materiais oficiais e identidade visual da UCADEP.
         </p>
 
-        <span class="drive-link">
+        <a
+          href="https://drive.google.com/drive/folders/15KIg1V_CSMQUQ_OboIyquA6Nr1MqOEGx?usp=drive_link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Acessar pasta →
-        </span>
+        </a>
 
-      </a>
+      </article>
 
 
-      <!-- UFADEB -->
+      <!-- =====================
+           UFADEB
+      ====================== -->
 
-      <a
-        class="drive-card"
-        href="https://drive.google.com/drive/folders/1it2XS1Z2XljWEBtNVQQUiz1gqlHU6B2V?usp=drive_link"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <article class="media-card">
 
-        <div class="drive-icon">📸</div>
+        <div class="logo-area">
 
-        <h3>UFADEB</h3>
+          <img
+            src="ativos/UFADEB -LOGO.png"
+            alt="Logo UFADEB"
+          >
+
+        </div>
+
+        <h3>
+          UFADEB
+        </h3>
 
         <p>
           Fotos e materiais oficiais da UFADEB.
         </p>
 
-        <span class="drive-link">
+        <a
+          href="https://drive.google.com/drive/folders/1it2XS1Z2XljWEBtNVQQUiz1gqlHU6B2V?usp=drive_link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Acessar pasta →
-        </span>
+        </a>
 
-      </a>
+      </article>
 
 
-      <!-- UMADEB -->
+      <!-- =====================
+           UMADEB
+      ====================== -->
 
-      <a
-        class="drive-card"
-        href="https://drive.google.com/drive/folders/1-TryGStkJHKUl8JUc76LKUirmht6sTmN?usp=drive_link"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <article class="media-card">
 
-        <div class="drive-icon">🎤</div>
+        <div class="logo-area">
 
-        <h3>UMADEB</h3>
+          <img
+            src="ativos/UMADEB - LOGO.png"
+            alt="Logo UMADEB"
+          >
+
+        </div>
+
+        <h3>
+          UMADEB
+        </h3>
 
         <p>
           Fotos e materiais oficiais da UMADEB.
         </p>
 
-        <span class="drive-link">
+        <a
+          href="https://drive.google.com/drive/folders/1-TryGStkJHKUl8JUc76LKUirmht6sTmN?usp=drive_link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Acessar pasta →
-        </span>
+        </a>
 
-      </a>
-
-
-    </div>
-
-  </section>
-
-</main>
+      </article>
 
 
-<footer>
-  Secretaria Digital — Setor 49 - Jardim dos Pimentas
-</footer>
+    </section>
+
+  </main>
 
 
-<script>
+  <!-- =========================
+       RODAPÉ
+  ========================= -->
 
-  const menuToggle = document.getElementById('menuToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
+  <footer>
 
-  if(menuToggle && mobileMenu){
+    <p>
+      Secretaria Digital — Setor 49 - Jardim dos Pimentas
+    </p>
 
-    menuToggle.addEventListener('click',()=>{
+    <p>
+      Assembleia de Deus - Ministério do Belém
+    </p>
 
-      const open = mobileMenu.classList.toggle('open');
-
-      menuToggle.setAttribute(
-        'aria-expanded',
-        open ? 'true' : 'false'
-      );
-
-      menuToggle.textContent = open ? '×' : '☰';
-
-    });
-
-
-    mobileMenu.querySelectorAll('a').forEach(a=>{
-
-      a.addEventListener('click',()=>{
-
-        mobileMenu.classList.remove('open');
-
-        menuToggle.setAttribute(
-          'aria-expanded',
-          'false'
-        );
-
-        menuToggle.textContent='☰';
-
-      });
-
-    });
-
-  }
-
-</script>
+  </footer>
 
 </body>
 </html>
