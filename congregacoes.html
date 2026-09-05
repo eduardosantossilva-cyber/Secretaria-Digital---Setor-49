@@ -46,7 +46,14 @@ select:focus{
 .church-body p{margin:0;color:#667085;line-height:1.5;font-size:13px}.church-body p strong{color:#344054}
 .map-btn{display:inline-block;margin-top:15px;text-decoration:none;background:var(--blue);color:#fff;border-radius:10px;padding:9px 12px;font-size:11px;font-weight:900}.map-btn:hover{background:var(--green)}
 .empty{display:none;grid-column:1/-1;background:#fff;border:1px dashed #cbd5df;border-radius:18px;padding:40px;text-align:center;color:var(--muted)}
-footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font-size:13px}
+footer{
+  background:#20262b;
+  color:#d0d5dd;
+  padding:30px 22px;
+  text-align:center;
+  font-size:13px
+}
+
 @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:650px){.nav{padding:10px 15px}.brand img{width:43px;height:43px}nav{display:none}.hero{padding:43px 18px}main{padding:25px 16px 55px}.tools{display:block}.count{margin-top:10px}.grid{grid-template-columns:1fr}}
 
@@ -348,8 +355,18 @@ footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font
 <div class="empty" id="empty"><strong>Nenhuma congregação encontrada.</strong><br>Confira o nome digitado e tente novamente.</div>
 </section>
 </main>
-<footer>ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM · SETOR 49 - JARDIM DOS PIMENTAS</footer>
-<footer><small>SECRETARIA DIGITAL</small><footer>
+<footer>
+
+ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM
+· SETOR 49 - JARDIM DOS PIMENTAS
+
+<br>
+
+<small>
+SECRETARIA DIGITAL
+</small>
+
+</footer>
 <script>
 const input = document.getElementById('search');
 const regionalFilter = document.getElementById('regionalFilter');
