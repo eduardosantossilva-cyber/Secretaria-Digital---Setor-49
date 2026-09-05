@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Canal do YouTube | Secretaria Digital - Setor 49</title>
+
+  <style>
+    :root{
+      --blue:#159dd1;
+      --green:#079447;
+      --gold:#f9c414;
+      --navy:#073c66;
+      --ink:#17212b;
+      --muted:#667085;
+      --bg:#f6f8fa;
+      --red:#ff0000;
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+    }
+
+    /* HEADER */
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:#fff;
+      border-bottom:1px solid #e6edf2;
+    }
+
+    .nav{
+      max-width:1180px;
+      margin:auto;
+      padding:12px 22px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      color:var(--navy);
+      font-weight:800;
+      font-size:14px;
+    }
+
+    .brand img{
+      width:42px;
+      height:42px;
+      object-fit:contain;
+    }
+
+    nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:#344054;
+      font-size:12px;
+      font-weight:700;
+    }
+
+    nav a:hover{
+      color:var(--blue);
+    }
+
+    .menu{
+      display:none;
+      font-size:25px;
+      cursor:pointer;
+      color:var(--navy);
+    }
+
+    /* HERO */
+
+    .hero{
+      background:linear-gradient(
+        135deg,
+        var(--navy),
+        var(--blue),
+        var(--green)
+      );
+      padding:58px 22px;
+      color:#fff;
+    }
+
+    .hero-inner{
+      max-width:1180px;
+      margin:auto;
+    }
+
+    .hero small{
+      display:block;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.08em;
+      margin-bottom:10px;
+      opacity:.9;
+    }
+
+    .hero h1{
+      font-size:38px;
+      margin-bottom:10px;
+    }
+
+    .hero p{
+      font-size:15px;
+      opacity:.95;
+      max-width:650px;
+      line-height:1.6;
+    }
+
+    /* MAIN */
+
+    main{
+      max-width:1180px;
+      margin:35px auto;
+      padding:0 22px;
+    }
+
+    .intro{
+      background:#fff;
+      border:1px solid #e1e8ed;
+      border-radius:20px;
+      padding:28px;
+      margin-bottom:25px;
+      box-shadow:0 6px 20px rgba(7,60,102,.05);
+    }
+
+    .intro h2{
+      color:var(--navy);
+      margin-bottom:10px;
+      font-size:23px;
+    }
+
+    .intro p{
+      color:var(--muted);
+      line-height:1.7;
+      font-size:14px;
+    }
+
+    /* YOUTUBE CARD */
+
+    .youtube-card{
+      background:#fff;
+      border:1px solid #e1e8ed;
+      border-radius:20px;
+      padding:30px;
+      box-shadow:0 8px 24px rgba(7,60,102,.07);
+      text-align:center;
+    }
+
+    .youtube-icon{
+      width:72px;
+      height:72px;
+      margin:0 auto 18px;
+      border-radius:18px;
+      background:#fff0f0;
+      display:grid;
+      place-items:center;
+      font-size:38px;
+    }
+
+    .youtube-card h2{
+      color:var(--navy);
+      font-size:25px;
+      margin-bottom:10px;
+    }
+
+    .youtube-card p{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.7;
+      max-width:650px;
+      margin:0 auto 22px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:12px 20px;
+      background:#ff0000;
+      color:#fff;
+      text-decoration:none;
+      border-radius:9px;
+      font-weight:800;
+      font-size:12px;
+      transition:.2s;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      opacity:.9;
+    }
+
+    /* VIDEO */
+
+    .video-section{
+      margin-top:25px;
+      background:#fff;
+      border:1px solid #e1e8ed;
+      border-radius:20px;
+      padding:25px;
+      box-shadow:0 8px 24px rgba(7,60,102,.05);
+    }
+
+    .video-section h2{
+      color:var(--navy);
+      margin-bottom:8px;
+      font-size:21px;
+    }
+
+    .video-section p{
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:18px;
+    }
+
+    .video-box{
+      position:relative;
+      width:100%;
+      aspect-ratio:16/9;
+      overflow:hidden;
+      border-radius:15px;
+      background:#111;
+    }
+
+    .video-box iframe{
+      width:100%;
+      height:100%;
+      border:0;
+    }
+
+    /* FOOTER */
+
+    footer{
+      margin-top:50px;
+      background:#20262b;
+      color:#fff;
+      text-align:center;
+      padding:25px 20px;
+    }
+
+    footer small{
+      opacity:.75;
+      font-size:11px;
+    }
+
+    /* MOBILE */
+
+    @media(max-width:800px){
+
+      nav{
+        display:none;
+        position:absolute;
+        top:67px;
+        left:0;
+        right:0;
+        background:#fff;
+        padding:20px;
+        flex-direction:column;
+        border-bottom:1px solid #e6edf2;
+      }
+
+      nav.active{
+        display:flex;
+      }
+
+      .menu{
+        display:block;
+      }
+
+      .hero{
+        padding:45px 20px;
+      }
+
+      .hero h1{
+        font-size:30px;
+      }
+
+      main{
+        margin:25px auto;
+      }
+
+      .intro,
+      .youtube-card,
+      .video-section{
+        padding:22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+
+    <a href="index.html" class="brand">
+      <img src="logo.png" alt="Logo Assembleia de Deus">
+      <span>SECRETARIA DIGITAL<br>SETOR 49</span>
+    </a>
+
+    <div class="menu" onclick="toggleMenu()">☰</div>
+
+    <nav id="menu">
+      <a href="index.html">INÍCIO</a>
+      <a href="agenda.html">AGENDA</a>
+      <a href="congregacoes.html">CONGREGAÇÕES</a>
+      <a href="avisos.html">AVISOS</a>
+      <a href="central-secretario.html">SECRETÁRIO</a>
+      <a href="central-midia.html">MÍDIA</a>
+    </nav>
+
+  </div>
+</header>
+
+
+<section class="hero">
+  <div class="hero-inner">
+
+    <small>ASSEMBLEIA DE DEUS — MINISTÉRIO DO BELÉM</small>
+
+    <h1>Canal Oficial do YouTube</h1>
+
+    <p>
+      Acompanhe cultos, congressos, eventos e conteúdos
+      da Assembleia de Deus — Ministério do Belém,
+      Setor 49 — Jardim dos Pimentas.
+    </p>
+
+  </div>
+</section>
+
+
+<main>
+
+  <section class="intro">
+
+    <h2>📺 Comunicação Oficial</h2>
+
+    <p>
+      Este é o espaço destinado ao canal oficial do YouTube
+      do Setor 49. Aqui você poderá acompanhar as principais
+      transmissões, cultos, congressos e conteúdos produzidos
+      pela igreja.
+    </p>
+
+  </section>
+
+
+  <section class="youtube-card">
+
+    <div class="youtube-icon">
+      ▶️
+    </div>
+
+    <h2>AD Belém 49</h2>
+
+    <p>
+      Inscreva-se no canal oficial e acompanhe as transmissões,
+      cultos, congressos e demais conteúdos do
+      Setor 49 — Jardim dos Pimentas.
+    </p>
+
+    <a
+      class="btn"
+      href="https://www.youtube.com/@adbelem49"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      ACESSAR CANAL DO YOUTUBE →
+    </a>
+
+  </section>
+
+
+  <section class="video-section">
+
+    <h2>🎥 Transmissões e vídeos</h2>
+
+    <p>
+      Acompanhe diretamente pelo YouTube os conteúdos
+      publicados pelo canal oficial.
+    </p>
+
+    <div class="video-box">
+
+      <iframe
+        src="https://www.youtube.com/embed?listType=user_uploads&list=adbelem49"
+        title="Canal do YouTube — AD Belém 49"
+        allowfullscreen>
+      </iframe>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+  <small>SECRETARIA DIGITAL — SETOR 49</small>
+</footer>
+
+
+<script>
+  function toggleMenu(){
+    document.getElementById("menu").classList.toggle("active");
+  }
+</script>
+
+</body>
+</html>
