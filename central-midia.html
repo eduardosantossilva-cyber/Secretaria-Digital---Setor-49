@@ -1,156 +1,93 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Central de Mídia - Setor 49</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f6f8fa;
-      color: #073c66;
-    }
-
-    /* =========================
-       CABEÇALHO
-    ========================= */
-
-   header {
-  background: #ffffff;
-  border-bottom: 1px solid #e1e7eb;
-  min-height: 105px;
-  padding: 14px 5%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  overflow: hidden;
-}
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-
-   .brand img {
-  width: 62px;
-  height: 62px;
-    }
-
-    .brand-text h1 {
-  color: #073c66;
-  font-size: 21px;
-      font-weight: 800;
-      margin-bottom: 5px;
-      white-space: nowrap;
-    }
-
-   .brand-text p {
-  color: #667085;
-  font-size: 14px;
-    }
-
-   nav {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 24px;
-  flex-shrink: 1;
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Central de Mídia</title>
+<style>
+:root{--blue:#159dd1;--green:#079447;--gold:#f9c414;--orange:#f47a20;--red:#b51e2a;--navy:#073c66;--ink:#17212b;--muted:#667085;--bg:#f6f8fa}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
+header{position:relative;background:#fff;border-bottom:1px solid #e8edf2;position:sticky;top:0;z-index:20}.nav{max-width:1180px;margin:auto;padding:11px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--navy);font-weight:900}.brand img{width:50px;height:50px;object-fit:contain}.brand small{display:block;color:var(--muted);font-weight:650;font-size:11px}
+nav{display:flex;flex-wrap:wrap;gap:16px}nav a{color:#344054;text-decoration:none;font-weight:750;font-size:14px}nav a:hover{color:var(--green)}
+.hero{background:linear-gradient(135deg,var(--navy),var(--blue),var(--green));color:#fff;padding:58px 22px}.hero-inner{max-width:1180px;margin:auto}.eyebrow{font-size:12px;font-weight:900;letter-spacing:1.7px;text-transform:uppercase;opacity:.9}.hero h1{font-size:clamp(35px,5vw,52px);margin:9px 0 10px}.hero p{font-size:17px;line-height:1.5;max-width:720px;margin:0}
+main{max-width:1180px;margin:auto;padding:32px 22px 70px}
+.sede-highlight{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,#fff,#eef9fc);border:1px solid #cfe7f0;border-left:6px solid var(--blue);border-radius:18px;padding:18px 20px;margin:0 0 25px;box-shadow:0 7px 22px rgba(16,24,40,.05)}
+.sede-icon{width:50px;height:50px;flex:none;border-radius:14px;display:grid;place-items:center;background:#e7f6fb;font-size:25px}.sede-highlight strong{display:block;color:var(--navy);font-size:12px;letter-spacing:1px;margin-bottom:4px}.sede-highlight p{margin:0;color:#475467;font-size:13px;line-height:1.5}
+.filters{background:#fff;border:1px solid #e8edf2;border-radius:18px;padding:17px;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;box-shadow:0 7px 22px rgba(16,24,40,.045)}
+select{width:100%;padding:13px 14px;border:1px solid #d7dee4;border-radius:11px;background:#fff;font:inherit;outline:none}select:focus{border-color:var(--blue)}
+.month{margin:30px 0 12px;display:flex;align-items:center;gap:10px}.month h2{margin:0;color:var(--navy);font-size:24px}.month span{font-size:11px;color:#fff;background:var(--green);padding:5px 8px;border-radius:999px;font-weight:900}
+.events{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.event{background:#fff;border:1px solid #e8edf2;border-radius:17px;padding:18px;display:flex;gap:14px;box-shadow:0 6px 20px rgba(16,24,40,.04)}
+.date{
+  width:105px;
+  height:78px;
+  flex:none;
+  border-radius:15px;
+  background:#eef8fc;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:var(--navy);
+  font-weight:900;
+  border:1px solid #d9eef5;
+  box-sizing:border-box;
 }
 
-nav a {
-  color: #16283d;
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 700;
-  white-space: nowrap;
-  transition: .2s;
+.date b{
+  font-size:20px;
+  line-height:1;
+  white-space:nowrap;
+  letter-spacing:0;
 }
 
-    /* =========================
-       BANNER
-    ========================= */
-
-    .hero {
-  width: 100%;
-  min-height: 300px;
-  padding: 58px 5.5% 50px;
-
-      background:
-        linear-gradient(
-          105deg,
-          #073c66 0%,
-          #159dd1 52%,
-          #079447 100%
-        );
-
-      color: #ffffff;
-    }
-
-    .hero-content {
-      max-width: 1200px;
-    }
-
-   .hero-label {
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  margin-bottom: 24px;
+.date small{
+  font-size:10px;
+  margin-top:8px;
+  letter-spacing:.8px;
+  font-weight:900;
+  white-space:nowrap;
 }
-
-    .hero h2 {
-      font-size: 46px;
-      line-height: 1.05;
-      font-weight: 800;
-      margin-bottom: 25px;
-    }
-
-    .hero p {
-      font-size: 19px;
-      line-height: 1.5;
-      font-weight: 400;
-    }
-
-    /* =========================
-       CONTEÚDO
-    ========================= */
-
-   main {
-  width: 90%;
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 32px 0 60px;
+.event h3{margin:0 0 5px;font-size:16px}.event p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}.type{display:inline-block;margin-top:9px;font-size:10px;font-weight:900;text-transform:uppercase;color:var(--green);letter-spacing:.6px}
+.no-results{display:none;background:#fff;border:1px dashed #cbd5df;border-radius:16px;padding:35px;text-align:center;color:var(--muted)}
+footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font-size:13px}
+@media(max-width:700px){
+  .events{grid-template-columns:1fr}
+  .event{padding:15px;gap:12px}
+  .date{
+    width:100px;
+    height:76px;
+  }
+  .date b{
+    font-size:19px;
+  }
+  .date small{
+    font-size:9px;
+    letter-spacing:.7px;
+  }
 }
-    .section-title {
-      margin-bottom: 30px;
-    }
+@media(max-width:620px){.nav{padding:10px 15px}.brand img{width:43px;height:43px}nav{display:none}.hero{padding:43px 18px}main{padding:25px 16px 55px}.sede-highlight{align-items:flex-start}.sede-icon{width:44px;height:44px;font-size:22px}}
 
-    .section-title h2 {
-      color: #073c66;
-      font-size: 34px;
-      margin-bottom: 10px;
-      font-weight: 800;
-    }
+/* Menu mobile */
+.menu-toggle{display:none;border:0;background:#eef8fc;color:var(--navy);width:42px;height:42px;border-radius:11px;font-size:22px;cursor:pointer}
+.mobile-menu{display:none}
+@media(max-width:650px){
+  .menu-toggle{display:grid;place-items:center}
+  .mobile-menu{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid #e8edf2;box-shadow:0 12px 24px rgba(16,24,40,.10);padding:10px 15px}
+  .mobile-menu.open{display:grid}
+  .mobile-menu a{padding:12px 10px;color:#344054;text-decoration:none;font-weight:800;font-size:14px;border-radius:9px}
+  .mobile-menu a:hover{background:#f4f9fb;color:var(--green)}
+}
+</style>
+</head>
+<body>
+<header><div class="nav">
+<a class="brand" href="index.html"><img src="logo.png" onerror="this.style.display='none'"><span>ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM<small>SETOR 49 - JARDIM DOS PIMNETAS</small></span></a>
+<nav><a href="index.html">Início</a><a href="agenda.html">Agenda</a><a href="congregacoes.html">Congregações</a><a href="central-secretario.html">Central do Secretário</a><a href="avisos.html">Avisos</a><a href="diretoria.html">Diretoria</a></nav><button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="mobile-menu" id="mobileMenu"><a href="index.html">Início</a><a href="agenda.html">Agenda</a><a href="congregacoes.html">Congregações</a><a href="central-secretario.html">Central do Secretário</a><a href="avisos.html">Avisos</a><a href="diretoria.html">Diretoria</a></div>
+</div></header>
 
-    .section-title p {
-      color: #667085;
-      font-size: 17px;
-      line-height: 1.5;
-    }
+<section class="hero"><div class="hero-inner">
+<div class="eyebrow">SECRETARIA DIGITAL - SETOR 49</div><h1>Central de Mídia</h1><p>Fotos oficiais, logotipos e materiais para divulgação.</p>
+</div></section>
 
     /* =========================
        CARDS
