@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Central de Mídia | Secretaria Digital - Setor 49</title>
+
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      background:#f6f8fa;
+      color:#172033;
+    }
+
+    header{
+      background:#ffffff;
+      border-bottom:1px solid #e5e7eb;
+      padding:18px 5%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      position:sticky;
+      top:0;
+      z-index:10;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      text-decoration:none;
+      color:#073c66;
+    }
+
+    .brand img{
+      width:52px;
+      height:52px;
+      object-fit:contain;
+    }
+
+    .brand-text strong{
+      display:block;
+      font-size:17px;
+    }
+
+    .brand-text span{
+      display:block;
+      margin-top:3px;
+      font-size:12px;
+      color:#667085;
+    }
+
+    nav{
+      display:flex;
+      align-items:center;
+      gap:20px;
+    }
+
+    nav a{
+      color:#344054;
+      text-decoration:none;
+      font-size:13px;
+      font-weight:600;
+    }
+
+    nav a:hover{
+      color:#159dd1;
+    }
+
+    .menu-toggle{
+      display:none;
+      border:0;
+      background:transparent;
+      font-size:28px;
+      cursor:pointer;
+      color:#073c66;
+    }
+
+    .mobile-menu{
+      display:none;
+      position:absolute;
+      top:100%;
+      left:0;
+      right:0;
+      background:#ffffff;
+      border-top:1px solid #e5e7eb;
+      padding:15px 5%;
+      box-shadow:0 8px 20px rgba(7,60,102,.08);
+    }
+
+    .mobile-menu.open{
+      display:flex;
+      flex-direction:column;
+      gap:15px;
+    }
+
+    .mobile-menu a{
+      color:#344054;
+      text-decoration:none;
+      font-weight:600;
+      padding:8px 0;
+    }
+
+    main{
+      width:min(1100px,92%);
+      margin:0 auto;
+      padding:45px 0 60px;
+    }
+
+    .hero{
+      background:linear-gradient(135deg,#073c66,#159dd1);
+      border-radius:22px;
+      padding:38px;
+      color:#ffffff;
+      margin-bottom:30px;
+      box-shadow:0 12px 30px rgba(7,60,102,.12);
+    }
+
+    .hero h1{
+      font-size:32px;
+      margin-bottom:10px;
+    }
+
+    .hero p{
+      font-size:15px;
+      line-height:1.6;
+      opacity:.95;
+    }
+
+    .section-title{
+      color:#073c66;
+      font-size:25px;
+      margin-bottom:8px;
+    }
+
+    .section-description{
+      color:#667085;
+      font-size:14px;
+      margin-bottom:22px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:18px;
+    }
+
+    .drive-card{
+      display:block;
+      text-decoration:none;
+      color:inherit;
+      background:#ffffff;
+      border:1px solid #e0e7ed;
+      border-radius:18px;
+      padding:22px;
+      min-height:145px;
+      box-shadow:0 6px 20px rgba(7,60,102,.06);
+      transition:.2s ease;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .drive-card::before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:0;
+      bottom:0;
+      width:5px;
+      background:#159dd1;
+    }
+
+    .drive-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 12px 28px rgba(7,60,102,.12);
+      border-color:#b9ddea;
+    }
+
+    .drive-icon{
+      font-size:32px;
+      margin-bottom:14px;
+    }
+
+    .drive-card h3{
+      color:#073c66;
+      font-size:19px;
+      margin-bottom:7px;
+    }
+
+    .drive-card p{
+      color:#667085;
+      font-size:13px;
+      line-height:1.5;
+      margin-bottom:15px;
+    }
+
+    .drive-link{
+      color:#159dd1;
+      font-size:12px;
+      font-weight:700;
+    }
+
+    footer{
+      text-align:center;
+      padding:25px 20px;
+      color:#667085;
+      font-size:12px;
+    }
+
+    @media(max-width:800px){
+
+      header{
+        padding:14px 5%;
+      }
+
+      nav{
+        display:none;
+      }
+
+      .menu-toggle{
+        display:block;
+      }
+
+      main{
+        padding-top:30px;
+      }
+
+      .hero{
+        padding:28px 22px;
+      }
+
+      .hero h1{
+        font-size:26px;
+      }
+
+      .grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <a href="index.html" class="brand">
+
+    <img src="assets/logo.png" alt="Logo">
+
+    <div class="brand-text">
+      <strong>Secretaria Digital</strong>
+      <span>Setor 49 - Jardim dos Pimentas</span>
+    </div>
+
+  </a>
+
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="agenda.html">Agenda</a>
+    <a href="congregacoes.html">Congregações</a>
+    <a href="central-secretario.html">Secretaria</a>
+    <a href="avisos.html">Avisos</a>
+    <a href="diretoria.html">Diretoria</a>
+  </nav>
+
+  <button
+    class="menu-toggle"
+    id="menuToggle"
+    aria-label="Abrir menu"
+    aria-expanded="false"
+  >
+    ☰
+  </button>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Início</a>
+    <a href="agenda.html">Agenda</a>
+    <a href="congregacoes.html">Congregações</a>
+    <a href="central-secretario.html">Central do Secretário</a>
+    <a href="avisos.html">Avisos</a>
+    <a href="diretoria.html">Diretoria</a>
+  </div>
+
+</header>
+
+
+<main>
+
+  <section class="hero">
+    <h1>📸 Central de Mídia</h1>
+
+    <p>
+      Acesse fotos oficiais, logotipos e materiais
+      disponibilizados para a equipe de Mídia do Setor 49.
+    </p>
+  </section>
+
+
+  <section>
+
+    <h2 class="section-title">Materiais para Mídia</h2>
+
+    <p class="section-description">
+      Selecione uma das pastas abaixo para acessar os materiais oficiais.
+    </p>
+
+
+    <div class="grid">
+
+
+      <!-- CREIO -->
+
+      <a
+        class="drive-card"
+        href="https://drive.google.com/drive/folders/1tk19nB-8ysqLhfxCNLHEpN2E8xN3zS8r?usp=drive_link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        <div class="drive-icon">📸</div>
+
+        <h3>CREIO</h3>
+
+        <p>
+          Fotos e materiais oficiais do CREIO.
+        </p>
+
+        <span class="drive-link">
+          Acessar pasta →
+        </span>
+
+      </a>
+
+
+      <!-- LOGO BELÉM -->
+
+      <a
+        class="drive-card"
+        href="https://drive.google.com/drive/folders/1TvZgrCeObPYSbCjC0irJX9pq27c18upx?usp=drive_link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        <div class="drive-icon">🏷️</div>
+
+        <h3>LOGO BELÉM</h3>
+
+        <p>
+          Logotipos e elementos da identidade visual.
+        </p>
+
+        <span class="drive-link">
+          Acessar pasta →
+        </span>
+
+      </a>
+
+
+      <!-- PASTORES -->
+
+      <a
+        class="drive-card"
+        href="https://drive.google.com/drive/folders/1bAxDV5VKzvqhWC12Rzzq47eBOLWMcrPR?usp=drive_link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        <div class="drive-icon">👨‍💼</div>
+
+        <h3>PASTORES</h3>
+
+        <p>
+          Fotos e materiais oficiais dos pastores.
+        </p>
+
+        <span class="drive-link">
+          Acessar pasta →
+        </span>
+
+      </a>
+
+
+      <!-- UCADEP -->
+
+      <a
+        class="drive-card"
+        href="https://drive.google.com/drive/folders/15KIg1V_CSMQUQ_OboIyquA6Nr1MqOEGx?usp=drive_link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        <div class="drive-icon">📁</div>
+
+        <h3>UCADEP</h3>
+
+        <p>
+          Materiais e arquivos oficiais da UCADEP.
+        </p>
+
+        <span class="drive-link">
+          Acessar pasta →
+        </span>
+
+      </a>
+
+
+      <!-- UFADEB -->
+
+      <a
+        class="drive-card"
+        href="https://drive.google.com/drive/folders/1it2XS1Z2XljWEBtNVQQUiz1gqlHU6B2V?usp=drive_link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        <div class="drive-icon">📸</div>
+
+        <h3>UFADEB</h3>
+
+        <p>
+          Fotos e materiais oficiais da UFADEB.
+        </p>
+
+        <span class="drive-link">
+          Acessar pasta →
+        </span>
+
+      </a>
+
+
+      <!-- UMADEB -->
+
+      <a
+        class="drive-card"
+        href="https://drive.google.com/drive/folders/1-TryGStkJHKUl8JUc76LKUirmht6sTmN?usp=drive_link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        <div class="drive-icon">🎤</div>
+
+        <h3>UMADEB</h3>
+
+        <p>
+          Fotos e materiais oficiais da UMADEB.
+        </p>
+
+        <span class="drive-link">
+          Acessar pasta →
+        </span>
+
+      </a>
+
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+  Secretaria Digital — Setor 49 - Jardim dos Pimentas
+</footer>
+
+
+<script>
+
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  if(menuToggle && mobileMenu){
+
+    menuToggle.addEventListener('click',()=>{
+
+      const open = mobileMenu.classList.toggle('open');
+
+      menuToggle.setAttribute(
+        'aria-expanded',
+        open ? 'true' : 'false'
+      );
+
+      menuToggle.textContent = open ? '×' : '☰';
+
+    });
+
+
+    mobileMenu.querySelectorAll('a').forEach(a=>{
+
+      a.addEventListener('click',()=>{
+
+        mobileMenu.classList.remove('open');
+
+        menuToggle.setAttribute(
+          'aria-expanded',
+          'false'
+        );
+
+        menuToggle.textContent='☰';
+
+      });
+
+    });
+
+  }
+
+</script>
+
+</body>
+</html>
