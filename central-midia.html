@@ -1,675 +1,870 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Central de Mídia</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Central de Mídia — Setor 49</title>
+
 <style>
-:root{--blue:#159dd1;--green:#079447;--gold:#f9c414;--orange:#f47a20;--red:#b51e2a;--navy:#073c66;--ink:#17212b;--muted:#667085;--bg:#f6f8fa}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
-header{position:relative;background:#fff;border-bottom:1px solid #e8edf2;position:sticky;top:0;z-index:20}.nav{max-width:1180px;margin:auto;padding:11px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--navy);font-weight:900}.brand img{width:50px;height:50px;object-fit:contain}.brand small{display:block;color:var(--muted);font-weight:650;font-size:11px}
-nav{display:flex;flex-wrap:wrap;gap:16px}nav a{color:#344054;text-decoration:none;font-weight:750;font-size:14px}nav a:hover{color:var(--green)}
-.hero{background:linear-gradient(135deg,var(--navy),var(--blue),var(--green));color:#fff;padding:58px 22px}.hero-inner{max-width:1180px;margin:auto}.eyebrow{font-size:12px;font-weight:900;letter-spacing:1.7px;text-transform:uppercase;opacity:.9}.hero h1{font-size:clamp(35px,5vw,52px);margin:9px 0 10px}.hero p{font-size:17px;line-height:1.5;max-width:720px;margin:0}
-main{max-width:1180px;margin:auto;padding:32px 22px 70px}
-.sede-highlight{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,#fff,#eef9fc);border:1px solid #cfe7f0;border-left:6px solid var(--blue);border-radius:18px;padding:18px 20px;margin:0 0 25px;box-shadow:0 7px 22px rgba(16,24,40,.05)}
-.sede-icon{width:50px;height:50px;flex:none;border-radius:14px;display:grid;place-items:center;background:#e7f6fb;font-size:25px}.sede-highlight strong{display:block;color:var(--navy);font-size:12px;letter-spacing:1px;margin-bottom:4px}.sede-highlight p{margin:0;color:#475467;font-size:13px;line-height:1.5}
-.filters{background:#fff;border:1px solid #e8edf2;border-radius:18px;padding:17px;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;box-shadow:0 7px 22px rgba(16,24,40,.045)}
-select{width:100%;padding:13px 14px;border:1px solid #d7dee4;border-radius:11px;background:#fff;font:inherit;outline:none}select:focus{border-color:var(--blue)}
-.month{margin:30px 0 12px;display:flex;align-items:center;gap:10px}.month h2{margin:0;color:var(--navy);font-size:24px}.month span{font-size:11px;color:#fff;background:var(--green);padding:5px 8px;border-radius:999px;font-weight:900}
-.events{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.event{background:#fff;border:1px solid #e8edf2;border-radius:17px;padding:18px;display:flex;gap:14px;box-shadow:0 6px 20px rgba(16,24,40,.04)}
-.date{
-  width:105px;
-  height:78px;
-  flex:none;
-  border-radius:15px;
-  background:#eef8fc;
+:root{
+  --blue:#159dd1;
+  --green:#079447;
+  --gold:#f9c414;
+  --navy:#073c66;
+  --ink:#17212b;
+  --muted:#667085;
+  --bg:#f6f8fa
+}
+
+*{
+  box-sizing:border-box
+}
+
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;
+  background:var(--bg);
+  color:var(--ink)
+}
+
+/* =========================
+   CABEÇALHO
+========================= */
+
+header{
+  position:relative;
+  background:#fff;
+  border-bottom:1px solid #e8edf2;
+  position:sticky;
+  top:0;
+  z-index:20
+}
+
+.nav{
+  max-width:1180px;
+  margin:auto;
+  padding:11px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  color:var(--navy);
+  font-weight:900
+}
+
+.brand img{
+  width:50px;
+  height:50px;
+  object-fit:contain
+}
+
+.brand small{
+  display:block;
+  color:var(--muted);
+  font-weight:650;
+  font-size:11px
+}
+
+nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px
+}
+
+nav a{
+  color:#344054;
+  text-decoration:none;
+  font-weight:750;
+  font-size:14px
+}
+
+nav a:hover{
+  color:var(--green)
+}
+
+/* =========================
+   BANNER
+========================= */
+
+.hero{
+  background:linear-gradient(
+    135deg,
+    var(--navy),
+    var(--blue),
+    var(--green)
+  );
+  color:#fff;
+  padding:58px 22px
+}
+
+.hero-inner{
+  max-width:1180px;
+  margin:auto
+}
+
+.eyebrow{
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:1.7px;
+  text-transform:uppercase;
+  opacity:.9
+}
+
+.hero h1{
+  font-size:clamp(35px,5vw,52px);
+  margin:9px 0 10px
+}
+
+.hero p{
+  font-size:17px;
+  line-height:1.5;
+  max-width:720px;
+  margin:0
+}
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+main{
+  max-width:1180px;
+  margin:auto;
+  padding:34px 22px 70px
+}
+
+.intro{
+  background:#fff;
+  border:1px solid #e8edf2;
+  border-radius:18px;
+  padding:20px 22px;
+  margin-bottom:24px;
+  box-shadow:0 7px 22px rgba(16,24,40,.04)
+}
+
+.intro strong{
+  font-size:17px
+}
+
+.intro p{
+  margin:7px 0 0;
+  color:var(--muted);
+  line-height:1.5;
+  font-size:13px
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px
+}
+
+.card{
+  background:#fff;
+  border:1px solid #e8edf2;
+  border-radius:20px;
+  padding:22px;
+  min-height:250px;
   display:flex;
   flex-direction:column;
+  box-shadow:0 8px 24px rgba(16,24,40,.045);
+  transition:.2s
+}
+
+.card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(16,24,40,.08);
+  border-color:#cfe7f0
+}
+
+/* =========================
+   LOGOS
+========================= */
+
+.top{
+  display:flex;
   align-items:center;
-  justify-content:center;
+  justify-content:space-between;
+  margin-bottom:15px
+}
+
+.icon{
+  width:100%;
+  height:82px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  background:#eaf7fc;
+  color:var(--blue);
+  font-size:23px;
+  overflow:hidden
+}
+
+.icon img{
+  max-width:180px;
+  max-height:70px;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  display:block
+}
+
+.icon.pastores{
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  font-size:23px
+}
+
+.num{
+  font-size:12px;
+  font-weight:900;
+  color:#98a2b3;
+  letter-spacing:.8px
+}
+
+.card h2{
+  font-size:18px;
+  line-height:1.3;
+  margin:0 0 8px;
+  color:var(--navy)
+}
+
+.card p{
+  color:var(--muted);
+  line-height:1.5;
+  font-size:13px;
+  margin:0 0 18px;
+  flex:1
+}
+
+/* =========================
+   BOTÃO
+========================= */
+
+.btn{
+  display:inline-block;
+  text-decoration:none;
+  text-align:center;
+  border-radius:11px;
+  padding:11px 14px;
+  background:var(--blue);
+  color:#fff;
+  font-size:12px;
+  font-weight:900
+}
+
+.btn:hover{
+  background:var(--green)
+}
+
+/* =========================
+   INFORMAÇÃO
+========================= */
+
+.info{
+  margin-top:24px;
+  background:#fff8df;
+  border:1px solid #f1e4a9;
+  border-left:5px solid var(--gold);
+  border-radius:15px;
+  padding:15px 18px;
+  color:#665b2b;
+  font-size:13px;
+  line-height:1.5
+}
+
+/* =========================
+   RODAPÉ
+========================= */
+
+footer{
+  background:#20262b;
+  color:#d0d5dd;
+  padding:30px 22px;
+  text-align:center;
+  font-size:13px
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media(max-width:900px){
+
+  .cards{
+    grid-template-columns:repeat(2,1fr)
+  }
+
+}
+
+@media(max-width:620px){
+
+  .nav{
+    padding:10px 15px
+  }
+
+  .brand img{
+    width:43px;
+    height:43px
+  }
+
+  nav{
+    display:none
+  }
+
+  .hero{
+    padding:43px 18px
+  }
+
+  main{
+    padding:26px 16px 55px
+  }
+
+  .cards{
+    grid-template-columns:1fr
+  }
+
+  .card{
+    min-height:220px
+  }
+
+}
+
+
+/* =========================
+   MENU MOBILE
+========================= */
+
+.menu-toggle{
+  display:none;
+  border:0;
+  background:#eef8fc;
   color:var(--navy);
-  font-weight:900;
-  border:1px solid #d9eef5;
-  box-sizing:border-box;
+  width:42px;
+  height:42px;
+  border-radius:11px;
+  font-size:22px;
+  cursor:pointer
 }
 
-.date b{
-  font-size:20px;
-  line-height:1;
-  white-space:nowrap;
-  letter-spacing:0;
+.mobile-menu{
+  display:none
 }
 
-.date small{
-  font-size:10px;
-  margin-top:8px;
-  letter-spacing:.8px;
-  font-weight:900;
-  white-space:nowrap;
-}
-.event h3{margin:0 0 5px;font-size:16px}.event p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}.type{display:inline-block;margin-top:9px;font-size:10px;font-weight:900;text-transform:uppercase;color:var(--green);letter-spacing:.6px}
-.no-results{display:none;background:#fff;border:1px dashed #cbd5df;border-radius:16px;padding:35px;text-align:center;color:var(--muted)}
-footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font-size:13px}
-@media(max-width:700px){
-  .events{grid-template-columns:1fr}
-  .event{padding:15px;gap:12px}
-  .date{
-    width:100px;
-    height:76px;
-  }
-  .date b{
-    font-size:19px;
-  }
-  .date small{
-    font-size:9px;
-    letter-spacing:.7px;
-  }
-}
-@media(max-width:620px){.nav{padding:10px 15px}.brand img{width:43px;height:43px}nav{display:none}.hero{padding:43px 18px}main{padding:25px 16px 55px}.sede-highlight{align-items:flex-start}.sede-icon{width:44px;height:44px;font-size:22px}}
-
-/* Menu mobile */
-.menu-toggle{display:none;border:0;background:#eef8fc;color:var(--navy);width:42px;height:42px;border-radius:11px;font-size:22px;cursor:pointer}
-.mobile-menu{display:none}
 @media(max-width:650px){
-  .menu-toggle{display:grid;place-items:center}
-  .mobile-menu{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid #e8edf2;box-shadow:0 12px 24px rgba(16,24,40,.10);padding:10px 15px}
-  .mobile-menu.open{display:grid}
-  .mobile-menu a{padding:12px 10px;color:#344054;text-decoration:none;font-weight:800;font-size:14px;border-radius:9px}
-  .mobile-menu a:hover{background:#f4f9fb;color:var(--green)}
+
+  .menu-toggle{
+    display:grid;
+    place-items:center
+  }
+
+  .mobile-menu{
+    position:absolute;
+    left:0;
+    right:0;
+    top:100%;
+    background:#fff;
+    border-bottom:1px solid #e8edf2;
+    box-shadow:0 12px 24px rgba(16,24,40,.10);
+    padding:10px 15px
+  }
+
+  .mobile-menu.open{
+    display:grid
+  }
+
+  .mobile-menu a{
+    padding:12px 10px;
+    color:#344054;
+    text-decoration:none;
+    font-weight:800;
+    font-size:14px;
+    border-radius:9px
+  }
+
+  .mobile-menu a:hover{
+    background:#f4f9fb;
+    color:var(--green)
+  }
+
 }
 </style>
 </head>
-<body>
-<header><div class="nav">
-<a class="brand" href="index.html"><img src="logo.png" onerror="this.style.display='none'"><span>ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM<small>SETOR 49 - JARDIM DOS PIMNETAS</small></span></a>
-<nav><a href="index.html">Início</a><a href="agenda.html">Agenda</a><a href="congregacoes.html">Congregações</a><a href="central-secretario.html">Central do Secretário</a><a href="avisos.html">Avisos</a><a href="diretoria.html">Diretoria</a></nav><button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="mobile-menu" id="mobileMenu"><a href="index.html">Início</a><a href="agenda.html">Agenda</a><a href="congregacoes.html">Congregações</a><a href="central-secretario.html">Central do Secretário</a><a href="avisos.html">Avisos</a><a href="diretoria.html">Diretoria</a></div>
-</div></header>
-
-<section class="hero"><div class="hero-inner">
-<div class="eyebrow">SECRETARIA DIGITAL - SETOR 49</div><h1>Central de Mídia</h1><p>Fotos oficiais, logotipos e materiais para divulgação.</p>
-</div></section>
-
-    /* =========================
-       CARDS
-    ========================= */
-
-    .media-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 26px;
-    }
-
-    .media-card {
-      background: #ffffff;
-      border: 1px solid #dce5ea;
-      border-left: 6px solid #159dd1;
-      border-radius: 20px;
-      min-height: 340px;
-      padding: 26px 28px 28px;
-
-      display: flex;
-      flex-direction: column;
-
-      box-shadow: 0 8px 24px rgba(7, 60, 102, 0.06);
-      transition: .2s ease;
-    }
-
-    .media-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 14px 30px rgba(7, 60, 102, 0.11);
-      border-left-color: #079447;
-    }
-
-    /* =========================
-       LOGOS
-    ========================= */
-
-    .logo-area {
-      height: 125px;
-
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-
-      margin-bottom: 16px;
-    }
-
-    .logo-area img {
-      display: block;
-
-      max-width: 210px;
-      max-height: 115px;
-
-      width: auto;
-      height: auto;
-
-      object-fit: contain;
-    }
-
-    .logo-placeholder {
-      font-size: 48px;
-      line-height: 1;
-    }
-
-    /* =========================
-       TEXTO DOS CARDS
-    ========================= */
-
-    .media-card h3 {
-      color: #073c66;
-      font-size: 25px;
-      font-weight: 800;
-      margin-bottom: 10px;
-    }
-
-    .media-card p {
-      color: #667085;
-      font-size: 16px;
-      line-height: 1.55;
-      margin-bottom: 20px;
-    }
-
-    .media-card a {
-      margin-top: auto;
-
-      color: #159dd1;
-      text-decoration: none;
-
-      font-size: 16px;
-      font-weight: 800;
-
-      transition: .2s;
-    }
-
-    .media-card a:hover {
-      color: #079447;
-      transform: translateX(3px);
-    }
-
-    /* =========================
-       RODAPÉ
-    ========================= */
-
-    footer {
-      background: #073c66;
-      color: #ffffff;
-      text-align: center;
-      padding: 28px 20px;
-    }
-
-    footer p {
-      font-size: 14px;
-      line-height: 1.6;
-      opacity: .9;
-    }
-
-    /* =========================
-       TABLET
-    ========================= */
-
-    @media (max-width: 1150px) {
-
-      header {
-        padding-left: 4%;
-        padding-right: 4%;
-      }
-
-      .brand-text h1 {
-        font-size: 21px;
-      }
-
-      nav {
-        gap: 18px;
-      }
-
-      nav a {
-        font-size: 14px;
-      }
-
-      .hero h2 {
-        font-size: 50px;
-      }
-
-      .media-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    /* =========================
-       CELULAR
-    ========================= */
-
-    @media (max-width: 800px) {
-
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 20px 5%;
-      }
-
-      .brand {
-        width: 100%;
-      }
-
-      .brand img {
-        width: 62px;
-        height: 62px;
-      }
-
-      .brand-text h1 {
-        font-size: 18px;
-        white-space: normal;
-      }
-
-      .brand-text p {
-        font-size: 13px;
-      }
-
-      nav {
-        width: 100%;
-        flex-wrap: wrap;
-        gap: 14px 20px;
-      }
-
-      nav a {
-        font-size: 14px;
-      }
-
-      .hero {
-        min-height: 320px;
-        padding: 55px 7%;
-      }
-
-      .hero-label {
-        font-size: 14px;
-        margin-bottom: 25px;
-      }
-
-      .hero h2 {
-        font-size: 40px;
-      }
-
-      .hero p {
-        font-size: 18px;
-      }
-
-      main {
-        width: 92%;
-        padding-top: 35px;
-      }
-
-      .section-title h2 {
-        font-size: 29px;
-      }
-
-      .media-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* =========================
-       CELULAR PEQUENO
-    ========================= */
-
-    @media (max-width: 500px) {
-
-      .brand-text h1 {
-        font-size: 16px;
-      }
-
-      .brand-text p {
-        font-size: 11px;
-      }
-
-      nav {
-        gap: 12px 16px;
-      }
-
-      nav a {
-        font-size: 12px;
-      }
-
-      .hero {
-        padding: 45px 7%;
-      }
-
-      .hero h2 {
-        font-size: 32px;
-      }
-
-      .hero p {
-        font-size: 16px;
-      }
-
-      .media-card {
-        padding: 24px;
-      }
-    }
-
-  </style>
-</head>
 
 <body>
 
-  <!-- =========================
-       CABEÇALHO
-  ========================= -->
+<!-- =========================
+     CABEÇALHO
+========================= -->
 
-  <header>
+<header>
 
-    <div class="brand">
+<div class="nav">
 
-      <img
-        src="logo.png"
-        alt="Assembleia de Deus - Ministério do Belém"
-      >
+<a class="brand" href="index.html">
 
-      <div class="brand-text">
+<img src="logo.png" onerror="this.style.display='none'">
 
-        <h1>
-          ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM
-        </h1>
+<span>
+ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM
+<small>SETOR 49 - JARDIM DOS PIMENTAS</small>
+</span>
 
-        <p>
-          SETOR 49 - JARDIM DOS PIMENTAS
-        </p>
+</a>
 
-      </div>
 
-    </div>
+<nav>
 
+<a href="index.html">Início</a>
 
-    <nav>
+<a href="agenda.html">Agenda</a>
 
-      <a href="index.html">Início</a>
+<a href="congregacoes.html">Congregações</a>
 
-      <a href="agenda.html">Agenda</a>
+<a href="central-secretario.html">Central do Secretário</a>
 
-      <a href="congregacoes.html">Congregações</a>
+<a href="avisos.html">Avisos</a>
 
-      <a href="central-secretario.html">
-        Central do Secretário
-      </a>
+<a href="diretoria.html">Diretoria</a>
 
-      <a href="avisos.html">Avisos</a>
+</nav>
 
-      <a href="ia.html">Diretoria</a>
 
-    </nav>
+<button
+class="menu-toggle"
+id="menuToggle"
+aria-label="Abrir menu"
+aria-expanded="false"
+>
+☰
+</button>
 
-  </header>
 
+<div class="mobile-menu" id="mobileMenu">
 
-  <!-- =========================
-       BANNER
-  ========================= -->
+<a href="index.html">Início</a>
 
-  <section class="hero">
+<a href="agenda.html">Agenda</a>
 
-    <div class="hero-content">
+<a href="congregacoes.html">Congregações</a>
 
-      <div class="hero-label">
-        SECRETARIA DIGITAL - SETOR 49
-      </div>
+<a href="central-secretario.html">
+Central do Secretário
+</a>
 
-      <h2>
-        Central de Mídia
-      </h2>
+<a href="avisos.html">Avisos</a>
 
-      <p>
-        Fotos oficiais, logotipos e materiais para divulgação.
-      </p>
+<a href="diretoria.html">Diretoria</a>
 
-    </div>
+</div>
 
-  </section>
+</div>
 
+</header>
 
-  <!-- =========================
-       CONTEÚDO
-  ========================= -->
 
-  <main>
+<!-- =========================
+     BANNER
+========================= -->
 
-    <section class="section-title">
+<section class="hero">
 
-      <h2>
-        Materiais para Mídia
-      </h2>
+<div class="hero-inner">
 
-      <p>
-        Selecione uma das pastas abaixo para acessar os materiais oficiais.
-      </p>
+<div class="eyebrow">
+SECRETARIA DIGITAL - SETOR 49
+</div>
 
-    </section>
+<h1>
+Central de Mídia
+</h1>
 
+<p>
+Fotos oficiais, logotipos e materiais para divulgação.
+</p>
 
-    <section class="media-grid">
+</div>
 
+</section>
 
-      <!-- =====================
-           CREIO
-      ====================== -->
 
-      <article class="media-card">
+<!-- =========================
+     CONTEÚDO
+========================= -->
 
-        <div class="logo-area">
+<main>
 
-          <img
-            src="ativos/Logos do Creio Preto.png"
-            alt="Logo CREIO"
-          >
+<div class="intro">
 
-        </div>
+<strong>📸 Materiais para Mídia</strong>
 
-        <h3>
-          CREIO
-        </h3>
+<p>
+Selecione uma categoria abaixo para acessar as fotos,
+logotipos e materiais oficiais disponibilizados para
+a equipe de Mídia do Setor 49.
+</p>
 
-        <p>
-          Fotos e materiais oficiais do CREIO.
-        </p>
+</div>
 
-        <a
-          href="https://drive.google.com/drive/folders/1tk19nB-8ysqLhfxCNLHEpN2E8xN3zS8r?usp=drive_link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Acessar pasta →
-        </a>
 
-      </article>
+<div class="cards">
 
 
-      <!-- =====================
-           LOGO BELÉM
-      ====================== -->
+<!-- =====================
+     CREIO
+====================== -->
 
-      <article class="media-card">
+<article class="card">
 
-        <div class="logo-area">
+<div class="top">
 
-          <img
-            src="ativos/Logo-AD Belém-Atualizada.png"
-            alt="Logo AD Belém"
-          >
+<div class="icon">
 
-        </div>
+<img
+src="ativos/Logos do Creio Preto.png"
+alt="Logo CREIO"
+>
 
-        <h3>
-          LOGO BELÉM
-        </h3>
+</div>
 
-        <p>
-          Logotipos e elementos da identidade visual.
-        </p>
+<div class="num">
+01
+</div>
 
-        <a
-          href="https://drive.google.com/drive/folders/1TvZgrCeObPYSbCjC0irJX9pq27c18upx?usp=drive_link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Acessar pasta →
-        </a>
+</div>
 
-      </article>
+<h2>
+CREIO
+</h2>
 
+<p>
+Fotos e materiais oficiais do CREIO.
+</p>
 
-      <!-- =====================
-           PASTORES
-      ====================== -->
+<a
+class="btn"
+href="https://drive.google.com/drive/folders/1tk19nB-8ysqLhfxCNLHEpN2E8xN3zS8r?usp=drive_link"
+target="_blank"
+rel="noopener"
+>
+ACESSAR DRIVE →
+</a>
 
-      <article class="media-card">
+</article>
 
-        <div class="logo-area">
 
-          <div class="logo-placeholder">
-            👨‍💼
-          </div>
+<!-- =====================
+     LOGO BELÉM
+====================== -->
 
-        </div>
+<article class="card">
 
-        <h3>
-          PASTORES
-        </h3>
+<div class="top">
 
-        <p>
-          Fotos e materiais oficiais dos pastores.
-        </p>
+<div class="icon">
 
-        <a
-          href="https://drive.google.com/drive/folders/1bAxDV5VKzvqhWC12Rzzq47eBOLWMcrPR?usp=drive_link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Acessar pasta →
-        </a>
+<img
+src="ativos/Logo-AD Belém-Atualizada.png"
+alt="Logo Assembleia de Deus Ministério do Belém"
+>
 
-      </article>
+</div>
 
+<div class="num">
+02
+</div>
 
-      <!-- =====================
-           UCADEP
-      ====================== -->
+</div>
 
-      <article class="media-card">
+<h2>
+LOGO BELÉM
+</h2>
 
-        <div class="logo-area">
+<p>
+Logotipos e elementos da identidade visual.
+</p>
 
-          <img
-            src="ativos/UCADEP.LOGO.PRETO.png"
-            alt="Logo UCADEP"
-          >
+<a
+class="btn"
+href="https://drive.google.com/drive/folders/1TvZgrCeObPYSbCjC0irJX9pq27c18upx?usp=drive_link"
+target="_blank"
+rel="noopener"
+>
+ACESSAR DRIVE →
+</a>
 
-        </div>
+</article>
 
-        <h3>
-          UCADEP
-        </h3>
 
-        <p>
-          Materiais oficiais e identidade visual da UCADEP.
-        </p>
+<!-- =====================
+     PASTORES
+====================== -->
 
-        <a
-          href="https://drive.google.com/drive/folders/15KIg1V_CSMQUQ_OboIyquA6Nr1MqOEGx?usp=drive_link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Acessar pasta →
-        </a>
+<article class="card">
 
-      </article>
+<div class="top">
 
+<div class="icon pastores">
+👨‍💼
+</div>
 
-      <!-- =====================
-           UFADEB
-      ====================== -->
+<div class="num">
+03
+</div>
 
-      <article class="media-card">
+</div>
 
-        <div class="logo-area">
+<h2>
+PASTORES
+</h2>
 
-          <img
-            src="ativos/UFADEB -LOGO.png"
-            alt="Logo UFADEB"
-          >
+<p>
+Fotos e materiais oficiais dos pastores.
+</p>
 
-        </div>
+<a
+class="btn"
+href="https://drive.google.com/drive/folders/1bAxDV5VKzvqhWC12Rzzq47eBOLWMcrPR?usp=drive_link"
+target="_blank"
+rel="noopener"
+>
+ACESSAR DRIVE →
+</a>
 
-        <h3>
-          UFADEB
-        </h3>
+</article>
 
-        <p>
-          Fotos e materiais oficiais da UFADEB.
-        </p>
 
-        <a
-          href="https://drive.google.com/drive/folders/1it2XS1Z2XljWEBtNVQQUiz1gqlHU6B2V?usp=drive_link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Acessar pasta →
-        </a>
+<!-- =====================
+     UCADEP
+====================== -->
 
-      </article>
+<article class="card">
 
+<div class="top">
 
-      <!-- =====================
-           UMADEB
-      ====================== -->
+<div class="icon">
 
-      <article class="media-card">
+<img
+src="ativos/UCADEP.LOGO.PRETO.png"
+alt="Logo UCADEP"
+>
 
-        <div class="logo-area">
+</div>
 
-          <img
-            src="ativos/UMADEB - LOGO.png"
-            alt="Logo UMADEB"
-          >
+<div class="num">
+04
+</div>
 
-        </div>
+</div>
 
-        <h3>
-          UMADEB
-        </h3>
+<h2>
+UCADEP
+</h2>
 
-        <p>
-          Fotos e materiais oficiais da UMADEB.
-        </p>
+<p>
+Materiais oficiais e identidade visual da UCADEP.
+</p>
 
-        <a
-          href="https://drive.google.com/drive/folders/1-TryGStkJHKUl8JUc76LKUirmht6sTmN?usp=drive_link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Acessar pasta →
-        </a>
+<a
+class="btn"
+href="https://drive.google.com/drive/folders/15KIg1V_CSMQUQ_OboIyquA6Nr1MqOEGx?usp=drive_link"
+target="_blank"
+rel="noopener"
+>
+ACESSAR DRIVE →
+</a>
 
-      </article>
+</article>
 
 
-    </section>
+<!-- =====================
+     UFADEB
+====================== -->
 
-  </main>
+<article class="card">
 
+<div class="top">
 
-  <!-- =========================
-       RODAPÉ
-  ========================= -->
+<div class="icon">
 
-  <footer>
+<img
+src="ativos/UFADEB -LOGO.png"
+alt="Logo UFADEB"
+>
 
-    <p>
-      Secretaria Digital — Setor 49 - Jardim dos Pimentas
-    </p>
+</div>
 
-    <p>
-      Assembleia de Deus - Ministério do Belém
-    </p>
+<div class="num">
+05
+</div>
 
-  </footer>
+</div>
+
+<h2>
+UFADEB
+</h2>
+
+<p>
+Fotos e materiais oficiais da UFADEB.
+</p>
+
+<a
+class="btn"
+href="https://drive.google.com/drive/folders/1it2XS1Z2XljWEBtNVQQUiz1gqlHU6B2V?usp=drive_link"
+target="_blank"
+rel="noopener"
+>
+ACESSAR DRIVE →
+</a>
+
+</article>
+
+
+<!-- =====================
+     UMADEB
+====================== -->
+
+<article class="card">
+
+<div class="top">
+
+<div class="icon">
+
+<img
+src="ativos/UMADEB - LOGO.png"
+alt="Logo UMADEB"
+>
+
+</div>
+
+<div class="num">
+06
+</div>
+
+</div>
+
+<h2>
+UMADEB
+</h2>
+
+<p>
+Fotos e materiais oficiais da UMADEB.
+</p>
+
+<a
+class="btn"
+href="https://drive.google.com/drive/folders/1-TryGStkJHKUl8JUc76LKUirmht6sTmN?usp=drive_link"
+target="_blank"
+rel="noopener"
+>
+ACESSAR DRIVE →
+</a>
+
+</article>
+
+
+</div>
+
+
+<div class="info">
+
+<strong>ℹ️ Atenção:</strong>
+
+os materiais continuam armazenados no Google Drive.
+O portal apenas facilita o acesso às pastas compartilhadas
+pela equipe de Mídia do Setor 49.
+
+</div>
+
+</main>
+
+
+<!-- =========================
+     RODAPÉ
+========================= -->
+
+<footer>
+
+ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM
+· SETOR 49 - JARDIM DOS PIMENTAS
+
+<br>
+
+<small>
+SECRETARIA DIGITAL
+</small>
+
+</footer>
+
+
+<!-- =========================
+     MENU MOBILE
+========================= -->
+
+<script>
+
+const menuToggle =
+document.getElementById('menuToggle');
+
+const mobileMenu =
+document.getElementById('mobileMenu');
+
+if(menuToggle && mobileMenu){
+
+menuToggle.addEventListener(
+'click',
+()=>{
+
+const open =
+mobileMenu.classList.toggle('open');
+
+menuToggle.setAttribute(
+'aria-expanded',
+open ? 'true' : 'false'
+);
+
+menuToggle.textContent =
+open ? '✕' : '☰';
+
+});
+
+
+mobileMenu
+.querySelectorAll('a')
+.forEach(a =>
+
+a.addEventListener(
+'click',
+()=>{
+
+mobileMenu.classList.remove('open');
+
+menuToggle.setAttribute(
+'aria-expanded',
+'false'
+);
+
+menuToggle.textContent='☰';
+
+}));
+
+}
+
+</script>
 
 </body>
 </html>
