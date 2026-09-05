@@ -49,7 +49,14 @@ select{width:100%;padding:13px 14px;border:1px solid #d7dee4;border-radius:11px;
 }
 .event h3{margin:0 0 5px;font-size:16px}.event p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}.type{display:inline-block;margin-top:9px;font-size:10px;font-weight:900;text-transform:uppercase;color:var(--green);letter-spacing:.6px}
 .no-results{display:none;background:#fff;border:1px dashed #cbd5df;border-radius:16px;padding:35px;text-align:center;color:var(--muted)}
-footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font-size:13px}
+footer{
+  background:#20262b;
+  color:#d0d5dd;
+  padding:30px 22px;
+  text-align:center;
+  font-size:13px
+}
+
 @media(max-width:700px){
   .events{grid-template-columns:1fr}
   .event{padding:15px;gap:12px}
@@ -171,8 +178,18 @@ footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font
 
 <div class="no-results" id="noResults">Nenhum evento corresponde aos filtros selecionados.</div>
 </main>
-<footer>ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM · SETOR 49 - JARDIM DOS PIMENTAS</footer>
-<footer><small>SECRETARIA DIGITAL</small><footer>
+<footer>
+
+ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM
+· SETOR 49 - JARDIM DOS PIMENTAS
+
+<br>
+
+<small>
+SECRETARIA DIGITAL
+</small>
+
+</footer>
 <script>
 const mf=document.getElementById('monthFilter'),tf=document.getElementById('typeFilter'),events=[...document.querySelectorAll('.event')],months=[...document.querySelectorAll('.month')],no=document.getElementById('noResults');
 function filter(){let n=0;events.forEach(e=>{let ok=(mf.value==='all'||e.dataset.month===mf.value)&&(tf.value==='all'||e.dataset.type===tf.value);e.style.display=ok?'flex':'none';if(ok)n++});months.forEach(m=>{let next=m.nextElementSibling, visible=false;while(next&& !next.classList.contains('month')){if(next.classList.contains('events')&&[...next.querySelectorAll('.event')].some(e=>e.style.display!=='none'))visible=true;next=next.nextElementSibling}m.style.display=visible?'flex':'none'});no.style.display=n?'none':'block'}mf.addEventListener('change',filter);tf.addEventListener('change',filter);filter();
