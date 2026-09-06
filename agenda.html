@@ -129,9 +129,7 @@ const API_AGENDA = "https://script.google.com/macros/s/AKfycbxGOYL24cx626bkV-MNo
 const mf = document.getElementById("monthFilter");
 const tf = document.getElementById("typeFilter");
 const container = document.getElementById("agendaContainer");
-const no = document.getElementById("noResults");
-
-let eventos = [];
+const noResults = document.getElementById("noResults");
 
 const meses = {
   "01": "Janeiro",
@@ -163,52 +161,82 @@ const mesesAbrev = {
   "12": "DEZ"
 };
 
-function slugTipo(tipo) {
 
-  return String(tipo || "")
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/\s+/g, "-");
+function converterData(data) {
 
-}
-
-function formatarData(data) {
   if (!data) return null;
 
   data = String(data).trim();
 
-  // Formato DD/MM/AAAA
   let partes = data.split("/");
 
   if (partes.length === 3) {
+
     return {
       dia: partes[0].padStart(2, "0"),
       mes: partes[1].padStart(2, "0"),
       ano: partes[2]
     };
+
   }
 
-  // Formato AAAA-MM-DD
   partes = data.split("-");
 
   if (partes.length === 3 && partes[0].length === 4) {
+
     return {
       dia: partes[2].padStart(2, "0"),
       mes: partes[1].padStart(2, "0"),
       ano: partes[0]
     };
+
   }
 
   return null;
 }
+
+
+function normalizarTipo(tipo) {
+
+  const texto = String(tipo || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
+
+  if (texto.includes("juventude")) return "juventude";
+
+  if (texto.includes("batismo")) return "batismo";
+
+  if (texto.includes("casais")) return "casais";
+
+  if (texto.includes("regional")) return "regionais";
+
+  if (texto.includes("anivers")) return "aniversario";
+
+  if (
+    texto.includes("evento") ||
+    texto.includes("congresso") ||
+    texto.includes("santa ceia") ||
+    texto.includes("misso")
+  ) {
+    return "eventos";
+  }
+
+  return texto.replace(/\s+/g, "-");
+}
+
+
 function criarEvento(evento) {
 
-  const inicio = formatarData(evento["DATA DE INÍCIO"]);
+  const inicio = converterData(evento["DATA DE INÍCIO"]);
 
-  if (!inicio) return "";
+  if (!inicio) {
+    console.log("Data inválida:", evento);
+    return null;
+  }
 
-  const fim = formatarData(evento["DATA DE FIM"]);
+  const fim = converterData(evento["DATA DE FIM"]);
 
   let dia = inicio.dia;
 
@@ -217,44 +245,64 @@ function criarEvento(evento) {
   }
 
   const tipoOriginal = evento["TIPO"] || "Evento";
-  const tipoSlug = slugTipo(tipoOriginal);
+  const tipoSlug = normalizarTipo(tipoOriginal);
 
-  const descricao = evento["DESCRIÇÃO"] || "";
+  const card = document.createElement("div");
 
-  const horario = evento["HORÁRIO"]
-    ? " · " + evento["HORÁRIO"]
-    : "";
+  card.className = "event";
 
-  return `
-    <div
-      class="event"
-      data-month="${inicio.mes}"
-      data-type="${tipoSlug}"
-    >
+  card.dataset.month = inicio.mes;
+  card.dataset.type = tipoSlug;
 
-      <div class="date">
-        <b>${dia}</b>
-        <small>${mesesAbrev[inicio.mes]}</small>
-      </div>
+  const date = document.createElement("div");
 
-      <div>
-        <h3>${evento["EVENTO"] || ""}</h3>
+  date.className = "date";
 
-        <p>
-          ${descricao || (evento["LOCAL"] ? evento["LOCAL"] : "")}
-          ${horario}
-        </p>
-
-        <span class="type">
-          ${tipoOriginal}
-        </span>
-
-      </div>
-
-    </div>
+  date.innerHTML = `
+    <b>${dia}</b>
+    <small>${mesesAbrev[inicio.mes]}</small>
   `;
 
+
+  const conteudo = document.createElement("div");
+
+  const titulo = document.createElement("h3");
+
+  titulo.textContent = evento["EVENTO"] || "Evento";
+
+
+  const descricao = document.createElement("p");
+
+  let textoDescricao = evento["DESCRIÇÃO"] || "";
+
+  if (!textoDescricao) {
+    textoDescricao = evento["LOCAL"] || "";
+  }
+
+  if (evento["HORÁRIO"]) {
+    textoDescricao += " · " + evento["HORÁRIO"];
+  }
+
+  descricao.textContent = textoDescricao;
+
+
+  const tipo = document.createElement("span");
+
+  tipo.className = "type";
+
+  tipo.textContent = tipoOriginal;
+
+
+  conteudo.appendChild(titulo);
+  conteudo.appendChild(descricao);
+  conteudo.appendChild(tipo);
+
+  card.appendChild(date);
+  card.appendChild(conteudo);
+
+  return card;
 }
+
 
 function montarAgenda(lista) {
 
@@ -262,106 +310,156 @@ function montarAgenda(lista) {
 
   const porMes = {};
 
-lista.forEach(evento => {
+  lista.forEach(evento => {
 
-  const data = formatarData(evento["DATA DE INÍCIO"]);
+    const data = converterData(evento["DATA DE INÍCIO"]);
 
-  console.log("Evento:", evento["EVENTO"], "Data:", evento["DATA DE INÍCIO"], "Convertida:", data);
+    if (!data) return;
 
-  if (!data) return;
+    if (!porMes[data.mes]) {
+      porMes[data.mes] = [];
+    }
 
-  if (!porMes[data.mes]) {
-    porMes[data.mes] = [];
-  }
+    porMes[data.mes].push(evento);
 
-  porMes[data.mes].push(evento);
+  });
 
-});
 
   Object.keys(porMes)
     .sort()
     .forEach(mes => {
 
-      const blocoMes = document.createElement("div");
-      blocoMes.className = "mes-bloco";
+      const bloco = document.createElement("div");
 
-      blocoMes.innerHTML = `
-        <div class="month">
-          <h2>${meses[mes]}</h2>
-          <span>2026</span>
-        </div>
+      bloco.className = "mes-bloco";
 
-        <div class="events">
-          ${porMes[mes].map(criarEvento).join("")}
-        </div>
+
+      const tituloMes = document.createElement("div");
+
+      tituloMes.className = "month";
+
+      tituloMes.innerHTML = `
+        <h2>${meses[mes]}</h2>
+        <span>2026</span>
       `;
 
-      container.appendChild(blocoMes);
+
+      const eventos = document.createElement("div");
+
+      eventos.className = "events";
+
+
+      porMes[mes].forEach(evento => {
+
+        const card = criarEvento(evento);
+
+        if (card) {
+          eventos.appendChild(card);
+        }
+
+      });
+
+
+      bloco.appendChild(tituloMes);
+      bloco.appendChild(eventos);
+
+      container.appendChild(bloco);
 
     });
+
 
   aplicarFiltro();
 
 }
 
+
 function aplicarFiltro() {
 
-  const eventosPagina =
-    [...container.querySelectorAll(".event")];
+  const cards = container.querySelectorAll(".event");
 
   let quantidade = 0;
 
-  eventosPagina.forEach(evento => {
+
+  cards.forEach(card => {
 
     const mesOk =
       mf.value === "all" ||
-      evento.dataset.month === mf.value;
+      card.dataset.month === mf.value;
+
 
     const tipoOk =
       tf.value === "all" ||
-      evento.dataset.type === tf.value;
+      card.dataset.type === tf.value;
 
-    const mostrar = mesOk && tipoOk;
 
-    evento.style.display = mostrar ? "flex" : "none";
+    if (mesOk && tipoOk) {
 
-    if (mostrar) quantidade++;
+      card.style.display = "flex";
+
+      quantidade++;
+
+    } else {
+
+      card.style.display = "none";
+
+    }
 
   });
+
 
   container.querySelectorAll(".mes-bloco").forEach(bloco => {
 
-    const possuiEvento =
+    const temEvento =
       [...bloco.querySelectorAll(".event")]
-        .some(evento => evento.style.display !== "none");
+        .some(card => card.style.display !== "none");
 
-    bloco.style.display =
-      possuiEvento ? "block" : "none";
+    bloco.style.display = temEvento ? "block" : "none";
 
   });
 
-  no.style.display =
-    quantidade ? "none" : "block";
+
+  noResults.style.display =
+    quantidade > 0 ? "none" : "block";
 
 }
 
+
 mf.addEventListener("change", aplicarFiltro);
+
 tf.addEventListener("change", aplicarFiltro);
 
+
 fetch(API_AGENDA)
-  .then(resposta => resposta.json())
-  .then(dados => {
-    eventos = dados;
-    montarAgenda(eventos);
+
+  .then(resposta => {
+
+    if (!resposta.ok) {
+      throw new Error("Erro HTTP " + resposta.status);
+    }
+
+    return resposta.json();
+
   })
+
+  .then(dados => {
+
+    console.log("Agenda recebida:", dados);
+
+    montarAgenda(dados);
+
+  })
+
   .catch(erro => {
+
     console.error("Erro ao carregar a Agenda:", erro);
 
-    container.innerHTML = `
-      <div class="no-results" style="display:block">
-        Não foi possível carregar a Agenda.
-      </div>
-    `;
+    container.innerHTML = "";
+
+    noResults.style.display = "block";
+
+    noResults.textContent =
+      "Não foi possível carregar a Agenda.";
+
   });
 
 </script>
