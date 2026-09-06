@@ -327,11 +327,6 @@ function mostrarAvisosInicio(lista) {
   const avisos = lista
     .filter(aviso => {
 
-      // Se a API enviar o campo ATIVO,
-      // considera somente os que estiverem ativos.
-      // Se a API já filtrar os ativos e não enviar esse campo,
-      // o aviso também será aceito.
-
       if (!("ATIVO" in aviso)) {
         return true;
       }
@@ -340,14 +335,21 @@ function mostrarAvisosInicio(lista) {
         .trim()
         .toUpperCase();
 
-      return ativo === "SIM" ||
-             ativo === "TRUE" ||
-             ativo === "1";
+      return (
+        ativo === "SIM" ||
+        ativo === "TRUE" ||
+        ativo === "1"
+      );
+
     })
     .sort((a, b) => {
 
-      return converterData(b["DATA"]) -
-             converterData(a["DATA"]);
+      return converterData(
+        b["DATA"] || b["Data"] || ""
+      ) -
+      converterData(
+        a["DATA"] || a["Data"] || ""
+      );
 
     })
     .slice(0, 2);
@@ -368,26 +370,46 @@ function mostrarAvisosInicio(lista) {
 
   avisos.forEach(aviso => {
 
+    const titulo =
+      aviso["TÍTULO"] ||
+      aviso["TITULO"] ||
+      aviso["Título"] ||
+      aviso["Titulo"] ||
+      "Aviso";
+
+
+    const texto =
+      aviso["TEXTO"] ||
+      aviso["Texto"] ||
+      aviso["texto"] ||
+      aviso["DESCRIÇÃO"] ||
+      aviso["DESCRICAO"] ||
+      "";
+
+
     const bloco = document.createElement("div");
 
     bloco.className = "notice-main";
 
 
-    const titulo = document.createElement("strong");
+    const tituloElemento =
+      document.createElement("strong");
 
-    titulo.textContent =
-      aviso["TÍTULO"] || "Aviso";
-
-
-    const texto = document.createElement("p");
-
-    texto.textContent =
-      aviso["TEXTO"] || "";
+    tituloElemento.textContent = titulo;
 
 
-    bloco.appendChild(titulo);
+    const textoElemento =
+      document.createElement("p");
 
-    bloco.appendChild(texto);
+    textoElemento.textContent = texto;
+
+
+    bloco.appendChild(tituloElemento);
+
+    if (texto) {
+      bloco.appendChild(textoElemento);
+    }
+
 
     avisosInicio.appendChild(bloco);
 
