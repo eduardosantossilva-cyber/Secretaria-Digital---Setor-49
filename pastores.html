@@ -709,14 +709,24 @@ function renderizarPastores(regional){
       const regional=
         pastor.REGIONAL || "";
 
+function converterLinkDrive(link) {
+  if (!link) return "";
 
+  const match = link.match(/\/d\/([a-zA-Z0-9_-]+)/);
+
+  if (match) {
+    return "https://drive.google.com/thumbnail?id=" + match[1] + "&sz=w600";
+  }
+
+  return link;
+}
       const foto=
         pastor.FOTO &&
         pastor.FOTO.trim()
 
         ? `
           <img
-            src="${pastor.FOTO}"
+            src="${converterLinkDrive(pastor.FOTO)}"
             alt="${nome}"
           >
         `
