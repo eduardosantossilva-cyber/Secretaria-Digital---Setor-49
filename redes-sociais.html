@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Redes Sociais | AD Belém 49</title>
+
+  <style>
+
+    :root{
+      --blue:#159dd1;
+      --green:#079447;
+      --gold:#f9c414;
+      --navy:#073c66;
+      --ink:#17212b;
+      --muted:#667085;
+      --bg:#f6f8fa;
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+    }
+
+    /* HEADER */
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:#fff;
+      border-bottom:1px solid #e6edf2;
+    }
+
+    .nav{
+      max-width:1180px;
+      margin:auto;
+      padding:12px 22px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      color:var(--navy);
+      font-weight:800;
+      font-size:14px;
+    }
+
+    .brand img{
+      width:42px;
+      height:42px;
+      object-fit:contain;
+    }
+
+    .brand span{
+      display:flex;
+      flex-direction:column;
+      line-height:1.15;
+    }
+
+    .brand small{
+      display:block;
+      margin-top:4px;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.03em;
+      color:#667085;
+    }
+
+    nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:#344054;
+      font-size:12px;
+      font-weight:700;
+    }
+
+    nav a:hover{
+      color:var(--blue);
+    }
+
+    .menu{
+      display:none;
+      font-size:25px;
+      cursor:pointer;
+      color:var(--navy);
+    }
+
+    /* HERO */
+
+    .hero{
+      background:linear-gradient(
+        135deg,
+        var(--navy),
+        var(--blue),
+        var(--green)
+      );
+      padding:58px 22px;
+      color:#fff;
+    }
+
+    .hero-inner{
+      max-width:1180px;
+      margin:auto;
+    }
+
+    .hero small{
+      display:block;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.08em;
+      margin-bottom:10px;
+      opacity:.9;
+    }
+
+    .hero h1{
+      font-size:38px;
+      margin-bottom:10px;
+    }
+
+    .hero p{
+      font-size:15px;
+      opacity:.95;
+      max-width:700px;
+      line-height:1.6;
+    }
+
+    /* MAIN */
+
+    main{
+      max-width:1180px;
+      margin:35px auto;
+      padding:0 22px;
+    }
+
+    .intro{
+      background:#fff;
+      border:1px solid #e1e8ed;
+      border-radius:20px;
+      padding:28px;
+      margin-bottom:25px;
+      box-shadow:0 6px 20px rgba(7,60,102,.05);
+    }
+
+    .intro h2{
+      color:var(--navy);
+      margin-bottom:10px;
+      font-size:23px;
+    }
+
+    .intro p{
+      color:var(--muted);
+      line-height:1.7;
+      font-size:14px;
+    }
+
+    /* REDES */
+
+    .social-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+
+    .social-card{
+      background:#fff;
+      border:1px solid #e1e8ed;
+      border-radius:20px;
+      padding:25px;
+      min-height:230px;
+      box-shadow:0 8px 24px rgba(7,60,102,.06);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .social-top{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      margin-bottom:18px;
+    }
+
+    .social-icon{
+      width:52px;
+      height:52px;
+      border-radius:15px;
+      display:grid;
+      place-items:center;
+      font-size:28px;
+      background:#f4f7f9;
+    }
+
+    .social-card h2{
+      color:var(--navy);
+      font-size:20px;
+      margin-bottom:4px;
+    }
+
+    .social-user{
+      color:var(--muted);
+      font-size:12px;
+      font-weight:700;
+    }
+
+    .social-card p{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.6;
+      margin-bottom:20px;
+    }
+
+    .social-btn{
+      display:inline-block;
+      width:max-content;
+      padding:11px 17px;
+      color:#fff;
+      text-decoration:none;
+      border-radius:9px;
+      font-size:11px;
+      font-weight:800;
+      transition:.2s;
+    }
+
+    .social-btn:hover{
+      transform:translateY(-2px);
+      opacity:.9;
+    }
+
+    .instagram-btn{
+      background:#d62976;
+    }
+
+    .tiktok-btn{
+      background:#111;
+    }
+
+    .youtube-btn{
+      background:#ff0000;
+    }
+
+    /* YOUTUBE */
+
+    .youtube-section{
+      margin-top:25px;
+      background:#fff;
+      border:1px solid #e1e8ed;
+      border-radius:20px;
+      padding:25px;
+      box-shadow:0 8px 24px rgba(7,60,102,.05);
+    }
+
+    .youtube-section h2{
+      color:var(--navy);
+      font-size:21px;
+      margin-bottom:8px;
+    }
+
+    .youtube-section p{
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:18px;
+    }
+
+    .video-box{
+      position:relative;
+      width:100%;
+      aspect-ratio:16/9;
+      overflow:hidden;
+      border-radius:15px;
+      background:#111;
+    }
+
+    .video-box iframe{
+      width:100%;
+      height:100%;
+      border:0;
+    }
+
+    /* ÚLTIMOS VÍDEOS */
+
+    .videos-recentes{
+      margin-top:25px;
+    }
+
+    .videos-recentes h2{
+      color:var(--navy);
+      font-size:21px;
+      margin-bottom:8px;
+    }
+
+    .videos-recentes > p{
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:18px;
+    }
+
+    .videos-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+
+    .video-card{
+      background:#fff;
+      border:1px solid #e1e8ed;
+      border-radius:20px;
+      padding:16px;
+      box-shadow:0 8px 24px rgba(7,60,102,.05);
+      overflow:hidden;
+    }
+
+    .video-thumb{
+      position:relative;
+      width:100%;
+      aspect-ratio:16/9;
+      overflow:hidden;
+      border-radius:14px;
+      background:#111;
+    }
+
+    .video-thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .video-card h3{
+      color:var(--navy);
+      font-size:16px;
+      margin:15px 0 12px;
+    }
+
+    .video-btn{
+      display:inline-block;
+      padding:10px 15px;
+      background:#ff0000;
+      color:#fff;
+      text-decoration:none;
+      border-radius:8px;
+      font-weight:800;
+      font-size:11px;
+      transition:.2s;
+    }
+
+    .video-btn:hover{
+      transform:translateY(-2px);
+      opacity:.9;
+    }
+
+    /* FOOTER */
+
+    footer{
+      margin-top:50px;
+      background:#20262b;
+      color:#fff;
+      text-align:center;
+      padding:30px 20px;
+      width:100%;
+    }
+
+    .footer-content{
+      max-width:1180px;
+      margin:0 auto;
+    }
+
+    .footer-title{
+      font-size:13px;
+      line-height:1.5;
+      font-weight:500;
+    }
+
+    .footer-subtitle{
+      margin-top:6px;
+      font-size:11px;
+      opacity:.75;
+    }
+
+    /* MOBILE */
+
+    @media(max-width:900px){
+
+      .social-grid{
+        grid-template-columns:1fr;
+      }
+
+      .videos-grid{
+        grid-template-columns:1fr;
+      }
+
+    }
+
+    @media(max-width:800px){
+
+      nav{
+        display:none;
+        position:absolute;
+        top:67px;
+        left:0;
+        right:0;
+        background:#fff;
+        padding:20px;
+        flex-direction:column;
+        border-bottom:1px solid #e6edf2;
+      }
+
+      nav.active{
+        display:flex;
+      }
+
+      .menu{
+        display:block;
+      }
+
+      .hero{
+        padding:45px 20px;
+      }
+
+      .hero h1{
+        font-size:30px;
+      }
+
+      main{
+        margin:25px auto;
+      }
+
+      .intro,
+      .social-card,
+      .youtube-section{
+        padding:22px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+  <div class="nav">
+
+    <a href="index.html" class="brand">
+
+      <img src="logo.png" alt="Logo Assembleia de Deus">
+
+      <span>
+        ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM
+        <small>SETOR 49 - JARDIM DOS PIMENTAS</small>
+      </span>
+
+    </a>
+
+
+    <div class="menu" onclick="toggleMenu()">☰</div>
+
+
+    <nav id="menu">
+
+      <a href="index.html">Início</a>
+
+      <a href="agenda.html">Agenda</a>
+
+      <a href="congregacoes.html">Congregações</a>
+
+      <a href="avisos.html">Avisos</a>
+
+      <a href="central-secretario.html">Central do Secretário</a>
+
+      <a href="central-midia.html">Central de Mídia</a>
+
+      <a href="diretoria.html">Diretoria</a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+<section class="hero">
+
+  <div class="hero-inner">
+
+    <small>ASSEMBLEIA DE DEUS — MINISTÉRIO DO BELÉM</small>
+
+    <h1>Redes Sociais</h1>
+
+    <p>
+      Acompanhe a Assembleia de Deus — Ministério do Belém,
+      Setor 49 — Jardim dos Pimentas, pelas nossas redes oficiais.
+    </p>
+
+  </div>
+
+</section>
+
+
+<main>
+
+
+  <!-- INTRO -->
+
+  <section class="intro">
+
+    <h2>📱 Conecte-se conosco</h2>
+
+    <p>
+      Acompanhe os cultos, eventos, congressos, avisos,
+      transmissões e demais conteúdos da igreja através
+      das nossas redes sociais oficiais.
+    </p>
+
+  </section>
+
+
+  <!-- REDES SOCIAIS -->
+
+  <section class="social-grid">
+
+
+    <!-- INSTAGRAM -->
+
+    <div class="social-card">
+
+      <div>
+
+        <div class="social-top">
+
+          <div class="social-icon">
+            📸
+          </div>
+
+          <div>
+
+            <h2>Instagram</h2>
+
+            <div class="social-user">
+              @adbelempimentas
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <p>
+          Acompanhe fotos, vídeos, eventos, cultos
+          e novidades do Setor 49.
+        </p>
+
+      </div>
+
+
+      <a
+        class="social-btn instagram-btn"
+        href="https://www.instagram.com/adbelempimentas/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        ACESSAR INSTAGRAM →
+      </a>
+
+    </div>
+
+
+    <!-- TIKTOK -->
+
+    <div class="social-card">
+
+      <div>
+
+        <div class="social-top">
+
+          <div class="social-icon">
+            🎵
+          </div>
+
+          <div>
+
+            <h2>TikTok</h2>
+
+            <div class="social-user">
+              @adbelempimentas
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <p>
+          Confira vídeos curtos, momentos especiais
+          e conteúdos da igreja.
+        </p>
+
+      </div>
+
+
+      <a
+        class="social-btn tiktok-btn"
+        href="https://www.tiktok.com/@adbelempimentas"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        ACESSAR TIKTOK →
+      </a>
+
+    </div>
+
+
+    <!-- YOUTUBE -->
+
+    <div class="social-card">
+
+      <div>
+
+        <div class="social-top">
+
+          <div class="social-icon">
+            📺
+          </div>
+
+          <div>
+
+            <h2>YouTube</h2>
+
+            <div class="social-user">
+              AD Belém 49
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <p>
+          Acompanhe cultos, congressos, transmissões
+          e conteúdos completos do Setor 49.
+        </p>
+
+      </div>
+
+
+      <a
+        class="social-btn youtube-btn"
+        href="https://www.youtube.com/@adbelem49"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        ACESSAR YOUTUBE →
+      </a>
+
+    </div>
+
+
+  </section>
+
+
+  <!-- YOUTUBE EM DESTAQUE -->
+
+  <section class="youtube-section">
+
+    <h2>🎥 Vídeo em destaque</h2>
+
+    <p>
+      Confira um dos conteúdos publicados pelo canal oficial
+      da Assembleia de Deus — Ministério do Belém, Setor 49.
+    </p>
+
+
+    <div class="video-box">
+
+      <iframe
+        src="https://www.youtube.com/embed/c4mFC0zxHMo"
+        title="AD Belém 49 — Vídeo em destaque"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+
+    </div>
+
+  </section>
+
+
+  <!-- ÚLTIMOS VÍDEOS -->
+
+  <section class="videos-recentes">
+
+    <h2>🎬 Últimos vídeos</h2>
+
+    <p>
+      Confira outros conteúdos publicados pelo canal oficial
+      da Assembleia de Deus — Ministério do Belém, Setor 49.
+    </p>
+
+
+    <div class="videos-grid">
+
+
+      <!-- VÍDEO 01 -->
+
+      <div class="video-card">
+
+        <a
+          href="https://www.youtube.com/watch?v=ZuqklsQS7xo"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <div class="video-thumb">
+
+            <img
+              src="https://img.youtube.com/vi/ZuqklsQS7xo/hqdefault.jpg"
+              alt="Vídeo do canal AD Belém 49"
+            >
+
+          </div>
+
+        </a>
+
+
+        <h3>Vídeo do Canal AD Belém 49</h3>
+
+
+        <a
+          class="video-btn"
+          href="https://www.youtube.com/watch?v=ZuqklsQS7xo"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ASSISTIR NO YOUTUBE →
+        </a>
+
+      </div>
+
+
+      <!-- VÍDEO 02 -->
+
+      <div class="video-card">
+
+        <a
+          href="https://www.youtube.com/watch?v=fYyyERA-j6k"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <div class="video-thumb">
+
+            <img
+              src="https://img.youtube.com/vi/fYyyERA-j6k/hqdefault.jpg"
+              alt="Vídeo do canal AD Belém 49"
+            >
+
+          </div>
+
+        </a>
+
+
+        <h3>Vídeo do Canal AD Belém 49</h3>
+
+
+        <a
+          class="video-btn"
+          href="https://www.youtube.com/watch?v=fYyyERA-j6k"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ASSISTIR NO YOUTUBE →
+        </a>
+
+      </div>
+
+
+      <!-- VÍDEO 03 -->
+
+      <div class="video-card">
+
+        <a
+          href="https://www.youtube.com/watch?v=Uie1-00iNd0"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <div class="video-thumb">
+
+            <img
+              src="https://img.youtube.com/vi/Uie1-00iNd0/hqdefault.jpg"
+              alt="Vídeo do canal AD Belém 49"
+            >
+
+          </div>
+
+        </a>
+
+
+        <h3>Vídeo do Canal AD Belém 49</h3>
+
+
+        <a
+          class="video-btn"
+          href="https://www.youtube.com/watch?v=Uie1-00iNd0"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ASSISTIR NO YOUTUBE →
+        </a>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+<footer>
+
+  <div class="footer-content">
+
+    <div class="footer-title">
+      ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM · SETOR 49 - JARDIM DOS PIMENTAS
+    </div>
+
+    <div class="footer-subtitle">
+      PORTAL AD BELÉM - SETOR 49
+    </div>
+
+  </div>
+
+</footer>
+
+
+<script>
+
+  function toggleMenu(){
+
+    document.getElementById("menu").classList.toggle("active");
+
+  }
+
+</script>
+
+
+</body>
+
+</html>
