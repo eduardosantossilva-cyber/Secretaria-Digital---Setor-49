@@ -336,36 +336,19 @@ mf.addEventListener("change", aplicarFiltro);
 tf.addEventListener("change", aplicarFiltro);
 
 fetch(API_AGENDA)
-  .then(resposta => {
-    console.log("Resposta da API:", resposta);
-    return resposta.json();
-  })
+  .then(resposta => resposta.json())
   .then(dados => {
-    console.log("Dados recebidos:", dados);
-    console.log("Quantidade de eventos:", dados.length);
-
     eventos = dados;
-
     montarAgenda(eventos);
   })
   .catch(erro => {
-    console.error("ERRO AO CARREGAR A AGENDA:", erro);
+    console.error("Erro ao carregar a Agenda:", erro);
 
     container.innerHTML = `
       <div class="no-results" style="display:block">
         Não foi possível carregar a Agenda.
       </div>
     `;
-  });
-
-    console.error("Erro ao carregar a Agenda:", erro);
-
-    container.innerHTML = `
-      <div class="no-results">
-        Não foi possível carregar a Agenda.
-      </div>
-    `;
-
   });
 
 </script>
