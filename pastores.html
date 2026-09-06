@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Pastores - Setor 49</title>
+
+  <style>
+
+    :root{
+      --blue:#159dd1;
+      --green:#079447;
+      --yellow:#f9c414;
+      --orange:#f47a20;
+      --red:#b51e2a;
+      --navy:#073c66;
+      --bg:#f6f8fa;
+      --muted:#667085;
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    body{
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
+      background:var(--bg);
+      color:#172b4d;
+    }
+
+    header{
+      background:#fff;
+      border-bottom:1px solid #e5e7eb;
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    .nav{
+      max-width:1180px;
+      margin:auto;
+      min-height:70px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:10px 20px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:var(--navy);
+    }
+
+    .brand img{
+      width:50px;
+      height:50px;
+      object-fit:contain;
+    }
+
+    .brand span{
+      display:flex;
+      flex-direction:column;
+      line-height:1.15;
+      font-size:16px;
+      font-weight:850;
+    }
+
+    .brand small{
+      display:block;
+      margin-top:4px;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.03em;
+      color:#667085;
+    }
+
+    nav{
+      display:flex;
+      gap:22px;
+      align-items:center;
+    }
+
+    nav a{
+      color:#172b4d;
+      text-decoration:none;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    nav a:hover{
+      color:var(--blue);
+    }
+
+    .menu{
+      display:none;
+      font-size:28px;
+      cursor:pointer;
+      color:var(--navy);
+    }
+
+    main{
+      max-width:1180px;
+      margin:auto;
+      padding:40px 22px 70px;
+    }
+
+    .hero{
+      background:linear-gradient(135deg,var(--navy),var(--blue),var(--green));
+      color:#fff;
+      border-radius:22px;
+      padding:38px 30px;
+      margin-bottom:30px;
+      box-shadow:0 12px 30px rgba(16,24,40,.12);
+    }
+
+    .hero h1{
+      margin:0 0 8px;
+      font-size:32px;
+    }
+
+    .hero p{
+      margin:0;
+      font-size:14px;
+      line-height:1.6;
+      opacity:.95;
+    }
+
+    .section-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:15px;
+      margin:0 0 20px;
+    }
+
+    .section-title{
+      margin:0;
+      font-size:27px;
+      color:var(--navy);
+    }
+
+    .filters{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-bottom:25px;
+    }
+
+    .filter{
+      border:1px solid #d8dee6;
+      background:#fff;
+      color:var(--navy);
+      padding:9px 15px;
+      border-radius:10px;
+      cursor:pointer;
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .filter:hover{
+      border-color:var(--blue);
+      color:var(--blue);
+    }
+
+    .filter.active{
+      background:var(--navy);
+      color:#fff;
+      border-color:var(--navy);
+    }
+
+    .pastores-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+
+    .pastor-card{
+      background:#fff;
+      border:1px solid #e8edf2;
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 7px 20px rgba(16,24,40,.06);
+      transition:.2s;
+    }
+
+    .pastor-card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 12px 26px rgba(16,24,40,.09);
+    }
+
+    .pastor-photo{
+      width:100%;
+      aspect-ratio:1/1;
+      background:linear-gradient(135deg,#edf3f7,#dfe8ee);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#7a8794;
+      font-size:42px;
+    }
+
+    .pastor-photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .pastor-info{
+      padding:17px;
+    }
+
+    .pastor-info h3{
+      margin:0 0 8px;
+      color:var(--navy);
+      font-size:17px;
+    }
+
+    .pastor-congregacao{
+      margin:0 0 6px;
+      color:#475467;
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    .pastor-regional{
+      margin:0;
+      color:var(--muted);
+      font-size:11px;
+      font-weight:700;
+    }
+
+    .loading{
+      text-align:center;
+      padding:40px;
+      color:var(--muted);
+    }
+
+    .erro{
+      background:#fff;
+      border:1px solid #f0caca;
+      border-left:5px solid var(--red);
+      border-radius:12px;
+      padding:18px;
+      color:#7a2020;
+    }
+
+    footer{
+      margin-top:20px;
+      background:#20262b;
+      color:#fff;
+      text-align:center;
+      padding:30px 20px;
+    }
+
+    .footer-content{
+      max-width:1180px;
+      margin:auto;
+    }
+
+    .footer-title{
+      font-size:13px;
+      line-height:1.5;
+      font-weight:500;
+    }
+
+    .footer-subtitle{
+      margin-top:6px;
+      font-size:11px;
+      opacity:.75;
+    }
+
+    @media(max-width:1000px){
+
+      .pastores-grid{
+        grid-template-columns:repeat(3,1fr);
+      }
+
+    }
+
+    @media(max-width:700px){
+
+      .nav{
+        min-height:64px;
+      }
+
+      .brand img{
+        width:46px;
+        height:46px;
+      }
+
+      .brand span{
+        font-size:14px;
+      }
+
+      .brand small{
+        font-size:10px;
+      }
+
+      .menu{
+        display:block;
+      }
+
+      nav{
+        display:none;
+        position:absolute;
+        top:64px;
+        left:0;
+        right:0;
+        background:#fff;
+        border-bottom:1px solid #e5e7eb;
+        padding:15px 20px;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:16px;
+      }
+
+      nav.active{
+        display:flex;
+      }
+
+      main{
+        padding:25px 15px 50px;
+      }
+
+      .hero{
+        padding:28px 22px;
+        border-radius:18px;
+      }
+
+      .hero h1{
+        font-size:27px;
+      }
+
+      .section-title{
+        font-size:23px;
+      }
+
+      .pastores-grid{
+        grid-template-columns:1fr;
+        gap:16px;
+      }
+
+      .pastor-photo{
+        aspect-ratio:4/3;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="nav">
+
+    <a href="index.html" class="brand">
+
+      <img src="logo.png" alt="Logo Assembleia de Deus">
+
+      <span>
+        ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM
+        <small>SETOR 49 - JARDIM DOS PIMENTAS</small>
+      </span>
+
+    </a>
+
+    <div class="menu" onclick="toggleMenu()">☰</div>
+
+    <nav id="menu">
+      <a href="index.html">Início</a>
+      <a href="agenda.html">Agenda</a>
+      <a href="congregacoes.html">Congregações</a>
+      <a href="central-secretario.html">Central do Secretário</a>
+      <a href="avisos.html">Avisos</a>
+      <a href="diretoria.html">Diretoria</a>
+      <a href="redes-sociais.html">Redes Sociais</a>
+    </nav>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <section class="hero">
+
+    <h1>⛪ Pastores do Setor 49</h1>
+
+    <p>
+      Conheça os pastores responsáveis pelas congregações
+      da Assembleia de Deus - Ministério do Belém,
+      Setor 49 - Jardim dos Pimentas.
+    </p>
+
+  </section>
+
+
+  <div class="section-head">
+
+    <h2 class="section-title">Pastores</h2>
+
+  </div>
+
+
+  <div class="filters">
+
+    <button class="filter active" onclick="filtrar('TODOS',this)">
+      TODOS
+    </button>
+
+    <button class="filter" onclick="filtrar('R01',this)">
+      REGIONAL 01
+    </button>
+
+    <button class="filter" onclick="filtrar('R02',this)">
+      REGIONAL 02
+    </button>
+
+    <button class="filter" onclick="filtrar('R03',this)">
+      REGIONAL 03
+    </button>
+
+    <button class="filter" onclick="filtrar('R04',this)">
+      REGIONAL 04
+    </button>
+
+  </div>
+
+
+  <div id="pastores" class="pastores-grid">
+
+    <div class="loading">
+      Carregando pastores...
+    </div>
+
+  </div>
+
+</main>
+
+
+<footer>
+
+  <div class="footer-content">
+
+    <div class="footer-title">
+      ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM · SETOR 49 - JARDIM DOS PIMENTAS
+    </div>
+
+    <div class="footer-subtitle">
+      SECRETARIA DIGITAL
+    </div>
+
+  </div>
+
+</footer>
+
+
+<script>
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbxxzpqURBWBDjMgehIS6I9G_KKU1KQFVCPcT6SPiG82TZ1lk0MSCuxbRfdAfUDLT9JgJQ/exec";
+
+let pastores = [];
+
+
+function toggleMenu(){
+
+  document.getElementById("menu")
+    .classList.toggle("active");
+
+}
+
+
+async function carregarPastores(){
+
+  const container =
+    document.getElementById("pastores");
+
+  try{
+
+    const resposta = await fetch(API_URL);
+
+    if(!resposta.ok){
+      throw new Error("Erro ao acessar a API.");
+    }
+
+    pastores = await resposta.json();
+
+    renderizarPastores("TODOS");
+
+  }catch(erro){
+
+    container.innerHTML = `
+      <div class="erro">
+        Não foi possível carregar os dados dos pastores.
+        Verifique a conexão com a planilha.
+      </div>
+    `;
+
+  }
+
+}
+
+
+function renderizarPastores(regional){
+
+  const container =
+    document.getElementById("pastores");
+
+  const lista =
+    regional === "TODOS"
+      ? pastores
+      : pastores.filter(p => p.REGIONAL === regional);
+
+  if(lista.length === 0){
+
+    container.innerHTML = `
+      <div class="loading">
+        Nenhum pastor cadastrado nesta regional.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  container.innerHTML =
+    lista.map(pastor => {
+
+      const nome =
+        pastor.PASTOR && pastor.PASTOR.trim()
+          ? pastor.PASTOR
+          : "Pastor não informado";
+
+      const congregacao =
+        pastor["CONGREGAÇÃO"] || "Congregação não informada";
+
+      const regionalTexto =
+        pastor.REGIONAL || "";
+
+      const foto =
+        pastor.FOTO && pastor.FOTO.trim()
+          ? `<img src="${pastor.FOTO}" alt="${nome}">`
+          : `<span>👤</span>`;
+
+      return `
+
+        <article class="pastor-card">
+
+          <div class="pastor-photo">
+            ${foto}
+          </div>
+
+          <div class="pastor-info">
+
+            <h3>${nome}</h3>
+
+            <p class="pastor-congregacao">
+              📍 ${congregacao}
+            </p>
+
+            <p class="pastor-regional">
+              ${regionalTexto}
+            </p>
+
+          </div>
+
+        </article>
+
+      `;
+
+    }).join("");
+
+}
+
+
+function filtrar(regional,botao){
+
+  document
+    .querySelectorAll(".filter")
+    .forEach(b => b.classList.remove("active"));
+
+  botao.classList.add("active");
+
+  renderizarPastores(regional);
+
+}
+
+
+carregarPastores();
+
+</script>
+
+</body>
+</html>
