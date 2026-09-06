@@ -16,17 +16,30 @@
 .instagram-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:18px;
-  margin-top:20px;
+  gap:16px;
+  margin-top:18px;
+  align-items:start;
 }
 
 .instagram-post{
   background:#fff;
   border:1px solid #e8edf2;
-  border-radius:18px;
+  border-radius:16px;
   overflow:hidden;
-  box-shadow:0 8px 24px rgba(16,24,40,.05);
+  box-shadow:0 6px 18px rgba(16,24,40,.05);
   transition:.2s;
+  height:620px;
+}
+
+.instagram-post:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 22px rgba(16,24,40,.08);
+}
+
+.instagram-post .instagram-media{
+  margin:0 !important;
+  width:100% !important;
+  min-width:0 !important;
 }
 
 .instagram-post:hover{
