@@ -101,7 +101,21 @@ footer{
 
 <div class="filters">
 <select id="monthFilter"><option value="all">Todos os meses</option><option value="01">Janeiro</option><option value="02">Fevereiro</option><option value="03">Março</option><option value="04">Abril</option><option value="05">Maio</option><option value="06">Junho</option><option value="07">Julho</option><option value="08">Agosto</option><option value="09">Setembro</option><option value="10">Outubro</option><option value="11">Novembro</option><option value="12">Dezembro</option></select>
-<select id="typeFilter"><option value="all">Todos os tipos</option><option value="CREIO">CREIO</option><option value="UFADEB">UFADEB</option><option value="UMADEB">UMADEB</option><option value="juventude">Juventude</option><option value="batismo">Batismos</option><option value="eventos">Eventos setoriais</option><option value="aniversario">Aniversários</option><option value="casais">Casais</option><option value="regionais">Regionais</option></select>
+<select id="typeFilter">
+  <option value="all">Todos os tipos</option>
+  <option value="juventude">Juventude</option>
+  <option value="ufadeb">UFADEB</option>
+  <option value="creio">CREIO</option>
+  <option value="umadeb">UMADEB</option>
+  <option value="ucadep">UCADEP</option>
+  <option value="casais">Casais</option>
+  <option value="faesp">FAESP</option>
+  <option value="ebom">EBOM</option>
+  <option value="santa-ceia">Santa Ceia</option>
+  <option value="missoes">Missões</option>
+  <option value="batismo">Batismo</option>
+  <option value="culto-acao-gracas">Culto de Ação de Graças</option>
+</select>
 </div>
 
 <div id="agendaContainer"></div>
@@ -164,27 +178,7 @@ const abreviacoes = {
 };
 
 
-function obterData(data) {
-
-  if (!data) return null;
-
-  const texto = String(data).trim();
-
-  const partes = texto.split("/");
-
-  if (partes.length === 3) {
-
-    return {
-      dia: partes[0].padStart(2, "0"),
-      mes: partes[1].padStart(2, "0"),
-      ano: partes[2]
-    };
-
-  }
-
-  return null;
-}
-
+/* IDENTIFICA O TIPO DO EVENTO */
 
 function obterTipo(tipo) {
 
@@ -194,62 +188,106 @@ function obterTipo(tipo) {
     .replace(/[\u0300-\u036f]/g, "")
     .trim();
 
+
   if (texto.includes("juventude")) {
     return "juventude";
   }
 
- if (texto.includes("CREIO")) {
-    return "CREIO";
+  if (texto.includes("ufadeb")) {
+    return "ufadeb";
   }
 
- if (texto.includes("UMADEB")) {
-    return "UMADEB";
-  }  
-
-   if (texto.includes("UFADEB")) {
-    return "UFADEB";
+  if (texto.includes("creio")) {
+    return "creio";
   }
 
-   if (texto.includes("UCADEP")) {
-    return "UCADEP";
+  if (texto.includes("umadeb")) {
+    return "umadeb";
   }
-  
-  if (texto.includes("batismo")) {
-    return "batismo";
+
+  if (texto.includes("ucadep")) {
+    return "ucadep";
   }
 
   if (texto.includes("casal")) {
     return "casais";
   }
 
-  if (texto.includes("regional")) {
-    return "regionais";
+  if (texto.includes("faesp")) {
+    return "faesp";
   }
 
-  if (texto.includes("anivers")) {
-    return "aniversario";
+  if (texto.includes("ebom")) {
+    return "ebom";
+  }
+
+  if (texto.includes("santa ceia")) {
+    return "santa-ceia";
+  }
+
+  if (texto.includes("miss")) {
+    return "missoes";
+  }
+
+  if (texto.includes("batismo")) {
+    return "batismo";
+  }
+
+  if (
+    texto.includes("acao de gracas") ||
+    texto.includes("acao de graça") ||
+    texto.includes("culto de acao")
+  ) {
+    return "culto-acao-gracas";
   }
 
   return "eventos";
 }
 
 
+/* CONVERTE A DATA DA PLANILHA */
+
+function obterData(data) {
+
+  if (!data) return null;
+
+  const texto = String(data).trim();
+
+  const partes = texto.split("/");
+
+  if (partes.length !== 3) {
+    return null;
+  }
+
+  return {
+    dia: partes[0].padStart(2, "0"),
+    mes: partes[1].padStart(2, "0"),
+    ano: partes[2]
+  };
+}
+
+
+/* CRIA CADA CARD */
+
 function criarCard(evento) {
 
   const inicio = obterData(evento["DATA DE INÍCIO"]);
 
   if (!inicio) {
-    console.log("Data inválida:", evento);
     return null;
   }
 
 
   const fim = obterData(evento["DATA DE FIM"]);
 
+
   let dia = inicio.dia;
 
+
   if (fim && fim.dia !== inicio.dia) {
+
     dia = inicio.dia + "–" + fim.dia;
+
   }
 
 
@@ -282,17 +320,31 @@ function criarCard(evento) {
 
   const descricao = document.createElement("p");
 
-  let texto = evento["DESCRIÇÃO"] || "";
 
-  if (!texto && evento["LOCAL"]) {
-    texto = evento["LOCAL"];
+  let textoDescricao = evento["DESCRIÇÃO"] || "";
+
+
+  if (!textoDescricao && evento["LOCAL"]) {
+
+    textoDescricao = evento["LOCAL"];
+
   }
+
 
   if (evento["HORÁRIO"]) {
-    texto += " · " + evento["HORÁRIO"];
+
+    if (textoDescricao) {
+
+      textoDescricao += " · ";
+
+    }
+
+    textoDescricao += evento["HORÁRIO"];
+
   }
 
-  descricao.textContent = texto;
+
+  descricao.textContent = textoDescricao;
 
 
   const tipo = document.createElement("span");
@@ -303,11 +355,14 @@ function criarCard(evento) {
 
 
   conteudo.appendChild(titulo);
+
   conteudo.appendChild(descricao);
+
   conteudo.appendChild(tipo);
 
 
   card.appendChild(data);
+
   card.appendChild(conteudo);
 
 
@@ -315,11 +370,14 @@ function criarCard(evento) {
 }
 
 
+/* MONTA A AGENDA */
+
 function mostrarAgenda(lista) {
 
   agendaContainer.innerHTML = "";
 
-  const mesesEncontrados = {};
+
+  const eventosPorMes = {};
 
 
   lista.forEach(evento => {
@@ -329,19 +387,19 @@ function mostrarAgenda(lista) {
     if (!inicio) return;
 
 
-    if (!mesesEncontrados[inicio.mes]) {
+    if (!eventosPorMes[inicio.mes]) {
 
-      mesesEncontrados[inicio.mes] = [];
+      eventosPorMes[inicio.mes] = [];
 
     }
 
 
-    mesesEncontrados[inicio.mes].push(evento);
+    eventosPorMes[inicio.mes].push(evento);
 
   });
 
 
-  Object.keys(mesesEncontrados)
+  Object.keys(eventosPorMes)
     .sort()
     .forEach(mes => {
 
@@ -351,35 +409,38 @@ function mostrarAgenda(lista) {
       bloco.className = "mes-bloco";
 
 
-      const titulo = document.createElement("div");
+      const tituloMes = document.createElement("div");
 
-      titulo.className = "month";
+      tituloMes.className = "month";
 
-      titulo.innerHTML = `
+
+      tituloMes.innerHTML = `
         <h2>${meses[mes]}</h2>
         <span>2026</span>
       `;
 
 
-      const listaEventos = document.createElement("div");
+      const eventos = document.createElement("div");
 
-      listaEventos.className = "events";
+      eventos.className = "events";
 
 
-      mesesEncontrados[mes].forEach(evento => {
+      eventosPorMes[mes].forEach(evento => {
 
         const card = criarCard(evento);
 
         if (card) {
-          listaEventos.appendChild(card);
+
+          eventos.appendChild(card);
+
         }
 
       });
 
 
-      bloco.appendChild(titulo);
+      bloco.appendChild(tituloMes);
 
-      bloco.appendChild(listaEventos);
+      bloco.appendChild(eventos);
 
       agendaContainer.appendChild(bloco);
 
@@ -391,70 +452,96 @@ function mostrarAgenda(lista) {
 }
 
 
+/* APLICA OS DOIS FILTROS */
+
 function aplicarFiltros() {
 
   const cards = agendaContainer.querySelectorAll(".event");
 
-  let quantidade = 0;
+  let quantidadeVisivel = 0;
 
 
   cards.forEach(card => {
 
+
+    const mesSelecionado = monthFilter.value;
+
+    const tipoSelecionado = typeFilter.value;
+
+
     const mesOk =
-      monthFilter.value === "all" ||
-      card.dataset.month === monthFilter.value;
+      mesSelecionado === "all" ||
+      card.dataset.month === mesSelecionado;
 
 
     const tipoOk =
-      typeFilter.value === "all" ||
-      card.dataset.type === typeFilter.value;
+      tipoSelecionado === "all" ||
+      card.dataset.type === tipoSelecionado;
 
 
-    const mostrar = mesOk && tipoOk;
+    if (mesOk && tipoOk) {
 
+      card.style.display = "flex";
 
-    card.style.display = mostrar ? "flex" : "none";
+      quantidadeVisivel++;
 
+    } else {
 
-    if (mostrar) {
-      quantidade++;
+      card.style.display = "none";
+
     }
 
   });
 
 
-  agendaContainer
-    .querySelectorAll(".mes-bloco")
-    .forEach(bloco => {
-
-      const possuiEvento = [
-        ...bloco.querySelectorAll(".event")
-      ].some(card => card.style.display !== "none");
+  const blocos = agendaContainer.querySelectorAll(".mes-bloco");
 
 
-      bloco.style.display =
-        possuiEvento ? "block" : "none";
+  blocos.forEach(bloco => {
 
-    });
+    const possuiEventoVisivel =
+      Array.from(bloco.querySelectorAll(".event"))
+        .some(card => card.style.display !== "none");
+
+
+    bloco.style.display =
+      possuiEventoVisivel ? "block" : "none";
+
+  });
 
 
   noResults.style.display =
-    quantidade > 0 ? "none" : "block";
+    quantidadeVisivel > 0 ? "none" : "block";
 
 }
 
 
-monthFilter.addEventListener("change", aplicarFiltros);
+/* EVENTOS DOS FILTROS */
 
-typeFilter.addEventListener("change", aplicarFiltros);
+monthFilter.addEventListener(
+  "change",
+  aplicarFiltros
+);
 
+
+typeFilter.addEventListener(
+  "change",
+  aplicarFiltros
+);
+
+
+/* CARREGA OS EVENTOS DA PLANILHA */
 
 fetch(API_AGENDA)
 
   .then(response => {
 
     if (!response.ok) {
-      throw new Error("Erro HTTP: " + response.status);
+
+      throw new Error(
+        "Erro HTTP: " + response.status
+      );
+
     }
 
     return response.json();
@@ -463,15 +550,16 @@ fetch(API_AGENDA)
 
   .then(lista => {
 
-    console.log("AGENDA:", lista);
-
     mostrarAgenda(lista);
 
   })
 
   .catch(error => {
 
-    console.error("Erro ao carregar Agenda:", error);
+    console.error(
+      "Erro ao carregar Agenda:",
+      error
+    );
 
     agendaContainer.innerHTML = "";
 
