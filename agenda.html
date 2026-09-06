@@ -109,8 +109,6 @@ footer{
 <div class="no-results" id="noResults">
   Nenhum evento corresponde aos filtros selecionados.
 </div>
-
-<div class="no-results" id="noResults">Nenhum evento corresponde aos filtros selecionados.</div>
 </main>
 <footer>
 
@@ -176,21 +174,34 @@ function slugTipo(tipo) {
 }
 
 function formatarData(data) {
-
   if (!data) return null;
 
-  const partes = data.split("/");
+  data = String(data).trim();
 
-  if (partes.length !== 3) return null;
+  // Formato DD/MM/AAAA
+  let partes = data.split("/");
 
-  return {
-    dia: partes[0],
-    mes: partes[1],
-    ano: partes[2]
-  };
+  if (partes.length === 3) {
+    return {
+      dia: partes[0].padStart(2, "0"),
+      mes: partes[1].padStart(2, "0"),
+      ano: partes[2]
+    };
+  }
 
+  // Formato AAAA-MM-DD
+  partes = data.split("-");
+
+  if (partes.length === 3 && partes[0].length === 4) {
+    return {
+      dia: partes[2].padStart(2, "0"),
+      mes: partes[1].padStart(2, "0"),
+      ano: partes[0]
+    };
+  }
+
+  return null;
 }
-
 function criarEvento(evento) {
 
   const inicio = formatarData(evento["DATA DE INÍCIO"]);
@@ -251,19 +262,21 @@ function montarAgenda(lista) {
 
   const porMes = {};
 
-  lista.forEach(evento => {
+lista.forEach(evento => {
 
-    const data = formatarData(evento["DATA DE INÍCIO"]);
+  const data = formatarData(evento["DATA DE INÍCIO"]);
 
-    if (!data) return;
+  console.log("Evento:", evento["EVENTO"], "Data:", evento["DATA DE INÍCIO"], "Convertida:", data);
 
-    if (!porMes[data.mes]) {
-      porMes[data.mes] = [];
-    }
+  if (!data) return;
 
-    porMes[data.mes].push(evento);
+  if (!porMes[data.mes]) {
+    porMes[data.mes] = [];
+  }
 
-  });
+  porMes[data.mes].push(evento);
+
+});
 
   Object.keys(porMes)
     .sort()
