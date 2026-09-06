@@ -27,43 +27,15 @@
   border-radius:16px;
   overflow:hidden;
   box-shadow:0 6px 18px rgba(16,24,40,.05);
-  height:560px;
+  height:620px;
 }
 
-.tiktok-post blockquote{
-  margin:0 !important;
-  max-width:100% !important;
-  min-width:0 !important;
+.tiktok-player{
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
 }
-
-.tiktok-footer{
-  text-align:center;
-  margin-top:24px;
-}
-
-.tiktok-button{
-  display:inline-block;
-  background:#073c66;
-  color:#fff;
-  padding:11px 18px;
-  border-radius:10px;
-  font-size:13px;
-  font-weight:800;
-  text-decoration:none;
-}
-
-.tiktok-button:hover{
-  opacity:.9;
-}
-
-@media(max-width:800px){
-  .tiktok-grid{
-    grid-template-columns:1fr;
-  }
-
-  .tiktok-post{
-    height:560px;
-  }
 }
     
   .instagram-section{
@@ -892,36 +864,36 @@
     <h2 class="section-title">🎵 Vídeos do TikTok</h2>
   </div>
 
-  <div class="tiktok-grid">
+<div class="tiktok-grid">
 
-    <article class="tiktok-post">
-      <blockquote
-        class="tiktok-embed"
-        cite="https://www.tiktok.com/@adbelempimentas/video/7663063207724027152"
-        data-video-id="7663063207724027152"
-        style="max-width:605px;min-width:325px;">
-      </blockquote>
-    </article>
+  <article class="tiktok-post">
+    <iframe
+      class="tiktok-player"
+      src="https://www.tiktok.com/player/v1/7663063207724027152"
+      allow="fullscreen"
+      title="Vídeo do TikTok - AD Belém 49">
+    </iframe>
+  </article>
 
-    <article class="tiktok-post">
-      <blockquote
-        class="tiktok-embed"
-        cite="https://www.tiktok.com/@adbelempimentas/video/7665095737574722834"
-        data-video-id="7665095737574722834"
-        style="max-width:605px;min-width:325px;">
-      </blockquote>
-    </article>
+  <article class="tiktok-post">
+    <iframe
+      class="tiktok-player"
+      src="https://www.tiktok.com/player/v1/7665095737574722834"
+      allow="fullscreen"
+      title="Vídeo do TikTok - AD Belém 49">
+    </iframe>
+  </article>
 
-    <article class="tiktok-post">
-      <blockquote
-        class="tiktok-embed"
-        cite="https://www.tiktok.com/@adbelempimentas/video/7678726647356411152"
-        data-video-id="7678726647356411152"
-        style="max-width:605px;min-width:325px;">
-      </blockquote>
-    </article>
+  <article class="tiktok-post">
+    <iframe
+      class="tiktok-player"
+      src="https://www.tiktok.com/player/v1/7678726647356411152"
+      allow="fullscreen"
+      title="Vídeo do TikTok - AD Belém 49">
+    </iframe>
+  </article>
 
-  </div>
+</div>
 
   <div class="tiktok-footer">
     <a
@@ -1123,7 +1095,6 @@
 </script>
 
 <script async src="https://www.instagram.com/embed.js"></script>
-<script async src="https://www.tiktok.com/embed.js"></script>
   
 </body>
 
