@@ -210,8 +210,14 @@ footer{
 <section class="panel">
 <h2>📢 Avisos importantes</h2>
 <p class="panel-sub">Confira as informações mais recentes da Secretaria.</p>
-<div class="notice-main"><strong>Quinta da Conquista — 03/09</strong><p>O culto foi excepcionalmente suspenso devido aos preparativos para a abertura do Congresso dos Adolescentes CREIO.</p></div>
-<div class="notice-main"><strong>Congresso CREIO — 04 a 06/09</strong><p>A programação acontece na sede do Setor 49. Na sexta-feira, 04/09, a abertura será às 19h.</p></div>
+<div id="avisosInicio">
+
+  <div class="notice-main">
+    <strong>Carregando avisos...</strong>
+    <p>Aguarde um momento.</p>
+  </div>
+
+</div>
 <a class="btn" href="avisos.html">VER TODOS OS AVISOS →</a>
 </section>
 
@@ -276,6 +282,137 @@ PORTAL AD BELÉM - SETOR 49
 </small>
 
 </footer>
+
+<script>
+
+const API_AVISOS = "https://script.google.com/macros/s/AKfycbxxWCiNtNE3btMwrvSdbZTkbUd10WMHgqeRIT9hf9g4k17_CdIdl3tSfTkfq3EVvCYxDA/exec";
+
+const avisosInicio = document.getElementById("avisosInicio");
+
+
+function converterData(data) {
+
+  if (!data) return 0;
+
+  const partes = String(data).split("/");
+
+  if (partes.length !== 3) return 0;
+
+  return new Date(
+    Number(partes[2]),
+    Number(partes[1]) - 1,
+    Number(partes[0])
+  ).getTime();
+
+}
+
+
+function mostrarAvisosInicio(lista) {
+
+  avisosInicio.innerHTML = "";
+
+
+  const avisos = lista
+    .filter(aviso => {
+
+      return String(aviso["ATIVO"] || "")
+        .trim()
+        .toUpperCase() === "SIM";
+
+    })
+    .sort((a, b) => {
+
+      return converterData(b["DATA"]) -
+             converterData(a["DATA"]);
+
+    })
+    .slice(0, 2);
+
+
+  if (!avisos.length) {
+
+    avisosInicio.innerHTML = `
+      <div class="notice-main">
+        <strong>Nenhum aviso no momento.</strong>
+        <p>Não há comunicados ativos para exibição.</p>
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  avisos.forEach(aviso => {
+
+    const bloco = document.createElement("div");
+
+    bloco.className = "notice-main";
+
+
+    const titulo = document.createElement("strong");
+
+    titulo.textContent =
+      aviso["TÍTULO"] || "Aviso";
+
+
+    const texto = document.createElement("p");
+
+    texto.textContent =
+      aviso["TEXTO"] || "";
+
+
+    bloco.appendChild(titulo);
+
+    bloco.appendChild(texto);
+
+    avisosInicio.appendChild(bloco);
+
+  });
+
+}
+
+
+fetch(API_AVISOS)
+
+  .then(response => {
+
+    if (!response.ok) {
+
+      throw new Error(
+        "Erro HTTP: " + response.status
+      );
+
+    }
+
+    return response.json();
+
+  })
+
+  .then(lista => {
+
+    mostrarAvisosInicio(lista);
+
+  })
+
+  .catch(error => {
+
+    console.error(
+      "Erro ao carregar avisos:",
+      error
+    );
+
+    avisosInicio.innerHTML = `
+      <div class="notice-main">
+        <strong>Não foi possível carregar os avisos.</strong>
+        <p>Tente novamente mais tarde.</p>
+      </div>
+    `;
+
+  });
+
+</script>
+  
 <script>
 const menuToggle=document.getElementById('menuToggle');
 const mobileMenu=document.getElementById('mobileMenu');
