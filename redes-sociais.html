@@ -9,6 +9,99 @@
   <title>Redes Sociais | AD Belém 49</title>
 
   <style>
+  .instagram-section{
+  margin-top:38px;
+}
+
+.instagram-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:20px;
+}
+
+.instagram-post{
+  background:#fff;
+  border:1px solid #e8edf2;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 8px 24px rgba(16,24,40,.05);
+  transition:.2s;
+}
+
+.instagram-post:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 28px rgba(16,24,40,.09);
+}
+
+.instagram-post img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  display:block;
+}
+
+.instagram-content{
+  padding:16px;
+}
+
+.instagram-content h3{
+  margin:0 0 7px;
+  font-size:16px;
+  color:#073c66;
+}
+
+.instagram-content p{
+  margin:0 0 12px;
+  color:#667085;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.instagram-date{
+  display:block;
+  margin-bottom:10px;
+  color:#98a2b3;
+  font-size:11px;
+}
+
+.instagram-link{
+  display:inline-block;
+  color:#159dd1;
+  font-size:12px;
+  font-weight:800;
+  text-decoration:none;
+}
+
+.instagram-link:hover{
+  text-decoration:underline;
+}
+
+.instagram-footer{
+  text-align:center;
+  margin-top:24px;
+}
+
+.instagram-button{
+  display:inline-block;
+  background:#079447;
+  color:#fff;
+  padding:11px 18px;
+  border-radius:10px;
+  font-size:13px;
+  font-weight:800;
+  text-decoration:none;
+}
+
+.instagram-button:hover{
+  background:#057a3a;
+}
+
+@media(max-width:800px){
+  .instagram-grid{
+    grid-template-columns:1fr;
+  }
+}
 
     :root{
       --blue:#159dd1;
@@ -493,8 +586,6 @@
 
       <a href="central-secretario.html">Central do Secretário</a>
 
-      <a href="central-midia.html">Central de Mídia</a>
-
       <a href="diretoria.html">Diretoria</a>
 
     </nav>
@@ -508,13 +599,12 @@
 
   <div class="hero-inner">
 
-    <small>ASSEMBLEIA DE DEUS — MINISTÉRIO DO BELÉM</small>
+    <small>PORTAL AD BELÉM - SETOR 49</small>
 
     <h1>Redes Sociais</h1>
 
     <p>
-      Acompanhe a Assembleia de Deus — Ministério do Belém,
-      Setor 49 — Jardim dos Pimentas, pelas nossas redes oficiais.
+      Acompanhe o Setor 49 — Jardim dos Pimentas, pelas nossas redes oficiais.
     </p>
 
   </div>
@@ -681,6 +771,62 @@
 
 
   </section>
+
+  <section class="instagram-section">
+
+  <div class="section-head">
+    <h2 class="section-title">📸 Publicações do Instagram</h2>
+  </div>
+
+  <div class="instagram-grid">
+
+    <article class="instagram-post">
+      <img src="assets/instagram-01.jpg" alt="Publicação do Instagram">
+      <div class="instagram-content">
+        <span class="instagram-date">05 de setembro de 2026</span>
+        <h3>Programação do Setor 49</h3>
+        <p>Acompanhe as novidades, programações e atividades da nossa igreja.</p>
+        <a class="instagram-link" href="https://www.instagram.com/adbelempimentas/" target="_blank">
+          Ver publicação →
+        </a>
+      </div>
+    </article>
+
+    <article class="instagram-post">
+      <img src="assets/instagram-02.jpg" alt="Publicação do Instagram">
+      <div class="instagram-content">
+        <span class="instagram-date">03 de setembro de 2026</span>
+        <h3>Programação da Igreja</h3>
+        <p>Confira os próximos eventos e participe conosco.</p>
+        <a class="instagram-link" href="https://www.instagram.com/adbelempimentas/" target="_blank">
+          Ver publicação →
+        </a>
+      </div>
+    </article>
+
+    <article class="instagram-post">
+      <img src="assets/instagram-03.jpg" alt="Publicação do Instagram">
+      <div class="instagram-content">
+        <span class="instagram-date">01 de setembro de 2026</span>
+        <h3>Assembleia de Deus — Setor 49</h3>
+        <p>Fique por dentro de tudo que acontece em nossa igreja.</p>
+        <a class="instagram-link" href="https://www.instagram.com/adbelempimentas/" target="_blank">
+          Ver publicação →
+        </a>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="instagram-footer">
+    <a class="instagram-button"
+       href="https://www.instagram.com/adbelempimentas/"
+       target="_blank">
+      Ver todas as publicações no Instagram
+    </a>
+  </div>
+
+</section>
 
 
   <!-- YOUTUBE EM DESTAQUE -->
