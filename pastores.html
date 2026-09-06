@@ -1,358 +1,441 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Pastores - Setor 49</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <style>
+<title>Pastores — Setor 49</title>
 
-    :root{
-      --blue:#159dd1;
-      --green:#079447;
-      --yellow:#f9c414;
-      --orange:#f47a20;
-      --red:#b51e2a;
-      --navy:#073c66;
-      --bg:#f6f8fa;
-      --muted:#667085;
-    }
+<style>
 
-    *{
-      box-sizing:border-box;
-    }
+:root{
+  --blue:#159dd1;
+  --green:#079447;
+  --gold:#f9c414;
+  --orange:#f47a20;
+  --red:#b51e2a;
+  --navy:#073c66;
+  --ink:#17212b;
+  --muted:#667085;
+  --bg:#f6f8fa
+}
 
-    body{
-      margin:0;
-      font-family:Arial,Helvetica,sans-serif;
-      background:var(--bg);
-      color:#172b4d;
-    }
+*{
+  box-sizing:border-box
+}
 
-    header{
-      background:#fff;
-      border-bottom:1px solid #e5e7eb;
-      position:sticky;
-      top:0;
-      z-index:1000;
-    }
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;
+  background:var(--bg);
+  color:var(--ink)
+}
 
-    .nav{
-      max-width:1180px;
-      margin:auto;
-      min-height:70px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:10px 20px;
-    }
+header{
+  position:relative;
+  background:#fff;
+  border-bottom:1px solid #e8edf2;
+  position:sticky;
+  top:0;
+  z-index:20
+}
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      text-decoration:none;
-      color:var(--navy);
-    }
+.nav{
+  max-width:1180px;
+  margin:auto;
+  padding:11px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px
+}
 
-    .brand img{
-      width:50px;
-      height:50px;
-      object-fit:contain;
-    }
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  color:var(--navy);
+  font-weight:900
+}
 
-    .brand span{
-      display:flex;
-      flex-direction:column;
-      line-height:1.15;
-      font-size:16px;
-      font-weight:850;
-    }
+.brand img{
+  width:50px;
+  height:50px;
+  object-fit:contain
+}
 
-    .brand small{
-      display:block;
-      margin-top:4px;
-      font-size:11px;
-      font-weight:700;
-      letter-spacing:.03em;
-      color:#667085;
-    }
+.brand span{
+  display:flex;
+  flex-direction:column;
+  line-height:1.15
+}
 
-    nav{
-      display:flex;
-      gap:22px;
-      align-items:center;
-    }
+.brand small{
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
+  font-weight:650;
+  font-size:11px
+}
 
-    nav a{
-      color:#172b4d;
-      text-decoration:none;
-      font-size:13px;
-      font-weight:700;
-    }
+nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px
+}
 
-    nav a:hover{
-      color:var(--blue);
-    }
+nav a{
+  color:#344054;
+  text-decoration:none;
+  font-weight:750;
+  font-size:14px
+}
 
-    .menu{
-      display:none;
-      font-size:28px;
-      cursor:pointer;
-      color:var(--navy);
-    }
+nav a:hover{
+  color:var(--green)
+}
 
-    main{
-      max-width:1180px;
-      margin:auto;
-      padding:40px 22px 70px;
-    }
+.hero{
+  background:linear-gradient(
+    135deg,
+    var(--navy),
+    var(--blue),
+    var(--green)
+  );
+  color:#fff;
+  padding:58px 22px
+}
 
-    .hero{
-      background:linear-gradient(135deg,var(--navy),var(--blue),var(--green));
-      color:#fff;
-      border-radius:22px;
-      padding:38px 30px;
-      margin-bottom:30px;
-      box-shadow:0 12px 30px rgba(16,24,40,.12);
-    }
+.hero-inner{
+  max-width:1180px;
+  margin:auto
+}
 
-    .hero h1{
-      margin:0 0 8px;
-      font-size:32px;
-    }
+.eyebrow{
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:1.7px;
+  text-transform:uppercase;
+  opacity:.9
+}
 
-    .hero p{
-      margin:0;
-      font-size:14px;
-      line-height:1.6;
-      opacity:.95;
-    }
+.hero h1{
+  font-size:clamp(35px,5vw,52px);
+  margin:9px 0 10px
+}
 
-    .section-head{
-      display:flex;
-      align-items:end;
-      justify-content:space-between;
-      gap:15px;
-      margin:0 0 20px;
-    }
+.hero p{
+  font-size:17px;
+  line-height:1.5;
+  max-width:720px;
+  margin:0
+}
 
-    .section-title{
-      margin:0;
-      font-size:27px;
-      color:var(--navy);
-    }
+main{
+  max-width:1180px;
+  margin:auto;
+  padding:32px 22px 70px
+}
 
-    .filters{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-bottom:25px;
-    }
+.intro{
+  background:linear-gradient(
+    135deg,
+    #fff,
+    #eef9fc
+  );
+  border:1px solid #cfe7f0;
+  border-left:6px solid var(--blue);
+  border-radius:18px;
+  padding:18px 20px;
+  margin:0 0 25px;
+  box-shadow:0 7px 22px rgba(16,24,40,.05)
+}
 
-    .filter{
-      border:1px solid #d8dee6;
-      background:#fff;
-      color:var(--navy);
-      padding:9px 15px;
-      border-radius:10px;
-      cursor:pointer;
-      font-size:12px;
-      font-weight:800;
-    }
+.intro strong{
+  display:block;
+  color:var(--navy);
+  font-size:12px;
+  letter-spacing:1px;
+  margin-bottom:4px
+}
 
-    .filter:hover{
-      border-color:var(--blue);
-      color:var(--blue);
-    }
+.intro p{
+  margin:0;
+  color:#475467;
+  font-size:13px;
+  line-height:1.5
+}
 
-    .filter.active{
-      background:var(--navy);
-      color:#fff;
-      border-color:var(--navy);
-    }
+.section-title{
+  margin:30px 0 16px;
+  color:var(--navy);
+  font-size:24px
+}
 
-    .pastores-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:18px;
-    }
+.filters{
+  background:#fff;
+  border:1px solid #e8edf2;
+  border-radius:18px;
+  padding:17px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:25px;
+  box-shadow:0 7px 22px rgba(16,24,40,.045)
+}
 
-    .pastor-card{
-      background:#fff;
-      border:1px solid #e8edf2;
-      border-radius:18px;
-      overflow:hidden;
-      box-shadow:0 7px 20px rgba(16,24,40,.06);
-      transition:.2s;
-    }
+.filter{
+  border:1px solid #d7dee4;
+  background:#fff;
+  color:var(--navy);
+  padding:10px 15px;
+  border-radius:11px;
+  font:inherit;
+  font-size:12px;
+  font-weight:800;
+  cursor:pointer
+}
 
-    .pastor-card:hover{
-      transform:translateY(-3px);
-      box-shadow:0 12px 26px rgba(16,24,40,.09);
-    }
+.filter:hover{
+  border-color:var(--blue);
+  color:var(--blue)
+}
 
-    .pastor-photo{
-      width:100%;
-      aspect-ratio:1/1;
-      background:linear-gradient(135deg,#edf3f7,#dfe8ee);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:#7a8794;
-      font-size:42px;
-    }
+.filter.active{
+  background:var(--navy);
+  color:#fff;
+  border-color:var(--navy)
+}
 
-    .pastor-photo img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
+.pastores-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px
+}
 
-    .pastor-info{
-      padding:17px;
-    }
+.pastor{
+  background:#fff;
+  border:1px solid #e8edf2;
+  border-radius:17px;
+  padding:18px;
+  display:flex;
+  gap:16px;
+  box-shadow:0 6px 20px rgba(16,24,40,.04);
+  transition:.2s
+}
 
-    .pastor-info h3{
-      margin:0 0 8px;
-      color:var(--navy);
-      font-size:17px;
-    }
+.pastor:hover{
+  transform:translateY(-2px);
+  box-shadow:0 9px 24px rgba(16,24,40,.07)
+}
 
-    .pastor-congregacao{
-      margin:0 0 6px;
-      color:#475467;
-      font-size:13px;
-      line-height:1.45;
-    }
+.foto{
+  width:120px;
+  height:120px;
+  flex:none;
+  border-radius:15px;
+  background:#eef8fc;
+  border:1px solid #d9eef5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  color:var(--navy);
+  font-size:42px
+}
 
-    .pastor-regional{
-      margin:0;
-      color:var(--muted);
-      font-size:11px;
-      font-weight:700;
-    }
+.foto img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block
+}
 
-    .loading{
-      text-align:center;
-      padding:40px;
-      color:var(--muted);
-    }
+.info{
+  display:flex;
+  flex-direction:column;
+  justify-content:center
+}
 
-    .erro{
-      background:#fff;
-      border:1px solid #f0caca;
-      border-left:5px solid var(--red);
-      border-radius:12px;
-      padding:18px;
-      color:#7a2020;
-    }
+.info h3{
+  margin:0 0 7px;
+  font-size:16px;
+  color:var(--navy)
+}
 
-    footer{
-      margin-top:20px;
-      background:#20262b;
-      color:#fff;
-      text-align:center;
-      padding:30px 20px;
-    }
+.congregacao{
+  margin:0 0 7px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5
+}
 
-    .footer-content{
-      max-width:1180px;
-      margin:auto;
-    }
+.regional{
+  display:inline-block;
+  width:max-content;
+  font-size:10px;
+  font-weight:900;
+  text-transform:uppercase;
+  color:var(--green);
+  letter-spacing:.6px
+}
 
-    .footer-title{
-      font-size:13px;
-      line-height:1.5;
-      font-weight:500;
-    }
+.loading{
+  grid-column:1/-1;
+  background:#fff;
+  border:1px solid #e8edf2;
+  border-radius:16px;
+  padding:35px;
+  text-align:center;
+  color:var(--muted)
+}
 
-    .footer-subtitle{
-      margin-top:6px;
-      font-size:11px;
-      opacity:.75;
-    }
+.erro{
+  grid-column:1/-1;
+  background:#fff;
+  border:1px solid #f0caca;
+  border-left:5px solid var(--red);
+  border-radius:16px;
+  padding:20px;
+  color:#7a2020
+}
 
-    @media(max-width:1000px){
+.no-results{
+  display:none;
+  background:#fff;
+  border:1px dashed #cbd5df;
+  border-radius:16px;
+  padding:35px;
+  text-align:center;
+  color:var(--muted)
+}
 
-      .pastores-grid{
-        grid-template-columns:repeat(3,1fr);
-      }
+footer{
+  background:#20262b;
+  color:#d0d5dd;
+  padding:30px 22px;
+  text-align:center;
+  font-size:13px
+}
 
-    }
+footer small{
+  display:block;
+  margin-top:7px;
+  opacity:.75
+}
 
-    @media(max-width:700px){
+/* MENU MOBILE */
 
-      .nav{
-        min-height:64px;
-      }
+.menu-toggle{
+  display:none;
+  border:0;
+  background:#eef8fc;
+  color:var(--navy);
+  width:42px;
+  height:42px;
+  border-radius:11px;
+  font-size:22px;
+  cursor:pointer
+}
 
-      .brand img{
-        width:46px;
-        height:46px;
-      }
+.mobile-menu{
+  display:none
+}
 
-      .brand span{
-        font-size:14px;
-      }
+@media(max-width:950px){
 
-      .brand small{
-        font-size:10px;
-      }
+  .pastores-grid{
+    grid-template-columns:repeat(2,1fr)
+  }
 
-      .menu{
-        display:block;
-      }
+}
 
-      nav{
-        display:none;
-        position:absolute;
-        top:64px;
-        left:0;
-        right:0;
-        background:#fff;
-        border-bottom:1px solid #e5e7eb;
-        padding:15px 20px;
-        flex-direction:column;
-        align-items:flex-start;
-        gap:16px;
-      }
+@media(max-width:650px){
 
-      nav.active{
-        display:flex;
-      }
+  .nav{
+    padding:10px 15px
+  }
 
-      main{
-        padding:25px 15px 50px;
-      }
+  .brand img{
+    width:43px;
+    height:43px
+  }
 
-      .hero{
-        padding:28px 22px;
-        border-radius:18px;
-      }
+  .brand span{
+    font-size:14px
+  }
 
-      .hero h1{
-        font-size:27px;
-      }
+  .brand small{
+    font-size:10px
+  }
 
-      .section-title{
-        font-size:23px;
-      }
+  nav{
+    display:none
+  }
 
-      .pastores-grid{
-        grid-template-columns:1fr;
-        gap:16px;
-      }
+  .menu-toggle{
+    display:grid;
+    place-items:center
+  }
 
-      .pastor-photo{
-        aspect-ratio:4/3;
-      }
+  .mobile-menu{
+    position:absolute;
+    left:0;
+    right:0;
+    top:100%;
+    background:#fff;
+    border-bottom:1px solid #e8edf2;
+    box-shadow:0 12px 24px rgba(16,24,40,.10);
+    padding:10px 15px
+  }
 
-    }
+  .mobile-menu.open{
+    display:grid
+  }
 
-  </style>
+  .mobile-menu a{
+    padding:12px 10px;
+    color:#344054;
+    text-decoration:none;
+    font-weight:800;
+    font-size:14px;
+    border-radius:9px
+  }
+
+  .mobile-menu a:hover{
+    background:#f4f9fb;
+    color:var(--green)
+  }
+
+  .hero{
+    padding:43px 18px
+  }
+
+  main{
+    padding:25px 16px 55px
+  }
+
+  .pastores-grid{
+    grid-template-columns:1fr
+  }
+
+  .pastor{
+    padding:15px;
+    gap:12px
+  }
+
+  .foto{
+    width:100px;
+    height:100px
+  }
+
+}
+
+</style>
+
 </head>
 
 <body>
@@ -361,9 +444,13 @@
 
   <div class="nav">
 
-    <a href="index.html" class="brand">
+    <a class="brand" href="index.html">
 
-      <img src="logo.png" alt="Logo Assembleia de Deus">
+      <img
+        src="logo.png"
+        alt="Logo Assembleia de Deus"
+        onerror="this.style.display='none'"
+      >
 
       <span>
         ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM
@@ -372,9 +459,8 @@
 
     </a>
 
-    <div class="menu" onclick="toggleMenu()">☰</div>
+    <nav>
 
-    <nav id="menu">
       <a href="index.html">Início</a>
       <a href="agenda.html">Agenda</a>
       <a href="congregacoes.html">Congregações</a>
@@ -382,18 +468,47 @@
       <a href="avisos.html">Avisos</a>
       <a href="diretoria.html">Diretoria</a>
       <a href="redes-sociais.html">Redes Sociais</a>
+
     </nav>
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Abrir menu"
+      aria-expanded="false"
+    >
+      ☰
+    </button>
+
+    <div
+      class="mobile-menu"
+      id="mobileMenu"
+    >
+
+      <a href="index.html">Início</a>
+      <a href="agenda.html">Agenda</a>
+      <a href="congregacoes.html">Congregações</a>
+      <a href="central-secretario.html">Central do Secretário</a>
+      <a href="avisos.html">Avisos</a>
+      <a href="diretoria.html">Diretoria</a>
+      <a href="redes-sociais.html">Redes Sociais</a>
+
+    </div>
 
   </div>
 
 </header>
 
 
-<main>
+<section class="hero">
 
-  <section class="hero">
+  <div class="hero-inner">
 
-    <h1>⛪ Pastores do Setor 49</h1>
+    <div class="eyebrow">
+      PORTAL AD BELÉM - SETOR 49
+    </div>
+
+    <h1>Pastores do Setor 49</h1>
 
     <p>
       Conheça os pastores responsáveis pelas congregações
@@ -401,42 +516,75 @@
       Setor 49 - Jardim dos Pimentas.
     </p>
 
-  </section>
+  </div>
+
+</section>
 
 
-  <div class="section-head">
+<main>
 
-    <h2 class="section-title">Pastores</h2>
+  <div class="intro">
+
+    <strong>PASTORES DO SETOR 49</strong>
+
+    <p>
+      Nesta área estão relacionados os pastores responsáveis
+      pelas congregações do Setor 49. As informações são
+      atualizadas diretamente pela Secretaria Digital.
+    </p>
 
   </div>
 
 
+  <h2 class="section-title">
+    Pastores
+  </h2>
+
+
   <div class="filters">
 
-    <button class="filter active" onclick="filtrar('TODOS',this)">
+    <button
+      class="filter active"
+      onclick="filtrar('TODOS',this)"
+    >
       TODOS
     </button>
 
-    <button class="filter" onclick="filtrar('R01',this)">
+    <button
+      class="filter"
+      onclick="filtrar('R01',this)"
+    >
       REGIONAL 01
     </button>
 
-    <button class="filter" onclick="filtrar('R02',this)">
+    <button
+      class="filter"
+      onclick="filtrar('R02',this)"
+    >
       REGIONAL 02
     </button>
 
-    <button class="filter" onclick="filtrar('R03',this)">
+    <button
+      class="filter"
+      onclick="filtrar('R03',this)"
+    >
       REGIONAL 03
     </button>
 
-    <button class="filter" onclick="filtrar('R04',this)">
+    <button
+      class="filter"
+      onclick="filtrar('R04',this)"
+    >
       REGIONAL 04
     </button>
 
   </div>
 
 
-  <div id="pastores" class="pastores-grid">
+  <div
+    id="pastores"
+    class="pastores-grid"
+  >
 
     <div class="loading">
       Carregando pastores...
@@ -444,22 +592,25 @@
 
   </div>
 
+
+  <div
+    id="noResults"
+    class="no-results"
+  >
+    Nenhum pastor corresponde ao filtro selecionado.
+  </div>
+
 </main>
 
 
 <footer>
 
-  <div class="footer-content">
+  ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM
+  · SETOR 49 - JARDIM DOS PIMENTAS
 
-    <div class="footer-title">
-      ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM · SETOR 49 - JARDIM DOS PIMENTAS
-    </div>
-
-    <div class="footer-subtitle">
-      SECRETARIA DIGITAL
-    </div>
-
-  </div>
+  <small>
+    PORTAL AD BELÉM - SETOR 49
+  </small>
 
 </footer>
 
@@ -469,108 +620,138 @@
 const API_URL =
 "https://script.google.com/macros/s/AKfycbxxzpqURBWBDjMgehIS6I9G_KKU1KQFVCPcT6SPiG82TZ1lk0MSCuxbRfdAfUDLT9JgJQ/exec";
 
-let pastores = [];
+let pastores=[];
 
 
-function toggleMenu(){
+function carregarPastores(){
 
-  document.getElementById("menu")
-    .classList.toggle("active");
-
-}
-
-
-async function carregarPastores(){
-
-  const container =
+  const container=
     document.getElementById("pastores");
 
-  try{
+  fetch(API_URL)
 
-    const resposta = await fetch(API_URL);
+    .then(resposta=>{
 
-    if(!resposta.ok){
-      throw new Error("Erro ao acessar a API.");
-    }
+      if(!resposta.ok){
+        throw new Error("Erro na API");
+      }
 
-    pastores = await resposta.json();
+      return resposta.json();
 
-    renderizarPastores("TODOS");
+    })
 
-  }catch(erro){
+    .then(dados=>{
 
-    container.innerHTML = `
-      <div class="erro">
-        Não foi possível carregar os dados dos pastores.
-        Verifique a conexão com a planilha.
-      </div>
-    `;
+      pastores=dados;
 
-  }
+      renderizarPastores("TODOS");
+
+    })
+
+    .catch(erro=>{
+
+      container.innerHTML=`
+        <div class="erro">
+          Não foi possível carregar os dados dos pastores.
+          Verifique a conexão com a planilha.
+        </div>
+      `;
+
+    });
 
 }
 
 
 function renderizarPastores(regional){
 
-  const container =
+  const container=
     document.getElementById("pastores");
 
-  const lista =
-    regional === "TODOS"
+  const noResults=
+    document.getElementById("noResults");
+
+  const lista=
+    regional==="TODOS"
       ? pastores
-      : pastores.filter(p => p.REGIONAL === regional);
+      : pastores.filter(
+          pastor=>pastor.REGIONAL===regional
+        );
 
-  if(lista.length === 0){
 
-    container.innerHTML = `
-      <div class="loading">
-        Nenhum pastor cadastrado nesta regional.
-      </div>
-    `;
+  if(lista.length===0){
+
+    container.innerHTML="";
+
+    noResults.style.display="block";
 
     return;
+
   }
 
 
-  container.innerHTML =
-    lista.map(pastor => {
+  noResults.style.display="none";
 
-      const nome =
-        pastor.PASTOR && pastor.PASTOR.trim()
+
+  container.innerHTML=
+
+    lista.map(pastor=>{
+
+      const nome=
+        pastor.PASTOR &&
+        pastor.PASTOR.trim()
           ? pastor.PASTOR
           : "Pastor não informado";
 
-      const congregacao =
-        pastor["CONGREGAÇÃO"] || "Congregação não informada";
 
-      const regionalTexto =
+      const congregacao=
+        pastor["CONGREGAÇÃO"] ||
+        "Congregação não informada";
+
+
+      const regional=
         pastor.REGIONAL || "";
 
-      const foto =
-        pastor.FOTO && pastor.FOTO.trim()
-          ? `<img src="${pastor.FOTO}" alt="${nome}">`
-          : `<span>👤</span>`;
+
+      const foto=
+        pastor.FOTO &&
+        pastor.FOTO.trim()
+
+        ? `
+          <img
+            src="${pastor.FOTO}"
+            alt="${nome}"
+          >
+        `
+
+        : `
+          <span>👤</span>
+        `;
+
 
       return `
 
-        <article class="pastor-card">
+        <article class="pastor">
 
-          <div class="pastor-photo">
+          <div class="foto">
+
             ${foto}
+
           </div>
 
-          <div class="pastor-info">
 
-            <h3>${nome}</h3>
+          <div class="info">
 
-            <p class="pastor-congregacao">
+            <h3>
+              ${nome}
+            </h3>
+
+            <p class="congregacao">
               📍 ${congregacao}
             </p>
 
-            <p class="pastor-regional">
-              ${regionalTexto}
-            </p>
+            <span class="regional">
+              ${regional}
+            </span>
 
           </div>
 
@@ -587,7 +768,9 @@ function filtrar(regional,botao){
 
   document
     .querySelectorAll(".filter")
-    .forEach(b => b.classList.remove("active"));
+    .forEach(
+      b=>b.classList.remove("active")
+    );
 
   botao.classList.add("active");
 
@@ -596,9 +779,64 @@ function filtrar(regional,botao){
 }
 
 
+const menuToggle=
+  document.getElementById("menuToggle");
+
+const mobileMenu=
+  document.getElementById("mobileMenu");
+
+
+if(menuToggle && mobileMenu){
+
+  menuToggle.addEventListener(
+    "click",
+    ()=>{
+
+      const open=
+        mobileMenu.classList.toggle("open");
+
+      menuToggle.setAttribute(
+        "aria-expanded",
+        open ? "true" : "false"
+      );
+
+      menuToggle.textContent=
+        open ? "✕" : "☰";
+
+    }
+  );
+
+
+  mobileMenu
+    .querySelectorAll("a")
+    .forEach(a=>{
+
+      a.addEventListener(
+        "click",
+        ()=>{
+
+          mobileMenu.classList.remove("open");
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+          menuToggle.textContent="☰";
+
+        }
+      );
+
+    });
+
+}
+
+
 carregarPastores();
 
 </script>
 
+
 </body>
+
 </html>
