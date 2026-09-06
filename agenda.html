@@ -193,11 +193,11 @@ function formatarData(data) {
 
 function criarEvento(evento) {
 
-  const inicio = formatarData(evento["DATA INÍCIO"]);
+  const inicio = formatarData(evento["DATA DE INÍCIO"]);
 
   if (!inicio) return "";
 
-  const fim = formatarData(evento["DATA FIM"]);
+  const fim = formatarData(evento["DATA DE FIM"]);
 
   let dia = inicio.dia;
 
@@ -253,7 +253,7 @@ function montarAgenda(lista) {
 
   lista.forEach(evento => {
 
-    const data = formatarData(evento["DATA INÍCIO"]);
+    const data = formatarData(evento["DATA DE INÍCIO"]);
 
     if (!data) return;
 
