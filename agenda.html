@@ -126,10 +126,11 @@ PORTAL AD BELÉM - SETOR 49
 
 const API_AGENDA = "https://script.google.com/macros/s/AKfycbxGOYL24cx626bkV-MNojA44BQLGptATA1d1B6EuKDst1WlwufsuhSmz-BVA6n1oknC2A/exec";
 
-const mf = document.getElementById("monthFilter");
-const tf = document.getElementById("typeFilter");
-const container = document.getElementById("agendaContainer");
+const monthFilter = document.getElementById("monthFilter");
+const typeFilter = document.getElementById("typeFilter");
+const agendaContainer = document.getElementById("agendaContainer");
 const noResults = document.getElementById("noResults");
+
 
 const meses = {
   "01": "Janeiro",
@@ -146,7 +147,8 @@ const meses = {
   "12": "Dezembro"
 };
 
-const mesesAbrev = {
+
+const abreviacoes = {
   "01": "JAN",
   "02": "FEV",
   "03": "MAR",
@@ -162,13 +164,13 @@ const mesesAbrev = {
 };
 
 
-function converterData(data) {
+function obterData(data) {
 
   if (!data) return null;
 
-  data = String(data).trim();
+  const texto = String(data).trim();
 
-  let partes = data.split("/");
+  const partes = texto.split("/");
 
   if (partes.length === 3) {
 
@@ -180,23 +182,11 @@ function converterData(data) {
 
   }
 
-  partes = data.split("-");
-
-  if (partes.length === 3 && partes[0].length === 4) {
-
-    return {
-      dia: partes[2].padStart(2, "0"),
-      mes: partes[1].padStart(2, "0"),
-      ano: partes[0]
-    };
-
-  }
-
   return null;
 }
 
 
-function normalizarTipo(tipo) {
+function obterTipo(tipo) {
 
   const texto = String(tipo || "")
     .toLowerCase()
@@ -204,39 +194,41 @@ function normalizarTipo(tipo) {
     .replace(/[\u0300-\u036f]/g, "")
     .trim();
 
-  if (texto.includes("juventude")) return "juventude";
-
-  if (texto.includes("batismo")) return "batismo";
-
-  if (texto.includes("casais")) return "casais";
-
-  if (texto.includes("regional")) return "regionais";
-
-  if (texto.includes("anivers")) return "aniversario";
-
-  if (
-    texto.includes("evento") ||
-    texto.includes("congresso") ||
-    texto.includes("santa ceia") ||
-    texto.includes("misso")
-  ) {
-    return "eventos";
+  if (texto.includes("juventude")) {
+    return "juventude";
   }
 
-  return texto.replace(/\s+/g, "-");
+  if (texto.includes("batismo")) {
+    return "batismo";
+  }
+
+  if (texto.includes("casal")) {
+    return "casais";
+  }
+
+  if (texto.includes("regional")) {
+    return "regionais";
+  }
+
+  if (texto.includes("anivers")) {
+    return "aniversario";
+  }
+
+  return "eventos";
 }
 
 
-function criarEvento(evento) {
+function criarCard(evento) {
 
-  const inicio = converterData(evento["DATA DE INÍCIO"]);
+  const inicio = obterData(evento["DATA DE INÍCIO"]);
 
   if (!inicio) {
     console.log("Data inválida:", evento);
     return null;
   }
 
-  const fim = converterData(evento["DATA DE FIM"]);
+
+  const fim = obterData(evento["DATA DE FIM"]);
 
   let dia = inicio.dia;
 
@@ -244,27 +236,28 @@ function criarEvento(evento) {
     dia = inicio.dia + "–" + fim.dia;
   }
 
-  const tipoOriginal = evento["TIPO"] || "Evento";
-  const tipoSlug = normalizarTipo(tipoOriginal);
 
   const card = document.createElement("div");
 
   card.className = "event";
 
   card.dataset.month = inicio.mes;
-  card.dataset.type = tipoSlug;
 
-  const date = document.createElement("div");
+  card.dataset.type = obterTipo(evento["TIPO"]);
 
-  date.className = "date";
 
-  date.innerHTML = `
+  const data = document.createElement("div");
+
+  data.className = "date";
+
+  data.innerHTML = `
     <b>${dia}</b>
-    <small>${mesesAbrev[inicio.mes]}</small>
+    <small>${abreviacoes[inicio.mes]}</small>
   `;
 
 
   const conteudo = document.createElement("div");
+
 
   const titulo = document.createElement("h3");
 
@@ -273,109 +266,118 @@ function criarEvento(evento) {
 
   const descricao = document.createElement("p");
 
-  let textoDescricao = evento["DESCRIÇÃO"] || "";
+  let texto = evento["DESCRIÇÃO"] || "";
 
-  if (!textoDescricao) {
-    textoDescricao = evento["LOCAL"] || "";
+  if (!texto && evento["LOCAL"]) {
+    texto = evento["LOCAL"];
   }
 
   if (evento["HORÁRIO"]) {
-    textoDescricao += " · " + evento["HORÁRIO"];
+    texto += " · " + evento["HORÁRIO"];
   }
 
-  descricao.textContent = textoDescricao;
+  descricao.textContent = texto;
 
 
   const tipo = document.createElement("span");
 
   tipo.className = "type";
 
-  tipo.textContent = tipoOriginal;
+  tipo.textContent = evento["TIPO"] || "Evento";
 
 
   conteudo.appendChild(titulo);
   conteudo.appendChild(descricao);
   conteudo.appendChild(tipo);
 
-  card.appendChild(date);
+
+  card.appendChild(data);
   card.appendChild(conteudo);
+
 
   return card;
 }
 
 
-function montarAgenda(lista) {
+function mostrarAgenda(lista) {
 
-  container.innerHTML = "";
+  agendaContainer.innerHTML = "";
 
-  const porMes = {};
+  const mesesEncontrados = {};
+
 
   lista.forEach(evento => {
 
-    const data = converterData(evento["DATA DE INÍCIO"]);
+    const inicio = obterData(evento["DATA DE INÍCIO"]);
 
-    if (!data) return;
+    if (!inicio) return;
 
-    if (!porMes[data.mes]) {
-      porMes[data.mes] = [];
+
+    if (!mesesEncontrados[inicio.mes]) {
+
+      mesesEncontrados[inicio.mes] = [];
+
     }
 
-    porMes[data.mes].push(evento);
+
+    mesesEncontrados[inicio.mes].push(evento);
 
   });
 
 
-  Object.keys(porMes)
+  Object.keys(mesesEncontrados)
     .sort()
     .forEach(mes => {
+
 
       const bloco = document.createElement("div");
 
       bloco.className = "mes-bloco";
 
 
-      const tituloMes = document.createElement("div");
+      const titulo = document.createElement("div");
 
-      tituloMes.className = "month";
+      titulo.className = "month";
 
-      tituloMes.innerHTML = `
+      titulo.innerHTML = `
         <h2>${meses[mes]}</h2>
         <span>2026</span>
       `;
 
 
-      const eventos = document.createElement("div");
+      const listaEventos = document.createElement("div");
 
-      eventos.className = "events";
+      listaEventos.className = "events";
 
 
-      porMes[mes].forEach(evento => {
+      mesesEncontrados[mes].forEach(evento => {
 
-        const card = criarEvento(evento);
+        const card = criarCard(evento);
 
         if (card) {
-          eventos.appendChild(card);
+          listaEventos.appendChild(card);
         }
 
       });
 
 
-      bloco.appendChild(tituloMes);
-      bloco.appendChild(eventos);
+      bloco.appendChild(titulo);
 
-      container.appendChild(bloco);
+      bloco.appendChild(listaEventos);
+
+      agendaContainer.appendChild(bloco);
 
     });
 
 
-  aplicarFiltro();
+  aplicarFiltros();
 
 }
 
 
-function aplicarFiltro() {
+function aplicarFiltros() {
 
-  const cards = container.querySelectorAll(".event");
+  const cards = agendaContainer.querySelectorAll(".event");
 
   let quantidade = 0;
 
@@ -383,39 +385,41 @@ function aplicarFiltro() {
   cards.forEach(card => {
 
     const mesOk =
-      mf.value === "all" ||
-      card.dataset.month === mf.value;
+      monthFilter.value === "all" ||
+      card.dataset.month === monthFilter.value;
 
 
     const tipoOk =
-      tf.value === "all" ||
-      card.dataset.type === tf.value;
+      typeFilter.value === "all" ||
+      card.dataset.type === typeFilter.value;
 
 
-    if (mesOk && tipoOk) {
+    const mostrar = mesOk && tipoOk;
 
-      card.style.display = "flex";
 
+    card.style.display = mostrar ? "flex" : "none";
+
+
+    if (mostrar) {
       quantidade++;
-
-    } else {
-
-      card.style.display = "none";
-
     }
 
   });
 
 
-  container.querySelectorAll(".mes-bloco").forEach(bloco => {
+  agendaContainer
+    .querySelectorAll(".mes-bloco")
+    .forEach(bloco => {
 
-    const temEvento =
-      [...bloco.querySelectorAll(".event")]
-        .some(card => card.style.display !== "none");
+      const possuiEvento = [
+        ...bloco.querySelectorAll(".event")
+      ].some(card => card.style.display !== "none");
 
-    bloco.style.display = temEvento ? "block" : "none";
 
-  });
+      bloco.style.display =
+        possuiEvento ? "block" : "none";
+
+    });
 
 
   noResults.style.display =
@@ -424,36 +428,36 @@ function aplicarFiltro() {
 }
 
 
-mf.addEventListener("change", aplicarFiltro);
+monthFilter.addEventListener("change", aplicarFiltros);
 
-tf.addEventListener("change", aplicarFiltro);
+typeFilter.addEventListener("change", aplicarFiltros);
 
 
 fetch(API_AGENDA)
 
-  .then(resposta => {
+  .then(response => {
 
-    if (!resposta.ok) {
-      throw new Error("Erro HTTP " + resposta.status);
+    if (!response.ok) {
+      throw new Error("Erro HTTP: " + response.status);
     }
 
-    return resposta.json();
+    return response.json();
 
   })
 
-  .then(dados => {
+  .then(lista => {
 
-    console.log("Agenda recebida:", dados);
+    console.log("AGENDA:", lista);
 
-    montarAgenda(dados);
+    mostrarAgenda(lista);
 
   })
 
-  .catch(erro => {
+  .catch(error => {
 
-    console.error("Erro ao carregar a Agenda:", erro);
+    console.error("Erro ao carregar Agenda:", error);
 
-    container.innerHTML = "";
+    agendaContainer.innerHTML = "";
 
     noResults.style.display = "block";
 
