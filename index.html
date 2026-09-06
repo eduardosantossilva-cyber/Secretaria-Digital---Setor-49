@@ -311,14 +311,38 @@ function mostrarAvisosInicio(lista) {
 
   avisosInicio.innerHTML = "";
 
+  if (!Array.isArray(lista) || lista.length === 0) {
+
+    avisosInicio.innerHTML = `
+      <div class="notice-main">
+        <strong>Nenhum aviso no momento.</strong>
+        <p>Não há comunicados ativos para exibição.</p>
+      </div>
+    `;
+
+    return;
+  }
+
 
   const avisos = lista
     .filter(aviso => {
 
-      return String(aviso["ATIVO"] || "")
-        .trim()
-        .toUpperCase() === "SIM";
+      // Se a API enviar o campo ATIVO,
+      // considera somente os que estiverem ativos.
+      // Se a API já filtrar os ativos e não enviar esse campo,
+      // o aviso também será aceito.
 
+      if (!("ATIVO" in aviso)) {
+        return true;
+      }
+
+      const ativo = String(aviso["ATIVO"] || "")
+        .trim()
+        .toUpperCase();
+
+      return ativo === "SIM" ||
+             ativo === "TRUE" ||
+             ativo === "1";
     })
     .sort((a, b) => {
 
@@ -329,7 +353,7 @@ function mostrarAvisosInicio(lista) {
     .slice(0, 2);
 
 
-  if (!avisos.length) {
+  if (avisos.length === 0) {
 
     avisosInicio.innerHTML = `
       <div class="notice-main">
@@ -339,7 +363,6 @@ function mostrarAvisosInicio(lista) {
     `;
 
     return;
-
   }
 
 
