@@ -847,6 +847,7 @@ if(menuToggle&&mobileMenu){
 /* ENVIO DO ATENDIMENTO */
 /* ============================= */
 
+
 const API_ATENDIMENTO =
   "https://script.google.com/macros/s/AKfycbwJzijPbbP3PSZuTh2rpTpwmYIcBj44pZR2BaXOJwhZOZLGOQkDDPywJTMxy_90LbYb/exec";
 
@@ -872,8 +873,7 @@ const atendimentoMensagem =
 
 atendimentoEnviar.addEventListener(
   "click",
-  async () => {
-
+  () => {
 
     const nome =
       atendimentoNome.value.trim();
@@ -894,63 +894,53 @@ atendimentoEnviar.addEventListener(
     /* VALIDAÇÃO */
 
     if (!nome) {
-
       alert("Digite seu nome.");
-
       atendimentoNome.focus();
-
       return;
-
     }
-
 
     if (!whatsapp) {
-
       alert("Digite seu WhatsApp.");
-
       atendimentoWhatsapp.focus();
-
       return;
-
     }
-
 
     if (!tipo) {
-
-      alert(
-        "Selecione o tipo de atendimento."
-      );
-
+      alert("Selecione o tipo de atendimento.");
       atendimentoTipo.focus();
-
       return;
-
     }
-
 
     if (!assunto) {
-
       alert("Digite o assunto.");
-
       atendimentoAssunto.focus();
-
       return;
-
     }
-
 
     if (!mensagem) {
-
       alert("Digite sua mensagem.");
-
       atendimentoMensagem.focus();
-
       return;
-
     }
 
 
-    /* BOTÃO ENVIANDO */
+    /* GERA O PROTOCOLO */
+
+    const agora = new Date();
+
+    const numero =
+      String(
+        agora.getTime()
+      ).slice(-6);
+
+    const protocolo =
+      "ATD-" +
+      agora.getFullYear() +
+      "-" +
+      numero;
+
+
+    /* BOTÃO */
 
     atendimentoEnviar.disabled = true;
 
@@ -958,63 +948,105 @@ atendimentoEnviar.addEventListener(
       "ENVIANDO...";
 
 
-    try {
+    /*
+     * CRIA UM IFRAME INVISÍVEL
+     */
+
+    const iframe =
+      document.createElement("iframe");
+
+    iframe.name =
+      "atendimentoFrame";
+
+    iframe.style.display =
+      "none";
+
+    document.body.appendChild(iframe);
 
 
-      const dados = new URLSearchParams();
+    /*
+     * CRIA FORMULÁRIO INVISÍVEL
+     */
+
+    const formulario =
+      document.createElement("form");
+
+    formulario.method = "POST";
+
+    formulario.action =
+      API_ATENDIMENTO;
+
+    formulario.target =
+      "atendimentoFrame";
+
+    formulario.style.display =
+      "none";
 
 
-      dados.append(
-        "nome",
-        nome
-      );
+    function adicionarCampo(nome, valor) {
 
-      dados.append(
-        "whatsapp",
-        whatsapp
-      );
+      const campo =
+        document.createElement("input");
 
-      dados.append(
-        "tipo",
-        tipo
-      );
+      campo.type = "hidden";
 
-      dados.append(
-        "assunto",
-        assunto
-      );
+      campo.name = nome;
 
-      dados.append(
-        "mensagem",
-        mensagem
-      );
+      campo.value = valor;
+
+      formulario.appendChild(campo);
+
+    }
 
 
-      const resposta =
-        await fetch(
-          API_ATENDIMENTO,
-          {
-            method: "POST",
-            body: dados
-          }
-        );
+    adicionarCampo(
+      "protocolo",
+      protocolo
+    );
+
+    adicionarCampo(
+      "nome",
+      nome
+    );
+
+    adicionarCampo(
+      "whatsapp",
+      whatsapp
+    );
+
+    adicionarCampo(
+      "tipo",
+      tipo
+    );
+
+    adicionarCampo(
+      "assunto",
+      assunto
+    );
+
+    adicionarCampo(
+      "mensagem",
+      mensagem
+    );
 
 
-      const resultado =
-        await resposta.json();
+    document.body.appendChild(
+      formulario
+    );
 
 
-      if (!resultado.sucesso) {
+    /*
+     * ENVIA
+     */
 
-        throw new Error(
-          resultado.erro ||
-          "Não foi possível registrar a solicitação."
-        );
-
-      }
+    formulario.submit();
 
 
-      /* SUCESSO */
+    /*
+     * MOSTRA CONFIRMAÇÃO
+     */
+
+    setTimeout(() => {
 
       document.querySelector(
         ".atendimento-corpo"
@@ -1066,7 +1098,7 @@ atendimentoEnviar.addEventListener(
               font-size:22px;
               color:#073c66;
             ">
-              ${resultado.protocolo}
+              ${protocolo}
             </strong>
 
           </div>
@@ -1084,26 +1116,14 @@ atendimentoEnviar.addEventListener(
       `;
 
 
-    } catch (erro) {
+      formulario.remove();
 
+      iframe.remove();
 
-      console.error(
-        "Erro ao enviar atendimento:",
-        erro
-      );
+    }, 1200);
 
-
-      alert(
-        "Não foi possível enviar sua solicitação. Tente novamente."
-      );
-
-
-      atendimentoEnviar.disabled = false;
-
-      atendimentoEnviar.textContent =
-        "ENVIAR SOLICITAÇÃO →";
-
-    }
+  }
+);
 
   }
 );
