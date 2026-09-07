@@ -573,6 +573,35 @@ footer{
     width:calc(100vw - 30px);
   }
 }
+
+.area-restrita-link{
+  color:#073c66 !important;
+  background:#eef8fc;
+  border:1px solid #cfe7f0;
+  border-radius:9px;
+  padding:8px 11px;
+  font-weight:900 !important;
+  transition:.2s;
+}
+
+.area-restrita-link:hover{
+  color:#fff !important;
+  background:#079447;
+  border-color:#079447;
+}
+
+@media(max-width:650px){
+
+  .mobile-menu .area-restrita-link{
+    display:block;
+    margin-top:6px;
+    text-align:center;
+    background:#eef8fc;
+    color:#073c66 !important;
+  }
+
+}
+  
 </style>
 </head>
 
@@ -699,6 +728,7 @@ footer{
 
     <nav>
       <a href="index.html">Início</a>
+      <a href="area-restrita.html" class="area-restrita-link">🔒 Área Restrita</a>
     </nav>
 
     <button
@@ -712,6 +742,7 @@ footer{
 
     <div class="mobile-menu" id="mobileMenu">
       <a href="index.html">Início</a>
+      <a href="area-restrita.html" class="area-restrita-link">🔒 Área Restrita</a>
     </div>
 
   </div>
