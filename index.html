@@ -1127,6 +1127,50 @@ atendimentoEnviar.addEventListener(
 
   }
 );
+/* RESTAURA ABERTURA DO CHAT */
+
+const botaoAtendimentoNovo =
+  document.getElementById("atendimentoBotao");
+
+const chatAtendimentoNovo =
+  document.getElementById("atendimentoChat");
+
+const fecharAtendimentoNovo =
+  document.getElementById("atendimentoFechar");
+
+
+if (
+  botaoAtendimentoNovo &&
+  chatAtendimentoNovo
+) {
+
+  botaoAtendimentoNovo.addEventListener(
+    "click",
+    function () {
+
+      chatAtendimentoNovo.classList.toggle("aberto");
+
+    }
+  );
+
+}
+
+
+if (
+  fecharAtendimentoNovo &&
+  chatAtendimentoNovo
+) {
+
+  fecharAtendimentoNovo.addEventListener(
+    "click",
+    function () {
+
+      chatAtendimentoNovo.classList.remove("aberto");
+
+    }
+  );
+
+}
 </script>
 </body>
 </html>
