@@ -1,19 +1,213 @@
 <!doctype html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>Congregações — Setor 49</title>
+
 <style>
-:root{--blue:#159dd1;--green:#079447;--gold:#f9c414;--navy:#073c66;--ink:#17212b;--muted:#667085;--bg:#f6f8fa}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
-header{position:relative;background:#fff;border-bottom:1px solid #e8edf2;position:sticky;top:0;z-index:20}.nav{max-width:1180px;margin:auto;padding:11px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--navy);font-weight:900}.brand img{width:50px;height:50px;object-fit:contain}.brand small{display:block;color:var(--muted);font-weight:650;font-size:11px}
-nav{display:flex;gap:16px;flex-wrap:wrap}nav a{color:#344054;text-decoration:none;font-weight:750;font-size:14px}nav a:hover{color:var(--green)}
-.hero{background:linear-gradient(135deg,var(--navy),var(--blue),var(--green));color:#fff;padding:58px 22px}.hero-inner{max-width:1180px;margin:auto}
-.eyebrow{font-size:12px;font-weight:900;letter-spacing:1.7px;text-transform:uppercase;opacity:.9}h1{font-size:clamp(35px,5vw,52px);margin:9px 0 10px}.hero p{font-size:17px;line-height:1.5;max-width:720px;margin:0}
-main{max-width:1180px;margin:auto;padding:32px 22px 70px}
-.tools{background:#fff;border:1px solid #e8edf2;border-radius:18px;padding:17px;display:flex;gap:12px;align-items:center;box-shadow:0 7px 22px rgba(16,24,40,.05);margin-bottom:22px}
-input{width:100%;padding:13px 15px;border:1px solid #d7dee4;border-radius:11px;font:inherit;outline:none}input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(21,157,209,.12)}
+
+:root{
+  --blue:#159dd1;
+  --green:#079447;
+  --gold:#f9c414;
+  --navy:#073c66;
+  --ink:#17212b;
+  --muted:#667085;
+  --bg:#f6f8fa;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+}
+
+
+/* =========================
+   CABEÇALHO
+========================= */
+
+header{
+  position:relative;
+  background:#fff;
+  border-bottom:1px solid #e8edf2;
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+
+.nav{
+  max-width:1180px;
+  margin:auto;
+  padding:11px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  color:var(--navy);
+  font-weight:900;
+}
+
+.brand img{
+  width:50px;
+  height:50px;
+  object-fit:contain;
+}
+
+.brand small{
+  display:block;
+  color:var(--muted);
+  font-weight:650;
+  font-size:11px;
+}
+
+nav{
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+}
+
+nav a{
+  color:#344054;
+  text-decoration:none;
+  font-weight:800;
+  font-size:13px;
+  padding:9px 10px;
+  border-radius:9px;
+  transition:.2s;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:38px;
+}
+
+nav a:hover{
+  color:var(--green);
+}
+
+
+/* =========================
+   ÁREA RESTRITA
+========================= */
+
+.area-restrita-link{
+  color:#073c66 !important;
+  background:#eef8fc !important;
+  border:1px solid #cfe7f0 !important;
+  border-radius:9px !important;
+  padding:8px 11px !important;
+  font-weight:900 !important;
+  transition:.2s;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.area-restrita-link:hover{
+  color:#fff !important;
+  background:#079447 !important;
+  border-color:#079447 !important;
+}
+
+
+/* =========================
+   BANNER
+========================= */
+
+.hero{
+  background:linear-gradient(
+    135deg,
+    var(--navy),
+    var(--blue),
+    var(--green)
+  );
+  color:#fff;
+  padding:58px 22px;
+}
+
+.hero-inner{
+  max-width:1180px;
+  margin:auto;
+}
+
+.eyebrow{
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:1.7px;
+  text-transform:uppercase;
+  opacity:.9;
+}
+
+h1{
+  font-size:clamp(35px,5vw,52px);
+  margin:9px 0 10px;
+}
+
+.hero p{
+  font-size:17px;
+  line-height:1.5;
+  max-width:720px;
+  margin:0;
+}
+
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+main{
+  max-width:1180px;
+  margin:auto;
+  padding:32px 22px 70px;
+}
+
+
+/* =========================
+   FERRAMENTAS
+========================= */
+
+.tools{
+  background:#fff;
+  border:1px solid #e8edf2;
+  border-radius:18px;
+  padding:17px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  box-shadow:0 7px 22px rgba(16,24,40,.05);
+  margin-bottom:22px;
+}
+
+input{
+  width:100%;
+  padding:13px 15px;
+  border:1px solid #d7dee4;
+  border-radius:11px;
+  font:inherit;
+  outline:none;
+}
+
+input:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(21,157,209,.12);
+}
+
 select{
   width:280px;
   padding:13px 15px;
@@ -31,350 +225,2604 @@ select:focus{
   box-shadow:0 0 0 3px rgba(21,157,209,.12);
 }
 
-@media(max-width:650px){
-  select{
-    width:100%;
-    margin-top:10px;
-  }
+.count{
+  white-space:nowrap;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:800;
 }
-.count{white-space:nowrap;color:var(--muted);font-size:13px;font-weight:800}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.church-card{background:#fff;border:1px solid #e8edf2;border-radius:18px;padding:20px;display:flex;gap:14px;min-height:205px;box-shadow:0 7px 20px rgba(16,24,40,.045);transition:.2s}
-.church-card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(16,24,40,.08);border-color:#cfe7f0}
-.church-icon{width:43px;height:43px;flex:none;border-radius:12px;display:grid;place-items:center;background:#eaf7fc;color:var(--blue);font-size:24px}
-.count-label{font-size:10px;font-weight:900;letter-spacing:1px;color:var(--green);margin-bottom:6px}h2{font-size:18px;margin:0 0 9px;color:var(--navy)}
-.church-body p{margin:0;color:#667085;line-height:1.5;font-size:13px}.church-body p strong{color:#344054}
-.map-btn{display:inline-block;margin-top:15px;text-decoration:none;background:var(--blue);color:#fff;border-radius:10px;padding:9px 12px;font-size:11px;font-weight:900}.map-btn:hover{background:var(--green)}
-.empty{display:none;grid-column:1/-1;background:#fff;border:1px dashed #cbd5df;border-radius:18px;padding:40px;text-align:center;color:var(--muted)}
+
+
+/* =========================
+   CONGREGAÇÕES
+========================= */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.church-card{
+  background:#fff;
+  border:1px solid #e8edf2;
+  border-radius:18px;
+  padding:20px;
+  display:flex;
+  gap:14px;
+  min-height:205px;
+  box-shadow:0 7px 20px rgba(16,24,40,.045);
+  transition:.2s;
+}
+
+.church-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 28px rgba(16,24,40,.08);
+  border-color:#cfe7f0;
+}
+
+.church-icon{
+  width:43px;
+  height:43px;
+  flex:none;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:#eaf7fc;
+  color:var(--blue);
+  font-size:24px;
+}
+
+.count-label{
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1px;
+  color:var(--green);
+  margin-bottom:6px;
+}
+
+h2{
+  font-size:18px;
+  margin:0 0 9px;
+  color:var(--navy);
+}
+
+.church-body p{
+  margin:0;
+  color:#667085;
+  line-height:1.5;
+  font-size:13px;
+}
+
+.church-body p strong{
+  color:#344054;
+}
+
+.map-btn{
+  display:inline-block;
+  margin-top:15px;
+  text-decoration:none;
+  background:var(--blue);
+  color:#fff;
+  border-radius:10px;
+  padding:9px 12px;
+  font-size:11px;
+  font-weight:900;
+}
+
+.map-btn:hover{
+  background:var(--green);
+}
+
+.empty{
+  display:none;
+  grid-column:1/-1;
+  background:#fff;
+  border:1px dashed #cbd5df;
+  border-radius:18px;
+  padding:40px;
+  text-align:center;
+  color:var(--muted);
+}
+
+
+/* =========================
+   RODAPÉ
+========================= */
+
 footer{
   background:#20262b;
   color:#d0d5dd;
   padding:30px 22px;
   text-align:center;
-  font-size:13px
+  font-size:13px;
 }
 
-@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:650px){.nav{padding:10px 15px}.brand img{width:43px;height:43px}nav{display:none}.hero{padding:43px 18px}main{padding:25px 16px 55px}.tools{display:block}.count{margin-top:10px}.grid{grid-template-columns:1fr}}
 
-/* Menu mobile */
-.menu-toggle{display:none;border:0;background:#eef8fc;color:var(--navy);width:42px;height:42px;border-radius:11px;font-size:22px;cursor:pointer}
-.mobile-menu{display:none}
+/* =========================
+   MENU MOBILE
+========================= */
+
+.menu-toggle{
+  display:none;
+  border:0;
+  background:#eef8fc;
+  color:var(--navy);
+  width:42px;
+  height:42px;
+  border-radius:11px;
+  font-size:22px;
+  cursor:pointer;
+}
+
+.mobile-menu{
+  display:none;
+}
+
 @media(max-width:650px){
-  .menu-toggle{display:grid;place-items:center}
-  .mobile-menu{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid #e8edf2;box-shadow:0 12px 24px rgba(16,24,40,.10);padding:10px 15px}
-  .mobile-menu.open{display:grid}
-  .mobile-menu a{padding:12px 10px;color:#344054;text-decoration:none;font-weight:800;font-size:14px;border-radius:9px}
-  .mobile-menu a:hover{background:#f4f9fb;color:var(--green)}
+
+  .menu-toggle{
+    display:grid;
+    place-items:center;
+  }
+
+  .mobile-menu{
+    position:absolute;
+    left:0;
+    right:0;
+    top:100%;
+    background:#fff;
+    border-bottom:1px solid #e8edf2;
+    box-shadow:0 12px 24px rgba(16,24,40,.10);
+    padding:10px 15px;
+  }
+
+  .mobile-menu.open{
+    display:grid;
+  }
+
+  .mobile-menu a{
+    padding:12px 10px;
+    color:#344054;
+    text-decoration:none;
+    font-weight:800;
+    font-size:14px;
+    border-radius:9px;
+  }
+
+  .mobile-menu a:hover{
+    background:#f4f9fb;
+    color:var(--green);
+  }
+
 }
+
+
+/* ============================= */
+/* CHAT DE ATENDIMENTO */
+/* ============================= */
+
+.atendimento-botao{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:1000;
+  border:0;
+  background:var(--blue);
+  color:#fff;
+  border-radius:50px;
+  padding:14px 20px;
+  font-size:14px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 8px 24px rgba(7,60,102,.25);
+  transition:.2s;
+}
+
+.atendimento-botao:hover{
+  transform:translateY(-3px);
+  background:var(--green);
+}
+
+.atendimento-chat{
+  position:fixed;
+  right:22px;
+  bottom:82px;
+  width:360px;
+  max-width:calc(100vw - 30px);
+  max-height:calc(100vh - 110px);
+  background:#fff;
+  border:1px solid #e4e9ee;
+  border-radius:20px;
+  box-shadow:0 18px 45px rgba(16,24,40,.20);
+  z-index:999;
+  overflow:hidden;
+  display:none;
+}
+
+.atendimento-chat.aberto{
+  display:block;
+}
+
+.atendimento-header{
+  background:linear-gradient(
+    135deg,
+    var(--navy),
+    var(--blue)
+  );
+  color:#fff;
+  padding:18px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.atendimento-header strong{
+  display:block;
+  font-size:16px;
+}
+
+.atendimento-header small{
+  display:block;
+  margin-top:3px;
+  opacity:.85;
+  font-size:11px;
+}
+
+.atendimento-fechar{
+  border:0;
+  background:rgba(255,255,255,.15);
+  color:#fff;
+  width:32px;
+  height:32px;
+  border-radius:9px;
+  cursor:pointer;
+  font-size:18px;
+}
+
+.atendimento-corpo{
+  padding:18px;
+  overflow-y:auto;
+  max-height:calc(100vh - 180px);
+}
+
+.atendimento-corpo p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+  margin:0 0 15px;
+}
+
+.atendimento-campo{
+  margin-bottom:12px;
+}
+
+.atendimento-campo label{
+  display:block;
+  font-size:11px;
+  font-weight:800;
+  color:#344054;
+  margin-bottom:5px;
+}
+
+.atendimento-campo input,
+.atendimento-campo select,
+.atendimento-campo textarea{
+  width:100%;
+  border:1px solid #dce3e8;
+  border-radius:9px;
+  padding:10px 11px;
+  font-family:inherit;
+  font-size:12px;
+  outline:none;
+}
+
+.atendimento-campo input:focus,
+.atendimento-campo select:focus,
+.atendimento-campo textarea:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(21,157,209,.10);
+}
+
+.atendimento-campo textarea{
+  resize:vertical;
+  min-height:80px;
+}
+
+.atendimento-enviar{
+  width:100%;
+  border:0;
+  border-radius:10px;
+  padding:12px;
+  background:var(--green);
+  color:#fff;
+  font-weight:900;
+  font-size:12px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.atendimento-enviar:hover{
+  background:var(--blue);
+}
+
+.atendimento-opcoes{
+  display:grid;
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.atendimento-opcao{
+  width:100%;
+  border:1px solid #dce3e8;
+  border-radius:10px;
+  padding:13px 15px;
+  background:#f8fafc;
+  color:#073c66;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:800;
+  text-align:left;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.atendimento-opcao:hover{
+  background:#eef8fc;
+  border-color:#159dd1;
+  transform:translateY(-1px);
+}
+
+.atendimento-voltar{
+  width:100%;
+  margin-top:8px;
+  padding:10px;
+  border:0;
+  background:transparent;
+  color:#073c66;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.atendimento-voltar:hover{
+  color:#159dd1;
+}
+
+@media(max-width:500px){
+
+  .atendimento-botao{
+    right:15px;
+    bottom:15px;
+    padding:13px 17px;
+  }
+
+  .atendimento-chat{
+    right:15px;
+    bottom:75px;
+    width:calc(100vw - 30px);
+    max-height:calc(100vh - 95px);
+    border-radius:18px;
+  }
+
+  .atendimento-header{
+    padding:14px 16px;
+  }
+
+  .atendimento-corpo{
+    padding:15px;
+  }
+
+  .atendimento-campo{
+    margin-bottom:10px;
+  }
+
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media(max-width:900px){
+
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:650px){
+
+  .nav{
+    padding:10px 15px;
+  }
+
+  .brand img{
+    width:43px;
+    height:43px;
+  }
+
+  nav{
+    display:none;
+  }
+
+  .hero{
+    padding:43px 18px;
+  }
+
+  main{
+    padding:25px 16px 55px;
+  }
+
+  .tools{
+    display:block;
+  }
+
+  select{
+    width:100%;
+    margin-top:10px;
+  }
+
+  .count{
+    margin-top:10px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
 </style>
+
 </head>
+
 <body>
-<header><div class="nav">
-<a class="brand" href="index.html"><img src="logo.png" onerror="this.style.display='none'"><span>ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM<small>SETOR 49 - JARDIM DOS PIMENTAS</small></span></a>
-<nav><a href="index.html">Início</a><a href="agenda.html">Agenda</a><a href="congregacoes.html">Congregações</a><a href="central-secretario.html">Central do Secretário</a><a href="avisos.html">Avisos</a><a href="diretoria.html">Diretoria</a></nav><button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="mobile-menu" id="mobileMenu"><a href="index.html">Início</a><a href="agenda.html">Agenda</a><a href="congregacoes.html">Congregações</a><a href="central-secretario.html">Central do Secretário</a><a href="avisos.html">Avisos</a><a href="diretoria.html">Diretoria</a></div>
-</div></header>
-<section class="hero"><div class="hero-inner"><div class="eyebrow">PORTAL AD BELÉM - SETOR 49</div><h1>Nossas Congregações</h1><p>Consulte os endereços das congregações do Setor 49 e abra diretamente a rota no Google Maps.</p></div></section>
-<main>
-<div class="tools">
-  <input id="search" type="search" placeholder="🔎 Pesquisar pelo nome ou endereço..." aria-label="Pesquisar congregação ou endereço">
 
-  <select id="regionalFilter" aria-label="Filtrar por regional">
-    <option value="">Todas as regionais</option>
-    <option value="regional-01">Regional 01 — Siquém</option>
-    <option value="regional-02">Regional 02 — Betel</option>
-    <option value="regional-03">Regional 03 — Hebron</option>
-    <option value="regional-04">Regional 04 — Moriá</option>
-  </select>
 
-  <div class="count" id="count">37 congregações</div>
+<!-- =========================
+     BOTÃO DE ATENDIMENTO
+========================= -->
+
+<button
+  class="atendimento-botao"
+  id="atendimentoBotao"
+  type="button"
+>
+  💬 Atendimento
+</button>
+
+
+<!-- =========================
+     JANELA DE ATENDIMENTO
+========================= -->
+
+<div
+  class="atendimento-chat"
+  id="atendimentoChat"
+>
+
+  <div class="atendimento-header">
+
+    <div>
+
+      <strong>
+        💬 Atendimento
+      </strong>
+
+      <small>
+        Secretaria Digital — Setor 49
+      </small>
+
+    </div>
+
+    <button
+      class="atendimento-fechar"
+      id="atendimentoFechar"
+      type="button"
+    >
+      ×
+    </button>
+
+  </div>
+
+
+  <div class="atendimento-corpo">
+
+    <div
+      class="atendimento-opcoes"
+      id="atendimentoOpcoes"
+    >
+
+      <button
+        type="button"
+        class="atendimento-opcao"
+        id="novaSolicitacao"
+      >
+        💬 Fazer uma solicitação
+      </button>
+
+      <button
+        type="button"
+        class="atendimento-opcao"
+        id="consultarProtocolo"
+      >
+        🔎 Consultar protocolo
+      </button>
+
+    </div>
+
+
+    <div
+      id="formularioAtendimento"
+      style="display:none;"
+    >
+
+      <p>
+        Olá! Como podemos ajudar?
+        Preencha os dados abaixo para enviar sua solicitação.
+      </p>
+
+
+      <div class="atendimento-campo">
+
+        <label for="atendimentoNome">
+          Nome
+        </label>
+
+        <input
+          type="text"
+          id="atendimentoNome"
+          placeholder="Digite seu nome"
+        >
+
+      </div>
+
+
+      <div class="atendimento-campo">
+
+        <label for="atendimentoWhatsapp">
+          WhatsApp
+        </label>
+
+        <input
+          type="tel"
+          id="atendimentoWhatsapp"
+          placeholder="(11) 99999-9999"
+        >
+
+      </div>
+
+
+      <div class="atendimento-campo">
+
+        <label for="atendimentoTipo">
+          Tipo de atendimento
+        </label>
+
+        <select id="atendimentoTipo">
+
+          <option value="">
+            Selecione uma opção
+          </option>
+
+          <option value="Dúvida">
+            Dúvida
+          </option>
+
+          <option value="Solicitação">
+            Solicitação
+          </option>
+
+          <option value="Informação">
+            Informação
+          </option>
+
+          <option value="Outro">
+            Outro
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="atendimento-campo">
+
+        <label for="atendimentoAssunto">
+          Assunto
+        </label>
+
+        <input
+          type="text"
+          id="atendimentoAssunto"
+          placeholder="Sobre o que você precisa?"
+        >
+
+      </div>
+
+
+      <div class="atendimento-campo">
+
+        <label for="atendimentoMensagem">
+          Mensagem
+        </label>
+
+        <textarea
+          id="atendimentoMensagem"
+          placeholder="Digite sua dúvida ou solicitação..."
+        ></textarea>
+
+      </div>
+
+
+      <button
+        class="atendimento-enviar"
+        id="atendimentoEnviar"
+        type="button"
+      >
+        ENVIAR SOLICITAÇÃO →
+      </button>
+
+
+      <button
+        type="button"
+        class="atendimento-voltar"
+        id="voltarSolicitacao"
+      >
+        ← Voltar
+      </button>
+
+    </div>
+
+
+    <div
+      id="consultaProtocolo"
+      style="display:none;"
+    >
+
+      <p>
+        Digite seu protocolo para consultar
+        o andamento da sua solicitação.
+      </p>
+
+
+      <div class="atendimento-campo">
+
+        <label for="numeroProtocolo">
+          Número do protocolo
+        </label>
+
+        <input
+          type="text"
+          id="numeroProtocolo"
+          placeholder="ATD-2026-000001"
+        >
+
+      </div>
+
+
+      <button
+        type="button"
+        class="atendimento-enviar"
+        id="botaoConsultar"
+      >
+        CONSULTAR PROTOCOLO →
+      </button>
+
+
+      <button
+        type="button"
+        class="atendimento-voltar"
+        id="voltarAtendimento"
+      >
+        ← Voltar
+      </button>
+
+    </div>
+
+
+    <div
+      id="resultadoProtocolo"
+      style="display:none;"
+    ></div>
+
+  </div>
+
 </div>
-<section class="grid" id="grid">
-<article class="church-card" data-name="parque são miguel - sede">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">SEDE · REGIONAL 01 — SIQUÉM</div>
-<h2>PARQUE SÃO MIGUEL</h2>
-<p>RUA ANTONIO BITTENCOURT, 684 - JARDIM DOS PIMENTAS - PARQUE SÃO MIGUEL<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20ANTONIO%20BITTENCOURT%2C%20684%20-%20JARDIM%20DOS%20PIMENTAS%20-%20PARQUE%20S%C3%83O%20MIGUEL%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article>
 
-<article class="church-card" data-name="jd. alice">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. ALICE</h2>
-<p>RUA JOÃO MORETTI, 233 - JD MARIA ALICE<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20JO%C3%83O%20MORETTI%2C%20233%20-%20JD%20MARIA%20ALICE%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. alzira">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. ALZIRA</h2>
-<p>RUA MARIA EMILIA, 55 - VILA ALZIRA<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20MARIA%20EMILIA%2C%2055%20-%20VILA%20ALZIRA%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. angélica">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. ANGÉLICA</h2>
-<p>RUA CRUZ DAS GRAÇAS, 161 - JD ANGÉLICA<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20CRUZ%20DAS%20GRA%C3%87AS%2C%20161%20-%20JD%20ANG%C3%89LICA%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. arapongas">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. ARAPONGAS</h2>
-<p>RUA LAGOA DA CANOA, 205 - JD ARAPONGAS<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20LAGOA%20DA%20CANOA%2C%20205%20-%20JD%20ARAPONGAS%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. cumbica">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. CUMBICA</h2>
-<p>RUA PIRENÓPOLIS, 261 - JARDIM CUMBICA<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20PIREN%C3%93POLIS%2C%20261%20-%20JARDIM%20CUMBICA%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. das olivas">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. DAS OLIVAS</h2>
-<p>RUA DO COMÉRCIO, 191 - JD DAS OLIVAS<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20DO%20COM%C3%89RCIO%2C%20191%20-%20JD%20DAS%20OLIVAS%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. dinamarca">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. DINAMARCA</h2>
-<p>RUA MIGUEL ALVES, 249 - JD DINAMARCA<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20MIGUEL%20ALVES%2C%20249%20-%20JD%20DINAMARCA%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. dona luiza">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. DONA LUIZA</h2>
-<p>AV. ROTEIRO, 166 - PIMENTAS<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=AV.%20ROTEIRO%2C%20166%20-%20PIMENTAS%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. guilhermino">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. GUILHERMINO</h2>
-<p>RUA NELSON MANDELA, 11 - JD GUILHERMINO<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20NELSON%20MANDELA%2C%2011%20-%20JD%20GUILHERMINO%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. guaracy">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. GUARACY</h2>
-<p>AV. ESTRADA DO ITAIM, 2525 - JD IZILDINHA<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=AV.%20ESTRADA%20DO%20ITAIM%2C%202525%20-%20JD%20IZILDINHA%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. jacy">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. JACY</h2>
-<p>RUA ITAPURAS, 227 - JD JACY<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20ITAPURAS%2C%20227%20-%20JD%20JACY%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. leblon">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. LEBLON</h2>
-<p>RUA CANAPI, 175 - JD LEBLON<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20CANAPI%2C%20175%20-%20JD%20LEBLON%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. marcos freire">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. MARCOS FREIRE</h2>
-<p>AVENIDA MARGINAL SUL, 344 - MARCOS FREIRE<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=AVENIDA%20MARGINAL%20SUL%2C%20344%20-%20MARCOS%20FREIRE%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. maria do carmo">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. MARIA DO CARMO</h2>
-<p>RUA PÉROLA NEGRA, 168 - JD. TUPINAMBÁ<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20P%C3%89ROLA%20NEGRA%2C%20168%20-%20JD.%20TUPINAMB%C3%81%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. monte alegre">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. MONTE ALEGRE</h2>
-<p>RUA JUPIATA, 212 - JD MONTE ALEGRE<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20JUPIATA%2C%20212%20-%20JD%20MONTE%20ALEGRE%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. normandia 1">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. NORMANDIA 1</h2>
-<p>AVENIDA MACEIO, 481 - JD NORMANDIA<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=AVENIDA%20MACEIO%2C%20481%20-%20JD%20NORMANDIA%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. nova cidade">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. NOVA CIDADE</h2>
-<p>RUA SETE Nº 80 - JARDIM NOVA CIDADE<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20SETE%20N%C2%BA%2080%20-%20JARDIM%20NOVA%20CIDADE%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. nova cumbica">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. NOVA CUMBICA</h2>
-<p>R. DAMALAU, 68 - VILA NOVA CUMBICA<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=R.%20DAMALAU%2C%2068%20-%20VILA%20NOVA%20CUMBICA%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. ottawa">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. OTTAWA</h2>
-<p>RUA WAMBES, 92 - JD OTTAWA<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20WAMBES%2C%2092%20-%20JD%20OTTAWA%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. paraíso">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. PARAÍSO</h2>
-<p>RUA SANTA BÁRBARA, 177 - VILA PARAÍSO<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20SANTA%20B%C3%81RBARA%2C%20177%20-%20VILA%20PARA%C3%8DSO%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. paulista">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. PAULISTA</h2>
-<p>RUA POXEREU, 508 - JD ARUJA<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20POXEREU%2C%20508%20-%20JD%20ARUJA%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. piratininga">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. PIRATININGA</h2>
-<p>RUA HAROLDO DE CAMPOS, 90 - PQ. PIRATININGA<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20HAROLDO%20DE%20CAMPOS%2C%2090%20-%20PQ.%20PIRATININGA%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. por do sol">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. POR DO SOL</h2>
-<p>RUA LAGEADO, 297 - JD. JACY<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20LAGEADO%2C%20297%20-%20JD.%20JACY%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. santa maria">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. SANTA MARIA</h2>
-<p>RUA SCHOROEDER, 91 - JD. SANTA MARIA<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20SCHOROEDER%2C%2091%20-%20JD.%20SANTA%20MARIA%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. santo afonso">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. SANTO AFONSO</h2>
-<p>RUA MORENO, 177 - JD. SANTO AFONSO<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20MORENO%2C%20177%20-%20JD.%20SANTO%20AFONSO%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. são francisco">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. SÃO FRANCISCO</h2>
-<p>AV. NORTE SUL, 415 - JD. SÃO FRANCISCO<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=AV.%20NORTE%20SUL%2C%20415%20-%20JD.%20S%C3%83O%20FRANCISCO%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. são gabriel">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. SÃO GABRIEL</h2>
-<p>RUA SÃO FRANCISCO DO SUL, 11 - JD SÃO GABRIEL<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20S%C3%83O%20FRANCISCO%20DO%20SUL%2C%2011%20-%20JD%20S%C3%83O%20GABRIEL%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. terra boa">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. TERRA BOA</h2>
-<p>RUA MUNHOZ, 444 - JD TERRA BOA<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20MUNHOZ%2C%20444%20-%20JD%20TERRA%20BOA%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. tijuco preto">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. TIJUCO PRETO</h2>
-<p>RUA TAQUARITINGA DO NORTE, 375 - JD TIJUCO PRETO<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20TAQUARITINGA%20DO%20NORTE%2C%20375%20-%20JD%20TIJUCO%20PRETO%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="jd. vermelhão">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>JD. VERMELHÃO</h2>
-<p>RUA DA PÁTRIA, 14 - JD VERMELHÃO<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20DA%20P%C3%81TRIA%2C%2014%20-%20JD%20VERMELH%C3%83O%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="pq. brasília">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>PQ. BRASÍLIA</h2>
-<p>RUA SÃO JOSÉ DA LAJE, 964 - PQ ALVORADA<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20S%C3%83O%20JOS%C3%89%20DA%20LAJE%2C%20964%20-%20PQ%20ALVORADA%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="pq. estela">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>PQ. ESTELA</h2>
-<p>RUA ESTRADA DO MOINHO VELHO, 99 - PQ ESTELA<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20ESTRADA%20DO%20MOINHO%20VELHO%2C%2099%20-%20PQ%20ESTELA%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="pq. jurema">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>PQ. JUREMA</h2>
-<p>RUA CAPIBARIBE, 206 - PQ. JUREMA<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20CAPIBARIBE%2C%20206%20-%20PQ.%20JUREMA%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="vila any">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>VILA ANY</h2>
-<p>RUA PASTOR ORIAS XAVIER DE MENDONÇA, 97 - VILA ANY<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20PASTOR%20ORIAS%20XAVIER%20DE%20MENDON%C3%87A%2C%2097%20-%20VILA%20ANY%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="vila isabel">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>VILA ISABEL</h2>
-<p>RUA UM, 519 - VILA ISABEL<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20UM%2C%20519%20-%20VILA%20ISABEL%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article><article class="church-card" data-name="vila real">
-<div class="church-icon">⌖</div>
-<div class="church-body">
-<div class="count-label">CONGREGAÇÃO</div>
-<h2>VILA REAL</h2>
-<p>RUA BÁLSAMO, 149 - PARQUE MARIA HELENA<br><strong>Guarulhos — SP</strong></p>
-<a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RUA%20B%C3%81LSAMO%2C%20149%20-%20PARQUE%20MARIA%20HELENA%2C%20Guarulhos%20-%20SP" target="_blank" rel="noopener">COMO CHEGAR →</a>
-</div></article>
-<div class="empty" id="empty"><strong>Nenhuma congregação encontrada.</strong><br>Confira o nome digitado e tente novamente.</div>
-</section>
-</main>
-<footer>
+
+<!-- =========================
+     CABEÇALHO
+========================= -->
+
+<header>
+
+<div class="nav">
+
+<a
+  class="brand"
+  href="index.html"
+>
+
+<img
+  src="logo.png"
+  onerror="this.style.display='none'"
+>
+
+<span>
 
 ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM
-· SETOR 49 - JARDIM DOS PIMENTAS
-
-<br>
 
 <small>
-PORTAL AD BELÉM - SETOR 49
+SETOR 49 - JARDIM DOS PIMENTAS
 </small>
 
+</span>
+
+</a>
+
+
+<nav>
+
+<a href="index.html">
+Início
+</a>
+
+<a
+  href="area-restrita.html"
+  class="area-restrita-link"
+>
+🔒 Área Restrita
+</a>
+
+</nav>
+
+
+<button
+  class="menu-toggle"
+  id="menuToggle"
+  aria-label="Abrir menu"
+  aria-expanded="false"
+>
+☰
+</button>
+
+
+<div
+  class="mobile-menu"
+  id="mobileMenu"
+>
+
+<a href="index.html">
+Início
+</a>
+
+<a
+  href="area-restrita.html"
+  class="area-restrita-link"
+>
+🔒 Área Restrita
+</a>
+
+</div>
+
+</div>
+
+</header>
+
+<!-- =========================
+     BANNER
+========================= -->
+
+<section class="hero">
+
+  <div class="hero-inner">
+
+    <div class="eyebrow">
+      PORTAL AD BELÉM - SETOR 49
+    </div>
+
+    <h1>
+      Nossas Congregações
+    </h1>
+
+    <p>
+      Consulte os endereços das congregações do Setor 49 e abra diretamente a rota no Google Maps.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CONTEÚDO
+========================= -->
+
+<main>
+
+  <div class="tools">
+
+    <input
+      id="search"
+      type="search"
+      placeholder="🔎 Pesquisar pelo nome ou endereço..."
+      aria-label="Pesquisar congregação ou endereço"
+    >
+
+
+    <select
+      id="regionalFilter"
+      aria-label="Filtrar por regional"
+    >
+
+      <option value="">
+        Todas as regionais
+      </option>
+
+      <option value="regional-01">
+        Regional 01 — Siquém
+      </option>
+
+      <option value="regional-02">
+        Regional 02 — Betel
+      </option>
+
+      <option value="regional-03">
+        Regional 03 — Hebron
+      </option>
+
+      <option value="regional-04">
+        Regional 04 — Moriá
+      </option>
+
+    </select>
+
+
+    <div
+      class="count"
+      id="count"
+    >
+      37 congregações
+    </div>
+
+  </div>
+
+
+  <section
+    class="grid"
+    id="grid"
+  >
+
+
+    <!-- =========================
+         PARQUE SÃO MIGUEL
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="parque são miguel - sede"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          SEDE · REGIONAL 01 — SIQUÉM
+        </div>
+
+        <h2>
+          PARQUE SÃO MIGUEL
+        </h2>
+
+        <p>
+          RUA ANTONIO BITTENCOURT, 684 - JARDIM DOS PIMENTAS - PARQUE SÃO MIGUEL
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20ANTONIO%20BITTENCOURT%2C%20684%20-%20JARDIM%20DOS%20PIMENTAS%20-%20PARQUE%20S%C3%83O%20MIGUEL%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. ALICE
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. alice"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. ALICE
+        </h2>
+
+        <p>
+          RUA JOÃO MORETTI, 233 - JD MARIA ALICE
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20JO%C3%83O%20MORETTI%2C%20233%20-%20JD%20MARIA%20ALICE%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. ALZIRA
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. alzira"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. ALZIRA
+        </h2>
+
+        <p>
+          RUA MARIA EMILIA, 55 - VILA ALZIRA
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20MARIA%20EMILIA%2C%2055%20-%20VILA%20ALZIRA%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. ANGÉLICA
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. angélica"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. ANGÉLICA
+        </h2>
+
+        <p>
+          RUA CRUZ DAS GRAÇAS, 161 - JD ANGÉLICA
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20CRUZ%20DAS%20GRA%C3%87AS%2C%20161%20-%20JD%20ANG%C3%89LICA%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. ARAPONGAS
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. arapongas"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. ARAPONGAS
+        </h2>
+
+        <p>
+          RUA LAGOA DA CANOA, 205 - JD ARAPONGAS
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20LAGOA%20DA%20CANOA%2C%20205%20-%20JD%20ARAPONGAS%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. CUMBICA
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. cumbica"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. CUMBICA
+        </h2>
+
+        <p>
+          RUA PIRENÓPOLIS, 261 - JARDIM CUMBICA
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20PIREN%C3%93POLIS%2C%20261%20-%20JARDIM%20CUMBICA%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. DAS OLIVAS
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. das olivas"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. DAS OLIVAS
+        </h2>
+
+        <p>
+          RUA DO COMÉRCIO, 191 - JD DAS OLIVAS
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20DO%20COM%C3%89RCIO%2C%20191%20-%20JD%20DAS%20OLIVAS%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. DINAMARCA
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. dinamarca"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. DINAMARCA
+        </h2>
+
+        <p>
+          RUA MIGUEL ALVES, 249 - JD DINAMARCA
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20MIGUEL%20ALVES%2C%20249%20-%20JD%20DINAMARCA%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. DONA LUIZA
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. dona luiza"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. DONA LUIZA
+        </h2>
+
+        <p>
+          AV. ROTEIRO, 166 - PIMENTAS
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=AV.%20ROTEIRO%2C%20166%20-%20PIMENTAS%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. GUILHERMINO
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. guilhermino"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. GUILHERMINO
+        </h2>
+
+        <p>
+          RUA NELSON MANDELA, 11 - JD GUILHERMINO
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20NELSON%20MANDELA%2C%2011%20-%20JD%20GUILHERMINO%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. GUARACY
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. guaracy"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. GUARACY
+        </h2>
+
+        <p>
+          AV. ESTRADA DO ITAIM, 2525 - JD IZILDINHA
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=AV.%20ESTRADA%20DO%20ITAIM%2C%202525%20-%20JD%20IZILDINHA%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. JACY
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. jacy"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. JACY
+        </h2>
+
+        <p>
+          RUA ITAPURAS, 227 - JD JACY
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20ITAPURAS%2C%20227%20-%20JD%20JACY%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. LEBLON
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. leblon"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. LEBLON
+        </h2>
+
+        <p>
+          RUA CANAPI, 175 - JD LEBLON
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20CANAPI%2C%20175%20-%20JD%20LEBLON%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. MARCOS FREIRE
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. marcos freire"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. MARCOS FREIRE
+        </h2>
+
+        <p>
+          AVENIDA MARGINAL SUL, 344 - MARCOS FREIRE
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=AVENIDA%20MARGINAL%20SUL%2C%20344%20-%20MARCOS%20FREIRE%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. MARIA DO CARMO
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. maria do carmo"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. MARIA DO CARMO
+        </h2>
+
+        <p>
+          RUA PÉROLA NEGRA, 168 - JD. TUPINAMBÁ
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20P%C3%89ROLA%20NEGRA%2C%20168%20-%20JD.%20TUPINAMB%C3%81%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. MONTE ALEGRE
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. monte alegre"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. MONTE ALEGRE
+        </h2>
+
+        <p>
+          RUA JUPIATA, 212 - JD MONTE ALEGRE
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20JUPIATA%2C%20212%20-%20JD%20MONTE%20ALEGRE%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. NORMANDIA 1
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. normandia 1"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. NORMANDIA 1
+        </h2>
+
+        <p>
+          AVENIDA MACEIO, 481 - JD NORMANDIA
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=AVENIDA%20MACEIO%2C%20481%20-%20JD%20NORMANDIA%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. NOVA CIDADE
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. nova cidade"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. NOVA CIDADE
+        </h2>
+
+        <p>
+          RUA SETE Nº 80 - JARDIM NOVA CIDADE
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20SETE%20N%C2%BA%2080%20-%20JARDIM%20NOVA%20CIDADE%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. NOVA CUMBICA
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. nova cumbica"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. NOVA CUMBICA
+        </h2>
+
+        <p>
+          R. DAMALAU, 68 - VILA NOVA CUMBICA
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=R.%20DAMALAU%2C%2068%20-%20VILA%20NOVA%20CUMBICA%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. OTTAWA
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. ottawa"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. OTTAWA
+        </h2>
+
+        <p>
+          RUA WAMBES, 92 - JD OTTAWA
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20WAMBES%2C%2092%20-%20JD%20OTTAWA%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. PARAÍSO
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. paraíso"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. PARAÍSO
+        </h2>
+
+        <p>
+          RUA SANTA BÁRBARA, 177 - VILA PARAÍSO
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20SANTA%20B%C3%81RBARA%2C%20177%20-%20VILA%20PARA%C3%8DSO%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. PAULISTA
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. paulista"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. PAULISTA
+        </h2>
+
+        <p>
+          RUA POXEREU, 508 - JD ARUJA
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20POXEREU%2C%20508%20-%20JD%20ARUJA%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. PIRATININGA
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. piratininga"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. PIRATININGA
+        </h2>
+
+        <p>
+          RUA HAROLDO DE CAMPOS, 90 - PQ. PIRATININGA
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20HAROLDO%20DE%20CAMPOS%2C%2090%20-%20PQ.%20PIRATININGA%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. POR DO SOL
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. por do sol"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. POR DO SOL
+        </h2>
+
+        <p>
+          RUA LAGEADO, 297 - JD. JACY
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20LAGEADO%2C%20297%20-%20JD.%20JACY%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. SANTA MARIA
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. santa maria"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. SANTA MARIA
+        </h2>
+
+        <p>
+          RUA SCHOROEDER, 91 - JD. SANTA MARIA
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20SCHOROEDER%2C%2091%20-%20JD.%20SANTA%20MARIA%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. SANTO AFONSO
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. santo afonso"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. SANTO AFONSO
+        </h2>
+
+        <p>
+          RUA MORENO, 177 - JD. SANTO AFONSO
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20MORENO%2C%20177%20-%20JD.%20SANTO%20AFONSO%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. SÃO FRANCISCO
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. são francisco"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. SÃO FRANCISCO
+        </h2>
+
+        <p>
+          AV. NORTE SUL, 415 - JD. SÃO FRANCISCO
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=AV.%20NORTE%20SUL%2C%20415%20-%20JD.%20S%C3%83O%20FRANCISCO%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. SÃO GABRIEL
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. são gabriel"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. SÃO GABRIEL
+        </h2>
+
+        <p>
+          RUA SÃO FRANCISCO DO SUL, 11 - JD SÃO GABRIEL
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20S%C3%83O%20FRANCISCO%20DO%20SUL%2C%2011%20-%20JD%20S%C3%83O%20GABRIEL%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. TERRA BOA
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. terra boa"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. TERRA BOA
+        </h2>
+
+        <p>
+          RUA MUNHOZ, 444 - JD TERRA BOA
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20MUNHOZ%2C%20444%20-%20JD%20TERRA%20BOA%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. TIJUCO PRETO
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. tijuco preto"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. TIJUCO PRETO
+        </h2>
+
+        <p>
+          RUA TAQUARITINGA DO NORTE, 375 - JD TIJUCO PRETO
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20TAQUARITINGA%20DO%20NORTE%2C%20375%20-%20JD%20TIJUCO%20PRETO%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         JD. VERMELHÃO
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="jd. vermelhão"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          JD. VERMELHÃO
+        </h2>
+
+        <p>
+          RUA DA PÁTRIA, 14 - JD VERMELHÃO
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20DA%20P%C3%81TRIA%2C%2014%20-%20JD%20VERMELH%C3%83O%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         PQ. BRASÍLIA
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="pq. brasília"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          PQ. BRASÍLIA
+        </h2>
+
+        <p>
+          RUA SÃO JOSÉ DA LAJE, 964 - PQ ALVORADA
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20S%C3%83O%20JOS%C3%89%20DA%20LAJE%2C%20964%20-%20PQ%20ALVORADA%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         PQ. ESTELA
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="pq. estela"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          PQ. ESTELA
+        </h2>
+
+        <p>
+          RUA ESTRADA DO MOINHO VELHO, 99 - PQ ESTELA
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20ESTRADA%20DO%20MOINHO%20VELHO%2C%2099%20-%20PQ%20ESTELA%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         PQ. JUREMA
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="pq. jurema"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          PQ. JUREMA
+        </h2>
+
+        <p>
+          RUA CAPIBARIBE, 206 - PQ. JUREMA
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20CAPIBARIBE%2C%20206%20-%20PQ.%20JUREMA%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         VILA ANY
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="vila any"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          VILA ANY
+        </h2>
+
+        <p>
+          RUA PASTOR ORIAS XAVIER DE MENDONÇA, 97 - VILA ANY
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20PASTOR%20ORIAS%20XAVIER%20DE%20MENDON%C3%87A%2C%2097%20-%20VILA%20ANY%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         VILA ISABEL
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="vila isabel"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          VILA ISABEL
+        </h2>
+
+        <p>
+          RUA UM, 519 - VILA ISABEL
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20UM%2C%20519%20-%20VILA%20ISABEL%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         VILA REAL
+    ========================== -->
+
+    <article
+      class="church-card"
+      data-name="vila real"
+    >
+
+      <div class="church-icon">
+        ⌖
+      </div>
+
+      <div class="church-body">
+
+        <div class="count-label">
+          CONGREGAÇÃO
+        </div>
+
+        <h2>
+          VILA REAL
+        </h2>
+
+        <p>
+          RUA BÁLSAMO, 149 - PARQUE MARIA HELENA
+          <br>
+          <strong>
+            Guarulhos — SP
+          </strong>
+        </p>
+
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=RUA%20B%C3%81LSAMO%2C%20149%20-%20PARQUE%20MARIA%20HELENA%2C%20Guarulhos%20-%20SP"
+          target="_blank"
+          rel="noopener"
+        >
+          COMO CHEGAR →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- =========================
+         SEM RESULTADOS
+    ========================== -->
+
+    <div
+      class="empty"
+      id="empty"
+    >
+
+      <strong>
+        Nenhuma congregação encontrada.
+      </strong>
+
+      <br>
+
+      Confira o nome digitado e tente novamente.
+
+    </div>
+
+
+  </section>
+
+</main>
+
+
+<!-- =========================
+     RODAPÉ
+========================= -->
+
+<footer>
+
+  ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM
+  · SETOR 49 - JARDIM DOS PIMENTAS
+
+  <br>
+
+  <small>
+    PORTAL AD BELÉM - SETOR 49
+  </small>
+
 </footer>
+
 <script>
+
+/* =====================================================
+   FILTRO DAS CONGREGAÇÕES
+===================================================== */
+
 const input = document.getElementById('search');
 const regionalFilter = document.getElementById('regionalFilter');
-const cards = [...document.querySelectorAll('.church-card')];
 const count = document.getElementById('count');
 const empty = document.getElementById('empty');
 
+const cards = Array.from(
+  document.querySelectorAll('.church-card')
+);
+
+
 const regionais = {
+
   'regional-01': [
     'JD. DINAMARCA',
     'JD. LEBLON',
@@ -423,69 +2871,1030 @@ const regionais = {
     'JD. TIJUCO PRETO',
     'JD. VERMELHÃO'
   ]
+
 };
 
+
 function normalizar(texto) {
+
   return texto
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .toUpperCase()
     .trim();
+
 }
 
+
 function obterRegional(card) {
-  const nome = card.querySelector('h2')?.textContent || '';
-  const nomeNormalizado = normalizar(nome);
+
+  const nome =
+    card.querySelector('h2')?.textContent || '';
+
+  const nomeNormalizado =
+    normalizar(nome);
 
   for (const regional in regionais) {
-    const lista = regionais[regional].map(normalizar);
+
+    const lista =
+      regionais[regional].map(normalizar);
 
     if (lista.includes(nomeNormalizado)) {
       return regional;
     }
+
   }
 
   return '';
+
 }
 
+
 function filter() {
-  const q = normalizar(input.value);
-  const regionalSelecionada = regionalFilter.value;
+
+  const q =
+    normalizar(input.value);
+
+  const regionalSelecionada =
+    regionalFilter.value;
+
   let n = 0;
 
+
   cards.forEach(card => {
-    const texto = normalizar(card.innerText);
-    const regional = obterRegional(card);
+
+    const texto =
+      normalizar(card.innerText);
+
+    const regional =
+      obterRegional(card);
+
 
     const correspondePesquisa =
       !q || texto.includes(q);
 
+
     const correspondeRegional =
-      !regionalSelecionada || regional === regionalSelecionada;
+      !regionalSelecionada ||
+      regional === regionalSelecionada;
+
 
     const mostrar =
-      correspondePesquisa && correspondeRegional;
+      correspondePesquisa &&
+      correspondeRegional;
 
-    card.style.display = mostrar ? 'flex' : 'none';
 
-    if (mostrar) n++;
+    card.style.display =
+      mostrar ? 'flex' : 'none';
+
+
+    if (mostrar) {
+      n++;
+    }
+
   });
 
-  count.textContent = n + (n === 1 ? ' congregação' : ' congregações');
-  empty.style.display = n ? 'none' : 'block';
+
+  count.textContent =
+    n +
+    (n === 1
+      ? ' congregação'
+      : ' congregações');
+
+
+  empty.style.display =
+    n ? 'none' : 'block';
+
 }
 
-input.addEventListener('input', filter);
-regionalFilter.addEventListener('change', filter);
+
+input.addEventListener(
+  'input',
+  filter
+);
+
+regionalFilter.addEventListener(
+  'change',
+  filter
+);
 
 filter();
-</script>
-<script>
-const menuToggle=document.getElementById('menuToggle');
-const mobileMenu=document.getElementById('mobileMenu');
-if(menuToggle&&mobileMenu){
- menuToggle.addEventListener('click',()=>{const open=mobileMenu.classList.toggle('open');menuToggle.setAttribute('aria-expanded',open?'true':'false');menuToggle.textContent=open?'✕':'☰';});
- mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileMenu.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.textContent='☰';}));
+
+
+/* =====================================================
+   MENU MOBILE
+===================================================== */
+
+const menuToggle =
+  document.getElementById('menuToggle');
+
+const mobileMenu =
+  document.getElementById('mobileMenu');
+
+
+if (menuToggle && mobileMenu) {
+
+  menuToggle.addEventListener(
+    'click',
+    () => {
+
+      const open =
+        mobileMenu.classList.toggle('open');
+
+      menuToggle.setAttribute(
+        'aria-expanded',
+        open ? 'true' : 'false'
+      );
+
+      menuToggle.textContent =
+        open ? '✕' : '☰';
+
+    }
+  );
+
+
+  mobileMenu
+    .querySelectorAll('a')
+    .forEach(a => {
+
+      a.addEventListener(
+        'click',
+        () => {
+
+          mobileMenu.classList.remove('open');
+
+          menuToggle.setAttribute(
+            'aria-expanded',
+            'false'
+          );
+
+          menuToggle.textContent =
+            '☰';
+
+        }
+      );
+
+    });
+
 }
+
+
+/* =====================================================
+   ATENDIMENTO
+===================================================== */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+
+
+    const botaoChat =
+      document.getElementById(
+        "atendimentoBotao"
+      );
+
+
+    const chat =
+      document.getElementById(
+        "atendimentoChat"
+      );
+
+
+    const fecharChat =
+      document.getElementById(
+        "atendimentoFechar"
+      );
+
+
+    const opcoes =
+      document.getElementById(
+        "atendimentoOpcoes"
+      );
+
+
+    const formulario =
+      document.getElementById(
+        "formularioAtendimento"
+      );
+
+
+    const consulta =
+      document.getElementById(
+        "consultaProtocolo"
+      );
+
+
+    const resultado =
+      document.getElementById(
+        "resultadoProtocolo"
+      );
+
+
+    const novaSolicitacao =
+      document.getElementById(
+        "novaSolicitacao"
+      );
+
+
+    const consultarProtocolo =
+      document.getElementById(
+        "consultarProtocolo"
+      );
+
+
+    const voltarSolicitacao =
+      document.getElementById(
+        "voltarSolicitacao"
+      );
+
+
+    const voltarAtendimento =
+      document.getElementById(
+        "voltarAtendimento"
+      );
+
+
+    const botaoEnviar =
+      document.getElementById(
+        "atendimentoEnviar"
+      );
+
+
+    const botaoConsultar =
+      document.getElementById(
+        "botaoConsultar"
+      );
+
+
+    const API_ATENDIMENTO =
+      "https://script.google.com/macros/s/AKfycbwJzijPbbP3PSZuTh2rpTpwmYIcBj44pZR2BaXOJwhZOZLGOQkDDPywJTMxy_90LbYb/exec";
+
+
+    /* ABRIR */
+
+    if (botaoChat && chat) {
+
+      botaoChat.addEventListener(
+        "click",
+        function () {
+
+          chat.classList.add(
+            "aberto"
+          );
+
+        }
+      );
+
+    }
+
+
+    /* FECHAR */
+
+    if (fecharChat && chat) {
+
+      fecharChat.addEventListener(
+        "click",
+        function () {
+
+          chat.classList.remove(
+            "aberto"
+          );
+
+        }
+      );
+
+    }
+
+
+    /* MOSTRAR OPÇÕES */
+
+    function mostrarOpcoes() {
+
+      opcoes.style.display =
+        "grid";
+
+      formulario.style.display =
+        "none";
+
+      consulta.style.display =
+        "none";
+
+      resultado.style.display =
+        "none";
+
+      resultado.innerHTML =
+        "";
+
+    }
+
+
+    /* MOSTRAR FORMULÁRIO */
+
+    function mostrarFormulario() {
+
+      opcoes.style.display =
+        "none";
+
+      formulario.style.display =
+        "block";
+
+      consulta.style.display =
+        "none";
+
+      resultado.style.display =
+        "none";
+
+    }
+
+
+    /* MOSTRAR CONSULTA */
+
+    function mostrarConsulta() {
+
+      opcoes.style.display =
+        "none";
+
+      formulario.style.display =
+        "none";
+
+      consulta.style.display =
+        "block";
+
+      resultado.style.display =
+        "none";
+
+    }
+
+
+    novaSolicitacao.addEventListener(
+      "click",
+      mostrarFormulario
+    );
+
+
+    consultarProtocolo.addEventListener(
+      "click",
+      mostrarConsulta
+    );
+
+
+    voltarSolicitacao.addEventListener(
+      "click",
+      mostrarOpcoes
+    );
+
+
+    voltarAtendimento.addEventListener(
+      "click",
+      mostrarOpcoes
+    );
+
+
+    /* =================================================
+       ENVIAR SOLICITAÇÃO
+    ================================================= */
+
+    botaoEnviar.addEventListener(
+      "click",
+      function () {
+
+
+        const nome =
+          document
+            .getElementById(
+              "atendimentoNome"
+            )
+            .value
+            .trim();
+
+
+        const whatsapp =
+          document
+            .getElementById(
+              "atendimentoWhatsapp"
+            )
+            .value
+            .trim();
+
+
+        const tipo =
+          document
+            .getElementById(
+              "atendimentoTipo"
+            )
+            .value;
+
+
+        const assunto =
+          document
+            .getElementById(
+              "atendimentoAssunto"
+            )
+            .value
+            .trim();
+
+
+        const mensagem =
+          document
+            .getElementById(
+              "atendimentoMensagem"
+            )
+            .value
+            .trim();
+
+
+        if (!nome) {
+
+          alert(
+            "Digite seu nome."
+          );
+
+          return;
+
+        }
+
+
+        if (!whatsapp) {
+
+          alert(
+            "Digite seu WhatsApp."
+          );
+
+          return;
+
+        }
+
+
+        if (!tipo) {
+
+          alert(
+            "Selecione o tipo de atendimento."
+          );
+
+          return;
+
+        }
+
+
+        if (!assunto) {
+
+          alert(
+            "Digite o assunto."
+          );
+
+          return;
+
+        }
+
+
+        if (!mensagem) {
+
+          alert(
+            "Digite sua mensagem."
+          );
+
+          return;
+
+        }
+
+
+        const agora =
+          new Date();
+
+
+        const protocolo =
+          "ATD-" +
+          agora.getFullYear() +
+          "-" +
+          String(
+            agora.getTime()
+          ).slice(-6);
+
+
+        botaoEnviar.disabled =
+          true;
+
+
+        botaoEnviar.textContent =
+          "ENVIANDO...";
+
+
+        const iframe =
+          document.createElement(
+            "iframe"
+          );
+
+
+        iframe.name =
+          "atendimento_envio";
+
+
+        iframe.style.display =
+          "none";
+
+
+        document.body.appendChild(
+          iframe
+        );
+
+
+        const form =
+          document.createElement(
+            "form"
+          );
+
+
+        form.method =
+          "POST";
+
+
+        form.action =
+          API_ATENDIMENTO;
+
+
+        form.target =
+          "atendimento_envio";
+
+
+        form.style.display =
+          "none";
+
+
+        function campo(
+          nomeCampo,
+          valor
+        ) {
+
+          const input =
+            document.createElement(
+              "input"
+            );
+
+          input.type =
+            "hidden";
+
+          input.name =
+            nomeCampo;
+
+          input.value =
+            valor;
+
+          form.appendChild(
+            input
+          );
+
+        }
+
+
+        campo(
+          "protocolo",
+          protocolo
+        );
+
+        campo(
+          "nome",
+          nome
+        );
+
+        campo(
+          "whatsapp",
+          whatsapp
+        );
+
+        campo(
+          "tipo",
+          tipo
+        );
+
+        campo(
+          "assunto",
+          assunto
+        );
+
+        campo(
+          "mensagem",
+          mensagem
+        );
+
+
+        document.body.appendChild(
+          form
+        );
+
+
+        form.submit();
+
+
+        setTimeout(
+          function () {
+
+
+            document.querySelector(
+              ".atendimento-corpo"
+            ).innerHTML = `
+
+              <div style="
+                text-align:center;
+                padding:25px 10px;
+              ">
+
+                <div style="
+                  font-size:42px;
+                  margin-bottom:12px;
+                ">
+                  ✅
+                </div>
+
+                <h3 style="
+                  color:#073c66;
+                  margin:0 0 8px;
+                ">
+                  Solicitação enviada!
+                </h3>
+
+                <p style="
+                  color:#667085;
+                  line-height:1.5;
+                ">
+                  Sua solicitação foi registrada
+                  com sucesso.
+                </p>
+
+                <div style="
+                  margin:20px 0;
+                  padding:15px;
+                  background:#eef8fc;
+                  border-radius:12px;
+                ">
+
+                  <small style="
+                    display:block;
+                    color:#667085;
+                    margin-bottom:5px;
+                  ">
+                    Seu protocolo
+                  </small>
+
+                  <strong style="
+                    font-size:22px;
+                    color:#073c66;
+                  ">
+                    ${protocolo}
+                  </strong>
+
+                </div>
+
+                <p style="
+                  color:#667085;
+                  font-size:12px;
+                  margin:0;
+                ">
+                  Guarde este número para
+                  acompanhar sua solicitação.
+                </p>
+
+                <button
+                  type="button"
+                  class="atendimento-voltar"
+                  id="voltarConfirmacao"
+                  style="margin-top:18px;"
+                >
+                  ← Voltar ao Atendimento
+                </button>
+
+              </div>
+
+            `;
+
+
+            document
+              .getElementById(
+                "voltarConfirmacao"
+              )
+              .addEventListener(
+                "click",
+                function () {
+
+                  location.reload();
+
+                }
+              );
+
+
+            form.remove();
+
+            iframe.remove();
+
+
+          },
+          1500
+        );
+
+      }
+    );
+
+
+    /* =================================================
+       CONSULTAR PROTOCOLO
+    ================================================= */
+
+    botaoConsultar.addEventListener(
+      "click",
+      async function () {
+
+
+        const campo =
+          document.getElementById(
+            "numeroProtocolo"
+          );
+
+
+        const protocolo =
+          campo.value
+            .trim()
+            .toUpperCase();
+
+
+        if (!protocolo) {
+
+          alert(
+            "Digite o número do protocolo."
+          );
+
+          campo.focus();
+
+          return;
+
+        }
+
+
+        botaoConsultar.disabled =
+          true;
+
+
+        botaoConsultar.textContent =
+          "CONSULTANDO...";
+
+
+        try {
+
+
+          const resposta =
+            await fetch(
+              API_ATENDIMENTO +
+              "?protocolo=" +
+              encodeURIComponent(
+                protocolo
+              )
+            );
+
+
+          const dados =
+            await resposta.json();
+
+
+          if (
+            !dados.sucesso ||
+            !dados.encontrado
+          ) {
+
+
+            resultado.style.display =
+              "block";
+
+
+            resultado.innerHTML = `
+
+              <div style="
+                margin-top:18px;
+                padding:16px;
+                background:#fff5f5;
+                border-left:4px solid #b51e2a;
+                border-radius:10px;
+              ">
+
+                <strong style="
+                  color:#b51e2a;
+                  display:block;
+                  margin-bottom:5px;
+                ">
+                  Protocolo não encontrado
+                </strong>
+
+                <span style="
+                  color:#667085;
+                  font-size:12px;
+                ">
+                  Verifique o número informado
+                  e tente novamente.
+                </span>
+
+              </div>
+
+            `;
+
+            return;
+
+          }
+
+
+          const status =
+            String(
+              dados.status ||
+              "PENDENTE"
+            )
+            .trim()
+            .toUpperCase();
+
+
+          let corStatus =
+            "#f9c414";
+
+
+          let fundoStatus =
+            "#fff9e5";
+
+
+          if (
+            status === "RESPONDIDO" ||
+            status === "CONCLUÍDO" ||
+            status === "CONCLUIDO" ||
+            status === "FINALIZADO"
+          ) {
+
+            corStatus =
+              "#079447";
+
+            fundoStatus =
+              "#eefaf3";
+
+          }
+
+
+          if (
+            status === "EM ANÁLISE" ||
+            status === "EM ANALISE"
+          ) {
+
+            corStatus =
+              "#159dd1";
+
+            fundoStatus =
+              "#eef8fc";
+
+          }
+
+
+          if (
+            status === "ENCERRADO"
+          ) {
+
+            corStatus =
+              "#b51e2a";
+
+            fundoStatus =
+              "#fff5f5";
+
+          }
+
+
+          let respostaHtml =
+            "";
+
+
+          if (dados.resposta) {
+
+            respostaHtml = `
+
+              <div style="
+                margin-top:15px;
+                padding:15px;
+                background:#eefaf3;
+                border-radius:10px;
+                border-left:4px solid #079447;
+              ">
+
+                <strong style="
+                  color:#079447;
+                  display:block;
+                  margin-bottom:6px;
+                ">
+                  Resposta da Secretaria
+                </strong>
+
+                <span style="
+                  color:#475467;
+                  font-size:12px;
+                  line-height:1.5;
+                ">
+                  ${dados.resposta}
+                </span>
+
+              </div>
+
+            `;
+
+          }
+
+
+          resultado.style.display =
+            "block";
+
+
+          resultado.innerHTML = `
+
+            <div style="
+              margin-top:18px;
+              padding:16px;
+              background:${fundoStatus};
+              border-left:4px solid ${corStatus};
+              border-radius:10px;
+            ">
+
+              <strong style="
+                color:#073c66;
+                display:block;
+                margin-bottom:10px;
+              ">
+                Protocolo: ${dados.protocolo}
+              </strong>
+
+              <div style="
+                font-size:12px;
+                color:#667085;
+                line-height:1.7;
+              ">
+
+                <strong>Status:</strong>
+
+                <span style="
+                  color:${corStatus};
+                  font-weight:900;
+                ">
+                  ${dados.status}
+                </span>
+
+                <br>
+
+                <strong>Assunto:</strong>
+                ${dados.assunto}
+
+              </div>
+
+              ${respostaHtml}
+
+            </div>
+
+          `;
+
+
+        } catch (erro) {
+
+
+          resultado.style.display =
+            "block";
+
+
+          resultado.innerHTML = `
+
+            <div style="
+              margin-top:18px;
+              padding:16px;
+              background:#fff5f5;
+              border-left:4px solid #b51e2a;
+              border-radius:10px;
+            ">
+
+              <strong style="
+                color:#b51e2a;
+              ">
+                Não foi possível consultar.
+              </strong>
+
+            </div>
+
+          `;
+
+
+        } finally {
+
+
+          botaoConsultar.disabled =
+            false;
+
+
+          botaoConsultar.textContent =
+            "CONSULTAR PROTOCOLO →";
+
+        }
+
+      }
+    );
+
+  }
+
+);
+
 </script>
-</body></html>
+</body>
+</html>
