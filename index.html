@@ -1380,10 +1380,33 @@ document.addEventListener("DOMContentLoaded", function () {
               acompanhar sua solicitação.
             </p>
 
+          <button
+  type="button"
+  id="voltarConfirmacao"
+  class="atendimento-voltar"
+  style="margin-top:18px;"
+>
+  ← Voltar ao Atendimento
+</button>
+
           </div>
 
         `;
+const voltarConfirmacao =
+  document.getElementById("voltarConfirmacao");
 
+if (voltarConfirmacao) {
+
+  voltarConfirmacao.addEventListener(
+    "click",
+    function () {
+
+      mostrarOpcoes();
+
+    }
+  );
+
+}
 
         form.remove();
         iframe.remove();
@@ -1507,11 +1530,17 @@ document.addEventListener("DOMContentLoaded", function () {
           "#fff9e5";
 
 
-        if (
-          status === "RESPONDIDO" ||
-          status === "CONCLUÍDO" ||
-          status === "CONCLUIDO"
-        ) {
+       if (
+  status === "RESPONDIDO" ||
+  status === "CONCLUÍDO" ||
+  status === "CONCLUIDO" ||
+  status === "FINALIZADO"
+) {
+
+  corStatus = "#079447";
+  fundoStatus = "#eefaf3";
+
+}
 
           corStatus =
             "#079447";
