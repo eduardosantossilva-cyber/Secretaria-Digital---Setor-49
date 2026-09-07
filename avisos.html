@@ -4,48 +4,256 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Avisos — Setor 49</title>
+
 <style>
-:root{--blue:#159dd1;--green:#079447;--gold:#f9c414;--orange:#f47a20;--red:#b51e2a;--ink:#252525;--muted:#667085;--bg:#f6f8fa;--white:#fff}
-*{box-sizing:border-box}
-body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
-header{position:relative;background:#fff;border-bottom:1px solid #e8edf2;position:sticky;top:0;z-index:20}
-.nav{max-width:1180px;margin:auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--blue);font-weight:850}
-.brand img{width:48px;height:48px;object-fit:contain}.brand small{display:block;color:#667085;font-weight:650;font-size:11px}
-nav{display:flex;flex-wrap:wrap;gap:16px}nav a{color:#344054;text-decoration:none;font-weight:700;font-size:14px}nav a:hover{color:var(--green)}
-.hero{background:linear-gradient(135deg,#159dd1,#079447);color:#fff;padding:58px 22px}
-.hero-inner{max-width:1180px;margin:auto}.eyebrow{font-size:13px;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;opacity:.9}
-.hero h1{font-size:clamp(34px,5vw,54px);margin:8px 0 10px}.hero p{font-size:18px;max-width:760px;opacity:.96}
-main{max-width:1180px;margin:auto;padding:36px 22px 70px}.section-title{margin:0 0 18px;font-size:28px}.muted{color:var(--muted)}
-.notice{background:#fff;border:1px solid #e9edf1;border-left:6px solid var(--blue);border-radius:18px;padding:22px;margin:16px 0;box-shadow:0 8px 24px rgba(16,24,40,.05)}
-.notice.att{border-left-color:var(--gold)}.notice.urg{border-left-color:var(--red)}
-.notice h2{margin:0 0 8px;font-size:22px}.notice h3{margin:0 0 8px;font-size:18px}
-.tag{display:inline-block;margin:5px 0 12px;padding:5px 9px;border-radius:999px;background:#eef8fc;color:#0879a5;font-size:11px;font-weight:850;text-transform:uppercase}
-.notice p{line-height:1.55}.notice ul{line-height:1.7;padding-left:20px}
-.notice-img{display:block;width:100%;max-width:720px;margin:18px auto 4px;border-radius:14px;border:1px solid #e5e7eb;box-shadow:0 6px 18px rgba(16,24,40,.08)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.grid .notice{margin:0}
+:root{
+  --blue:#159dd1;
+  --green:#079447;
+  --gold:#f9c414;
+  --orange:#f47a20;
+  --red:#b51e2a;
+  --navy:#073c66;
+  --ink:#252525;
+  --muted:#667085;
+  --bg:#f6f8fa;
+  --white:#fff;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+}
+
+header{
+  position:relative;
+  background:#fff;
+  border-bottom:1px solid #e8edf2;
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+
+.nav{
+  max-width:1180px;
+  margin:auto;
+  padding:12px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  color:var(--blue);
+  font-weight:850;
+}
+
+.brand img{
+  width:48px;
+  height:48px;
+  object-fit:contain;
+}
+
+.brand small{
+  display:block;
+  color:#667085;
+  font-weight:650;
+  font-size:11px;
+}
+
+nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px;
+}
+
+nav a{
+  color:#344054;
+  text-decoration:none;
+  font-weight:700;
+  font-size:14px;
+}
+
+nav a:hover{
+  color:var(--green);
+}
+
+.hero{
+  background:linear-gradient(135deg,#159dd1,#079447);
+  color:#fff;
+  padding:58px 22px;
+}
+
+.hero-inner{
+  max-width:1180px;
+  margin:auto;
+}
+
+.eyebrow{
+  font-size:13px;
+  font-weight:850;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  opacity:.9;
+}
+
+.hero h1{
+  font-size:clamp(34px,5vw,54px);
+  margin:8px 0 10px;
+}
+
+.hero p{
+  font-size:18px;
+  max-width:760px;
+}
+
+main{
+  max-width:1180px;
+  margin:auto;
+  padding:36px 22px 70px;
+}
+
+.section-title{
+  margin:0 0 18px;
+  font-size:28px;
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.notice{
+  background:#fff;
+  border:1px solid #e9edf1;
+  border-left:6px solid var(--blue);
+  border-radius:18px;
+  padding:22px;
+  margin:16px 0;
+  box-shadow:0 8px 24px rgba(16,24,40,.05);
+}
+
+.notice.att{
+  border-left-color:var(--gold);
+}
+
+.notice.urg{
+  border-left-color:var(--red);
+}
+
+.notice h2{
+  margin:0 0 8px;
+  font-size:22px;
+}
+
+.notice h3{
+  margin:0 0 8px;
+  font-size:18px;
+}
+
+.tag{
+  display:inline-block;
+  margin:5px 0 12px;
+  padding:5px 9px;
+  border-radius:999px;
+  background:#eef8fc;
+  color:#0879a5;
+  font-size:11px;
+  font-weight:850;
+  text-transform:uppercase;
+}
+
+.notice p{
+  line-height:1.55;
+}
+
+.notice ul{
+  line-height:1.7;
+  padding-left:20px;
+}
+
+.notice-img{
+  display:block;
+  width:100%;
+  max-width:100%;
+  height:auto;
+  max-height:600px;
+  object-fit:contain;
+  margin:20px auto 0;
+  border-radius:12px;
+  border:1px solid #dce8ef;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.grid .notice{
+  margin:0;
+}
+
+/* RODAPÉ */
+
 footer{
-  background:#20262b;
-  color:#d0d5dd;
-  padding:30px 22px;
+  background:#fff;
+  border-top:1px solid #e5e5e5;
+  padding:18px 20px;
+  color:#667085;
+  font-size:12px;
   text-align:center;
-  font-size:13px
 }
 
-@media(max-width:800px){.grid{grid-template-columns:1fr}}
-@media(max-width:620px){.nav{padding:10px 15px}.brand img{width:42px;height:42px}nav{display:none}.hero{padding:43px 18px}main{padding:26px 16px 55px}}
-
-/* Menu mobile */
-.menu-toggle{display:none;border:0;background:#eef8fc;color:var(--navy);width:42px;height:42px;border-radius:11px;font-size:22px;cursor:pointer}
-.mobile-menu{display:none}
-@media(max-width:650px){
-  .menu-toggle{display:grid;place-items:center}
-  .mobile-menu{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid #e8edf2;box-shadow:0 12px 24px rgba(16,24,40,.10);padding:10px 15px}
-  .mobile-menu.open{display:grid}
-  .mobile-menu a{padding:12px 10px;color:#344054;text-decoration:none;font-weight:800;font-size:14px;border-radius:9px}
-  .mobile-menu a:hover{background:#f4f9fb;color:var(--green)}
+.footer-content{
+  max-width:1180px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
 }
-/* Avisos dinâmicos da Secretaria */
+
+.footer-content strong{
+  color:#344054;
+  font-weight:800;
+}
+
+.footer-content span{
+  color:#667085;
+}
+
+
+/* MENU MOBILE */
+
+.menu-toggle{
+  display:none;
+  border:0;
+  background:#eef8fc;
+  color:var(--navy);
+  width:42px;
+  height:42px;
+  border-radius:11px;
+  font-size:22px;
+  cursor:pointer;
+}
+
+.mobile-menu{
+  display:none;
+}
+
+
+/* AVISOS DINÂMICOS */
+
 .avisos-secao{
   margin-top:36px;
 }
@@ -80,27 +288,9 @@ footer{
   grid-column:1 / -1;
 }
 
-@media(max-width:800px){
-  #avisos-dinamicos{
-    grid-template-columns:1fr;
-  }
 
-  #avisos-dinamicos .notice:only-child{
-    grid-column:auto;
-  }
-}
+/* CORES DOS AVISOS */
 
-.notice-img{
-  display:block;
-  width:100%;
-  max-width:100%;
-  height:auto;
-  max-height:600px;
-  object-fit:contain;
-  margin:20px auto 0;
-  border-radius:12px;
-  border:1px solid #dce8ef;
-}
 .notice.aviso-urgente{
   border-left:6px solid #d62828;
   border-color:#d62828;
@@ -144,7 +334,7 @@ footer{
   background:#079447;
   color:#ffffff;
 }
-</style>
+
 
 /* =========================
    CHAT DE ATENDIMENTO
@@ -306,7 +496,89 @@ footer{
   line-height:1.5;
 }
 
-@media(max-width:500px){
+
+/* RESPONSIVO */
+
+@media(max-width:800px){
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  #avisos-dinamicos{
+    grid-template-columns:1fr;
+  }
+
+  #avisos-dinamicos .notice:only-child{
+    grid-column:auto;
+  }
+}
+
+@media(max-width:650px){
+
+  .nav{
+    padding:10px 15px;
+  }
+
+  .brand img{
+    width:42px;
+    height:42px;
+  }
+
+  nav{
+    display:none;
+  }
+
+  .menu-toggle{
+    display:grid;
+    place-items:center;
+  }
+
+  .mobile-menu{
+    position:absolute;
+    left:0;
+    right:0;
+    top:100%;
+    background:#fff;
+    border-bottom:1px solid #e8edf2;
+    box-shadow:0 12px 24px rgba(16,24,40,.10);
+    padding:10px 15px;
+  }
+
+  .mobile-menu.open{
+    display:grid;
+  }
+
+  .mobile-menu a{
+    padding:12px 10px;
+    color:#344054;
+    text-decoration:none;
+    font-weight:800;
+    font-size:14px;
+    border-radius:9px;
+  }
+
+  .mobile-menu a:hover{
+    background:#f4f9fb;
+    color:var(--green);
+  }
+
+  .hero{
+    padding:43px 18px;
+  }
+
+  main{
+    padding:26px 16px 55px;
+  }
+
+  .footer-content{
+    flex-direction:column;
+    gap:5px;
+  }
+
+  footer{
+    padding:16px 15px;
+  }
 
   .chat-btn{
     right:15px;
@@ -319,207 +591,939 @@ footer{
     bottom:75px;
     width:calc(100vw - 30px);
   }
-
 }
-  
+</style>
 </head>
+
 <body>
-<header><div class="nav">
-<a class="brand" href="index.html"><img src="logo.png" onerror="this.style.display='none'"><span>ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM<small>SETOR 49 - JARDIM DOS PIMENTAS</small></span></a>
-<nav><a href="index.html">Início</a><button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="mobile-menu" id="mobileMenu"><a href="index.html">Início</a></div>
-</div></header>
 
-<section class="hero"><div class="hero-inner">
-<div class="eyebrow">PORTAL AD BELÉM - SETOR 49</div>
-<h1>Avisos</h1>
-<p>Comunicados e informações importantes da Secretaria.</p>
-</div></section>
+<!-- CHAT DE ATENDIMENTO -->
 
-<main>
-<div class="notice">
-<h2>📅 Cronograma da Semana</h2>
-<span class="tag">Aviso da Semana · 07/09 a 13/09/2026</span>
-<p><strong>Destaques da programação:</strong></p>
-<ul>
-<li><strong>08/09 · 19h00:</strong> Culto de Ensino na sede — Cooperação: Grupo 2.</li>
-<li><strong>09/09 · 14h00:</strong> Círculo de Oração na sede.</li>
-<li><strong>10/09 · 19h00:</strong> Quinta da Conquista na sede.</li>
-<li><strong>13/09 · 08h30:</strong> E.B.D. na Sede.</strong></li>
-<li><strong>13/09 · 09h00:</strong> Santa Ceia Setorial.</li>
-</ul>
-</div>
-<section class="avisos-secao">
+<button class="chat-btn" onclick="abrirChat()">
+  💬 Atendimento
+</button>
 
-  <div class="avisos-secao-header">
-    <h2>📢 Avisos da Secretaria</h2>
-    <p>Comunicados e informações atualizadas do Setor 49.</p>
+<div class="chat-box" id="chatBox">
+
+  <div class="chat-header">
+    <strong>💬 Central de Atendimento</strong>
+    <button class="chat-fechar" onclick="fecharChat()">×</button>
   </div>
 
-  <div id="avisos-dinamicos">
-    <div class="notice">
-      <h3>📢 Carregando avisos...</h3>
-      <p>Aguarde enquanto os avisos da Secretaria são carregados.</p>
+  <div class="chat-body">
+
+    <div class="chat-opcoes" id="chatOpcoes">
+
+      <button class="chat-opcao" onclick="mostrarSolicitacao()">
+        💬 Fazer uma solicitação
+      </button>
+
+      <button class="chat-opcao" onclick="mostrarConsulta()">
+        🔎 Consultar protocolo
+      </button>
+
     </div>
+
+    <div class="chat-form" id="formSolicitacao">
+
+      <form id="atendimentoForm">
+
+        <label for="atNome">Nome</label>
+        <input type="text" id="atNome" required>
+
+        <label for="atWhatsapp">WhatsApp</label>
+        <input type="text" id="atWhatsapp" required>
+
+        <label for="atTipo">Tipo</label>
+
+        <select id="atTipo" required>
+          <option value="">Selecione</option>
+          <option>Dúvida</option>
+          <option>Solicitação</option>
+          <option>Informação</option>
+          <option>Outro</option>
+        </select>
+
+        <label for="atAssunto">Assunto</label>
+        <input type="text" id="atAssunto" required>
+
+        <label for="atMensagem">Mensagem</label>
+        <textarea id="atMensagem" required></textarea>
+
+        <button type="submit" class="chat-enviar">
+          ENVIAR SOLICITAÇÃO
+        </button>
+
+      </form>
+
+      <div class="chat-resultado" id="resultadoSolicitacao"></div>
+
+      <span class="chat-voltar" onclick="voltarOpcoes()">
+        ← Voltar
+      </span>
+
+    </div>
+
+    <div class="chat-form" id="formConsulta">
+
+      <label for="consultaProtocolo">
+        Digite seu protocolo
+      </label>
+
+      <input
+        type="text"
+        id="consultaProtocolo"
+        placeholder="Ex.: ATD-2026-0001"
+      >
+
+      <button class="chat-enviar" onclick="consultarProtocolo()">
+        CONSULTAR
+      </button>
+
+      <div class="chat-resultado" id="resultadoConsulta"></div>
+
+      <span class="chat-voltar" onclick="voltarOpcoes()">
+        ← Voltar
+      </span>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- CABEÇALHO -->
+
+<header>
+
+  <div class="nav">
+
+    <a class="brand" href="index.html">
+
+      <img
+        src="logo.png"
+        onerror="this.style.display='none'"
+        alt="Logo AD Belém"
+      >
+
+      <span>
+        ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM
+        <small>
+          SETOR 49 - JARDIM DOS PIMENTAS
+        </small>
+      </span>
+
+    </a>
+
+    <nav>
+      <a href="index.html">Início</a>
+    </nav>
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Abrir menu"
+      aria-expanded="false"
+    >
+      ☰
+    </button>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Início</a>
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div class="hero-inner">
+
+    <div class="eyebrow">
+      PORTAL AD BELÉM - SETOR 49
+    </div>
+
+    <h1>Avisos</h1>
+
+    <p>
+      Comunicados e informações importantes da Secretaria.
+    </p>
+
   </div>
 
 </section>
 
-  
+
+<!-- CONTEÚDO -->
+
+<main>
+
+  <div class="notice">
+
+    <h2>📅 Cronograma da Semana</h2>
+
+    <span class="tag">
+      Aviso da Semana · 07/09 a 13/09/2026
+    </span>
+
+    <p>
+      <strong>Destaques da programação:</strong>
+    </p>
+
+    <ul>
+
+      <li>
+        <strong>08/09 · 19h00:</strong>
+        Culto de Ensino na sede — Cooperação: Grupo 2.
+      </li>
+
+      <li>
+        <strong>09/09 · 14h00:</strong>
+        Círculo de Oração na sede.
+      </li>
+
+      <li>
+        <strong>10/09 · 19h00:</strong>
+        Quinta da Conquista na sede.
+      </li>
+
+      <li>
+        <strong>13/09 · 08h30:</strong>
+        E.B.D. na Sede.
+      </li>
+
+      <li>
+        <strong>13/09 · 09h00:</strong>
+        Santa Ceia Setorial.
+      </li>
+
+    </ul>
+
+  </div>
+
+
+  <section class="avisos-secao">
+
+    <div class="avisos-secao-header">
+
+      <h2>
+        📢 Avisos da Secretaria
+      </h2>
+
+      <p>
+        Comunicados e informações atualizadas do Setor 49.
+      </p>
+
+    </div>
+
+
+    <div id="avisos-dinamicos">
+
+      <div class="notice">
+
+        <h3>
+          📢 Carregando avisos...
+        </h3>
+
+        <p>
+          Aguarde enquanto os avisos da Secretaria são carregados.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
 </main>
+
+
+<!-- RODAPÉ -->
+
 <footer>
 
-ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM
-· SETOR 49 - JARDIM DOS PIMENTAS
+  <div class="footer-content">
 
-<br>
+    <strong>
+      Assembleia de Deus em São Paulo — Ministério do Belém
+    </strong>
 
-<small>
-PORTAL AD BELÉM - SETOR 49
-</small>
+    <span>
+      Setor 49 - Jardim dos Pimentas
+    </span>
+
+  </div>
 
 </footer>
+
+
+<!-- AVISOS / CHAT -->
+
 <script>
-const API_AVISOS = 'https://script.google.com/macros/s/AKfycbxxWCiNtNE3btMwrvSdbZTkbUd10WMHgqeRIT9hf9g4k17_CdIdl3tSfTkfq3EVvCYxDA/exec';
 
-const containerAvisos = document.getElementById('avisos-dinamicos');
+const API_AVISOS =
+  'https://script.google.com/macros/s/AKfycbxxWCiNtNE3btMwrvSdbZTkbUd10WMHgqeRIT9hf9g4k17_CdIdl3tSfTkfq3EVvCYxDA/exec';
 
-function escaparHTML(texto) {
-  const div = document.createElement('div');
-  div.textContent = texto ?? '';
+const containerAvisos =
+  document.getElementById('avisos-dinamicos');
+
+
+function escaparHTML(texto){
+
+  const div =
+    document.createElement('div');
+
+  div.textContent =
+    texto ?? '';
+
   return div.innerHTML;
 }
 
-function criarAviso(aviso) {
- const artigo = document.createElement('div');
 
-const tipoAviso = String(aviso.tipo || '')
-  .trim()
-  .toUpperCase();
+function criarAviso(aviso){
 
-artigo.className = 'notice';
+  const artigo =
+    document.createElement('div');
 
-if (tipoAviso === 'URGENTE') {
-  artigo.classList.add('aviso-urgente');
-} else if (tipoAviso === 'IMPORTANTE') {
-  artigo.classList.add('aviso-importante');
-} else if (tipoAviso === 'INFORMATIVO') {
-  artigo.classList.add('aviso-informativo');
-} else if (tipoAviso === 'AGENDA') {
-  artigo.classList.add('aviso-agenda');
-}
+  const tipoAviso =
+    String(aviso.tipo || '')
+      .trim()
+      .toUpperCase();
+
+  artigo.className =
+    'notice';
+
+
+  if(tipoAviso === 'URGENTE'){
+
+    artigo.classList.add(
+      'aviso-urgente'
+    );
+
+  }else if(tipoAviso === 'IMPORTANTE'){
+
+    artigo.classList.add(
+      'aviso-importante'
+    );
+
+  }else if(tipoAviso === 'INFORMATIVO'){
+
+    artigo.classList.add(
+      'aviso-informativo'
+    );
+
+  }else if(tipoAviso === 'AGENDA'){
+
+    artigo.classList.add(
+      'aviso-agenda'
+    );
+
+  }
+
 
   let conteudo = '';
 
-  conteudo += `<h3>📢 ${escaparHTML(aviso.titulo)}</h3>`;
 
-  if (aviso.tipo) {
-    conteudo += `<span class="tag">${escaparHTML(aviso.tipo)}</span>`;
+  conteudo +=
+    `<h3>📢 ${escaparHTML(aviso.titulo)}</h3>`;
+
+
+  if(aviso.tipo){
+
+    conteudo +=
+      `<span class="tag">${escaparHTML(aviso.tipo)}</span>`;
+
   }
 
-  if (aviso.data || aviso.horario) {
-    conteudo += `<p><strong>`;
 
-    if (aviso.data) {
-      conteudo += escaparHTML(aviso.data);
+  if(aviso.data || aviso.horario){
+
+    conteudo +=
+      `<p><strong>`;
+
+
+    if(aviso.data){
+
+      conteudo +=
+        escaparHTML(aviso.data);
+
     }
 
-    if (aviso.horario) {
-      conteudo += ` • ${escaparHTML(aviso.horario)}`;
+
+    if(aviso.horario){
+
+      conteudo +=
+        ` • ${escaparHTML(aviso.horario)}`;
+
     }
 
-    conteudo += `</strong></p>`;
+
+    conteudo +=
+      `</strong></p>`;
+
   }
 
-  if (aviso.texto) {
-    conteudo += `<p>${escaparHTML(aviso.texto)}</p>`;
+
+  if(aviso.texto){
+
+    conteudo +=
+      `<p>${escaparHTML(aviso.texto)}</p>`;
+
   }
 
- if (aviso.imagem) {
-  let imagemURL = String(aviso.imagem).trim();
 
-  // Converte links do Google Drive para um formato próprio para exibição
-  const matchDrive = imagemURL.match(
-    /(?:\/file\/d\/|id=|\/open\?id=)([a-zA-Z0-9_-]+)/
-  );
+  if(aviso.imagem){
 
-  if (matchDrive) {
-    imagemURL = `https://drive.google.com/thumbnail?id=${matchDrive[1]}&sz=w1200`;
+    let imagemURL =
+      String(aviso.imagem).trim();
+
+
+    const matchDrive =
+      imagemURL.match(
+        /(?:\/file\/d\/|id=|\/open\?id=)([a-zA-Z0-9_-]+)/
+      );
+
+
+    if(matchDrive){
+
+      imagemURL =
+        `https://drive.google.com/thumbnail?id=${matchDrive[1]}&sz=w1200`;
+
+    }
+
+
+    conteudo += `
+
+      <img
+        class="notice-img"
+        src="${imagemURL}"
+        alt="${escaparHTML(aviso.titulo)}"
+        loading="lazy"
+      >
+
+    `;
+
   }
 
-  conteudo += `
-    <img
-      class="notice-img"
-      src="${imagemURL}"
-      alt="${escaparHTML(aviso.titulo)}"
-      loading="lazy"
-    >
-  `;
-}
 
-  artigo.innerHTML = conteudo;
+  artigo.innerHTML =
+    conteudo;
+
 
   return artigo;
+
 }
 
-async function carregarAvisos() {
-  try {
-    const resposta = await fetch(API_AVISOS);
-    const avisos = await resposta.json();
 
-    containerAvisos.innerHTML = '';
+async function carregarAvisos(){
 
-    if (!avisos.length) {
+  try{
+
+    const resposta =
+      await fetch(API_AVISOS);
+
+    const avisos =
+      await resposta.json();
+
+
+    containerAvisos.innerHTML =
+      '';
+
+
+    if(!avisos.length){
+
       containerAvisos.innerHTML = `
+
         <div class="notice">
-          <h3>📢 Nenhum aviso no momento</h3>
-          <p>Não há comunicados ativos publicados pela Secretaria.</p>
+
+          <h3>
+            📢 Nenhum aviso no momento
+          </h3>
+
+          <p>
+            Não há comunicados ativos publicados pela Secretaria.
+          </p>
+
         </div>
+
       `;
+
       return;
+
     }
 
+
     avisos.forEach(aviso => {
-      containerAvisos.appendChild(criarAviso(aviso));
+
+      containerAvisos.appendChild(
+        criarAviso(aviso)
+      );
+
     });
 
-  } catch (erro) {
-    console.error('Erro ao carregar avisos:', erro);
+
+  }catch(erro){
+
+    console.error(
+      'Erro ao carregar avisos:',
+      erro
+    );
+
 
     containerAvisos.innerHTML = `
+
       <div class="notice">
-        <h3>⚠️ Não foi possível carregar os avisos</h3>
-        <p>Tente atualizar a página novamente.</p>
+
+        <h3>
+          ⚠️ Não foi possível carregar os avisos
+        </h3>
+
+        <p>
+          Tente atualizar a página novamente.
+        </p>
+
       </div>
+
     `;
+
   }
+
 }
+
 
 carregarAvisos();
 
 
-const menuToggle = document.getElementById('menuToggle');
-const mobileMenu = document.getElementById('mobileMenu');
+/* MENU MOBILE */
+
+const menuToggle =
+  document.getElementById('menuToggle');
+
+const mobileMenu =
+  document.getElementById('mobileMenu');
+
 
 if(menuToggle && mobileMenu){
-  menuToggle.addEventListener('click',()=>{
-    const open = mobileMenu.classList.toggle('open');
 
-    menuToggle.setAttribute(
-      'aria-expanded',
-      open ? 'true' : 'false'
+  menuToggle.addEventListener(
+    'click',
+    () => {
+
+      const open =
+        mobileMenu.classList.toggle('open');
+
+
+      menuToggle.setAttribute(
+        'aria-expanded',
+        open ? 'true' : 'false'
+      );
+
+
+      menuToggle.textContent =
+        open ? '×' : '☰';
+
+    }
+  );
+
+
+  mobileMenu
+    .querySelectorAll('a')
+    .forEach(a => {
+
+      a.addEventListener(
+        'click',
+        () => {
+
+          mobileMenu.classList.remove(
+            'open'
+          );
+
+          menuToggle.setAttribute(
+            'aria-expanded',
+            'false'
+          );
+
+          menuToggle.textContent =
+            '☰';
+
+        }
+      );
+
+    });
+
+}
+
+
+/* =========================
+   CENTRAL DE ATENDIMENTO
+========================= */
+
+const API_ATENDIMENTOS =
+  "https://script.google.com/macros/s/AKfycbwJzijPbbP3PSZuTh2rpTpwmYIcBj44pZR2BaXOJwhZOZLGOQkDDPywJTMxy_90LbYb/exec";
+
+
+function abrirChat(){
+
+  document.getElementById(
+    "chatBox"
+  ).style.display =
+    "block";
+
+}
+
+
+function fecharChat(){
+
+  document.getElementById(
+    "chatBox"
+  ).style.display =
+    "none";
+
+}
+
+
+function mostrarSolicitacao(){
+
+  document.getElementById(
+    "chatOpcoes"
+  ).style.display =
+    "none";
+
+  document.getElementById(
+    "formSolicitacao"
+  ).style.display =
+    "block";
+
+  document.getElementById(
+    "formConsulta"
+  ).style.display =
+    "none";
+
+}
+
+
+function mostrarConsulta(){
+
+  document.getElementById(
+    "chatOpcoes"
+  ).style.display =
+    "none";
+
+  document.getElementById(
+    "formSolicitacao"
+  ).style.display =
+    "none";
+
+  document.getElementById(
+    "formConsulta"
+  ).style.display =
+    "block";
+
+}
+
+
+function voltarOpcoes(){
+
+  document.getElementById(
+    "chatOpcoes"
+  ).style.display =
+    "grid";
+
+  document.getElementById(
+    "formSolicitacao"
+  ).style.display =
+    "none";
+
+  document.getElementById(
+    "formConsulta"
+  ).style.display =
+    "none";
+
+  document.getElementById(
+    "resultadoConsulta"
+  ).style.display =
+    "none";
+
+  document.getElementById(
+    "resultadoSolicitacao"
+  ).style.display =
+    "none";
+
+}
+
+
+document
+  .getElementById("atendimentoForm")
+  .addEventListener(
+    "submit",
+    function(event){
+
+      event.preventDefault();
+
+
+      const nome =
+        document.getElementById(
+          "atNome"
+        ).value.trim();
+
+
+      const whatsapp =
+        document.getElementById(
+          "atWhatsapp"
+        ).value.trim();
+
+
+      const tipo =
+        document.getElementById(
+          "atTipo"
+        ).value.trim();
+
+
+      const assunto =
+        document.getElementById(
+          "atAssunto"
+        ).value.trim();
+
+
+      const mensagem =
+        document.getElementById(
+          "atMensagem"
+        ).value.trim();
+
+
+      const protocolo =
+        "ATD-" +
+        new Date().getFullYear() +
+        "-" +
+        String(Date.now()).slice(-6);
+
+
+      const form =
+        document.createElement(
+          "form"
+        );
+
+
+      form.method =
+        "POST";
+
+      form.action =
+        API_ATENDIMENTOS;
+
+      form.target =
+        "iframeAtendimento";
+
+      form.style.display =
+        "none";
+
+
+      const campos = {
+        protocolo,
+        nome,
+        whatsapp,
+        tipo,
+        assunto,
+        mensagem
+      };
+
+
+      Object.keys(campos)
+        .forEach(function(chave){
+
+          const input =
+            document.createElement(
+              "input"
+            );
+
+          input.name =
+            chave;
+
+          input.value =
+            campos[chave];
+
+          form.appendChild(
+            input
+          );
+
+        });
+
+
+      document.body.appendChild(
+        form
+      );
+
+
+      form.submit();
+
+
+      const resultado =
+        document.getElementById(
+          "resultadoSolicitacao"
+        );
+
+
+      resultado.innerHTML =
+
+        "<strong>Solicitação registrada!</strong><br><br>" +
+
+        "Seu protocolo é:<br>" +
+
+        "<strong>" +
+        protocolo +
+        "</strong><br><br>" +
+
+        "Guarde este número para consultar o andamento.";
+
+
+      resultado.style.display =
+        "block";
+
+
+      document.getElementById(
+        "atendimentoForm"
+      ).reset();
+
+
+      setTimeout(
+        function(){
+
+          form.remove();
+
+        },
+        1200
+      );
+
+    }
+  );
+
+
+function consultarProtocolo(){
+
+  const protocolo =
+    document.getElementById(
+      "consultaProtocolo"
+    ).value
+    .trim()
+    .toUpperCase();
+
+
+  if(!protocolo){
+
+    alert(
+      "Digite o protocolo."
     );
 
-    menuToggle.textContent = open ? '×' : '☰';
-  });
+    return;
 
-  mobileMenu.querySelectorAll('a').forEach(a=>{
-    a.addEventListener('click',()=>{
-      mobileMenu.classList.remove('open');
-      menuToggle.setAttribute('aria-expanded','false');
-      menuToggle.textContent='☰';
-    });
-  });
+  }
+
+
+  const resultado =
+    document.getElementById(
+      "resultadoConsulta"
+    );
+
+
+  resultado.style.display =
+    "block";
+
+
+  resultado.innerHTML =
+    "Consultando...";
+
+
+  const callback =
+    "consultaAtendimento" +
+    Date.now();
+
+
+  let script;
+
+
+  window[callback] =
+    function(dados){
+
+      if(
+        dados.sucesso &&
+        dados.encontrado
+      ){
+
+        resultado.innerHTML =
+
+          "<strong>Protocolo:</strong> " +
+          dados.protocolo +
+
+          "<br><strong>Status:</strong> " +
+          dados.status +
+
+          "<br><br><strong>Resposta:</strong><br>" +
+
+          (
+            dados.resposta ||
+            "Ainda não há resposta."
+          );
+
+      }else{
+
+        resultado.innerHTML =
+          "❌ Protocolo não encontrado.";
+
+      }
+
+
+      delete window[callback];
+
+
+      if(
+        script &&
+        script.parentNode
+      ){
+
+        script.remove();
+
+      }
+
+    };
+
+
+  script =
+    document.createElement(
+      "script"
+    );
+
+
+  script.src =
+    API_ATENDIMENTOS +
+
+    "?protocolo=" +
+
+    encodeURIComponent(
+      protocolo
+    ) +
+
+    "&callback=" +
+
+    callback;
+
+
+  document.body.appendChild(
+    script
+  );
+
 }
+
 </script>
+
+
+<iframe
+  name="iframeAtendimento"
+  style="display:none;">
+</iframe>
+
 </body>
 </html>
