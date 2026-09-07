@@ -429,6 +429,32 @@ footer{
 .atendimento-voltar:hover{
   color:#159dd1;
 }
+
+.area-restrita-link{
+  color:#073c66 !important;
+  background:#eef8fc;
+  border:1px solid #cfe7f0;
+  border-radius:9px;
+  padding:8px 11px;
+  font-weight:900 !important;
+  transition:.2s;
+}
+
+.area-restrita-link:hover{
+  color:#fff !important;
+  background:#079447;
+  border-color:#079447;
+}
+
+@media(max-width:650px){
+  .mobile-menu .area-restrita-link{
+    display:block;
+    margin-top:6px;
+    text-align:center;
+    background:#eef8fc;
+    color:#073c66 !important;
+  }
+}
   
 </style>
 </head>
@@ -669,7 +695,23 @@ footer{
   
 <header><div class="nav">
 <a class="brand" href="index.html"><img src="logo.png" onerror="this.style.display='none'"><span>ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM<small>SETOR 49 - JARDIM DOS PIMENTAS</small></span></a>
-<nav><a href="index.html">Início</a><a href="agenda.html">Agenda</a><a href="congregacoes.html">Congregações</a><a href="central-secretario.html">Central do Secretário</a><a href="avisos.html">Avisos</a><a href="diretoria.html">Diretoria</a></nav><button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="mobile-menu" id="mobileMenu"><a href="index.html">Início</a><a href="agenda.html">Agenda</a><a href="congregacoes.html">Congregações</a><a href="central-secretario.html">Central do Secretário</a><a href="avisos.html">Avisos</a><a href="diretoria.html">Diretoria</a></div>
+<nav>
+  <a href="index.html">Início</a>
+  <a href="agenda.html">Agenda</a>
+  <a href="congregacoes.html">Congregações</a>
+  <a href="central-secretario.html">Central do Secretário</a>
+  <a href="avisos.html">Avisos</a>
+  <a href="diretoria.html">Diretoria</a>
+  <a href="area-restrita.html" class="area-restrita-link">🔒 Área Restrita</a>
+</nav><button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Início</a>
+  <a href="agenda.html">Agenda</a>
+  <a href="congregacoes.html">Congregações</a>
+  <a href="central-secretario.html">Central do Secretário</a>
+  <a href="avisos.html">Avisos</a>
+  <a href="diretoria.html">Diretoria</a>
+  <a href="area-restrita.html" class="area-restrita-link">🔒 Área Restrita</a>
+</div>
 </div></header>
 
 <section class="hero"><div class="hero-inner">
