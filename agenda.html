@@ -8,7 +8,19 @@
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
 header{position:relative;background:#fff;border-bottom:1px solid #e8edf2;position:sticky;top:0;z-index:20}.nav{max-width:1180px;margin:auto;padding:11px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--navy);font-weight:900}.brand img{width:50px;height:50px;object-fit:contain}.brand small{display:block;color:var(--muted);font-weight:650;font-size:11px}
-nav{display:flex;flex-wrap:wrap;gap:16px}nav a{color:#344054;text-decoration:none;font-weight:750;font-size:14px}nav a:hover{color:var(--green)}
+nav{display:flex;flex-wrap:wrap;gap:16px}nav a{
+  color:#344054;
+  text-decoration:none;
+  font-weight:800;
+  font-size:13px;
+  padding:9px 10px;
+  border-radius:9px;
+  transition:.2s;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:38px;
+}nav a:hover{color:var(--green)}
 .hero{background:linear-gradient(135deg,var(--navy),var(--blue),var(--green));color:#fff;padding:58px 22px}.hero-inner{max-width:1180px;margin:auto}.eyebrow{font-size:12px;font-weight:900;letter-spacing:1.7px;text-transform:uppercase;opacity:.9}.hero h1{font-size:clamp(35px,5vw,52px);margin:9px 0 10px}.hero p{font-size:17px;line-height:1.5;max-width:720px;margin:0}
 main{max-width:1180px;margin:auto;padding:32px 22px 70px}
 .sede-highlight{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,#fff,#eef9fc);border:1px solid #cfe7f0;border-left:6px solid var(--blue);border-radius:18px;padding:18px 20px;margin:0 0 25px;box-shadow:0 7px 22px rgba(16,24,40,.05)}
