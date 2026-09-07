@@ -1,11 +1,14 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>Avisos — Setor 49</title>
 
 <style>
+
 :root{
   --blue:#159dd1;
   --green:#079447;
@@ -13,10 +16,9 @@
   --orange:#f47a20;
   --red:#b51e2a;
   --navy:#073c66;
-  --ink:#252525;
+  --ink:#17212b;
   --muted:#667085;
   --bg:#f6f8fa;
-  --white:#fff;
 }
 
 *{
@@ -42,7 +44,7 @@ header{
 .nav{
   max-width:1180px;
   margin:auto;
-  padding:12px 22px;
+  padding:11px 22px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -54,19 +56,19 @@ header{
   align-items:center;
   gap:12px;
   text-decoration:none;
-  color:var(--blue);
-  font-weight:850;
+  color:var(--navy);
+  font-weight:900;
 }
 
 .brand img{
-  width:48px;
-  height:48px;
+  width:50px;
+  height:50px;
   object-fit:contain;
 }
 
 .brand small{
   display:block;
-  color:#667085;
+  color:var(--muted);
   font-weight:650;
   font-size:11px;
 }
@@ -74,29 +76,33 @@ header{
 nav{
   display:flex;
   flex-wrap:wrap;
-  align-items:center;
   gap:16px;
 }
 
 nav a{
   color:#344054;
   text-decoration:none;
-  font-weight:700;
-  font-size:14px;
+  font-weight:800;
+  font-size:13px;
+  padding:9px 10px;
+  border-radius:9px;
+  transition:.2s;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:38px;
 }
 
 nav a:hover{
   color:var(--green);
 }
 
-/* ÁREA RESTRITA */
-
 .area-restrita-link{
   color:#073c66 !important;
-  background:#eef8fc;
-  border:1px solid #cfe7f0;
-  border-radius:9px;
-  padding:8px 11px;
+  background:#eef8fc !important;
+  border:1px solid #cfe7f0 !important;
+  border-radius:9px !important;
+  padding:8px 11px !important;
   font-weight:900 !important;
   transition:.2s;
   display:inline-flex;
@@ -106,12 +112,18 @@ nav a:hover{
 
 .area-restrita-link:hover{
   color:#fff !important;
-  background:#079447;
-  border-color:#079447;
+  background:#079447 !important;
+  border-color:#079447 !important;
 }
 
 .hero{
-  background:linear-gradient(135deg,#159dd1,#079447);
+  background:
+    linear-gradient(
+      135deg,
+      var(--navy),
+      var(--blue),
+      var(--green)
+    );
   color:#fff;
   padding:58px 22px;
 }
@@ -122,36 +134,29 @@ nav a:hover{
 }
 
 .eyebrow{
-  font-size:13px;
-  font-weight:850;
-  letter-spacing:1.5px;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:1.7px;
   text-transform:uppercase;
   opacity:.9;
 }
 
 .hero h1{
-  font-size:clamp(34px,5vw,54px);
-  margin:8px 0 10px;
+  font-size:clamp(35px,5vw,52px);
+  margin:9px 0 10px;
 }
 
 .hero p{
-  font-size:18px;
-  max-width:760px;
+  font-size:17px;
+  line-height:1.5;
+  max-width:720px;
+  margin:0;
 }
 
 main{
   max-width:1180px;
   margin:auto;
-  padding:36px 22px 70px;
-}
-
-.section-title{
-  margin:0 0 18px;
-  font-size:28px;
-}
-
-.muted{
-  color:var(--muted);
+  padding:32px 22px 70px;
 }
 
 .notice{
@@ -162,14 +167,6 @@ main{
   padding:22px;
   margin:16px 0;
   box-shadow:0 8px 24px rgba(16,24,40,.05);
-}
-
-.notice.att{
-  border-left-color:var(--gold);
-}
-
-.notice.urg{
-  border-left-color:var(--red);
 }
 
 .notice h2{
@@ -215,46 +212,6 @@ main{
   border:1px solid #dce8ef;
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-}
-
-.grid .notice{
-  margin:0;
-}
-
-/* RODAPÉ */
-
-footer{
-  background:#20262b;
-  color:#d0d5dd;
-  padding:30px 22px;
-  text-align:center;
-  font-size:13px
-}
-
-/* MENU MOBILE */
-
-.menu-toggle{
-  display:none;
-  border:0;
-  background:#eef8fc;
-  color:var(--navy);
-  width:42px;
-  height:42px;
-  border-radius:11px;
-  font-size:22px;
-  cursor:pointer;
-}
-
-.mobile-menu{
-  display:none;
-}
-
-/* AVISOS DINÂMICOS */
-
 .avisos-secao{
   margin-top:36px;
 }
@@ -289,8 +246,6 @@ footer{
   grid-column:1 / -1;
 }
 
-/* CORES DOS AVISOS */
-
 .notice.aviso-urgente{
   border-left:6px solid #d62828;
   border-color:#d62828;
@@ -299,7 +254,7 @@ footer{
 
 .notice.aviso-urgente .tag{
   background:#d62828;
-  color:#ffffff;
+  color:#fff;
 }
 
 .notice.aviso-importante{
@@ -321,7 +276,7 @@ footer{
 
 .notice.aviso-informativo .tag{
   background:#159dd1;
-  color:#ffffff;
+  color:#fff;
 }
 
 .notice.aviso-agenda{
@@ -332,204 +287,31 @@ footer{
 
 .notice.aviso-agenda .tag{
   background:#079447;
-  color:#ffffff;
-}
-
-/* =========================
-   CHAT DE ATENDIMENTO
-========================= */
-
-.chat-btn{
-  position:fixed;
-  right:22px;
-  bottom:22px;
-  z-index:9999;
-  border:0;
-  border-radius:50px;
-  background:#079447;
   color:#fff;
-  padding:14px 20px;
-  font-size:15px;
-  font-weight:900;
-  cursor:pointer;
-  box-shadow:0 6px 20px rgba(0,0,0,.20);
-  transition:.2s;
 }
 
-.chat-btn:hover{
-  background:#057c3b;
-  transform:translateY(-2px);
-}
 
-.chat-box{
+/* ============================= */
+/* MENU MOBILE */
+/* ============================= */
+
+.menu-toggle{
   display:none;
-  position:fixed;
-  right:22px;
-  bottom:82px;
-  width:360px;
-  max-width:calc(100vw - 30px);
-  max-height:calc(100vh - 110px);
-  background:#fff;
-  border-radius:16px;
-  box-shadow:0 10px 35px rgba(0,0,0,.22);
-  z-index:9999;
-  overflow-y:auto;
-  overflow-x:hidden;
-}
-
-.chat-header{
-  background:linear-gradient(135deg,#073c66,#159dd1);
-  color:#fff;
-  padding:16px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.chat-header strong{
-  font-size:16px;
-}
-
-.chat-fechar{
   border:0;
-  background:transparent;
-  color:#fff;
+  background:#eef8fc;
+  color:var(--navy);
+  width:42px;
+  height:42px;
+  border-radius:11px;
   font-size:22px;
   cursor:pointer;
 }
 
-.chat-body{
-  padding:16px;
-}
-
-.chat-opcoes{
-  display:grid;
-  gap:10px;
-}
-
-.chat-opcao{
-  width:100%;
-  padding:12px;
-  border:1px solid #d9e2e8;
-  border-radius:9px;
-  background:#f8fafb;
-  color:#073c66;
-  font-weight:800;
-  cursor:pointer;
-  text-align:left;
-}
-
-.chat-opcao:hover{
-  background:#eef8fc;
-  border-color:#159dd1;
-}
-
-.chat-form{
+.mobile-menu{
   display:none;
-}
-
-.chat-form label{
-  display:block;
-  margin-bottom:4px;
-  color:#073c66;
-  font-size:12px;
-  font-weight:800;
-}
-
-.chat-form input,
-.chat-form select,
-.chat-form textarea{
-  width:100%;
-  height:40px;
-  padding:8px 10px;
-  margin-bottom:9px;
-  border:1px solid #ccd6dc;
-  border-radius:8px;
-  font-family:Arial, Helvetica, sans-serif;
-  font-size:14px;
-  outline:none;
-}
-
-.chat-form textarea{
-  height:75px;
-  min-height:75px;
-  resize:vertical;
-}
-
-.chat-form input:focus,
-.chat-form select:focus,
-.chat-form textarea:focus{
-  border-color:#159dd1;
-  box-shadow:0 0 0 3px rgba(21,157,209,.10);
-}
-
-.chat-enviar{
-  width:100%;
-  border:0;
-  border-radius:8px;
-  padding:12px;
-  background:#079447;
-  color:#fff;
-  font-weight:900;
-  cursor:pointer;
-}
-
-.chat-enviar:hover{
-  background:#057c3b;
-}
-
-.chat-voltar{
-  display:block;
-  margin-top:10px;
-  text-align:center;
-  color:#073c66;
-  font-size:13px;
-  font-weight:800;
-  cursor:pointer;
-}
-
-.chat-resultado{
-  display:none;
-  margin-top:15px;
-  padding:12px;
-  border-radius:8px;
-  background:#eef8fc;
-  color:#073c66;
-  font-size:13px;
-  line-height:1.5;
-}
-
-/* RESPONSIVO */
-
-@media(max-width:800px){
-
-  .grid{
-    grid-template-columns:1fr;
-  }
-
-  #avisos-dinamicos{
-    grid-template-columns:1fr;
-  }
-
-  #avisos-dinamicos .notice:only-child{
-    grid-column:auto;
-  }
 }
 
 @media(max-width:650px){
-
-  .nav{
-    padding:10px 15px;
-  }
-
-  .brand img{
-    width:42px;
-    height:42px;
-  }
-
-  nav{
-    display:none;
-  }
 
   .menu-toggle{
     display:grid;
@@ -565,12 +347,256 @@ footer{
     color:var(--green);
   }
 
-  .mobile-menu .area-restrita-link{
-    display:block;
-    margin-top:6px;
-    text-align:center;
-    background:#eef8fc;
-    color:#073c66 !important;
+}
+
+
+/* ============================= */
+/* CHAT DE ATENDIMENTO */
+/* ============================= */
+
+.atendimento-botao{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:1000;
+  border:0;
+  background:var(--blue);
+  color:#fff;
+  border-radius:50px;
+  padding:14px 20px;
+  font-size:14px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 8px 24px rgba(7,60,102,.25);
+  transition:.2s;
+}
+
+.atendimento-botao:hover{
+  transform:translateY(-3px);
+  background:var(--green);
+}
+
+.atendimento-chat{
+  position:fixed;
+  right:22px;
+  bottom:82px;
+  width:360px;
+  max-width:calc(100vw - 30px);
+  max-height:calc(100vh - 110px);
+  background:#fff;
+  border:1px solid #e4e9ee;
+  border-radius:20px;
+  box-shadow:0 18px 45px rgba(16,24,40,.20);
+  z-index:999;
+  overflow:hidden;
+  display:none;
+}
+
+.atendimento-chat.aberto{
+  display:block;
+}
+
+.atendimento-header{
+  background:linear-gradient(
+    135deg,
+    var(--navy),
+    var(--blue)
+  );
+  color:#fff;
+  padding:18px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.atendimento-header strong{
+  display:block;
+  font-size:16px;
+}
+
+.atendimento-header small{
+  display:block;
+  margin-top:3px;
+  opacity:.85;
+  font-size:11px;
+}
+
+.atendimento-fechar{
+  border:0;
+  background:rgba(255,255,255,.15);
+  color:#fff;
+  width:32px;
+  height:32px;
+  border-radius:9px;
+  cursor:pointer;
+  font-size:18px;
+}
+
+.atendimento-corpo{
+  padding:18px;
+  overflow-y:auto;
+  max-height:calc(100vh - 180px);
+}
+
+.atendimento-corpo p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+  margin:0 0 15px;
+}
+
+.atendimento-campo{
+  margin-bottom:12px;
+}
+
+.atendimento-campo label{
+  display:block;
+  font-size:11px;
+  font-weight:800;
+  color:#344054;
+  margin-bottom:5px;
+}
+
+.atendimento-campo input,
+.atendimento-campo select,
+.atendimento-campo textarea{
+  width:100%;
+  border:1px solid #dce3e8;
+  border-radius:9px;
+  padding:10px 11px;
+  font-family:inherit;
+  font-size:12px;
+  outline:none;
+}
+
+.atendimento-campo input:focus,
+.atendimento-campo select:focus,
+.atendimento-campo textarea:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(21,157,209,.10);
+}
+
+.atendimento-campo textarea{
+  resize:vertical;
+  min-height:80px;
+}
+
+.atendimento-enviar{
+  width:100%;
+  border:0;
+  border-radius:10px;
+  padding:12px;
+  background:var(--green);
+  color:#fff;
+  font-weight:900;
+  font-size:12px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.atendimento-enviar:hover{
+  background:var(--blue);
+}
+
+.atendimento-opcoes{
+  display:grid;
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.atendimento-opcao{
+  width:100%;
+  border:1px solid #dce3e8;
+  border-radius:10px;
+  padding:13px 15px;
+  background:#f8fafc;
+  color:#073c66;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:800;
+  text-align:left;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.atendimento-opcao:hover{
+  background:#eef8fc;
+  border-color:#159dd1;
+  transform:translateY(-1px);
+}
+
+.atendimento-voltar{
+  width:100%;
+  margin-top:8px;
+  padding:10px;
+  border:0;
+  background:transparent;
+  color:#073c66;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.atendimento-voltar:hover{
+  color:#159dd1;
+}
+
+@media(max-width:500px){
+
+  .atendimento-botao{
+    right:15px;
+    bottom:15px;
+    padding:13px 17px;
+  }
+
+  .atendimento-chat{
+    right:15px;
+    bottom:75px;
+    width:calc(100vw - 30px);
+    max-height:calc(100vh - 95px);
+    border-radius:18px;
+  }
+
+  .atendimento-header{
+    padding:14px 16px;
+  }
+
+  .atendimento-corpo{
+    padding:15px;
+  }
+
+  .atendimento-campo{
+    margin-bottom:10px;
+  }
+
+}
+
+@media(max-width:800px){
+
+  #avisos-dinamicos{
+    grid-template-columns:1fr;
+  }
+
+  #avisos-dinamicos .notice:only-child{
+    grid-column:auto;
+  }
+
+}
+
+@media(max-width:620px){
+
+  .nav{
+    padding:10px 15px;
+  }
+
+  .brand img{
+    width:43px;
+    height:43px;
+  }
+
+  nav{
+    display:none;
   }
 
   .hero{
@@ -578,139 +604,279 @@ footer{
   }
 
   main{
-    padding:26px 16px 55px;
+    padding:25px 16px 55px;
   }
 
-
-  .chat-btn{
-    right:15px;
-    bottom:15px;
-    padding:13px 17px;
-  }
-
-  .chat-box{
-    right:15px;
-    bottom:75px;
-    width:calc(100vw - 30px);
-  }
 }
+
+footer{
+  background:#20262b;
+  color:#d0d5dd;
+  padding:30px 22px;
+  text-align:center;
+  font-size:13px;
+}
+
 </style>
+
 </head>
 
 <body>
+<!-- BOTÃO DE ATENDIMENTO -->
 
-<!-- CHAT DE ATENDIMENTO -->
-
-<button class="chat-btn" onclick="abrirChat()">
+<button
+  class="atendimento-botao"
+  id="atendimentoBotao"
+  type="button"
+>
   💬 Atendimento
 </button>
 
-<div class="chat-box" id="chatBox">
 
-  <div class="chat-header">
-    <strong>💬 Central de Atendimento</strong>
-    <button class="chat-fechar" onclick="fecharChat()">×</button>
+<!-- JANELA DE ATENDIMENTO -->
+
+<div
+  class="atendimento-chat"
+  id="atendimentoChat"
+>
+
+  <div class="atendimento-header">
+
+    <div>
+      <strong>💬 Atendimento</strong>
+      <small>Secretaria Digital — Setor 49</small>
+    </div>
+
+    <button
+      class="atendimento-fechar"
+      id="atendimentoFechar"
+      type="button"
+    >
+      ×
+    </button>
+
   </div>
 
-  <div class="chat-body">
 
-    <div class="chat-opcoes" id="chatOpcoes">
+  <div class="atendimento-corpo">
 
-      <button class="chat-opcao" onclick="mostrarSolicitacao()">
+    <div
+      class="atendimento-opcoes"
+      id="atendimentoOpcoes"
+    >
+
+      <button
+        type="button"
+        class="atendimento-opcao"
+        id="novaSolicitacao"
+      >
         💬 Fazer uma solicitação
       </button>
 
-      <button class="chat-opcao" onclick="mostrarConsulta()">
+      <button
+        type="button"
+        class="atendimento-opcao"
+        id="consultarProtocolo"
+      >
         🔎 Consultar protocolo
       </button>
 
     </div>
 
-    <div class="chat-form" id="formSolicitacao">
 
-      <form id="atendimentoForm">
+    <div
+      id="formularioAtendimento"
+      style="display:none;"
+    >
 
-        <label for="atNome">Nome</label>
-        <input type="text" id="atNome" required>
+      <p>
+        Olá! Como podemos ajudar?
+        Preencha os dados abaixo para enviar sua solicitação.
+      </p>
 
-        <label for="atWhatsapp">WhatsApp</label>
-        <input type="text" id="atWhatsapp" required>
+      <div class="atendimento-campo">
 
-        <label for="atTipo">Tipo</label>
+        <label for="atendimentoNome">
+          Nome
+        </label>
 
-        <select id="atTipo" required>
-          <option value="">Selecione</option>
-          <option>Dúvida</option>
-          <option>Solicitação</option>
-          <option>Informação</option>
-          <option>Outro</option>
+        <input
+          type="text"
+          id="atendimentoNome"
+          placeholder="Digite seu nome"
+        >
+
+      </div>
+
+
+      <div class="atendimento-campo">
+
+        <label for="atendimentoWhatsapp">
+          WhatsApp
+        </label>
+
+        <input
+          type="tel"
+          id="atendimentoWhatsapp"
+          placeholder="(11) 99999-9999"
+        >
+
+      </div>
+
+
+      <div class="atendimento-campo">
+
+        <label for="atendimentoTipo">
+          Tipo de atendimento
+        </label>
+
+        <select id="atendimentoTipo">
+
+          <option value="">
+            Selecione uma opção
+          </option>
+
+          <option value="Dúvida">
+            Dúvida
+          </option>
+
+          <option value="Solicitação">
+            Solicitação
+          </option>
+
+          <option value="Informação">
+            Informação
+          </option>
+
+          <option value="Outro">
+            Outro
+          </option>
+
         </select>
 
-        <label for="atAssunto">Assunto</label>
-        <input type="text" id="atAssunto" required>
+      </div>
 
-        <label for="atMensagem">Mensagem</label>
-        <textarea id="atMensagem" required></textarea>
 
-        <button type="submit" class="chat-enviar">
-          ENVIAR SOLICITAÇÃO
-        </button>
+      <div class="atendimento-campo">
 
-      </form>
+        <label for="atendimentoAssunto">
+          Assunto
+        </label>
 
-      <div class="chat-resultado" id="resultadoSolicitacao"></div>
+        <input
+          type="text"
+          id="atendimentoAssunto"
+          placeholder="Sobre o que você precisa?"
+        >
 
-      <span class="chat-voltar" onclick="voltarOpcoes()">
-        ← Voltar
-      </span>
+      </div>
 
-    </div>
 
-    <div class="chat-form" id="formConsulta">
+      <div class="atendimento-campo">
 
-      <label for="consultaProtocolo">
-        Digite seu protocolo
-      </label>
+        <label for="atendimentoMensagem">
+          Mensagem
+        </label>
 
-      <input
-        type="text"
-        id="consultaProtocolo"
-        placeholder="Ex.: ATD-2026-0001"
+        <textarea
+          id="atendimentoMensagem"
+          placeholder="Digite sua dúvida ou solicitação..."
+        ></textarea>
+
+      </div>
+
+
+      <button
+        class="atendimento-enviar"
+        id="atendimentoEnviar"
+        type="button"
       >
-
-      <button class="chat-enviar" onclick="consultarProtocolo()">
-        CONSULTAR
+        ENVIAR SOLICITAÇÃO →
       </button>
 
-      <div class="chat-resultado" id="resultadoConsulta"></div>
 
-      <span class="chat-voltar" onclick="voltarOpcoes()">
+      <button
+        type="button"
+        class="atendimento-voltar"
+        id="voltarSolicitacao"
+      >
         ← Voltar
-      </span>
+      </button>
 
     </div>
+
+
+    <div
+      id="consultaProtocolo"
+      style="display:none;"
+    >
+
+      <p>
+        Digite seu protocolo para consultar
+        o andamento da sua solicitação.
+      </p>
+
+      <div class="atendimento-campo">
+
+        <label for="numeroProtocolo">
+          Número do protocolo
+        </label>
+
+        <input
+          type="text"
+          id="numeroProtocolo"
+          placeholder="ATD-2026-000001"
+        >
+
+      </div>
+
+
+      <button
+        type="button"
+        class="atendimento-enviar"
+        id="botaoConsultar"
+      >
+        CONSULTAR PROTOCOLO →
+      </button>
+
+
+      <button
+        type="button"
+        class="atendimento-voltar"
+        id="voltarAtendimento"
+      >
+        ← Voltar
+      </button>
+
+    </div>
+
+
+    <div
+      id="resultadoProtocolo"
+      style="display:none;"
+    ></div>
 
   </div>
 
 </div>
 
 
-<!-- CABEÇALHO -->
-
 <header>
 
   <div class="nav">
 
-    <a class="brand" href="index.html">
+    <a
+      class="brand"
+      href="index.html"
+    >
 
       <img
         src="logo.png"
-        onerror="this.style.display='none'"
         alt="Logo AD Belém"
       >
 
       <span>
-        ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM
+        ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM
         <small>
           SETOR 49 - JARDIM DOS PIMENTAS
         </small>
@@ -718,13 +884,20 @@ footer{
 
     </a>
 
+
     <nav>
 
-      <a href="index.html">Início</a>
+      <a href="index.html">
+        Início
+      </a>
 
-      <a href="agenda.html">Agenda</a>
+      <a href="agenda.html">
+        Agenda
+      </a>
 
-      <a href="congregacoes.html">Congregações</a>
+      <a href="congregacoes.html">
+        Congregações
+      </a>
 
       <a href="central-secretario.html">
         Central do Secretário
@@ -734,7 +907,7 @@ footer{
         Avisos
       </a>
 
-      <a href="diretoria.html">
+      <a href="ia.html">
         Diretoria
       </a>
 
@@ -747,6 +920,7 @@ footer{
 
     </nav>
 
+
     <button
       class="menu-toggle"
       id="menuToggle"
@@ -755,6 +929,7 @@ footer{
     >
       ☰
     </button>
+
 
     <div
       class="mobile-menu"
@@ -781,7 +956,7 @@ footer{
         Avisos
       </a>
 
-      <a href="diretoria.html">
+      <a href="ia.html">
         Diretoria
       </a>
 
@@ -798,10 +973,7 @@ footer{
 
 </header>
 
-
-<!-- HERO -->
-
-<section class="hero">
+  <section class="hero">
 
   <div class="hero-inner">
 
@@ -821,8 +993,6 @@ footer{
 
 </section>
 
-
-<!-- CONTEÚDO -->
 
 <main>
 
@@ -910,54 +1080,55 @@ footer{
 </main>
 
 
-<!-- RODAPÉ -->
-
 <footer>
 
-ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM
-· SETOR 49 - JARDIM DOS PIMENTAS
+  ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM
+  · SETOR 49 - JARDIM DOS PIMENTAS
 
-<br>
+  <br>
 
-<small>
-PORTAL AD BELÉM - SETOR 49
-</small>
+  <small>
+    PORTAL AD BELÉM - SETOR 49
+  </small>
 
 </footer>
 
-<script>
+  <script>
 
 const API_AVISOS =
-  'https://script.google.com/macros/s/AKfycbxxWCiNtNE3btMwrvSdbZTkbUd10WMHgqeRIT9hf9g4k17_CdIdl3tSfTkfq3EVvCYxDA/exec';
+'https://script.google.com/macros/s/AKfycbxxWCiNtNE3btMwrvSdbZTkbUd10WMHgqeRIT9hf9g4k17_CdIdl3tSfTkfq3EVvCYxDA/exec';
 
 const containerAvisos =
-  document.getElementById('avisos-dinamicos');
+document.getElementById('avisos-dinamicos');
 
 
 function escaparHTML(texto){
 
   const div =
-    document.createElement('div');
+  document.createElement('div');
 
   div.textContent =
-    texto ?? '';
+  texto ?? '';
 
   return div.innerHTML;
+
 }
 
 
 function criarAviso(aviso){
 
   const artigo =
-    document.createElement('div');
+  document.createElement('div');
+
 
   const tipoAviso =
-    String(aviso.tipo || '')
-      .trim()
-      .toUpperCase();
+  String(aviso.tipo || '')
+  .trim()
+  .toUpperCase();
+
 
   artigo.className =
-    'notice';
+  'notice';
 
 
   if(tipoAviso === 'URGENTE'){
@@ -991,13 +1162,13 @@ function criarAviso(aviso){
 
 
   conteudo +=
-    `<h3>📢 ${escaparHTML(aviso.titulo)}</h3>`;
+  `<h3>📢 ${escaparHTML(aviso.titulo)}</h3>`;
 
 
   if(aviso.tipo){
 
     conteudo +=
-      `<span class="tag">${escaparHTML(aviso.tipo)}</span>`;
+    `<span class="tag">${escaparHTML(aviso.tipo)}</span>`;
 
   }
 
@@ -1005,13 +1176,13 @@ function criarAviso(aviso){
   if(aviso.data || aviso.horario){
 
     conteudo +=
-      `<p><strong>`;
+    `<p><strong>`;
 
 
     if(aviso.data){
 
       conteudo +=
-        escaparHTML(aviso.data);
+      escaparHTML(aviso.data);
 
     }
 
@@ -1019,13 +1190,13 @@ function criarAviso(aviso){
     if(aviso.horario){
 
       conteudo +=
-        ` • ${escaparHTML(aviso.horario)}`;
+      ` • ${escaparHTML(aviso.horario)}`;
 
     }
 
 
     conteudo +=
-      `</strong></p>`;
+    `</strong></p>`;
 
   }
 
@@ -1033,7 +1204,7 @@ function criarAviso(aviso){
   if(aviso.texto){
 
     conteudo +=
-      `<p>${escaparHTML(aviso.texto)}</p>`;
+    `<p>${escaparHTML(aviso.texto)}</p>`;
 
   }
 
@@ -1041,19 +1212,19 @@ function criarAviso(aviso){
   if(aviso.imagem){
 
     let imagemURL =
-      String(aviso.imagem).trim();
+    String(aviso.imagem).trim();
 
 
     const matchDrive =
-      imagemURL.match(
-        /(?:\/file\/d\/|id=|\/open\?id=)([a-zA-Z0-9_-]+)/
-      );
+    imagemURL.match(
+      /(?:\/file\/d\/|id=|\/open\?id=)([a-zA-Z0-9_-]+)/
+    );
 
 
     if(matchDrive){
 
       imagemURL =
-        `https://drive.google.com/thumbnail?id=${matchDrive[1]}&sz=w1200`;
+      `https://drive.google.com/thumbnail?id=${matchDrive[1]}&sz=w1200`;
 
     }
 
@@ -1073,7 +1244,7 @@ function criarAviso(aviso){
 
 
   artigo.innerHTML =
-    conteudo;
+  conteudo;
 
 
   return artigo;
@@ -1086,14 +1257,14 @@ async function carregarAvisos(){
   try{
 
     const resposta =
-      await fetch(API_AVISOS);
+    await fetch(API_AVISOS);
 
     const avisos =
-      await resposta.json();
+    await resposta.json();
 
 
     containerAvisos.innerHTML =
-      '';
+    '';
 
 
     if(!avisos.length){
@@ -1160,13 +1331,15 @@ async function carregarAvisos(){
 carregarAvisos();
 
 
+/* ============================= */
 /* MENU MOBILE */
+/* ============================= */
 
 const menuToggle =
-  document.getElementById('menuToggle');
+document.getElementById('menuToggle');
 
 const mobileMenu =
-  document.getElementById('mobileMenu');
+document.getElementById('mobileMenu');
 
 
 if(menuToggle && mobileMenu){
@@ -1176,7 +1349,7 @@ if(menuToggle && mobileMenu){
     () => {
 
       const open =
-        mobileMenu.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
 
 
       menuToggle.setAttribute(
@@ -1186,411 +1359,846 @@ if(menuToggle && mobileMenu){
 
 
       menuToggle.textContent =
-        open ? '×' : '☰';
+      open ? '×' : '☰';
 
     }
   );
 
 
   mobileMenu
-    .querySelectorAll('a')
-    .forEach(a => {
+  .querySelectorAll('a')
+  .forEach(a => {
 
-      a.addEventListener(
-        'click',
-        () => {
+    a.addEventListener(
+      'click',
+      () => {
 
-          mobileMenu.classList.remove(
-            'open'
+        mobileMenu.classList.remove(
+          'open'
+        );
+
+        menuToggle.setAttribute(
+          'aria-expanded',
+          'false'
+        );
+
+        menuToggle.textContent =
+        '☰';
+
+      }
+    );
+
+  });
+
+}
+
+
+/* ============================= */
+/* ATENDIMENTO */
+/* ============================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
+
+    const botaoChat =
+    document.getElementById(
+      "atendimentoBotao"
+    );
+
+
+    const chat =
+    document.getElementById(
+      "atendimentoChat"
+    );
+
+
+    const fecharChat =
+    document.getElementById(
+      "atendimentoFechar"
+    );
+
+
+    const opcoes =
+    document.getElementById(
+      "atendimentoOpcoes"
+    );
+
+
+    const formulario =
+    document.getElementById(
+      "formularioAtendimento"
+    );
+
+
+    const consulta =
+    document.getElementById(
+      "consultaProtocolo"
+    );
+
+
+    const resultado =
+    document.getElementById(
+      "resultadoProtocolo"
+    );
+
+
+    const novaSolicitacao =
+    document.getElementById(
+      "novaSolicitacao"
+    );
+
+
+    const consultarProtocolo =
+    document.getElementById(
+      "consultarProtocolo"
+    );
+
+
+    const voltarSolicitacao =
+    document.getElementById(
+      "voltarSolicitacao"
+    );
+
+
+    const voltarAtendimento =
+    document.getElementById(
+      "voltarAtendimento"
+    );
+
+
+    const botaoEnviar =
+    document.getElementById(
+      "atendimentoEnviar"
+    );
+
+
+    const botaoConsultar =
+    document.getElementById(
+      "botaoConsultar"
+    );
+
+
+    const API_ATENDIMENTO =
+    "https://script.google.com/macros/s/AKfycbwJzijPbbP3PSZuTh2rpTpwmYIcBj44pZR2BaXOJwhZOZLGOQkDDPywJTMxy_90LbYb/exec";
+
+
+    if(botaoChat && chat){
+
+      botaoChat.addEventListener(
+        "click",
+        function(){
+
+          chat.classList.add(
+            "aberto"
           );
-
-          menuToggle.setAttribute(
-            'aria-expanded',
-            'false'
-          );
-
-          menuToggle.textContent =
-            '☰';
 
         }
       );
 
-    });
-
-}
+    }
 
 
-/* =========================
-   CENTRAL DE ATENDIMENTO
-========================= */
+    if(fecharChat && chat){
 
-const API_ATENDIMENTOS =
-  "https://script.google.com/macros/s/AKfycbwJzijPbbP3PSZuTh2rpTpwmYIcBj44pZR2BaXOJwhZOZLGOQkDDPywJTMxy_90LbYb/exec";
+      fecharChat.addEventListener(
+        "click",
+        function(){
 
+          chat.classList.remove(
+            "aberto"
+          );
 
-function abrirChat(){
+        }
+      );
 
-  document.getElementById(
-    "chatBox"
-  ).style.display =
-    "block";
-
-}
+    }
 
 
-function fecharChat(){
+    function mostrarOpcoes(){
 
-  document.getElementById(
-    "chatBox"
-  ).style.display =
-    "none";
+      opcoes.style.display =
+      "grid";
 
-}
+      formulario.style.display =
+      "none";
 
+      consulta.style.display =
+      "none";
 
-function mostrarSolicitacao(){
+      resultado.style.display =
+      "none";
 
-  document.getElementById(
-    "chatOpcoes"
-  ).style.display =
-    "none";
+      resultado.innerHTML =
+      "";
 
-  document.getElementById(
-    "formSolicitacao"
-  ).style.display =
-    "block";
-
-  document.getElementById(
-    "formConsulta"
-  ).style.display =
-    "none";
-
-}
+    }
 
 
-function mostrarConsulta(){
+    function mostrarFormulario(){
 
-  document.getElementById(
-    "chatOpcoes"
-  ).style.display =
-    "none";
+      opcoes.style.display =
+      "none";
 
-  document.getElementById(
-    "formSolicitacao"
-  ).style.display =
-    "none";
+      formulario.style.display =
+      "block";
 
-  document.getElementById(
-    "formConsulta"
-  ).style.display =
-    "block";
+      consulta.style.display =
+      "none";
 
-}
+      resultado.style.display =
+      "none";
+
+    }
 
 
-function voltarOpcoes(){
+    function mostrarConsulta(){
 
-  document.getElementById(
-    "chatOpcoes"
-  ).style.display =
-    "grid";
+      opcoes.style.display =
+      "none";
 
-  document.getElementById(
-    "formSolicitacao"
-  ).style.display =
-    "none";
+      formulario.style.display =
+      "none";
 
-  document.getElementById(
-    "formConsulta"
-  ).style.display =
-    "none";
+      consulta.style.display =
+      "block";
 
-  document.getElementById(
-    "resultadoConsulta"
-  ).style.display =
-    "none";
+      resultado.style.display =
+      "none";
 
-  document.getElementById(
-    "resultadoSolicitacao"
-  ).style.display =
-    "none";
-
-}
+    }
 
 
-document
-  .getElementById("atendimentoForm")
-  .addEventListener(
-    "submit",
-    function(event){
-
-      event.preventDefault();
+    novaSolicitacao.addEventListener(
+      "click",
+      mostrarFormulario
+    );
 
 
-      const nome =
+    consultarProtocolo.addEventListener(
+      "click",
+      mostrarConsulta
+    );
+
+
+    voltarSolicitacao.addEventListener(
+      "click",
+      mostrarOpcoes
+    );
+
+
+    voltarAtendimento.addEventListener(
+      "click",
+      mostrarOpcoes
+    );
+
+
+    botaoEnviar.addEventListener(
+      "click",
+      function(){
+
+        const nome =
         document.getElementById(
-          "atNome"
+          "atendimentoNome"
         ).value.trim();
 
 
-      const whatsapp =
+        const whatsapp =
         document.getElementById(
-          "atWhatsapp"
+          "atendimentoWhatsapp"
         ).value.trim();
 
 
-      const tipo =
+        const tipo =
         document.getElementById(
-          "atTipo"
+          "atendimentoTipo"
+        ).value;
+
+
+        const assunto =
+        document.getElementById(
+          "atendimentoAssunto"
         ).value.trim();
 
 
-      const assunto =
+        const mensagem =
         document.getElementById(
-          "atAssunto"
+          "atendimentoMensagem"
         ).value.trim();
 
 
-      const mensagem =
-        document.getElementById(
-          "atMensagem"
-        ).value.trim();
+        if(!nome){
+
+          alert(
+            "Digite seu nome."
+          );
+
+          return;
+
+        }
 
 
-      const protocolo =
+        if(!whatsapp){
+
+          alert(
+            "Digite seu WhatsApp."
+          );
+
+          return;
+
+        }
+
+
+        if(!tipo){
+
+          alert(
+            "Selecione o tipo de atendimento."
+          );
+
+          return;
+
+        }
+
+
+        if(!assunto){
+
+          alert(
+            "Digite o assunto."
+          );
+
+          return;
+
+        }
+
+
+        if(!mensagem){
+
+          alert(
+            "Digite sua mensagem."
+          );
+
+          return;
+
+        }
+
+
+        const agora =
+        new Date();
+
+
+        const protocolo =
         "ATD-" +
-        new Date().getFullYear() +
+        agora.getFullYear() +
         "-" +
-        String(Date.now()).slice(-6);
+        String(
+          agora.getTime()
+        ).slice(-6);
 
 
-      const form =
+        botaoEnviar.disabled =
+        true;
+
+        botaoEnviar.textContent =
+        "ENVIANDO...";
+
+
+        const iframe =
+        document.createElement(
+          "iframe"
+        );
+
+
+        iframe.name =
+        "atendimento_envio";
+
+        iframe.style.display =
+        "none";
+
+
+        document.body.appendChild(
+          iframe
+        );
+
+
+        const form =
         document.createElement(
           "form"
         );
 
 
-      form.method =
+        form.method =
         "POST";
 
+        form.action =
+        API_ATENDIMENTO;
 
-      form.action =
-        API_ATENDIMENTOS;
+        form.target =
+        "atendimento_envio";
 
-
-      form.target =
-        "iframeAtendimento";
-
-
-      form.style.display =
+        form.style.display =
         "none";
 
 
-      const campos = {
-        protocolo,
-        nome,
-        whatsapp,
-        tipo,
-        assunto,
-        mensagem
-      };
-
-
-      Object.keys(campos)
-        .forEach(function(chave){
+        function campo(
+          nomeCampo,
+          valor
+        ){
 
           const input =
-            document.createElement(
-              "input"
-            );
+          document.createElement(
+            "input"
+          );
 
+          input.type =
+          "hidden";
 
           input.name =
-            chave;
-
+          nomeCampo;
 
           input.value =
-            campos[chave];
-
+          valor;
 
           form.appendChild(
             input
           );
 
-        });
+        }
 
 
-      document.body.appendChild(
-        form
-      );
+        campo(
+          "protocolo",
+          protocolo
+        );
 
+        campo(
+          "nome",
+          nome
+        );
 
-      form.submit();
+        campo(
+          "whatsapp",
+          whatsapp
+        );
 
+        campo(
+          "tipo",
+          tipo
+        );
 
-      const resultado =
-        document.getElementById(
-          "resultadoSolicitacao"
+        campo(
+          "assunto",
+          assunto
+        );
+
+        campo(
+          "mensagem",
+          mensagem
         );
 
 
-      resultado.innerHTML =
+        document.body.appendChild(
+          form
+        );
 
-        "<strong>Solicitação registrada!</strong><br><br>" +
-
-        "Seu protocolo é:<br>" +
-
-        "<strong>" +
-        protocolo +
-        "</strong><br><br>" +
-
-        "Guarde este número para consultar o andamento.";
+        form.submit();
 
 
-      resultado.style.display =
-        "block";
+        setTimeout(
+          function(){
+
+            document.querySelector(
+              ".atendimento-corpo"
+            ).innerHTML = `
+
+              <div style="
+                text-align:center;
+                padding:25px 10px;
+              ">
+
+                <div style="
+                  font-size:42px;
+                  margin-bottom:12px;
+                ">
+                  ✅
+                </div>
+
+                <h3 style="
+                  color:#073c66;
+                  margin:0 0 8px;
+                ">
+                  Solicitação enviada!
+                </h3>
+
+                <p style="
+                  color:#667085;
+                  line-height:1.5;
+                ">
+                  Sua solicitação foi registrada
+                  com sucesso.
+                </p>
+
+                <div style="
+                  margin:20px 0;
+                  padding:15px;
+                  background:#eef8fc;
+                  border-radius:12px;
+                ">
+
+                  <small style="
+                    display:block;
+                    color:#667085;
+                    margin-bottom:5px;
+                  ">
+                    Seu protocolo
+                  </small>
+
+                  <strong style="
+                    font-size:22px;
+                    color:#073c66;
+                  ">
+                    ${protocolo}
+                  </strong>
+
+                </div>
+
+                <p style="
+                  color:#667085;
+                  font-size:12px;
+                  margin:0;
+                ">
+                  Guarde este número para
+                  acompanhar sua solicitação.
+                </p>
+
+                <button
+                  type="button"
+                  class="atendimento-voltar"
+                  id="voltarConfirmacao"
+                  style="margin-top:18px;"
+                >
+                  ← Voltar ao Atendimento
+                </button>
+
+              </div>
+
+            `;
 
 
-      document.getElementById(
-        "atendimentoForm"
-      ).reset();
+            document
+            .getElementById(
+              "voltarConfirmacao"
+            )
+            .addEventListener(
+              "click",
+              function(){
+
+                location.reload();
+
+              }
+            );
 
 
-      setTimeout(
-        function(){
-
-          form.remove();
-
-        },
-        1200
-      );
-
-    }
-  );
+            form.remove();
+            iframe.remove();
 
 
-function consultarProtocolo(){
+          },
+          1500
+        );
 
-  const protocolo =
-    document.getElementById(
-      "consultaProtocolo"
-    ).value
-    .trim()
-    .toUpperCase();
+      });
 
 
-  if(!protocolo){
+    botaoConsultar.addEventListener(
+      "click",
+      async function(){
 
-    alert(
-      "Digite o protocolo."
+        const campo =
+        document.getElementById(
+          "numeroProtocolo"
+        );
+
+
+        const protocolo =
+        campo.value
+        .trim()
+        .toUpperCase();
+
+
+        if(!protocolo){
+
+          alert(
+            "Digite o número do protocolo."
+          );
+
+          campo.focus();
+
+          return;
+
+        }
+
+
+        botaoConsultar.disabled =
+        true;
+
+        botaoConsultar.textContent =
+        "CONSULTANDO...";
+
+
+        try{
+
+          const resposta =
+          await fetch(
+            API_ATENDIMENTO +
+            "?protocolo=" +
+            encodeURIComponent(
+              protocolo
+            )
+          );
+
+
+          const dados =
+          await resposta.json();
+
+
+          if(
+            !dados.sucesso ||
+            !dados.encontrado
+          ){
+
+            resultado.style.display =
+            "block";
+
+
+            resultado.innerHTML = `
+
+              <div style="
+                margin-top:18px;
+                padding:16px;
+                background:#fff5f5;
+                border-left:4px solid #b51e2a;
+                border-radius:10px;
+              ">
+
+                <strong style="
+                  color:#b51e2a;
+                  display:block;
+                  margin-bottom:5px;
+                ">
+                  Protocolo não encontrado
+                </strong>
+
+                <span style="
+                  color:#667085;
+                  font-size:12px;
+                ">
+                  Verifique o número informado
+                  e tente novamente.
+                </span>
+
+              </div>
+
+            `;
+
+            return;
+
+          }
+
+
+          const status =
+          String(
+            dados.status ||
+            "PENDENTE"
+          )
+          .trim()
+          .toUpperCase();
+
+
+          let corStatus =
+          "#f9c414";
+
+          let fundoStatus =
+          "#fff9e5";
+
+
+          if(
+            status === "RESPONDIDO" ||
+            status === "CONCLUÍDO" ||
+            status === "CONCLUIDO" ||
+            status === "FINALIZADO"
+          ){
+
+            corStatus =
+            "#079447";
+
+            fundoStatus =
+            "#eefaf3";
+
+          }
+
+
+          if(
+            status === "EM ANÁLISE" ||
+            status === "EM ANALISE"
+          ){
+
+            corStatus =
+            "#159dd1";
+
+            fundoStatus =
+            "#eef8fc";
+
+          }
+
+
+          if(
+            status === "ENCERRADO"
+          ){
+
+            corStatus =
+            "#b51e2a";
+
+            fundoStatus =
+            "#fff5f5";
+
+          }
+
+
+          let respostaHtml =
+          "";
+
+
+          if(dados.resposta){
+
+            respostaHtml = `
+
+              <div style="
+                margin-top:15px;
+                padding:15px;
+                background:#eefaf3;
+                border-radius:10px;
+                border-left:4px solid #079447;
+              ">
+
+                <strong style="
+                  color:#079447;
+                  display:block;
+                  margin-bottom:6px;
+                ">
+                  Resposta da Secretaria
+                </strong>
+
+                <span style="
+                  color:#475467;
+                  font-size:12px;
+                  line-height:1.5;
+                ">
+                  ${dados.resposta}
+                </span>
+
+              </div>
+
+            `;
+
+          }
+
+
+          resultado.style.display =
+          "block";
+
+
+          resultado.innerHTML = `
+
+            <div style="
+              margin-top:18px;
+              padding:16px;
+              background:${fundoStatus};
+              border-left:4px solid ${corStatus};
+              border-radius:10px;
+            ">
+
+              <strong style="
+                color:#073c66;
+                display:block;
+                margin-bottom:10px;
+              ">
+                Protocolo:
+                ${dados.protocolo}
+              </strong>
+
+              <div style="
+                font-size:12px;
+                color:#667085;
+                line-height:1.7;
+              ">
+
+                <strong>Status:</strong>
+
+                <span style="
+                  color:${corStatus};
+                  font-weight:900;
+                ">
+                  ${dados.status}
+                </span>
+
+                <br>
+
+                <strong>Assunto:</strong>
+                ${dados.assunto}
+
+              </div>
+
+              ${respostaHtml}
+
+            </div>
+
+          `;
+
+
+        }catch(erro){
+
+          resultado.style.display =
+          "block";
+
+
+          resultado.innerHTML = `
+
+            <div style="
+              margin-top:18px;
+              padding:16px;
+              background:#fff5f5;
+              border-left:4px solid #b51e2a;
+              border-radius:10px;
+            ">
+
+              <strong style="
+                color:#b51e2a;
+              ">
+                Não foi possível consultar.
+              </strong>
+
+            </div>
+
+          `;
+
+        }finally{
+
+          botaoConsultar.disabled =
+          false;
+
+          botaoConsultar.textContent =
+          "CONSULTAR PROTOCOLO →";
+
+        }
+
+      }
     );
-
-    return;
 
   }
 
-
-  const resultado =
-    document.getElementById(
-      "resultadoConsulta"
-    );
-
-
-  resultado.style.display =
-    "block";
-
-
-  resultado.innerHTML =
-    "Consultando...";
-
-
-  const callback =
-    "consultaAtendimento" +
-    Date.now();
-
-
-  let script;
-
-
-  window[callback] =
-    function(dados){
-
-      if(
-        dados.sucesso &&
-        dados.encontrado
-      ){
-
-        resultado.innerHTML =
-
-          "<strong>Protocolo:</strong> " +
-          dados.protocolo +
-
-          "<br><strong>Status:</strong> " +
-          dados.status +
-
-          "<br><br><strong>Resposta:</strong><br>" +
-
-          (
-            dados.resposta ||
-            "Ainda não há resposta."
-          );
-
-      }else{
-
-        resultado.innerHTML =
-          "❌ Protocolo não encontrado.";
-
-      }
-
-
-      delete window[callback];
-
-
-      if(
-        script &&
-        script.parentNode
-      ){
-
-        script.remove();
-
-      }
-
-    };
-
-
-  script =
-    document.createElement(
-      "script"
-    );
-
-
-  script.src =
-    API_ATENDIMENTOS +
-
-    "?protocolo=" +
-
-    encodeURIComponent(
-      protocolo
-    ) +
-
-    "&callback=" +
-
-    callback;
-
-
-  document.body.appendChild(
-    script
-  );
-
-}
+);
 
 </script>
-
-
-<iframe
-  name="iframeAtendimento"
-  style="display:none;">
-</iframe>
 
 </body>
 </html>
