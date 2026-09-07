@@ -1212,99 +1212,41 @@ function carregarPastores(){
   const container =
     document.getElementById("pastores");
 
-  container.innerHTML = `
-    <div class="loading">
-      Carregando pastores...
-    </div>
-  `;
+  window.carregarPastoresJSONP = function(dados){
 
+    pastores = dados;
 
-  fetch(API_URL)
+    renderizarPastores("TODOS");
 
-    .then(function(resposta){
+    delete window.carregarPastoresJSONP;
 
-      if(!resposta.ok){
-        throw new Error(
-          "Erro HTTP: " + resposta.status
-        );
-      }
+    if(script){
+      script.remove();
+    }
+  };
 
-      return resposta.json();
+  const script = document.createElement("script");
 
-    })
+  script.src =
+    API_URL +
+    "?callback=carregarPastoresJSONP&t=" +
+    Date.now();
 
-    .then(function(dados){
+  script.onerror = function(){
 
-      console.log(
-        "Dados recebidos da API:",
-        dados
-      );
+    container.innerHTML = `
+      <div class="erro">
+        Não foi possível carregar os dados dos pastores.
+        Verifique a conexão com a planilha.
+      </div>
+    `;
 
+    delete window.carregarPastoresJSONP;
 
-      /*
-       * A API deve retornar uma lista.
-       * Mantemos uma proteção caso venha
-       * dentro de alguma propriedade.
-       */
+    script.remove();
+  };
 
-      if(Array.isArray(dados)){
-
-        pastores = dados;
-
-      }else if(
-        dados &&
-        Array.isArray(dados.data)
-      ){
-
-        pastores = dados.data;
-
-      }else if(
-        dados &&
-        Array.isArray(dados.dados)
-      ){
-
-        pastores = dados.dados;
-
-      }else{
-
-        throw new Error(
-          "A API não retornou uma lista de pastores."
-        );
-
-      }
-
-
-      renderizarPastores("TODOS");
-
-    })
-
-    .catch(function(erro){
-
-      console.error(
-        "Erro ao carregar pastores:",
-        erro
-      );
-
-
-      container.innerHTML = `
-
-        <div class="erro">
-
-          Não foi possível carregar os dados
-          dos pastores.
-
-          <br><br>
-
-          <small>
-            Verifique a conexão com a planilha.
-          </small>
-
-        </div>
-
-      `;
-
-    });
-
+  document.body.appendChild(script);
 }
 
 
