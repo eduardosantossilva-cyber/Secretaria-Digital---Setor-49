@@ -804,11 +804,6 @@ SETOR 49 - JARDIM DOS PIMENTAS
 
 <a href="index.html">Início</a>
 
-
-<a href="redes-sociais.html">
-Redes Sociais
-</a>
-
 <a
   href="area-restrita.html"
   class="area-restrita-link"
@@ -1209,66 +1204,54 @@ let pastores = [];
 
 function carregarPastores(){
 
-  const container = document.getElementById("pastores");
+  const container =
+    document.getElementById("pastores");
 
-  const callbackName =
-    "receberPastores_" + Date.now();
+  container.innerHTML = `
+    <div class="loading">
+      Carregando pastores...
+    </div>
+  `;
 
-  window[callbackName] = function(dados){
+  fetch(API_URL)
+    .then(resposta => {
 
-    pastores = dados;
+      if(!resposta.ok){
+        throw new Error(
+          "Erro HTTP: " + resposta.status
+        );
+      }
 
-    renderizarPastores("TODOS");
+      return resposta.json();
 
-    delete window[callbackName];
+    })
+    .then(dados => {
 
-    script.remove();
-  };
+      console.log("PASTORES RECEBIDOS:", dados);
 
-  const script = document.createElement("script");
+      pastores = dados;
 
-  script.src =
-    API_URL +
-    "?callback=" +
-    callbackName +
-    "&t=" +
-    Date.now();
+      renderizarPastores("TODOS");
 
-  script.onerror = function(){
+    })
+    .catch(erro => {
 
-    container.innerHTML = `
-      <div class="erro">
-        Não foi possível acessar a API dos pastores.
-        Verifique a implantação do Apps Script.
-      </div>
-    `;
-
-    delete window[callbackName];
-
-    script.remove();
-  };
-
-  document.body.appendChild(script);
-
-  setTimeout(function(){
-
-    if(window[callbackName]){
+      console.error(
+        "ERRO AO CARREGAR PASTORES:",
+        erro
+      );
 
       container.innerHTML = `
         <div class="erro">
-          A API dos pastores não respondeu.
-          Verifique a implantação do Apps Script.
+          Não foi possível carregar os dados dos pastores.
+          <br><br>
+          <small>
+            Erro: ${erro.message}
+          </small>
         </div>
       `;
 
-      delete window[callbackName];
-
-      if(document.body.contains(script)){
-        script.remove();
-      }
-    }
-
-  }, 10000);
+    });
 }
 
 
