@@ -1306,23 +1306,122 @@ if (
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-  const botaoChat = document.getElementById("atendimentoBotao");
-  const janelaChat = document.getElementById("atendimentoChat");
-  const fecharChat = document.getElementById("atendimentoFechar");
+  const opcoes = document.getElementById("atendimentoOpcoes");
+  const formulario = document.getElementById("formularioAtendimento");
+  const consulta = document.getElementById("consultaProtocolo");
 
-  if (botaoChat && janelaChat) {
+  const novaSolicitacao =
+    document.getElementById("novaSolicitacao");
 
-    botaoChat.onclick = function () {
-      janelaChat.classList.add("aberto");
-    };
+  const consultarProtocolo =
+    document.getElementById("consultarProtocolo");
+
+  const voltarAtendimento =
+    document.getElementById("voltarAtendimento");
+
+  const voltarSolicitacao =
+    document.getElementById("voltarSolicitacao");
+
+
+  function mostrarOpcoes() {
+
+    if (opcoes) {
+      opcoes.style.display = "grid";
+    }
+
+    if (formulario) {
+      formulario.style.display = "none";
+    }
+
+    if (consulta) {
+      consulta.style.display = "none";
+    }
 
   }
 
-  if (fecharChat && janelaChat) {
 
-    fecharChat.onclick = function () {
-      janelaChat.classList.remove("aberto");
-    };
+  function mostrarFormulario() {
+
+    if (opcoes) {
+      opcoes.style.display = "none";
+    }
+
+    if (formulario) {
+      formulario.style.display = "block";
+    }
+
+    if (consulta) {
+      consulta.style.display = "none";
+    }
+
+  }
+
+
+  function mostrarConsulta() {
+
+    if (opcoes) {
+      opcoes.style.display = "none";
+    }
+
+    if (formulario) {
+      formulario.style.display = "none";
+    }
+
+    if (consulta) {
+      consulta.style.display = "block";
+    }
+
+  }
+
+
+  if (novaSolicitacao) {
+
+    novaSolicitacao.addEventListener("click", function (e) {
+
+      e.preventDefault();
+
+      mostrarFormulario();
+
+    });
+
+  }
+
+
+  if (consultarProtocolo) {
+
+    consultarProtocolo.addEventListener("click", function (e) {
+
+      e.preventDefault();
+
+      mostrarConsulta();
+
+    });
+
+  }
+
+
+  if (voltarAtendimento) {
+
+    voltarAtendimento.addEventListener("click", function (e) {
+
+      e.preventDefault();
+
+      mostrarOpcoes();
+
+    });
+
+  }
+
+
+  if (voltarSolicitacao) {
+
+    voltarSolicitacao.addEventListener("click", function (e) {
+
+      e.preventDefault();
+
+      mostrarOpcoes();
+
+    });
 
   }
 
