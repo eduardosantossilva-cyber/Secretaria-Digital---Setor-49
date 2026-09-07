@@ -426,6 +426,28 @@ footer{
 
   <div class="atendimento-corpo">
 
+<div class="atendimento-opcoes" id="atendimentoOpcoes">
+
+  <button
+    type="button"
+    class="atendimento-opcao"
+    id="novaSolicitacao"
+  >
+    💬 Fazer uma solicitação
+  </button>
+
+  <button
+    type="button"
+    class="atendimento-opcao"
+    id="consultarProtocolo"
+  >
+    🔎 Consultar protocolo
+  </button>
+
+</div>
+
+<div id="formularioAtendimento">
+    
     <p>
       Olá! Como podemos ajudar?
       Preencha os dados abaixo para enviar sua solicitação.
@@ -531,7 +553,64 @@ footer{
     >
       ENVIAR SOLICITAÇÃO →
     </button>
+</div>
 
+<div
+  id="consultaProtocolo"
+  style="display:none;"
+>
+
+  <p>
+    Digite seu protocolo para consultar
+    o andamento da sua solicitação.
+  </p>
+
+  <div class="atendimento-campo">
+
+    <label for="numeroProtocolo">
+      Número do protocolo
+    </label>
+
+    <input
+      type="text"
+      id="numeroProtocolo"
+      placeholder="ATD-2026-000001"
+    >
+
+  </div>
+
+  <button
+    type="button"
+    class="atendimento-enviar"
+    id="botaoConsultar"
+  >
+    CONSULTAR PROTOCOLO →
+  </button>
+
+  <button
+    type="button"
+    id="voltarAtendimento"
+    style="
+      width:100%;
+      margin-top:8px;
+      padding:10px;
+      border:0;
+      background:transparent;
+      color:#073c66;
+      font-weight:800;
+      cursor:pointer;
+    "
+  >
+    ← Voltar
+  </button>
+
+</div>
+
+<div
+  id="resultadoProtocolo"
+  style="display:none;"
+></div>
+    
   </div>
 
 </div>
