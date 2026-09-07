@@ -1333,40 +1333,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  const botaoEnviar =
-    document.getElementById("atendimentoEnviar");
+  const botaoEnviar = document.getElementById("atendimentoEnviar");
 
-  const nome =
-    document.getElementById("atendimentoNome");
-
-  const whatsapp =
-    document.getElementById("atendimentoWhatsapp");
-
-  const tipo =
-    document.getElementById("atendimentoTipo");
-
-  const assunto =
-    document.getElementById("atendimentoAssunto");
-
-  const mensagem =
-    document.getElementById("atendimentoMensagem");
-
+  const nome = document.getElementById("atendimentoNome");
+  const whatsapp = document.getElementById("atendimentoWhatsapp");
+  const tipo = document.getElementById("atendimentoTipo");
+  const assunto = document.getElementById("atendimentoAssunto");
+  const mensagem = document.getElementById("atendimentoMensagem");
 
   const API =
     "https://script.google.com/macros/s/AKfycbwJzijPbbP3PSZuTh2rpTpwmYIcBj44pZR2BaXOJwhZOZLGOQkDDPywJTMxy_90LbYb/exec";
-
 
   if (!botaoEnviar) {
     return;
   }
 
-
-  botaoEnviar.onclick = function () {
-
-
-    /* ===================== */
-    /* VALIDAÇÃO */
-    /* ===================== */
+  botaoEnviar.onclick = async function () {
 
     if (!nome.value.trim()) {
       alert("Digite seu nome.");
@@ -1374,13 +1356,11 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-
     if (!whatsapp.value.trim()) {
       alert("Digite seu WhatsApp.");
       whatsapp.focus();
       return;
     }
-
 
     if (!tipo.value) {
       alert("Selecione o tipo de atendimento.");
@@ -1388,24 +1368,17 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-
     if (!assunto.value.trim()) {
       alert("Digite o assunto.");
       assunto.focus();
       return;
     }
 
-
     if (!mensagem.value.trim()) {
       alert("Digite sua mensagem.");
       mensagem.focus();
       return;
     }
-
-
-    /* ===================== */
-    /* PROTOCOLO */
-    /* ===================== */
 
     const agora = new Date();
 
@@ -1415,300 +1388,125 @@ document.addEventListener("DOMContentLoaded", function () {
       "-" +
       String(agora.getTime()).slice(-6);
 
-
-    /* ===================== */
-    /* BOTÃO */
-    /* ===================== */
-
     botaoEnviar.disabled = true;
+    botaoEnviar.textContent = "ENVIANDO...";
 
-    botaoEnviar.textContent =
-      "ENVIANDO...";
+    try {
 
+      const dados = new URLSearchParams();
 
-    /* ===================== */
-    /* IFRAME INVISÍVEL */
-    /* ===================== */
+      dados.append("protocolo", protocolo);
+      dados.append("nome", nome.value.trim());
+      dados.append("whatsapp", whatsapp.value.trim());
+      dados.append("tipo", tipo.value);
+      dados.append("assunto", assunto.value.trim());
+      dados.append("mensagem", mensagem.value.trim());
 
-    const iframe =
-      document.createElement("iframe");
+      await fetch(API, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+        },
+        body: dados.toString()
+      });
 
-    iframe.name =
-      "atendimento_envio";
+      setTimeout(function () {
 
-    iframe.style.display =
-      "none";
+        const corpo =
+          document.querySelector(".atendimento-corpo");
 
-    document.body.appendChild(iframe);
+        if (!corpo) {
+          return;
+        }
 
+        corpo.innerHTML = `
 
-    /* ===================== */
-    /* FORMULÁRIO */
-    /* ===================== */
+          <div style="
+            text-align:center;
+            padding:20px 5px;
+          ">
 
-    const formulario =
-      document.createElement("form");
+            <div style="
+              font-size:42px;
+              margin-bottom:10px;
+            ">
+              ✅
+            </div>
 
-    formulario.method =
-      "POST";
+            <h3 style="
+              color:#073c66;
+              margin:0 0 8px;
+            ">
+              Solicitação enviada!
+            </h3>
 
-    formulario.action =
-      API;
+            <p style="
+              color:#667085;
+              line-height:1.5;
+            ">
+              Sua solicitação foi registrada
+              com sucesso.
+            </p>
 
-    formulario.target =
-      "atendimento_envio";
+            <div style="
+              margin:18px 0;
+              padding:15px;
+              background:#eef8fc;
+              border-radius:12px;
+            ">
 
-    formulario.style.display =
-      "none";
+              <small style="
+                display:block;
+                color:#667085;
+                margin-bottom:5px;
+              ">
+                Seu protocolo
+              </small>
 
+              <strong style="
+                font-size:22px;
+                color:#073c66;
+              ">
+                ${protocolo}
+              </strong>
 
-    function campo(nomeCampo, valor) {
+            </div>
 
-      const input =
-        document.createElement("input");
+            <p style="
+              color:#667085;
+              font-size:12px;
+              margin:0;
+            ">
+              Guarde este número para
+              acompanhar sua solicitação.
+            </p>
 
-      input.type =
-        "hidden";
+          </div>
 
-      input.name =
-        nomeCampo;
+        `;
 
-      input.value =
-        valor;
+      }, 1500);
 
-      formulario.appendChild(input);
+    } catch (erro) {
 
+      console.error(
+        "Erro ao enviar atendimento:",
+        erro
+      );
+
+      alert(
+        "Não foi possível enviar sua solicitação. Tente novamente."
+      );
+
+      botaoEnviar.disabled = false;
+      botaoEnviar.textContent =
+        "ENVIAR SOLICITAÇÃO →";
     }
 
-
-    campo(
-      "protocolo",
-      protocolo
-    );
-
-    campo(
-      "nome",
-      nome.value.trim()
-    );
-
-    campo(
-      "whatsapp",
-      whatsapp.value.trim()
-    );
-
-    campo(
-      "tipo",
-      tipo.value
-    );
-
-    campo(
-      "assunto",
-      assunto.value.trim()
-    );
-
-    campo(
-      "mensagem",
-      mensagem.value.trim()
-    );
-
-
-    document.body.appendChild(
-      formulario
-    );
-
-
-    /* ===================== */
-    /* ENVIA PARA O GOOGLE */
-    /* ===================== */
-
-    formulario.submit();
-
-
-    /* ===================== */
-    /* CONFIRMAÇÃO */
-    /* ===================== */
-
-    setTimeout(function () {
-
-      const corpo =
-        document.querySelector(
-          ".atendimento-corpo"
-        );
-
-
-      corpo.innerHTML = `
-
-        <div style="
-          text-align:center;
-          padding:20px 5px;
-        ">
-
-          <div style="
-            font-size:42px;
-            margin-bottom:10px;
-          ">
-            ✅
-          </div>
-
-
-          <h3 style="
-            color:#073c66;
-            margin:0 0 8px;
-          ">
-            Solicitação enviada!
-          </h3>
-
-
-          <p style="
-            color:#667085;
-            line-height:1.5;
-          ">
-            Sua solicitação foi registrada
-            com sucesso.
-          </p>
-
-
-          <div style="
-            margin:18px 0;
-            padding:15px;
-            background:#eef8fc;
-            border-radius:12px;
-          ">
-
-            <small style="
-              display:block;
-              color:#667085;
-              margin-bottom:5px;
-            ">
-              Seu protocolo
-            </small>
-
-
-            <strong style="
-              font-size:22px;
-              color:#073c66;
-            ">
-              ${protocolo}
-            </strong>
-
-          </div>
-
-
-          <p style="
-            color:#667085;
-            font-size:12px;
-            margin:0;
-          ">
-            Guarde este número para
-            acompanhar sua solicitação.
-          </p>
-
-        </div>
-
-      `;
-
-
-      formulario.remove();
-
-      iframe.remove();
-
-
-    }, 1500);
-
   };
 
 });
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  const opcoes =
-    document.getElementById("atendimentoOpcoes");
-
-  const formulario =
-    document.getElementById("formularioAtendimento");
-
-  const consulta =
-    document.getElementById("consultaProtocolo");
-
-  const novaSolicitacao =
-    document.getElementById("novaSolicitacao");
-
-  const consultar =
-    document.getElementById("consultarProtocolo");
-
-  const voltar =
-    document.getElementById("voltarAtendimento");
-
-
-  /* FAZER SOLICITAÇÃO */
-
-  if (novaSolicitacao) {
-
-    novaSolicitacao.onclick = function () {
-
-      opcoes.style.display = "none";
-
-      formulario.style.display = "block";
-
-      consulta.style.display = "none";
-
-    };
-
-  }
-
-
-  /* CONSULTAR PROTOCOLO */
-
-  if (consultar) {
-
-    consultar.onclick = function () {
-
-      opcoes.style.display = "none";
-
-      formulario.style.display = "none";
-
-      consulta.style.display = "block";
-
-    };
-
-  }
-
-
-  /* VOLTAR */
-
-  if (voltar) {
-
-    voltar.onclick = function () {
-
-      opcoes.style.display = "grid";
-
-      formulario.style.display = "none";
-
-      consulta.style.display = "none";
-
-    };
-
-  }
-
-});
-
-const voltarSolicitacao =
-  document.getElementById("voltarSolicitacao");
-
-
-if (voltarSolicitacao) {
-
-  voltarSolicitacao.onclick = function () {
-
-    opcoes.style.display = "grid";
-
-    formulario.style.display = "none";
-
-    consulta.style.display = "none";
-
-  };
-
-}
   
 </script>
 <script>
