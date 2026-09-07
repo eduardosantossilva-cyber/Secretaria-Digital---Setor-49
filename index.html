@@ -384,6 +384,34 @@ footer{
   }
 
 }
+/* OPÇÕES DO ATENDIMENTO */
+
+.atendimento-opcoes{
+  display:grid;
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.atendimento-opcao{
+  width:100%;
+  border:1px solid #dce3e8;
+  border-radius:10px;
+  padding:13px 15px;
+  background:#f8fafc;
+  color:#073c66;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:800;
+  text-align:left;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.atendimento-opcao:hover{
+  background:#eef8fc;
+  border-color:#159dd1;
+  transform:translateY(-1px);
+}
   
 </style>
 </head>
@@ -446,7 +474,7 @@ footer{
 
 </div>
 
-<div id="formularioAtendimento">
+<div id="formularioAtendimento" style="display:none;">
     
     <p>
       Olá! Como podemos ajudar?
@@ -1567,6 +1595,79 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+
+  const opcoes =
+    document.getElementById("atendimentoOpcoes");
+
+  const formulario =
+    document.getElementById("formularioAtendimento");
+
+  const consulta =
+    document.getElementById("consultaProtocolo");
+
+  const novaSolicitacao =
+    document.getElementById("novaSolicitacao");
+
+  const consultar =
+    document.getElementById("consultarProtocolo");
+
+  const voltar =
+    document.getElementById("voltarAtendimento");
+
+
+  /* FAZER SOLICITAÇÃO */
+
+  if (novaSolicitacao) {
+
+    novaSolicitacao.onclick = function () {
+
+      opcoes.style.display = "none";
+
+      formulario.style.display = "block";
+
+      consulta.style.display = "none";
+
+    };
+
+  }
+
+
+  /* CONSULTAR PROTOCOLO */
+
+  if (consultar) {
+
+    consultar.onclick = function () {
+
+      opcoes.style.display = "none";
+
+      formulario.style.display = "none";
+
+      consulta.style.display = "block";
+
+    };
+
+  }
+
+
+  /* VOLTAR */
+
+  if (voltar) {
+
+    voltar.onclick = function () {
+
+      opcoes.style.display = "grid";
+
+      formulario.style.display = "none";
+
+      consulta.style.display = "none";
+
+    };
+
+  }
+
+});
+  
 </script>
   
 </body>
