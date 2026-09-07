@@ -945,370 +945,32 @@ fetch(API_AVISOS)
 </script>
   
 <script>
-const atendimentoBotao =
-  document.getElementById("atendimentoBotao");
-
-const atendimentoChat =
-  document.getElementById("atendimentoChat");
-
-const atendimentoFechar =
-  document.getElementById("atendimentoFechar");
-
-
-atendimentoBotao.addEventListener("click", () => {
-
-  atendimentoChat.classList.toggle("aberto");
-
-});
-
-
-atendimentoFechar.addEventListener("click", () => {
-
-  atendimentoChat.classList.remove("aberto");
-
-});
-const menuToggle=document.getElementById('menuToggle');
-const mobileMenu=document.getElementById('mobileMenu');
-if(menuToggle&&mobileMenu){
- menuToggle.addEventListener('click',()=>{const open=mobileMenu.classList.toggle('open');menuToggle.setAttribute('aria-expanded',open?'true':'false');menuToggle.textContent=open?'✕':'☰';});
- mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileMenu.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.textContent='☰';}));
-}
-
-/* ============================= */
-/* ENVIO DO ATENDIMENTO */
-/* ============================= */
-
-
-const API_ATENDIMENTO =
-  "https://script.google.com/macros/s/AKfycbwJzijPbbP3PSZuTh2rpTpwmYIcBj44pZR2BaXOJwhZOZLGOQkDDPywJTMxy_90LbYb/exec";
-
-
-const atendimentoEnviar =
-  document.getElementById("atendimentoEnviar");
-
-const atendimentoNome =
-  document.getElementById("atendimentoNome");
-
-const atendimentoWhatsapp =
-  document.getElementById("atendimentoWhatsapp");
-
-const atendimentoTipo =
-  document.getElementById("atendimentoTipo");
-
-const atendimentoAssunto =
-  document.getElementById("atendimentoAssunto");
-
-const atendimentoMensagem =
-  document.getElementById("atendimentoMensagem");
-
-
-atendimentoEnviar.addEventListener(
-  "click",
-  () => {
-
-    const nome =
-      atendimentoNome.value.trim();
-
-    const whatsapp =
-      atendimentoWhatsapp.value.trim();
-
-    const tipo =
-      atendimentoTipo.value;
-
-    const assunto =
-      atendimentoAssunto.value.trim();
-
-    const mensagem =
-      atendimentoMensagem.value.trim();
-
-
-    /* VALIDAÇÃO */
-
-    if (!nome) {
-      alert("Digite seu nome.");
-      atendimentoNome.focus();
-      return;
-    }
-
-    if (!whatsapp) {
-      alert("Digite seu WhatsApp.");
-      atendimentoWhatsapp.focus();
-      return;
-    }
-
-    if (!tipo) {
-      alert("Selecione o tipo de atendimento.");
-      atendimentoTipo.focus();
-      return;
-    }
-
-    if (!assunto) {
-      alert("Digite o assunto.");
-      atendimentoAssunto.focus();
-      return;
-    }
-
-    if (!mensagem) {
-      alert("Digite sua mensagem.");
-      atendimentoMensagem.focus();
-      return;
-    }
-
-
-    /* GERA O PROTOCOLO */
-
-    const agora = new Date();
-
-    const numero =
-      String(
-        agora.getTime()
-      ).slice(-6);
-
-    const protocolo =
-      "ATD-" +
-      agora.getFullYear() +
-      "-" +
-      numero;
-
-
-    /* BOTÃO */
-
-    atendimentoEnviar.disabled = true;
-
-    atendimentoEnviar.textContent =
-      "ENVIANDO...";
-
-
-    /*
-     * CRIA UM IFRAME INVISÍVEL
-     */
-
-    const iframe =
-      document.createElement("iframe");
-
-    iframe.name =
-      "atendimentoFrame";
-
-    iframe.style.display =
-      "none";
-
-    document.body.appendChild(iframe);
-
-
-    /*
-     * CRIA FORMULÁRIO INVISÍVEL
-     */
-
-    const formulario =
-      document.createElement("form");
-
-    formulario.method = "POST";
-
-    formulario.action =
-      API_ATENDIMENTO;
-
-    formulario.target =
-      "atendimentoFrame";
-
-    formulario.style.display =
-      "none";
-
-
-    function adicionarCampo(nome, valor) {
-
-      const campo =
-        document.createElement("input");
-
-      campo.type = "hidden";
-
-      campo.name = nome;
-
-      campo.value = valor;
-
-      formulario.appendChild(campo);
-
-    }
-
-
-    adicionarCampo(
-      "protocolo",
-      protocolo
-    );
-
-    adicionarCampo(
-      "nome",
-      nome
-    );
-
-    adicionarCampo(
-      "whatsapp",
-      whatsapp
-    );
-
-    adicionarCampo(
-      "tipo",
-      tipo
-    );
-
-    adicionarCampo(
-      "assunto",
-      assunto
-    );
-
-    adicionarCampo(
-      "mensagem",
-      mensagem
-    );
-
-
-    document.body.appendChild(
-      formulario
-    );
-
-
-    /*
-     * ENVIA
-     */
-
-    formulario.submit();
-
-
-    /*
-     * MOSTRA CONFIRMAÇÃO
-     */
-
-    setTimeout(() => {
-
-      document.querySelector(
-        ".atendimento-corpo"
-      ).innerHTML = `
-
-        <div style="
-          text-align:center;
-          padding:25px 10px;
-        ">
-
-          <div style="
-            font-size:42px;
-            margin-bottom:12px;
-          ">
-            ✅
-          </div>
-
-          <h3 style="
-            color:#073c66;
-            margin:0 0 8px;
-          ">
-            Solicitação enviada!
-          </h3>
-
-          <p style="
-            color:#667085;
-            line-height:1.5;
-          ">
-            Sua solicitação foi registrada
-            com sucesso.
-          </p>
-
-          <div style="
-            margin:20px 0;
-            padding:15px;
-            background:#eef8fc;
-            border-radius:12px;
-          ">
-
-            <small style="
-              display:block;
-              color:#667085;
-              margin-bottom:5px;
-            ">
-              Seu protocolo
-            </small>
-
-            <strong style="
-              font-size:22px;
-              color:#073c66;
-            ">
-              ${protocolo}
-            </strong>
-
-          </div>
-
-          <p style="
-            color:#667085;
-            font-size:12px;
-          ">
-            Guarde este número para
-            acompanhar sua solicitação.
-          </p>
-
-        </div>
-
-      `;
-
-
-      formulario.remove();
-
-      iframe.remove();
-
-    }, 1200);
-
-  }
-);
-
-  }
-);
-/* RESTAURA ABERTURA DO CHAT */
-
-const botaoAtendimentoNovo =
-  document.getElementById("atendimentoBotao");
-
-const chatAtendimentoNovo =
-  document.getElementById("atendimentoChat");
-
-const fecharAtendimentoNovo =
-  document.getElementById("atendimentoFechar");
-
-
-if (
-  botaoAtendimentoNovo &&
-  chatAtendimentoNovo
-) {
-
-  botaoAtendimentoNovo.addEventListener(
-    "click",
-    function () {
-
-      chatAtendimentoNovo.classList.toggle("aberto");
-
-    }
-  );
-
-}
-
-
-if (
-  fecharAtendimentoNovo &&
-  chatAtendimentoNovo
-) {
-
-  fecharAtendimentoNovo.addEventListener(
-    "click",
-    function () {
-
-      chatAtendimentoNovo.classList.remove("aberto");
-
-    }
-  );
-
-}
-</script>
-<script>
 document.addEventListener("DOMContentLoaded", function () {
 
-  const opcoes = document.getElementById("atendimentoOpcoes");
-  const formulario = document.getElementById("formularioAtendimento");
-  const consulta = document.getElementById("consultaProtocolo");
+  /* =========================================
+     ELEMENTOS DO ATENDIMENTO
+  ========================================= */
+
+  const botaoChat =
+    document.getElementById("atendimentoBotao");
+
+  const chat =
+    document.getElementById("atendimentoChat");
+
+  const fecharChat =
+    document.getElementById("atendimentoFechar");
+
+  const opcoes =
+    document.getElementById("atendimentoOpcoes");
+
+  const formulario =
+    document.getElementById("formularioAtendimento");
+
+  const consulta =
+    document.getElementById("consultaProtocolo");
+
+  const resultado =
+    document.getElementById("resultadoProtocolo");
 
   const novaSolicitacao =
     document.getElementById("novaSolicitacao");
@@ -1316,12 +978,56 @@ document.addEventListener("DOMContentLoaded", function () {
   const consultarProtocolo =
     document.getElementById("consultarProtocolo");
 
-  const voltarAtendimento =
-    document.getElementById("voltarAtendimento");
-
   const voltarSolicitacao =
     document.getElementById("voltarSolicitacao");
 
+  const voltarAtendimento =
+    document.getElementById("voltarAtendimento");
+
+  const botaoEnviar =
+    document.getElementById("atendimentoEnviar");
+
+  const botaoConsultar =
+    document.getElementById("botaoConsultar");
+
+
+  const API_ATENDIMENTO =
+    "https://script.google.com/macros/s/AKfycbwJzijPbbP3PSZuTh2rpTpwmYIcBj44pZR2BaXOJwhZOZLGOQkDDPywJTMxy_90LbYb/exec";
+
+
+  /* =========================================
+     ABRIR CHAT
+  ========================================= */
+
+  if (botaoChat && chat) {
+
+    botaoChat.addEventListener("click", function () {
+
+      chat.classList.add("aberto");
+
+    });
+
+  }
+
+
+  /* =========================================
+     FECHAR CHAT
+  ========================================= */
+
+  if (fecharChat && chat) {
+
+    fecharChat.addEventListener("click", function () {
+
+      chat.classList.remove("aberto");
+
+    });
+
+  }
+
+
+  /* =========================================
+     MOSTRAR OPÇÕES
+  ========================================= */
 
   function mostrarOpcoes() {
 
@@ -1337,8 +1043,17 @@ document.addEventListener("DOMContentLoaded", function () {
       consulta.style.display = "none";
     }
 
+    if (resultado) {
+      resultado.style.display = "none";
+      resultado.innerHTML = "";
+    }
+
   }
 
+
+  /* =========================================
+     MOSTRAR FORMULÁRIO
+  ========================================= */
 
   function mostrarFormulario() {
 
@@ -1354,8 +1069,17 @@ document.addEventListener("DOMContentLoaded", function () {
       consulta.style.display = "none";
     }
 
+    if (resultado) {
+      resultado.style.display = "none";
+      resultado.innerHTML = "";
+    }
+
   }
 
+
+  /* =========================================
+     MOSTRAR CONSULTA
+  ========================================= */
 
   function mostrarConsulta() {
 
@@ -1371,14 +1095,23 @@ document.addEventListener("DOMContentLoaded", function () {
       consulta.style.display = "block";
     }
 
+    if (resultado) {
+      resultado.style.display = "none";
+      resultado.innerHTML = "";
+    }
+
   }
 
 
+  /* =========================================
+     BOTÃO NOVA SOLICITAÇÃO
+  ========================================= */
+
   if (novaSolicitacao) {
 
-    novaSolicitacao.addEventListener("click", function (e) {
+    novaSolicitacao.addEventListener("click", function (event) {
 
-      e.preventDefault();
+      event.preventDefault();
 
       mostrarFormulario();
 
@@ -1387,11 +1120,15 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
+  /* =========================================
+     BOTÃO CONSULTAR PROTOCOLO
+  ========================================= */
+
   if (consultarProtocolo) {
 
-    consultarProtocolo.addEventListener("click", function (e) {
+    consultarProtocolo.addEventListener("click", function (event) {
 
-      e.preventDefault();
+      event.preventDefault();
 
       mostrarConsulta();
 
@@ -1400,24 +1137,15 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
-  if (voltarAtendimento) {
-
-    voltarAtendimento.addEventListener("click", function (e) {
-
-      e.preventDefault();
-
-      mostrarOpcoes();
-
-    });
-
-  }
-
+  /* =========================================
+     VOLTAR DA SOLICITAÇÃO
+  ========================================= */
 
   if (voltarSolicitacao) {
 
-    voltarSolicitacao.addEventListener("click", function (e) {
+    voltarSolicitacao.addEventListener("click", function (event) {
 
-      e.preventDefault();
+      event.preventDefault();
 
       mostrarOpcoes();
 
@@ -1425,110 +1153,181 @@ document.addEventListener("DOMContentLoaded", function () {
 
   }
 
-});
-</script>
 
-<script>
+  /* =========================================
+     VOLTAR DA CONSULTA
+  ========================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+  if (voltarAtendimento) {
 
-  const botaoEnviar = document.getElementById("atendimentoEnviar");
+    voltarAtendimento.addEventListener("click", function (event) {
 
-  const nome = document.getElementById("atendimentoNome");
-  const whatsapp = document.getElementById("atendimentoWhatsapp");
-  const tipo = document.getElementById("atendimentoTipo");
-  const assunto = document.getElementById("atendimentoAssunto");
-  const mensagem = document.getElementById("atendimentoMensagem");
+      event.preventDefault();
 
-  const API =
-    "https://script.google.com/macros/s/AKfycbwJzijPbbP3PSZuTh2rpTpwmYIcBj44pZR2BaXOJwhZOZLGOQkDDPywJTMxy_90LbYb/exec";
+      mostrarOpcoes();
 
-  if (!botaoEnviar) {
-    return;
+    });
+
   }
 
-  botaoEnviar.onclick = async function () {
 
-    if (!nome.value.trim()) {
-      alert("Digite seu nome.");
-      nome.focus();
-      return;
-    }
+  /* =========================================
+     ENVIO DA SOLICITAÇÃO
+  ========================================= */
 
-    if (!whatsapp.value.trim()) {
-      alert("Digite seu WhatsApp.");
-      whatsapp.focus();
-      return;
-    }
+  if (botaoEnviar) {
 
-    if (!tipo.value) {
-      alert("Selecione o tipo de atendimento.");
-      tipo.focus();
-      return;
-    }
+    botaoEnviar.addEventListener("click", function () {
 
-    if (!assunto.value.trim()) {
-      alert("Digite o assunto.");
-      assunto.focus();
-      return;
-    }
+      const nome =
+        document.getElementById("atendimentoNome").value.trim();
 
-    if (!mensagem.value.trim()) {
-      alert("Digite sua mensagem.");
-      mensagem.focus();
-      return;
-    }
+      const whatsapp =
+        document.getElementById("atendimentoWhatsapp").value.trim();
 
-    const agora = new Date();
+      const tipo =
+        document.getElementById("atendimentoTipo").value;
 
-    const protocolo =
-      "ATD-" +
-      agora.getFullYear() +
-      "-" +
-      String(agora.getTime()).slice(-6);
+      const assunto =
+        document.getElementById("atendimentoAssunto").value.trim();
 
-    botaoEnviar.disabled = true;
-    botaoEnviar.textContent = "ENVIANDO...";
+      const mensagem =
+        document.getElementById("atendimentoMensagem").value.trim();
 
-    try {
 
-      const dados = new URLSearchParams();
+      /* VALIDAÇÃO */
 
-      dados.append("protocolo", protocolo);
-      dados.append("nome", nome.value.trim());
-      dados.append("whatsapp", whatsapp.value.trim());
-      dados.append("tipo", tipo.value);
-      dados.append("assunto", assunto.value.trim());
-      dados.append("mensagem", mensagem.value.trim());
+      if (!nome) {
+        alert("Digite seu nome.");
+        return;
+      }
 
-      await fetch(API, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-        },
-        body: dados.toString()
-      });
+      if (!whatsapp) {
+        alert("Digite seu WhatsApp.");
+        return;
+      }
+
+      if (!tipo) {
+        alert("Selecione o tipo de atendimento.");
+        return;
+      }
+
+      if (!assunto) {
+        alert("Digite o assunto.");
+        return;
+      }
+
+      if (!mensagem) {
+        alert("Digite sua mensagem.");
+        return;
+      }
+
+
+      /* GERA PROTOCOLO */
+
+      const agora = new Date();
+
+      const protocolo =
+        "ATD-" +
+        agora.getFullYear() +
+        "-" +
+        String(agora.getTime()).slice(-6);
+
+
+      botaoEnviar.disabled = true;
+
+      botaoEnviar.textContent =
+        "ENVIANDO...";
+
+
+      /* IFRAME INVISÍVEL */
+
+      const iframe =
+        document.createElement("iframe");
+
+      iframe.name =
+        "atendimento_envio";
+
+      iframe.style.display =
+        "none";
+
+      document.body.appendChild(iframe);
+
+
+      /* FORMULÁRIO */
+
+      const form =
+        document.createElement("form");
+
+      form.method =
+        "POST";
+
+      form.action =
+        API_ATENDIMENTO;
+
+      form.target =
+        "atendimento_envio";
+
+      form.style.display =
+        "none";
+
+
+      function campo(nomeCampo, valor) {
+
+        const input =
+          document.createElement("input");
+
+        input.type =
+          "hidden";
+
+        input.name =
+          nomeCampo;
+
+        input.value =
+          valor;
+
+        form.appendChild(input);
+
+      }
+
+
+      campo("protocolo", protocolo);
+      campo("nome", nome);
+      campo("whatsapp", whatsapp);
+      campo("tipo", tipo);
+      campo("assunto", assunto);
+      campo("mensagem", mensagem);
+
+
+      document.body.appendChild(form);
+
+
+      /* ENVIA */
+
+      form.submit();
+
+
+      /* CONFIRMAÇÃO */
 
       setTimeout(function () {
 
-        const corpo =
-          document.querySelector(".atendimento-corpo");
-
-        if (!corpo) {
+        if (!document.querySelector(".atendimento-corpo")) {
           return;
         }
 
-        corpo.innerHTML = `
+
+        document.querySelector(
+          ".atendimento-corpo"
+        ).innerHTML = `
 
           <div style="
             text-align:center;
-            padding:20px 5px;
+            padding:25px 10px;
           ">
 
             <div style="
               font-size:42px;
-              margin-bottom:10px;
+              margin-bottom:12px;
             ">
               ✅
             </div>
@@ -1549,7 +1348,7 @@ document.addEventListener("DOMContentLoaded", function () {
             </p>
 
             <div style="
-              margin:18px 0;
+              margin:20px 0;
               padding:15px;
               background:#eef8fc;
               border-radius:12px;
@@ -1585,138 +1384,327 @@ document.addEventListener("DOMContentLoaded", function () {
 
         `;
 
+
+        form.remove();
+        iframe.remove();
+
+
       }, 1500);
 
-    } catch (erro) {
-
-      console.error(
-        "Erro ao enviar atendimento:",
-        erro
-      );
-
-      alert(
-        "Não foi possível enviar sua solicitação. Tente novamente."
-      );
-
-      botaoEnviar.disabled = false;
-      botaoEnviar.textContent =
-        "ENVIAR SOLICITAÇÃO →";
-    }
-
-  };
-
-});
-  
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-  const voltarSolicitacao =
-    document.getElementById("voltarSolicitacao");
-
-  const opcoes =
-    document.getElementById("atendimentoOpcoes");
-
-  const formulario =
-    document.getElementById("formularioAtendimento");
-
-  const consulta =
-    document.getElementById("consultaProtocolo");
-
-
-  if (voltarSolicitacao) {
-
-    voltarSolicitacao.onclick = function () {
-
-      if (opcoes) {
-        opcoes.style.display = "grid";
-      }
-
-      if (formulario) {
-        formulario.style.display = "none";
-      }
-
-      if (consulta) {
-        consulta.style.display = "none";
-      }
-
-    };
+    });
 
   }
 
-});
-</script>
 
-<script>
+  /* =========================================
+     CONSULTAR PROTOCOLO
+  ========================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+  if (botaoConsultar) {
 
-  const botaoConsultar =
-    document.getElementById("botaoConsultar");
+    botaoConsultar.addEventListener("click", async function () {
 
-  const campoProtocolo =
-    document.getElementById("numeroProtocolo");
+      const campo =
+        document.getElementById("numeroProtocolo");
 
-  const resultado =
-    document.getElementById("resultadoProtocolo");
-
-
-  const API_ATENDIMENTO =
-    "https://script.google.com/macros/s/AKfycbwJzijPbbP3PSZuTh2rpTpwmYIcBj44pZR2BaXOJwhZOZLGOQkDDPywJTMxy_90LbYb/exec";
+      const protocolo =
+        campo.value.trim().toUpperCase();
 
 
-  if (!botaoConsultar || !campoProtocolo || !resultado) {
-    return;
-  }
+      if (!protocolo) {
+
+        alert("Digite o número do protocolo.");
+
+        campo.focus();
+
+        return;
+
+      }
 
 
-  botaoConsultar.onclick = async function () {
+      botaoConsultar.disabled = true;
 
-    let protocolo =
-      campoProtocolo.value.trim().toUpperCase();
-
-
-    if (!protocolo) {
-
-      alert("Digite o número do protocolo.");
-
-      campoProtocolo.focus();
-
-      return;
-
-    }
+      botaoConsultar.textContent =
+        "CONSULTANDO...";
 
 
-    botaoConsultar.disabled = true;
+      resultado.style.display =
+        "none";
 
-    botaoConsultar.textContent =
-      "CONSULTANDO...";
-
-
-    resultado.style.display = "none";
-
-    resultado.innerHTML = "";
+      resultado.innerHTML =
+        "";
 
 
-    try {
+      try {
 
-      const resposta = await fetch(
-        API_ATENDIMENTO +
-        "?protocolo=" +
-        encodeURIComponent(protocolo)
-      );
-
-
-      const dados =
-        await resposta.json();
+        const resposta =
+          await fetch(
+            API_ATENDIMENTO +
+            "?protocolo=" +
+            encodeURIComponent(protocolo)
+          );
 
 
-      if (
-        !dados.encontrado ||
-        !dados.sucesso
-      ) {
+        const dados =
+          await resposta.json();
 
-        resultado.style.display = "block";
+
+        if (
+          !dados.sucesso ||
+          !dados.encontrado
+        ) {
+
+          resultado.style.display =
+            "block";
+
+          resultado.innerHTML = `
+
+            <div style="
+              margin-top:18px;
+              padding:16px;
+              background:#fff5f5;
+              border-left:4px solid #b51e2a;
+              border-radius:10px;
+            ">
+
+              <strong style="
+                color:#b51e2a;
+                display:block;
+                margin-bottom:5px;
+              ">
+                Protocolo não encontrado
+              </strong>
+
+              <span style="
+                color:#667085;
+                font-size:12px;
+              ">
+                Verifique o número informado
+                e tente novamente.
+              </span>
+
+            </div>
+
+          `;
+
+          return;
+
+        }
+
+
+        const status =
+          String(
+            dados.status || "PENDENTE"
+          )
+          .trim()
+          .toUpperCase();
+
+
+        let corStatus =
+          "#f9c414";
+
+        let fundoStatus =
+          "#fff9e5";
+
+
+        if (
+          status === "RESPONDIDO" ||
+          status === "CONCLUÍDO" ||
+          status === "CONCLUIDO"
+        ) {
+
+          corStatus =
+            "#079447";
+
+          fundoStatus =
+            "#eefaf3";
+
+        }
+
+
+        if (
+          status === "EM ANÁLISE" ||
+          status === "EM ANALISE"
+        ) {
+
+          corStatus =
+            "#159dd1";
+
+          fundoStatus =
+            "#eef8fc";
+
+        }
+
+
+        if (
+          status === "ENCERRADO"
+        ) {
+
+          corStatus =
+            "#b51e2a";
+
+          fundoStatus =
+            "#fff5f5";
+
+        }
+
+
+        let respostaHtml =
+          "";
+
+
+        if (dados.resposta) {
+
+          respostaHtml = `
+
+            <div style="
+              margin-top:15px;
+              padding:15px;
+              background:#eefaf3;
+              border-left:4px solid #079447;
+              border-radius:10px;
+            ">
+
+              <strong style="
+                display:block;
+                color:#079447;
+                margin-bottom:7px;
+              ">
+                Resposta da Secretaria
+              </strong>
+
+              <div style="
+                color:#344054;
+                font-size:13px;
+                line-height:1.5;
+              ">
+                ${dados.resposta}
+              </div>
+
+            </div>
+
+          `;
+
+        } else {
+
+          respostaHtml = `
+
+            <div style="
+              margin-top:15px;
+              padding:15px;
+              background:#f8fafc;
+              border-radius:10px;
+              color:#667085;
+              font-size:12px;
+            ">
+
+              A Secretaria ainda não registrou
+              uma resposta para esta solicitação.
+
+            </div>
+
+          `;
+
+        }
+
+
+        resultado.style.display =
+          "block";
+
+
+        resultado.innerHTML = `
+
+          <div style="
+            margin-top:18px;
+            padding:18px;
+            background:#fff;
+            border:1px solid #e4e9ee;
+            border-radius:12px;
+          ">
+
+            <div style="
+              display:flex;
+              justify-content:space-between;
+              align-items:center;
+              gap:10px;
+              margin-bottom:15px;
+            ">
+
+              <div>
+
+                <small style="
+                  display:block;
+                  color:#667085;
+                  margin-bottom:4px;
+                ">
+                  Protocolo
+                </small>
+
+                <strong style="
+                  color:#073c66;
+                  font-size:17px;
+                ">
+                  ${dados.protocolo}
+                </strong>
+
+              </div>
+
+              <span style="
+                background:${fundoStatus};
+                color:${corStatus};
+                padding:7px 10px;
+                border-radius:20px;
+                font-size:10px;
+                font-weight:900;
+              ">
+                ${status}
+              </span>
+
+            </div>
+
+
+            <div style="
+              border-top:1px solid #eef1f4;
+              padding-top:12px;
+            ">
+
+              <p style="
+                margin:0 0 8px;
+                color:#344054;
+                font-size:12px;
+              ">
+                <strong>Tipo:</strong>
+                ${dados.tipo || "—"}
+              </p>
+
+              <p style="
+                margin:0;
+                color:#344054;
+                font-size:12px;
+              ">
+                <strong>Assunto:</strong>
+                ${dados.assunto || "—"}
+              </p>
+
+            </div>
+
+            ${respostaHtml}
+
+          </div>
+
+        `;
+
+
+      } catch (erro) {
+
+        console.error(
+          "Erro ao consultar protocolo:",
+          erro
+        );
+
+
+        resultado.style.display =
+          "block";
 
         resultado.innerHTML = `
 
@@ -1733,280 +1721,36 @@ document.addEventListener("DOMContentLoaded", function () {
               display:block;
               margin-bottom:5px;
             ">
-              Protocolo não encontrado
+              Não foi possível consultar
             </strong>
 
             <span style="
               color:#667085;
               font-size:12px;
             ">
-              Verifique o número informado e tente novamente.
+              Tente novamente em alguns instantes.
             </span>
 
           </div>
 
         `;
 
-        return;
+      } finally {
+
+        botaoConsultar.disabled =
+          false;
+
+        botaoConsultar.textContent =
+          "CONSULTAR PROTOCOLO →";
 
       }
 
+    });
 
-      /* ========================= */
-      /* STATUS */
-      /* ========================= */
+  }
 
-      const status =
-        String(dados.status || "PENDENTE")
-          .trim()
-          .toUpperCase();
-
-
-      let corStatus = "#f9c414";
-      let fundoStatus = "#fff9e5";
-
-
-      if (
-        status === "RESPONDIDO" ||
-        status === "CONCLUÍDO" ||
-        status === "CONCLUIDO"
-      ) {
-
-        corStatus = "#079447";
-        fundoStatus = "#eefaf3";
-
-      }
-
-
-      if (
-        status === "EM ANÁLISE" ||
-        status === "EM ANALISE"
-      ) {
-
-        corStatus = "#159dd1";
-        fundoStatus = "#eef8fc";
-
-      }
-
-
-      if (
-        status === "ENCERRADO"
-      ) {
-
-        corStatus = "#b51e2a";
-        fundoStatus = "#fff5f5";
-
-      }
-
-
-      /* ========================= */
-      /* RESPOSTA */
-      /* ========================= */
-
-      let respostaHtml = "";
-
-
-      if (dados.resposta) {
-
-        respostaHtml = `
-
-          <div style="
-            margin-top:15px;
-            padding:15px;
-            background:#eefaf3;
-            border-left:4px solid #079447;
-            border-radius:10px;
-          ">
-
-            <strong style="
-              display:block;
-              color:#079447;
-              margin-bottom:7px;
-            ">
-              Resposta da Secretaria
-            </strong>
-
-            <div style="
-              color:#344054;
-              font-size:13px;
-              line-height:1.5;
-            ">
-              ${dados.resposta}
-            </div>
-
-          </div>
-
-        `;
-
-      } else {
-
-        respostaHtml = `
-
-          <div style="
-            margin-top:15px;
-            padding:15px;
-            background:#f8fafc;
-            border-radius:10px;
-            color:#667085;
-            font-size:12px;
-          ">
-
-            A Secretaria ainda não registrou uma resposta
-            para esta solicitação.
-
-          </div>
-
-        `;
-
-      }
-
-
-      /* ========================= */
-      /* MOSTRA RESULTADO */
-      /* ========================= */
-
-      resultado.style.display = "block";
-
-
-      resultado.innerHTML = `
-
-        <div style="
-          margin-top:18px;
-          padding:18px;
-          background:#fff;
-          border:1px solid #e4e9ee;
-          border-radius:12px;
-        ">
-
-          <div style="
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            gap:10px;
-            margin-bottom:15px;
-          ">
-
-            <div>
-
-              <small style="
-                display:block;
-                color:#667085;
-                margin-bottom:4px;
-              ">
-                Protocolo
-              </small>
-
-              <strong style="
-                color:#073c66;
-                font-size:17px;
-              ">
-                ${dados.protocolo}
-              </strong>
-
-            </div>
-
-
-            <span style="
-              background:${fundoStatus};
-              color:${corStatus};
-              padding:7px 10px;
-              border-radius:20px;
-              font-size:10px;
-              font-weight:900;
-            ">
-              ${status}
-            </span>
-
-          </div>
-
-
-          <div style="
-            border-top:1px solid #eef1f4;
-            padding-top:12px;
-          ">
-
-            <p style="
-              margin:0 0 8px;
-              color:#344054;
-              font-size:12px;
-            ">
-              <strong>Tipo:</strong>
-              ${dados.tipo || "—"}
-            </p>
-
-
-            <p style="
-              margin:0;
-              color:#344054;
-              font-size:12px;
-            ">
-              <strong>Assunto:</strong>
-              ${dados.assunto || "—"}
-            </p>
-
-          </div>
-
-
-          ${respostaHtml}
-
-        </div>
-
-      `;
-
-
-    } catch (erro) {
-
-      console.error(
-        "Erro ao consultar protocolo:",
-        erro
-      );
-
-
-      resultado.style.display = "block";
-
-      resultado.innerHTML = `
-
-        <div style="
-          margin-top:18px;
-          padding:16px;
-          background:#fff5f5;
-          border-left:4px solid #b51e2a;
-          border-radius:10px;
-        ">
-
-          <strong style="
-            color:#b51e2a;
-            display:block;
-            margin-bottom:5px;
-          ">
-            Não foi possível consultar
-          </strong>
-
-          <span style="
-            color:#667085;
-            font-size:12px;
-          ">
-            Tente novamente em alguns instantes.
-          </span>
-
-        </div>
-
-      `;
-
-
-    } finally {
-
-      botaoConsultar.disabled = false;
-
-      botaoConsultar.textContent =
-        "CONSULTAR PROTOCOLO →";
-
-    }
-
-  };
 
 });
-
 </script>
   
 </body>
