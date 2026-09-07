@@ -145,11 +145,188 @@ footer{
   color:#ffffff;
 }
 </style>
+
+/* =========================
+   CHAT DE ATENDIMENTO
+========================= */
+
+.chat-btn{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:9999;
+  border:0;
+  border-radius:50px;
+  background:#079447;
+  color:#fff;
+  padding:14px 20px;
+  font-size:15px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 6px 20px rgba(0,0,0,.20);
+  transition:.2s;
+}
+
+.chat-btn:hover{
+  background:#057c3b;
+  transform:translateY(-2px);
+}
+
+.chat-box{
+  display:none;
+  position:fixed;
+  right:22px;
+  bottom:82px;
+  width:360px;
+  max-width:calc(100vw - 30px);
+  background:#fff;
+  border-radius:16px;
+  box-shadow:0 10px 35px rgba(0,0,0,.22);
+  z-index:9999;
+  overflow:hidden;
+}
+
+.chat-header{
+  background:linear-gradient(135deg,#073c66,#159dd1);
+  color:#fff;
+  padding:16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.chat-header strong{
+  font-size:16px;
+}
+
+.chat-fechar{
+  border:0;
+  background:transparent;
+  color:#fff;
+  font-size:22px;
+  cursor:pointer;
+}
+
+.chat-body{
+  padding:18px;
+}
+
+.chat-opcoes{
+  display:grid;
+  gap:10px;
+}
+
+.chat-opcao{
+  width:100%;
+  padding:12px;
+  border:1px solid #d9e2e8;
+  border-radius:9px;
+  background:#f8fafb;
+  color:#073c66;
+  font-weight:800;
+  cursor:pointer;
+  text-align:left;
+}
+
+.chat-opcao:hover{
+  background:#eef8fc;
+  border-color:#159dd1;
+}
+
+.chat-form{
+  display:none;
+}
+
+.chat-form label{
+  display:block;
+  margin-bottom:5px;
+  color:#073c66;
+  font-size:13px;
+  font-weight:800;
+}
+
+.chat-form input,
+.chat-form select,
+.chat-form textarea{
+  width:100%;
+  padding:10px;
+  margin-bottom:12px;
+  border:1px solid #ccd6dc;
+  border-radius:8px;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:14px;
+  outline:none;
+}
+
+.chat-form textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+.chat-form input:focus,
+.chat-form select:focus,
+.chat-form textarea:focus{
+  border-color:#159dd1;
+  box-shadow:0 0 0 3px rgba(21,157,209,.10);
+}
+
+.chat-enviar{
+  width:100%;
+  border:0;
+  border-radius:8px;
+  padding:12px;
+  background:#079447;
+  color:#fff;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.chat-enviar:hover{
+  background:#057c3b;
+}
+
+.chat-voltar{
+  display:block;
+  margin-top:10px;
+  text-align:center;
+  color:#073c66;
+  font-size:13px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.chat-resultado{
+  display:none;
+  margin-top:15px;
+  padding:12px;
+  border-radius:8px;
+  background:#eef8fc;
+  color:#073c66;
+  font-size:13px;
+  line-height:1.5;
+}
+
+@media(max-width:500px){
+
+  .chat-btn{
+    right:15px;
+    bottom:15px;
+    padding:13px 17px;
+  }
+
+  .chat-box{
+    right:15px;
+    bottom:75px;
+    width:calc(100vw - 30px);
+  }
+
+}
+  
 </head>
 <body>
 <header><div class="nav">
 <a class="brand" href="index.html"><img src="logo.png" onerror="this.style.display='none'"><span>ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM<small>SETOR 49 - JARDIM DOS PIMENTAS</small></span></a>
-<nav><a href="index.html">Início</a><a href="agenda.html">Agenda</a><a href="congregacoes.html">Congregações</a><a href="central-secretario.html">Central do Secretário</a><a href="avisos.html">Avisos</a><a href="diretoria.html">Diretoria</a></nav><button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="mobile-menu" id="mobileMenu"><a href="index.html">Início</a><a href="agenda.html">Agenda</a><a href="congregacoes.html">Congregações</a><a href="central-secretario.html">Central do Secretário</a><a href="avisos.html">Avisos</a><a href="diretoria.html">Diretoria</a></div>
+<nav><a href="index.html">Início</a><button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="mobile-menu" id="mobileMenu"><a href="index.html">Início</a></div>
 </div></header>
 
 <section class="hero"><div class="hero-inner">
