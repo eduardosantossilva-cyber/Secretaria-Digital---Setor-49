@@ -1711,6 +1711,44 @@ if (voltarSolicitacao) {
 }
   
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const voltarSolicitacao =
+    document.getElementById("voltarSolicitacao");
+
+  const opcoes =
+    document.getElementById("atendimentoOpcoes");
+
+  const formulario =
+    document.getElementById("formularioAtendimento");
+
+  const consulta =
+    document.getElementById("consultaProtocolo");
+
+
+  if (voltarSolicitacao) {
+
+    voltarSolicitacao.onclick = function () {
+
+      if (opcoes) {
+        opcoes.style.display = "grid";
+      }
+
+      if (formulario) {
+        formulario.style.display = "none";
+      }
+
+      if (consulta) {
+        consulta.style.display = "none";
+      }
+
+    };
+
+  }
+
+});
+</script>
   
 </body>
 </html>
