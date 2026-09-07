@@ -784,6 +784,28 @@ fetch(API_AVISOS)
 </script>
   
 <script>
+const atendimentoBotao =
+  document.getElementById("atendimentoBotao");
+
+const atendimentoChat =
+  document.getElementById("atendimentoChat");
+
+const atendimentoFechar =
+  document.getElementById("atendimentoFechar");
+
+
+atendimentoBotao.addEventListener("click", () => {
+
+  atendimentoChat.classList.toggle("aberto");
+
+});
+
+
+atendimentoFechar.addEventListener("click", () => {
+
+  atendimentoChat.classList.remove("aberto");
+
+});
 const menuToggle=document.getElementById('menuToggle');
 const mobileMenu=document.getElementById('mobileMenu');
 if(menuToggle&&mobileMenu){
