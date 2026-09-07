@@ -351,11 +351,13 @@ footer{
   bottom:82px;
   width:360px;
   max-width:calc(100vw - 30px);
+  max-height:calc(100vh - 110px);
   background:#fff;
   border-radius:16px;
   box-shadow:0 10px 35px rgba(0,0,0,.22);
   z-index:9999;
-  overflow:hidden;
+  overflow-y:auto;
+  overflow-x:hidden;
 }
 
 .chat-header{
@@ -380,7 +382,7 @@ footer{
 }
 
 .chat-body{
-  padding:18px;
+  padding:16px;
 }
 
 .chat-opcoes{
@@ -411,9 +413,9 @@ footer{
 
 .chat-form label{
   display:block;
-  margin-bottom:5px;
+  margin-bottom:4px;
   color:#073c66;
-  font-size:13px;
+  font-size:12px;
   font-weight:800;
 }
 
@@ -421,8 +423,9 @@ footer{
 .chat-form select,
 .chat-form textarea{
   width:100%;
-  padding:10px;
-  margin-bottom:12px;
+  height:40px;
+  padding:8px 10px;
+  margin-bottom:9px;
   border:1px solid #ccd6dc;
   border-radius:8px;
   font-family:Arial, Helvetica, sans-serif;
@@ -431,7 +434,8 @@ footer{
 }
 
 .chat-form textarea{
-  min-height:90px;
+  height:75px;
+  min-height:75px;
   resize:vertical;
 }
 
