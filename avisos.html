@@ -642,45 +642,144 @@ footer{
 
     </div>
 
-    <div class="chat-form" id="formSolicitacao">
+     <div
+      id="formularioAtendimento"
+      style="display:none;"
+    >
 
-      <form id="atendimentoForm">
+      <p>
+        Olá! Como podemos ajudar?
+        Preencha os dados abaixo para enviar sua solicitação.
+      </p>
 
-        <label for="atNome">Nome</label>
-        <input type="text" id="atNome" required>
+ <div class="atendimento-campo">
+        <label for="atendimentoNome">Nome</label>
 
-        <label for="atWhatsapp">WhatsApp</label>
-        <input type="text" id="atWhatsapp" required>
+        <input
+          type="text"
+          id="atendimentoNome"
+          placeholder="Digite seu nome"
+        >
+      </div>
 
-        <label for="atTipo">Tipo</label>
 
-        <select id="atTipo" required>
-          <option value="">Selecione</option>
-          <option>Dúvida</option>
-          <option>Solicitação</option>
-          <option>Informação</option>
-          <option>Outro</option>
+      <div class="atendimento-campo">
+        <label for="atendimentoWhatsapp">WhatsApp</label>
+
+        <input
+          type="tel"
+          id="atendimentoWhatsapp"
+          placeholder="(11) 99999-9999"
+        >
+      </div>
+
+
+      <div class="atendimento-campo">
+        <label for="atendimentoTipo">
+          Tipo de atendimento
+        </label>
+
+        <select id="atendimentoTipo">
+
+          <option value="">
+            Selecione uma opção
+          </option>
+
+          <option value="Dúvida">
+            Dúvida
+          </option>
+
+          <option value="Solicitação">
+            Solicitação
+          </option>
+
+          <option value="Informação">
+            Informação
+          </option>
+
+          <option value="Outro">
+            Outro
+          </option>
+
         </select>
 
-        <label for="atAssunto">Assunto</label>
-        <input type="text" id="atAssunto" required>
+      </div>
 
-        <label for="atMensagem">Mensagem</label>
-        <textarea id="atMensagem" required></textarea>
 
-        <button type="submit" class="chat-enviar">
-          ENVIAR SOLICITAÇÃO
-        </button>
+      <div class="atendimento-campo">
 
-      </form>
+        <label for="atendimentoAssunto">
+          Assunto
+        </label>
 
-      <div class="chat-resultado" id="resultadoSolicitacao"></div>
+        <input
+          type="text"
+          id="atendimentoAssunto"
+          placeholder="Sobre o que você precisa?"
+        >
 
-      <span class="chat-voltar" onclick="voltarOpcoes()">
+      </div>
+
+
+      <div class="atendimento-campo">
+
+        <label for="atendimentoMensagem">
+          Mensagem
+        </label>
+
+        <textarea
+          id="atendimentoMensagem"
+          placeholder="Digite sua dúvida ou solicitação..."
+        ></textarea>
+
+      </div>
+
+
+      <button
+        class="atendimento-enviar"
+        id="atendimentoEnviar"
+        type="button"
+      >
+        ENVIAR SOLICITAÇÃO →
+      </button>
+
+
+      <button
+        type="button"
+        class="atendimento-voltar"
+        id="voltarSolicitacao"
+      >
         ← Voltar
-      </span>
+      </button>
 
     </div>
+
+
+    <div
+      id="consultaProtocolo"
+      style="display:none;"
+    >
+
+      <p>
+        Digite seu protocolo para consultar
+        o andamento da sua solicitação.
+      </p>
+
+
+      <div class="atendimento-campo">
+
+        <label for="numeroProtocolo">
+          Número do protocolo
+        </label>
+
+        <input
+          type="text"
+          id="numeroProtocolo"
+          placeholder="ATD-2026-000001"
+        >
+
+      </div>
+
 
     <div class="chat-form" id="formConsulta">
 
