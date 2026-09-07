@@ -89,6 +89,27 @@ nav a:hover{
   color:var(--green);
 }
 
+/* ÁREA RESTRITA */
+
+.area-restrita-link{
+  color:#073c66 !important;
+  background:#eef8fc;
+  border:1px solid #cfe7f0;
+  border-radius:9px;
+  padding:8px 11px;
+  font-weight:900 !important;
+  transition:.2s;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.area-restrita-link:hover{
+  color:#fff !important;
+  background:#079447;
+  border-color:#079447;
+}
+
 .hero{
   background:linear-gradient(135deg,#159dd1,#079447);
   color:#fff;
@@ -214,7 +235,6 @@ footer{
   font-size:13px
 }
 
-
 /* MENU MOBILE */
 
 .menu-toggle{
@@ -232,7 +252,6 @@ footer{
 .mobile-menu{
   display:none;
 }
-
 
 /* AVISOS DINÂMICOS */
 
@@ -269,7 +288,6 @@ footer{
 #avisos-dinamicos .notice:only-child{
   grid-column:1 / -1;
 }
-
 
 /* CORES DOS AVISOS */
 
@@ -316,7 +334,6 @@ footer{
   background:#079447;
   color:#ffffff;
 }
-
 
 /* =========================
    CHAT DE ATENDIMENTO
@@ -482,7 +499,6 @@ footer{
   line-height:1.5;
 }
 
-
 /* RESPONSIVO */
 
 @media(max-width:800px){
@@ -549,6 +565,14 @@ footer{
     color:var(--green);
   }
 
+  .mobile-menu .area-restrita-link{
+    display:block;
+    margin-top:6px;
+    text-align:center;
+    background:#eef8fc;
+    color:#073c66 !important;
+  }
+
   .hero{
     padding:43px 18px;
   }
@@ -557,14 +581,6 @@ footer{
     padding:26px 16px 55px;
   }
 
-  .footer-content{
-    flex-direction:column;
-    gap:5px;
-  }
-
-  footer{
-    padding:16px 15px;
-  }
 
   .chat-btn{
     right:15px;
@@ -578,38 +594,6 @@ footer{
     width:calc(100vw - 30px);
   }
 }
-
-.area-restrita-link{
-  color:#073c66 !important;
-  background:#eef8fc;
-  border:1px solid #cfe7f0;
-  border-radius:9px;
-  padding:8px 11px;
-  font-weight:900 !important;
-  transition:.2s;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.area-restrita-link:hover{
-  color:#fff !important;
-  background:#079447;
-  border-color:#079447;
-}
-
-@media(max-width:650px){
-
-  .mobile-menu .area-restrita-link{
-    display:block;
-    margin-top:6px;
-    text-align:center;
-    background:#eef8fc;
-    color:#073c66 !important;
-  }
-
-}
-  
 </style>
 </head>
 
@@ -642,144 +626,45 @@ footer{
 
     </div>
 
-     <div
-      id="formularioAtendimento"
-      style="display:none;"
-    >
+    <div class="chat-form" id="formSolicitacao">
 
-      <p>
-        Olá! Como podemos ajudar?
-        Preencha os dados abaixo para enviar sua solicitação.
-      </p>
+      <form id="atendimentoForm">
 
- <div class="atendimento-campo">
-        <label for="atendimentoNome">Nome</label>
+        <label for="atNome">Nome</label>
+        <input type="text" id="atNome" required>
 
-        <input
-          type="text"
-          id="atendimentoNome"
-          placeholder="Digite seu nome"
-        >
-      </div>
+        <label for="atWhatsapp">WhatsApp</label>
+        <input type="text" id="atWhatsapp" required>
 
+        <label for="atTipo">Tipo</label>
 
-      <div class="atendimento-campo">
-        <label for="atendimentoWhatsapp">WhatsApp</label>
-
-        <input
-          type="tel"
-          id="atendimentoWhatsapp"
-          placeholder="(11) 99999-9999"
-        >
-      </div>
-
-
-      <div class="atendimento-campo">
-        <label for="atendimentoTipo">
-          Tipo de atendimento
-        </label>
-
-        <select id="atendimentoTipo">
-
-          <option value="">
-            Selecione uma opção
-          </option>
-
-          <option value="Dúvida">
-            Dúvida
-          </option>
-
-          <option value="Solicitação">
-            Solicitação
-          </option>
-
-          <option value="Informação">
-            Informação
-          </option>
-
-          <option value="Outro">
-            Outro
-          </option>
-
+        <select id="atTipo" required>
+          <option value="">Selecione</option>
+          <option>Dúvida</option>
+          <option>Solicitação</option>
+          <option>Informação</option>
+          <option>Outro</option>
         </select>
 
-      </div>
+        <label for="atAssunto">Assunto</label>
+        <input type="text" id="atAssunto" required>
 
+        <label for="atMensagem">Mensagem</label>
+        <textarea id="atMensagem" required></textarea>
 
-      <div class="atendimento-campo">
+        <button type="submit" class="chat-enviar">
+          ENVIAR SOLICITAÇÃO
+        </button>
 
-        <label for="atendimentoAssunto">
-          Assunto
-        </label>
+      </form>
 
-        <input
-          type="text"
-          id="atendimentoAssunto"
-          placeholder="Sobre o que você precisa?"
-        >
+      <div class="chat-resultado" id="resultadoSolicitacao"></div>
 
-      </div>
-
-
-      <div class="atendimento-campo">
-
-        <label for="atendimentoMensagem">
-          Mensagem
-        </label>
-
-        <textarea
-          id="atendimentoMensagem"
-          placeholder="Digite sua dúvida ou solicitação..."
-        ></textarea>
-
-      </div>
-
-
-      <button
-        class="atendimento-enviar"
-        id="atendimentoEnviar"
-        type="button"
-      >
-        ENVIAR SOLICITAÇÃO →
-      </button>
-
-
-      <button
-        type="button"
-        class="atendimento-voltar"
-        id="voltarSolicitacao"
-      >
+      <span class="chat-voltar" onclick="voltarOpcoes()">
         ← Voltar
-      </button>
+      </span>
 
     </div>
-
-
-    <div
-      id="consultaProtocolo"
-      style="display:none;"
-    >
-
-      <p>
-        Digite seu protocolo para consultar
-        o andamento da sua solicitação.
-      </p>
-
-
-      <div class="atendimento-campo">
-
-        <label for="numeroProtocolo">
-          Número do protocolo
-        </label>
-
-        <input
-          type="text"
-          id="numeroProtocolo"
-          placeholder="ATD-2026-000001"
-        >
-
-      </div>
-
 
     <div class="chat-form" id="formConsulta">
 
@@ -834,8 +719,32 @@ footer{
     </a>
 
     <nav>
+
       <a href="index.html">Início</a>
-      <a href="area-restrita.html" class="area-restrita-link">🔒 Área Restrita</a>
+
+      <a href="agenda.html">Agenda</a>
+
+      <a href="congregacoes.html">Congregações</a>
+
+      <a href="central-secretario.html">
+        Central do Secretário
+      </a>
+
+      <a href="avisos.html">
+        Avisos
+      </a>
+
+      <a href="diretoria.html">
+        Diretoria
+      </a>
+
+      <a
+        href="area-restrita.html"
+        class="area-restrita-link"
+      >
+        🔒 Área Restrita
+      </a>
+
     </nav>
 
     <button
@@ -847,9 +756,42 @@ footer{
       ☰
     </button>
 
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="index.html">Início</a>
-      <a href="area-restrita.html" class="area-restrita-link">🔒 Área Restrita</a>
+    <div
+      class="mobile-menu"
+      id="mobileMenu"
+    >
+
+      <a href="index.html">
+        Início
+      </a>
+
+      <a href="agenda.html">
+        Agenda
+      </a>
+
+      <a href="congregacoes.html">
+        Congregações
+      </a>
+
+      <a href="central-secretario.html">
+        Central do Secretário
+      </a>
+
+      <a href="avisos.html">
+        Avisos
+      </a>
+
+      <a href="diretoria.html">
+        Diretoria
+      </a>
+
+      <a
+        href="area-restrita.html"
+        class="area-restrita-link"
+      >
+        🔒 Área Restrita
+      </a>
+
     </div>
 
   </div>
@@ -867,7 +809,9 @@ footer{
       PORTAL AD BELÉM - SETOR 49
     </div>
 
-    <h1>Avisos</h1>
+    <h1>
+      Avisos
+    </h1>
 
     <p>
       Comunicados e informações importantes da Secretaria.
@@ -884,14 +828,18 @@ footer{
 
   <div class="notice">
 
-    <h2>📅 Cronograma da Semana</h2>
+    <h2>
+      📅 Cronograma da Semana
+    </h2>
 
     <span class="tag">
       Aviso da Semana · 07/09 a 13/09/2026
     </span>
 
     <p>
-      <strong>Destaques da programação:</strong>
+      <strong>
+        Destaques da programação:
+      </strong>
     </p>
 
     <ul>
@@ -976,9 +924,6 @@ PORTAL AD BELÉM - SETOR 49
 </small>
 
 </footer>
-
-
-<!-- AVISOS / CHAT -->
 
 <script>
 
@@ -1428,11 +1373,14 @@ document
       form.method =
         "POST";
 
+
       form.action =
         API_ATENDIMENTOS;
 
+
       form.target =
         "iframeAtendimento";
+
 
       form.style.display =
         "none";
@@ -1456,11 +1404,14 @@ document
               "input"
             );
 
+
           input.name =
             chave;
 
+
           input.value =
             campos[chave];
+
 
           form.appendChild(
             input
