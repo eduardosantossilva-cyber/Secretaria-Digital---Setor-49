@@ -1209,44 +1209,66 @@ let pastores = [];
 
 function carregarPastores(){
 
-  const container =
-    document.getElementById("pastores");
+  const container = document.getElementById("pastores");
 
-  window.carregarPastoresJSONP = function(dados){
+  const callbackName =
+    "receberPastores_" + Date.now();
+
+  window[callbackName] = function(dados){
 
     pastores = dados;
 
     renderizarPastores("TODOS");
 
-    delete window.carregarPastoresJSONP;
+    delete window[callbackName];
 
-    if(script){
-      script.remove();
-    }
+    script.remove();
   };
 
   const script = document.createElement("script");
 
   script.src =
     API_URL +
-    "?callback=carregarPastoresJSONP&t=" +
+    "?callback=" +
+    callbackName +
+    "&t=" +
     Date.now();
 
   script.onerror = function(){
 
     container.innerHTML = `
       <div class="erro">
-        Não foi possível carregar os dados dos pastores.
-        Verifique a conexão com a planilha.
+        Não foi possível acessar a API dos pastores.
+        Verifique a implantação do Apps Script.
       </div>
     `;
 
-    delete window.carregarPastoresJSONP;
+    delete window[callbackName];
 
     script.remove();
   };
 
   document.body.appendChild(script);
+
+  setTimeout(function(){
+
+    if(window[callbackName]){
+
+      container.innerHTML = `
+        <div class="erro">
+          A API dos pastores não respondeu.
+          Verifique a implantação do Apps Script.
+        </div>
+      `;
+
+      delete window[callbackName];
+
+      if(document.body.contains(script)){
+        script.remove();
+      }
+    }
+
+  }, 10000);
 }
 
 
