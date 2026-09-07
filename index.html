@@ -1172,5 +1172,31 @@ if (
 
 }
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const botaoChat = document.getElementById("atendimentoBotao");
+  const janelaChat = document.getElementById("atendimentoChat");
+  const fecharChat = document.getElementById("atendimentoFechar");
+
+  if (botaoChat && janelaChat) {
+
+    botaoChat.onclick = function () {
+      janelaChat.classList.add("aberto");
+    };
+
+  }
+
+  if (fecharChat && janelaChat) {
+
+    fecharChat.onclick = function () {
+      janelaChat.classList.remove("aberto");
+    };
+
+  }
+
+});
+</script>
+  
 </body>
 </html>
