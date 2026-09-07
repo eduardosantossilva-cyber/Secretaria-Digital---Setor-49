@@ -842,6 +842,271 @@ if(menuToggle&&mobileMenu){
  menuToggle.addEventListener('click',()=>{const open=mobileMenu.classList.toggle('open');menuToggle.setAttribute('aria-expanded',open?'true':'false');menuToggle.textContent=open?'✕':'☰';});
  mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileMenu.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.textContent='☰';}));
 }
+
+/* ============================= */
+/* ENVIO DO ATENDIMENTO */
+/* ============================= */
+
+const API_ATENDIMENTO =
+  "https://script.google.com/macros/s/AKfycbwJzijPbbP3PSZuTh2rpTpwmYIcBj44pZR2BaXOJwhZOZLGOQkDDPywJTMxy_90LbYb/exec";
+
+
+const atendimentoEnviar =
+  document.getElementById("atendimentoEnviar");
+
+const atendimentoNome =
+  document.getElementById("atendimentoNome");
+
+const atendimentoWhatsapp =
+  document.getElementById("atendimentoWhatsapp");
+
+const atendimentoTipo =
+  document.getElementById("atendimentoTipo");
+
+const atendimentoAssunto =
+  document.getElementById("atendimentoAssunto");
+
+const atendimentoMensagem =
+  document.getElementById("atendimentoMensagem");
+
+
+atendimentoEnviar.addEventListener(
+  "click",
+  async () => {
+
+
+    const nome =
+      atendimentoNome.value.trim();
+
+    const whatsapp =
+      atendimentoWhatsapp.value.trim();
+
+    const tipo =
+      atendimentoTipo.value;
+
+    const assunto =
+      atendimentoAssunto.value.trim();
+
+    const mensagem =
+      atendimentoMensagem.value.trim();
+
+
+    /* VALIDAÇÃO */
+
+    if (!nome) {
+
+      alert("Digite seu nome.");
+
+      atendimentoNome.focus();
+
+      return;
+
+    }
+
+
+    if (!whatsapp) {
+
+      alert("Digite seu WhatsApp.");
+
+      atendimentoWhatsapp.focus();
+
+      return;
+
+    }
+
+
+    if (!tipo) {
+
+      alert(
+        "Selecione o tipo de atendimento."
+      );
+
+      atendimentoTipo.focus();
+
+      return;
+
+    }
+
+
+    if (!assunto) {
+
+      alert("Digite o assunto.");
+
+      atendimentoAssunto.focus();
+
+      return;
+
+    }
+
+
+    if (!mensagem) {
+
+      alert("Digite sua mensagem.");
+
+      atendimentoMensagem.focus();
+
+      return;
+
+    }
+
+
+    /* BOTÃO ENVIANDO */
+
+    atendimentoEnviar.disabled = true;
+
+    atendimentoEnviar.textContent =
+      "ENVIANDO...";
+
+
+    try {
+
+
+      const dados = new URLSearchParams();
+
+
+      dados.append(
+        "nome",
+        nome
+      );
+
+      dados.append(
+        "whatsapp",
+        whatsapp
+      );
+
+      dados.append(
+        "tipo",
+        tipo
+      );
+
+      dados.append(
+        "assunto",
+        assunto
+      );
+
+      dados.append(
+        "mensagem",
+        mensagem
+      );
+
+
+      const resposta =
+        await fetch(
+          API_ATENDIMENTO,
+          {
+            method: "POST",
+            body: dados
+          }
+        );
+
+
+      const resultado =
+        await resposta.json();
+
+
+      if (!resultado.sucesso) {
+
+        throw new Error(
+          resultado.erro ||
+          "Não foi possível registrar a solicitação."
+        );
+
+      }
+
+
+      /* SUCESSO */
+
+      document.querySelector(
+        ".atendimento-corpo"
+      ).innerHTML = `
+
+        <div style="
+          text-align:center;
+          padding:25px 10px;
+        ">
+
+          <div style="
+            font-size:42px;
+            margin-bottom:12px;
+          ">
+            ✅
+          </div>
+
+          <h3 style="
+            color:#073c66;
+            margin:0 0 8px;
+          ">
+            Solicitação enviada!
+          </h3>
+
+          <p style="
+            color:#667085;
+            line-height:1.5;
+          ">
+            Sua solicitação foi registrada
+            com sucesso.
+          </p>
+
+          <div style="
+            margin:20px 0;
+            padding:15px;
+            background:#eef8fc;
+            border-radius:12px;
+          ">
+
+            <small style="
+              display:block;
+              color:#667085;
+              margin-bottom:5px;
+            ">
+              Seu protocolo
+            </small>
+
+            <strong style="
+              font-size:22px;
+              color:#073c66;
+            ">
+              ${resultado.protocolo}
+            </strong>
+
+          </div>
+
+          <p style="
+            color:#667085;
+            font-size:12px;
+          ">
+            Guarde este número para
+            acompanhar sua solicitação.
+          </p>
+
+        </div>
+
+      `;
+
+
+    } catch (erro) {
+
+
+      console.error(
+        "Erro ao enviar atendimento:",
+        erro
+      );
+
+
+      alert(
+        "Não foi possível enviar sua solicitação. Tente novamente."
+      );
+
+
+      atendimentoEnviar.disabled = false;
+
+      atendimentoEnviar.textContent =
+        "ENVIAR SOLICITAÇÃO →";
+
+    }
+
+  }
+);
 </script>
 </body>
 </html>
