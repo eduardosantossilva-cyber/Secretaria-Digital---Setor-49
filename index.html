@@ -178,9 +178,334 @@ footer{
   .mobile-menu a{padding:12px 10px;color:#344054;text-decoration:none;font-weight:800;font-size:14px;border-radius:9px}
   .mobile-menu a:hover{background:#f4f9fb;color:var(--green)}
 }
+/* ============================= */
+/* CHAT DE ATENDIMENTO */
+/* ============================= */
+
+.atendimento-botao{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:1000;
+  border:0;
+  background:var(--blue);
+  color:#fff;
+  border-radius:50px;
+  padding:14px 20px;
+  font-size:14px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 8px 24px rgba(7,60,102,.25);
+  transition:.2s;
+}
+
+.atendimento-botao:hover{
+  transform:translateY(-3px);
+  background:var(--green);
+}
+
+
+.atendimento-chat{
+  position:fixed;
+  right:22px;
+  bottom:82px;
+  width:360px;
+  max-width:calc(100vw - 30px);
+  background:#fff;
+  border:1px solid #e4e9ee;
+  border-radius:20px;
+  box-shadow:0 18px 45px rgba(16,24,40,.20);
+  z-index:999;
+  overflow:hidden;
+  display:none;
+}
+
+
+.atendimento-chat.aberto{
+  display:block;
+}
+
+
+.atendimento-header{
+  background:linear-gradient(
+    135deg,
+    var(--navy),
+    var(--blue)
+  );
+  color:#fff;
+  padding:18px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+
+.atendimento-header strong{
+  display:block;
+  font-size:16px;
+}
+
+
+.atendimento-header small{
+  display:block;
+  margin-top:3px;
+  opacity:.85;
+  font-size:11px;
+}
+
+
+.atendimento-fechar{
+  border:0;
+  background:rgba(255,255,255,.15);
+  color:#fff;
+  width:32px;
+  height:32px;
+  border-radius:9px;
+  cursor:pointer;
+  font-size:18px;
+}
+
+
+.atendimento-corpo{
+  padding:18px;
+}
+
+
+.atendimento-corpo p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+  margin:0 0 15px;
+}
+
+
+.atendimento-campo{
+  margin-bottom:12px;
+}
+
+
+.atendimento-campo label{
+  display:block;
+  font-size:11px;
+  font-weight:800;
+  color:#344054;
+  margin-bottom:5px;
+}
+
+
+.atendimento-campo input,
+.atendimento-campo select,
+.atendimento-campo textarea{
+  width:100%;
+  border:1px solid #dce3e8;
+  border-radius:9px;
+  padding:10px 11px;
+  font-family:inherit;
+  font-size:12px;
+  outline:none;
+}
+
+
+.atendimento-campo input:focus,
+.atendimento-campo select:focus,
+.atendimento-campo textarea:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(21,157,209,.10);
+}
+
+
+.atendimento-campo textarea{
+  resize:vertical;
+  min-height:80px;
+}
+
+
+.atendimento-enviar{
+  width:100%;
+  border:0;
+  border-radius:10px;
+  padding:12px;
+  background:var(--green);
+  color:#fff;
+  font-weight:900;
+  font-size:12px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+
+.atendimento-enviar:hover{
+  background:var(--blue);
+}
+
+
+@media(max-width:500px){
+
+  .atendimento-botao{
+    right:15px;
+    bottom:15px;
+    padding:13px 17px;
+  }
+
+  .atendimento-chat{
+    right:15px;
+    bottom:75px;
+    width:calc(100vw - 30px);
+  }
+
+}
+  
 </style>
 </head>
 <body>
+<!-- BOTÃO DE ATENDIMENTO -->
+
+<button
+  class="atendimento-botao"
+  id="atendimentoBotao"
+  type="button"
+>
+  💬 Atendimento
+</button>
+
+
+<!-- JANELA DE ATENDIMENTO -->
+
+<div
+  class="atendimento-chat"
+  id="atendimentoChat"
+>
+
+  <div class="atendimento-header">
+
+    <div>
+      <strong>💬 Atendimento</strong>
+      <small>Secretaria Digital — Setor 49</small>
+    </div>
+
+    <button
+      class="atendimento-fechar"
+      id="atendimentoFechar"
+      type="button"
+    >
+      ×
+    </button>
+
+  </div>
+
+
+  <div class="atendimento-corpo">
+
+    <p>
+      Olá! Como podemos ajudar?
+      Preencha os dados abaixo para enviar sua solicitação.
+    </p>
+
+
+    <div class="atendimento-campo">
+
+      <label for="atendimentoNome">
+        Nome
+      </label>
+
+      <input
+        type="text"
+        id="atendimentoNome"
+        placeholder="Digite seu nome"
+      >
+
+    </div>
+
+
+    <div class="atendimento-campo">
+
+      <label for="atendimentoWhatsapp">
+        WhatsApp
+      </label>
+
+      <input
+        type="tel"
+        id="atendimentoWhatsapp"
+        placeholder="(11) 99999-9999"
+      >
+
+    </div>
+
+
+    <div class="atendimento-campo">
+
+      <label for="atendimentoTipo">
+        Tipo de atendimento
+      </label>
+
+      <select id="atendimentoTipo">
+
+        <option value="">
+          Selecione uma opção
+        </option>
+
+        <option value="Dúvida">
+          Dúvida
+        </option>
+
+        <option value="Solicitação">
+          Solicitação
+        </option>
+
+        <option value="Informação">
+          Informação
+        </option>
+
+        <option value="Outro">
+          Outro
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="atendimento-campo">
+
+      <label for="atendimentoAssunto">
+        Assunto
+      </label>
+
+      <input
+        type="text"
+        id="atendimentoAssunto"
+        placeholder="Sobre o que você precisa?"
+      >
+
+    </div>
+
+
+    <div class="atendimento-campo">
+
+      <label for="atendimentoMensagem">
+        Mensagem
+      </label>
+
+      <textarea
+        id="atendimentoMensagem"
+        placeholder="Digite sua dúvida ou solicitação..."
+      ></textarea>
+
+    </div>
+
+
+    <button
+      class="atendimento-enviar"
+      id="atendimentoEnviar"
+      type="button"
+    >
+      ENVIAR SOLICITAÇÃO →
+    </button>
+
+  </div>
+
+</div>
+  
 <header><div class="nav">
 <a class="brand" href="index.html"><img src="logo.png" onerror="this.style.display='none'"><span>ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM<small>SETOR 49 - JARDIM DOS PIMENTAS</small></span></a>
 <nav><a href="index.html">Início</a><a href="agenda.html">Agenda</a><a href="congregacoes.html">Congregações</a><a href="central-secretario.html">Central do Secretário</a><a href="avisos.html">Avisos</a><a href="diretoria.html">Diretoria</a></nav><button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="mobile-menu" id="mobileMenu"><a href="index.html">Início</a><a href="agenda.html">Agenda</a><a href="congregacoes.html">Congregações</a><a href="central-secretario.html">Central do Secretário</a><a href="avisos.html">Avisos</a><a href="diretoria.html">Diretoria</a></div>
