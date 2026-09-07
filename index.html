@@ -211,6 +211,7 @@ footer{
   bottom:82px;
   width:360px;
   max-width:calc(100vw - 30px);
+  max-height:calc(100vh - 110px);
   background:#fff;
   border:1px solid #e4e9ee;
   border-radius:20px;
@@ -218,6 +219,20 @@ footer{
   z-index:999;
   overflow:hidden;
   display:none;
+}
+
+.atendimento-chat.aberto{
+  display:flex;
+  flex-direction:column;
+}
+
+.atendimento-header{
+  flex-shrink:0;
+}
+
+.atendimento-corpo{
+  overflow-y:auto;
+  min-height:0;
 }
 
 
@@ -351,6 +366,20 @@ footer{
     right:15px;
     bottom:75px;
     width:calc(100vw - 30px);
+    max-height:calc(100vh - 95px);
+    border-radius:18px;
+  }
+
+  .atendimento-header{
+    padding:14px 16px;
+  }
+
+  .atendimento-corpo{
+    padding:15px;
+  }
+
+  .atendimento-campo{
+    margin-bottom:10px;
   }
 
 }
