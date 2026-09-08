@@ -2522,6 +2522,23 @@ setInterval(
       reuniao.value.trim()
     ){
 
+      const elementoAtivo =
+        document.activeElement;
+
+      /*
+       * Se alguém estiver digitando uma justificativa,
+       * não atualiza a lista para não fechar o campo.
+       */
+
+      if(
+        elementoAtivo &&
+        elementoAtivo.tagName === "TEXTAREA"
+      ){
+
+        return;
+
+      }
+
       atualizarRegistros();
 
     }
