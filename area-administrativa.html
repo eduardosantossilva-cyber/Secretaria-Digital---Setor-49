@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Área Administrativa — Setor 49</title>
+
+  <style>
+
+    :root{
+      --blue:#159dd1;
+      --green:#079447;
+      --yellow:#f9c414;
+      --orange:#f47a20;
+      --red:#b51e2a;
+      --navy:#073c66;
+      --bg:#f6f8fa;
+      --muted:#667085;
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    body{
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
+      background:var(--bg);
+      color:#344054;
+    }
+
+
+    /* =============================
+       CABEÇALHO
+    ============================= */
+
+    header{
+      background:#fff;
+      border-bottom:1px solid #e4e9ee;
+    }
+
+    .topo{
+      max-width:1200px;
+      margin:auto;
+      padding:18px 22px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .marca{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .marca img{
+      width:58px;
+      height:58px;
+      object-fit:contain;
+    }
+
+    .marca-texto strong{
+      display:block;
+      color:var(--navy);
+      font-size:20px;
+      font-weight:900;
+    }
+
+    .marca-texto span{
+      display:block;
+      margin-top:5px;
+      color:#667085;
+      font-size:13px;
+      font-weight:800;
+    }
+
+
+    /* =============================
+       MENU
+    ============================= */
+
+    nav{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    nav a{
+      color:#344054;
+      text-decoration:none;
+      font-size:13px;
+      font-weight:800;
+      padding:9px 10px;
+      border-radius:9px;
+      height:38px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      transition:.2s;
+    }
+
+    nav a:hover{
+      color:var(--green);
+    }
+
+    .sair-topo{
+      color:var(--red) !important;
+    }
+
+
+    /* =============================
+       CONTEÚDO
+    ============================= */
+
+    main{
+      max-width:1200px;
+      margin:auto;
+      padding:55px 22px 80px;
+    }
+
+    .hero{
+      background:#fff;
+      border:1px solid #dce3e8;
+      border-left:6px solid var(--blue);
+      border-radius:18px;
+      padding:30px;
+      margin-bottom:35px;
+      box-shadow:0 10px 30px rgba(16,24,40,.05);
+    }
+
+    .hero h1{
+      margin:0;
+      color:var(--navy);
+      font-size:30px;
+      font-weight:900;
+    }
+
+    .hero p{
+      margin:10px 0 0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.6;
+      max-width:800px;
+    }
+
+
+    /* =============================
+       TÍTULO
+    ============================= */
+
+    .titulo{
+      margin:0 0 18px;
+      color:var(--navy);
+      font-size:24px;
+      font-weight:900;
+    }
+
+
+    /* =============================
+       CARDS
+    ============================= */
+
+    .ferramentas{
+      display:grid;
+      grid-template-columns:
+        repeat(2,minmax(0,1fr));
+      gap:22px;
+    }
+
+    .ferramenta{
+      background:#fff;
+      border:1px solid #dce3e8;
+      border-radius:18px;
+      padding:28px;
+      text-decoration:none;
+      color:inherit;
+      display:flex;
+      flex-direction:column;
+      min-height:220px;
+      box-shadow:0 10px 30px rgba(16,24,40,.05);
+      transition:.2s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .ferramenta::before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:5px;
+      background:var(--blue);
+    }
+
+    .ferramenta:hover{
+      transform:translateY(-5px);
+      box-shadow:0 16px 35px rgba(16,24,40,.10);
+      border-color:#c9dbe5;
+    }
+
+    .icone{
+      width:58px;
+      height:58px;
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:28px;
+      background:#eef8fc;
+      margin-bottom:18px;
+    }
+
+    .ferramenta h3{
+      margin:0;
+      color:var(--navy);
+      font-size:19px;
+      font-weight:900;
+    }
+
+    .ferramenta p{
+      margin:10px 0 20px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.6;
+      flex:1;
+    }
+
+    .acessar{
+      color:var(--green);
+      font-size:12px;
+      font-weight:900;
+    }
+
+
+    /* SECRETARIA */
+
+    .secretaria::before{
+      background:var(--blue);
+    }
+
+    .secretaria .icone{
+      background:#eef8fc;
+    }
+
+
+    /* PRESENÇA */
+
+    .presenca::before{
+      background:var(--green);
+    }
+
+    .presenca .icone{
+      background:#eefaf3;
+    }
+
+
+    /* =============================
+       SAIR
+    ============================= */
+
+    .acoes{
+      margin-top:30px;
+      display:flex;
+      justify-content:flex-start;
+    }
+
+    .botao-sair{
+      border:0;
+      border-radius:10px;
+      padding:12px 20px;
+      background:#fff;
+      border:1px solid #e1e5ea;
+      color:var(--red);
+      font-size:13px;
+      font-weight:900;
+      cursor:pointer;
+      transition:.2s;
+    }
+
+    .botao-sair:hover{
+      background:#fff5f5;
+      border-color:#e8b5ba;
+    }
+
+
+    /* =============================
+       RODAPÉ
+    ============================= */
+
+    footer{
+      border-top:1px solid #e4e9ee;
+      background:#fff;
+      text-align:center;
+      padding:35px 20px;
+      color:#667085;
+      font-size:13px;
+    }
+
+    footer small{
+      display:block;
+      margin-top:7px;
+      opacity:.75;
+    }
+
+
+    /* =============================
+       RESPONSIVO
+    ============================= */
+
+    @media(max-width:700px){
+
+      .topo{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      nav{
+        width:100%;
+        justify-content:flex-start;
+      }
+
+      .marca-texto strong{
+        font-size:17px;
+      }
+
+      .marca-texto span{
+        font-size:12px;
+      }
+
+      main{
+        padding:35px 15px 60px;
+      }
+
+      .hero{
+        padding:22px;
+      }
+
+      .hero h1{
+        font-size:25px;
+      }
+
+      .ferramentas{
+        grid-template-columns:1fr;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =============================
+       CABEÇALHO
+  ============================= -->
+
+  <header>
+
+    <div class="topo">
+
+      <div class="marca">
+
+        <img
+          src="logo.png"
+          alt="Assembleia de Deus — Ministério do Belém"
+        >
+
+        <div class="marca-texto">
+
+          <strong>
+            ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM
+          </strong>
+
+          <span>
+            SETOR 49 - JARDIM DOS PIMENTAS
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <nav>
+
+        <a href="index.html">
+          Início
+        </a>
+
+        <a
+          href="#"
+          class="sair-topo"
+          id="sairTopo"
+        >
+          🚪 Sair
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- =============================
+       CONTEÚDO
+  ============================= -->
+
+  <main>
+
+
+    <section class="hero">
+
+      <h1>
+        🔐 Área Administrativa
+      </h1>
+
+      <p>
+        Acesso aos recursos administrativos
+        da Secretaria Digital do Setor 49.
+        Selecione uma das opções abaixo
+        para continuar.
+      </p>
+
+    </section>
+
+
+    <h2 class="titulo">
+      Ferramentas Administrativas
+    </h2>
+
+
+    <section class="ferramentas">
+
+
+      <!-- SECRETARIA -->
+
+      <a
+        href="painel-secretaria.html"
+        class="ferramenta secretaria"
+      >
+
+        <div class="icone">
+          📋
+        </div>
+
+        <h3>
+          Painel da Secretaria
+        </h3>
+
+        <p>
+          Gerencie as solicitações de atendimento,
+          consulte protocolos, acompanhe os status
+          e registre as respostas da Secretaria.
+        </p>
+
+        <span class="acessar">
+          ACESSAR PAINEL →
+        </span>
+
+      </a>
+
+
+      <!-- PRESENÇA -->
+
+      <a
+        href="registro-presenca.html"
+        class="ferramenta presenca"
+      >
+
+        <div class="icone">
+          👥
+        </div>
+
+        <h3>
+          Registro de Presença
+        </h3>
+
+        <p>
+          Registre e acompanhe a presença dos
+          participantes em reuniões e atividades
+          do Setor 49.
+        </p>
+
+        <span class="acessar">
+          ACESSAR REGISTRO →
+        </span>
+
+      </a>
+
+
+    </section>
+
+
+    <div class="acoes">
+
+      <button
+        class="botao-sair"
+        id="botaoSair"
+        type="button"
+      >
+        🚪 Sair da Área Administrativa
+      </button>
+
+    </div>
+
+
+  </main>
+
+
+  <!-- =============================
+       RODAPÉ
+  ============================= -->
+
+  <footer>
+
+    ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM
+    · SETOR 49 - JARDIM DOS PIMENTAS
+
+    <small>
+      PORTAL AD BELÉM - SETOR 49
+    </small>
+
+  </footer>
+
+
+  <script>
+
+    function sair(){
+
+      sessionStorage.removeItem(
+        "acessoSecretaria"
+      );
+
+      window.location.href =
+        "index.html";
+
+    }
+
+
+    document
+      .getElementById("botaoSair")
+      .addEventListener(
+        "click",
+        sair
+      );
+
+
+    document
+      .getElementById("sairTopo")
+      .addEventListener(
+        "click",
+        function(event){
+
+          event.preventDefault();
+
+          sair();
+
+        }
+      );
+
+
+    /* =============================
+       PROTEÇÃO DA PÁGINA
+    ============================= */
+
+    if(
+      sessionStorage.getItem(
+        "acessoSecretaria"
+      ) !== "true"
+    ){
+
+      window.location.href =
+        "area-restrita.html";
+
+    }
+
+  </script>
+
+
+</body>
+
+</html>
