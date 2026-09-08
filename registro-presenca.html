@@ -2887,6 +2887,258 @@ function atualizarRelatorios(){
 
 
   /* =========================
+     FUNÇÃO PARA PEGAR O ID
+  ========================= */
+
+  function obterIdPessoa(p){
+    return String(
+      p.id ||
+      p.idPessoa ||
+      p.ID ||
+      ""
+    ).trim();
+  }
+
+
+  /* =========================
+     VERIFICA SITUAÇÃO
+  ========================= */
+
+  function obterSituacao(p){
+
+    const id =
+      obterIdPessoa(p);
+
+    const registro =
+      registros.find(function(r){
+
+        return String(
+          r.idPessoa ||
+          r.id ||
+          r.ID ||
+          ""
+        ).trim() === id;
+
+      });
+
+    if(!registro){
+      return "PENDENTE";
+    }
+
+    return String(
+      registro.situacao || ""
+    )
+      .trim()
+      .toUpperCase();
+
+  }
+
+
+  /* =========================
+     POR CARGO
+  ========================= */
+
+  const cargos = [
+    "PASTOR",
+    "EVANGELISTA",
+    "PRESBÍTERO",
+    "COOPERADOR",
+    "DIÁCONO"
+  ];
+
+  let htmlCargo = "";
+
+
+  cargos.forEach(function(cargo){
+
+    const participantes =
+      obreiros.filter(function(p){
+
+        return String(
+          p.cargo || ""
+        )
+          .trim()
+          .toUpperCase() === cargo;
+
+      });
+
+
+    let presentes = 0;
+    let justificados = 0;
+    let pendentes = 0;
+
+
+    participantes.forEach(function(p){
+
+      const situacao =
+        obterSituacao(p);
+
+
+      if(situacao === "PRESENTE"){
+        presentes++;
+      }
+
+      else if(situacao === "JUSTIFICADO"){
+        justificados++;
+      }
+
+      else{
+        pendentes++;
+      }
+
+    });
+
+
+    htmlCargo += `
+      <tr>
+
+        <td>${cargo}</td>
+
+        <td class="numero-presente">
+          ${presentes}
+        </td>
+
+        <td class="numero-justificado">
+          ${justificados}
+        </td>
+
+        <td class="numero-pendente">
+          ${pendentes}
+        </td>
+
+      </tr>
+    `;
+
+  });
+
+
+  cargoBody.innerHTML =
+    htmlCargo;
+
+
+  /* =========================
+     POR CONGREGAÇÃO
+  ========================= */
+
+  const congregacoes = {};
+
+
+  obreiros.forEach(function(p){
+
+    const congregacao =
+      String(
+        p.congregacao || ""
+      ).trim();
+
+
+    if(!congregacao){
+      return;
+    }
+
+
+    if(!congregacoes[congregacao]){
+      congregacoes[congregacao] = [];
+    }
+
+
+    congregacoes[congregacao].push(p);
+
+  });
+
+
+  const nomesCongregacoes =
+    Object.keys(congregacoes)
+      .sort(function(a,b){
+
+        return a.localeCompare(
+          b,
+          "pt-BR"
+        );
+
+      });
+
+
+  let htmlCongregacao = "";
+
+
+  nomesCongregacoes.forEach(
+    function(congregacao){
+
+      const participantes =
+        congregacoes[congregacao];
+
+
+      let presentes = 0;
+      let justificados = 0;
+      let pendentes = 0;
+
+
+      participantes.forEach(
+        function(p){
+
+          const situacao =
+            obterSituacao(p);
+
+
+          if(situacao === "PRESENTE"){
+            presentes++;
+          }
+
+          else if(
+            situacao === "JUSTIFICADO"
+          ){
+            justificados++;
+          }
+
+          else{
+            pendentes++;
+          }
+
+        }
+      );
+
+
+      htmlCongregacao += `
+        <tr>
+
+          <td>${congregacao}</td>
+
+          <td class="numero-presente">
+            ${presentes}
+          </td>
+
+          <td class="numero-justificado">
+            ${justificados}
+          </td>
+
+          <td class="numero-pendente">
+            ${pendentes}
+          </td>
+
+        </tr>
+      `;
+
+    }
+  );
+
+
+  congregacaoBody.innerHTML =
+    htmlCongregacao ||
+    `
+      <tr>
+        <td
+          colspan="4"
+          class="relatorio-vazio"
+        >
+          Nenhuma congregação encontrada.
+        </td>
+      </tr>
+    `;
+
+}
+
+
+  /* =========================
      POR CARGO
   ========================= */
 
