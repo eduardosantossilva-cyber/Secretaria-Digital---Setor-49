@@ -99,6 +99,25 @@ nav a:hover{
   color:var(--green)
 }
 
+.area-restrita-link{
+  color:#073c66 !important;
+  background:#eef8fc !important;
+  border:1px solid #cfe7f0 !important;
+  border-radius:9px !important;
+  padding:8px 11px !important;
+  font-weight:900 !important;
+  transition:.2s;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.area-restrita-link:hover{
+  color:#fff !important;
+  background:#079447 !important;
+  border-color:#079447 !important;
+}
+
 .hero{
   background:linear-gradient(
     135deg,
@@ -327,6 +346,228 @@ footer small{
   opacity:.75
 }
 
+/* =============================
+   CHAT DE ATENDIMENTO
+============================= */
+
+.atendimento-botao{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:1000;
+  border:0;
+  background:var(--blue);
+  color:#fff;
+  border-radius:50px;
+  padding:14px 20px;
+  font-size:14px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 8px 24px rgba(7,60,102,.25);
+  transition:.2s;
+}
+
+.atendimento-botao:hover{
+  transform:translateY(-3px);
+  background:var(--green);
+}
+
+.atendimento-chat{
+  position:fixed;
+  right:22px;
+  bottom:82px;
+  width:360px;
+  max-width:calc(100vw - 30px);
+  max-height:calc(100vh - 110px);
+  background:#fff;
+  border:1px solid #e4e9ee;
+  border-radius:20px;
+  box-shadow:0 18px 45px rgba(16,24,40,.20);
+  z-index:999;
+  overflow:hidden;
+  display:none;
+}
+
+.atendimento-chat.aberto{
+  display:block;
+}
+
+.atendimento-header{
+  background:linear-gradient(
+    135deg,
+    var(--navy),
+    var(--blue)
+  );
+  color:#fff;
+  padding:18px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.atendimento-header strong{
+  display:block;
+  font-size:16px;
+}
+
+.atendimento-header small{
+  display:block;
+  margin-top:3px;
+  opacity:.85;
+  font-size:11px;
+}
+
+.atendimento-fechar{
+  border:0;
+  background:rgba(255,255,255,.15);
+  color:#fff;
+  width:32px;
+  height:32px;
+  border-radius:9px;
+  cursor:pointer;
+  font-size:18px;
+}
+
+.atendimento-corpo{
+  padding:18px;
+  overflow-y:auto;
+  max-height:calc(100vh - 180px);
+}
+
+.atendimento-corpo p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+  margin:0 0 15px;
+}
+
+.atendimento-campo{
+  margin-bottom:12px;
+}
+
+.atendimento-campo label{
+  display:block;
+  font-size:11px;
+  font-weight:800;
+  color:#344054;
+  margin-bottom:5px;
+}
+
+.atendimento-campo input,
+.atendimento-campo select,
+.atendimento-campo textarea{
+  width:100%;
+  border:1px solid #dce3e8;
+  border-radius:9px;
+  padding:10px 11px;
+  font-family:inherit;
+  font-size:12px;
+  outline:none;
+}
+
+.atendimento-campo input:focus,
+.atendimento-campo select:focus,
+.atendimento-campo textarea:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(21,157,209,.10);
+}
+
+.atendimento-campo textarea{
+  resize:vertical;
+  min-height:80px;
+}
+
+.atendimento-enviar{
+  width:100%;
+  border:0;
+  border-radius:10px;
+  padding:12px;
+  background:var(--green);
+  color:#fff;
+  font-weight:900;
+  font-size:12px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.atendimento-enviar:hover{
+  background:var(--blue);
+}
+
+.atendimento-opcoes{
+  display:grid;
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.atendimento-opcao{
+  width:100%;
+  border:1px solid #dce3e8;
+  border-radius:10px;
+  padding:13px 15px;
+  background:#f8fafc;
+  color:#073c66;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:800;
+  text-align:left;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.atendimento-opcao:hover{
+  background:#eef8fc;
+  border-color:#159dd1;
+  transform:translateY(-1px);
+}
+
+.atendimento-voltar{
+  width:100%;
+  margin-top:8px;
+  padding:10px;
+  border:0;
+  background:transparent;
+  color:#073c66;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.atendimento-voltar:hover{
+  color:#159dd1;
+}
+
+@media(max-width:500px){
+
+  .atendimento-botao{
+    right:15px;
+    bottom:15px;
+    padding:13px 17px;
+  }
+
+  .atendimento-chat{
+    right:15px;
+    bottom:75px;
+    width:calc(100vw - 30px);
+    max-height:calc(100vh - 95px);
+    border-radius:18px;
+  }
+
+  .atendimento-header{
+    padding:14px 16px;
+  }
+
+  .atendimento-corpo{
+    padding:15px;
+  }
+
+  .atendimento-campo{
+    margin-bottom:10px;
+  }
+
+}
+  
 /* MENU MOBILE */
 
 .menu-toggle{
@@ -462,11 +703,13 @@ footer small{
 <nav>
 
   <a href="index.html">Início</a>
-  <a href="agenda.html">Agenda</a>
-  <a href="congregacoes.html">Congregações</a>
-  <a href="central-secretario.html">Central do Secretário</a>
-  <a href="avisos.html">Avisos</a>
-  <a href="diretoria.html">Diretoria</a>
+
+  <a
+    href="area-restrita.html"
+    class="area-restrita-link"
+  >
+    🔒 Área Restrita
+  </a>
 
 </nav>
 
@@ -485,12 +728,13 @@ footer small{
 >
 
   <a href="index.html">Início</a>
-  <a href="agenda.html">Agenda</a>
-  <a href="congregacoes.html">Congregações</a>
-  <a href="central-secretario.html">Central do Secretário</a>
-  <a href="avisos.html">Avisos</a>
-  <a href="diretoria.html">Diretoria</a>
-  <a href="redes-sociais.html">Redes Sociais</a>
+
+  <a
+    href="area-restrita.html"
+    class="area-restrita-link"
+  >
+    🔒 Área Restrita
+  </a>
 
 </div>
 
@@ -605,6 +849,239 @@ ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM
 
 </footer>
 
+<!-- =================================================
+     ATENDIMENTO
+================================================= -->
+
+<button
+  class="atendimento-botao"
+  id="atendimentoBotao"
+  type="button"
+>
+  💬 Atendimento
+</button>
+
+
+<div
+  class="atendimento-chat"
+  id="atendimentoChat"
+>
+
+  <div class="atendimento-header">
+
+    <div>
+      <strong>💬 Atendimento</strong>
+      <small>Secretaria Digital — Setor 49</small>
+    </div>
+
+    <button
+      class="atendimento-fechar"
+      id="atendimentoFechar"
+      type="button"
+    >
+      ×
+    </button>
+
+  </div>
+
+
+  <div class="atendimento-corpo">
+
+    <div
+      class="atendimento-opcoes"
+      id="atendimentoOpcoes"
+    >
+
+      <button
+        type="button"
+        class="atendimento-opcao"
+        id="novaSolicitacao"
+      >
+        💬 Fazer uma solicitação
+      </button>
+
+      <button
+        type="button"
+        class="atendimento-opcao"
+        id="consultarProtocolo"
+      >
+        🔎 Consultar protocolo
+      </button>
+
+    </div>
+
+
+    <div
+      id="formularioAtendimento"
+      style="display:none;"
+    >
+
+      <p>
+        Olá! Como podemos ajudar?
+        Preencha os dados abaixo para enviar sua solicitação.
+      </p>
+
+      <div class="atendimento-campo">
+        <label for="atendimentoNome">Nome</label>
+
+        <input
+          type="text"
+          id="atendimentoNome"
+          placeholder="Digite seu nome"
+        >
+      </div>
+
+
+      <div class="atendimento-campo">
+        <label for="atendimentoWhatsapp">
+          WhatsApp
+        </label>
+
+        <input
+          type="tel"
+          id="atendimentoWhatsapp"
+          placeholder="(11) 99999-9999"
+        >
+      </div>
+
+
+      <div class="atendimento-campo">
+
+        <label for="atendimentoTipo">
+          Tipo de atendimento
+        </label>
+
+        <select id="atendimentoTipo">
+
+          <option value="">
+            Selecione uma opção
+          </option>
+
+          <option value="Dúvida">
+            Dúvida
+          </option>
+
+          <option value="Solicitação">
+            Solicitação
+          </option>
+
+          <option value="Informação">
+            Informação
+          </option>
+
+          <option value="Outro">
+            Outro
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="atendimento-campo">
+
+        <label for="atendimentoAssunto">
+          Assunto
+        </label>
+
+        <input
+          type="text"
+          id="atendimentoAssunto"
+          placeholder="Sobre o que você precisa?"
+        >
+
+      </div>
+
+
+      <div class="atendimento-campo">
+
+        <label for="atendimentoMensagem">
+          Mensagem
+        </label>
+
+        <textarea
+          id="atendimentoMensagem"
+          placeholder="Digite sua dúvida ou solicitação..."
+        ></textarea>
+
+      </div>
+
+
+      <button
+        class="atendimento-enviar"
+        id="atendimentoEnviar"
+        type="button"
+      >
+        ENVIAR SOLICITAÇÃO →
+      </button>
+
+
+      <button
+        type="button"
+        class="atendimento-voltar"
+        id="voltarSolicitacao"
+      >
+        ← Voltar
+      </button>
+
+    </div>
+
+
+    <div
+      id="consultaProtocolo"
+      style="display:none;"
+    >
+
+      <p>
+        Digite seu protocolo para consultar
+        o andamento da sua solicitação.
+      </p>
+
+
+      <div class="atendimento-campo">
+
+        <label for="numeroProtocolo">
+          Número do protocolo
+        </label>
+
+        <input
+          type="text"
+          id="numeroProtocolo"
+          placeholder="ATD-2026-000001"
+        >
+
+      </div>
+
+
+      <button
+        type="button"
+        class="atendimento-enviar"
+        id="botaoConsultar"
+      >
+        CONSULTAR PROTOCOLO →
+      </button>
+
+
+      <button
+        type="button"
+        class="atendimento-voltar"
+        id="voltarAtendimento"
+      >
+        ← Voltar
+      </button>
+
+    </div>
+
+
+    <div
+      id="resultadoProtocolo"
+      style="display:none;"
+    ></div>
+
+  </div>
+
+</div>
+  
 <script>
 
 const API_URL =
@@ -836,6 +1313,660 @@ carregarPastores();
 
 </script>
 
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const botaoChat =
+    document.getElementById("atendimentoBotao");
+
+  const chat =
+    document.getElementById("atendimentoChat");
+
+  const fecharChat =
+    document.getElementById("atendimentoFechar");
+
+  const opcoes =
+    document.getElementById("atendimentoOpcoes");
+
+  const formulario =
+    document.getElementById("formularioAtendimento");
+
+  const consulta =
+    document.getElementById("consultaProtocolo");
+
+  const resultado =
+    document.getElementById("resultadoProtocolo");
+
+  const novaSolicitacao =
+    document.getElementById("novaSolicitacao");
+
+  const consultarProtocolo =
+    document.getElementById("consultarProtocolo");
+
+  const voltarSolicitacao =
+    document.getElementById("voltarSolicitacao");
+
+  const voltarAtendimento =
+    document.getElementById("voltarAtendimento");
+
+  const botaoEnviar =
+    document.getElementById("atendimentoEnviar");
+
+  const botaoConsultar =
+    document.getElementById("botaoConsultar");
+
+
+  const API_ATENDIMENTO =
+    "https://script.google.com/macros/s/AKfycbwJzijPbbP3PSZuTh2rpTpwmYIcBj44pZR2BaXOJwhZOZLGOQkDDPywJTMxy_90LbYb/exec";
+
+
+  /* ABRIR */
+
+  if (botaoChat && chat) {
+
+    botaoChat.addEventListener("click", function () {
+
+      chat.classList.add("aberto");
+
+    });
+
+  }
+
+
+  /* FECHAR */
+
+  if (fecharChat && chat) {
+
+    fecharChat.addEventListener("click", function () {
+
+      chat.classList.remove("aberto");
+
+    });
+
+  }
+
+
+  /* OPÇÕES */
+
+  function mostrarOpcoes() {
+
+    opcoes.style.display = "grid";
+    formulario.style.display = "none";
+    consulta.style.display = "none";
+    resultado.style.display = "none";
+    resultado.innerHTML = "";
+
+  }
+
+
+  /* FORMULÁRIO */
+
+  function mostrarFormulario() {
+
+    opcoes.style.display = "none";
+    formulario.style.display = "block";
+    consulta.style.display = "none";
+    resultado.style.display = "none";
+
+  }
+
+
+  /* CONSULTA */
+
+  function mostrarConsulta() {
+
+    opcoes.style.display = "none";
+    formulario.style.display = "none";
+    consulta.style.display = "block";
+    resultado.style.display = "none";
+
+  }
+
+
+  novaSolicitacao.addEventListener(
+    "click",
+    mostrarFormulario
+  );
+
+
+  consultarProtocolo.addEventListener(
+    "click",
+    mostrarConsulta
+  );
+
+
+  voltarSolicitacao.addEventListener(
+    "click",
+    mostrarOpcoes
+  );
+
+
+  voltarAtendimento.addEventListener(
+    "click",
+    mostrarOpcoes
+  );
+
+
+  /* ENVIAR SOLICITAÇÃO */
+
+  botaoEnviar.addEventListener(
+    "click",
+    function () {
+
+      const nome =
+        document
+          .getElementById("atendimentoNome")
+          .value
+          .trim();
+
+      const whatsapp =
+        document
+          .getElementById("atendimentoWhatsapp")
+          .value
+          .trim();
+
+      const tipo =
+        document
+          .getElementById("atendimentoTipo")
+          .value;
+
+      const assunto =
+        document
+          .getElementById("atendimentoAssunto")
+          .value
+          .trim();
+
+      const mensagem =
+        document
+          .getElementById("atendimentoMensagem")
+          .value
+          .trim();
+
+
+      if (!nome) {
+        alert("Digite seu nome.");
+        return;
+      }
+
+      if (!whatsapp) {
+        alert("Digite seu WhatsApp.");
+        return;
+      }
+
+      if (!tipo) {
+        alert("Selecione o tipo de atendimento.");
+        return;
+      }
+
+      if (!assunto) {
+        alert("Digite o assunto.");
+        return;
+      }
+
+      if (!mensagem) {
+        alert("Digite sua mensagem.");
+        return;
+      }
+
+
+      const agora = new Date();
+
+      const protocolo =
+        "ATD-" +
+        agora.getFullYear() +
+        "-" +
+        String(agora.getTime()).slice(-6);
+
+
+      botaoEnviar.disabled = true;
+
+      botaoEnviar.textContent =
+        "ENVIANDO...";
+
+
+      const iframe =
+        document.createElement("iframe");
+
+      iframe.name =
+        "atendimento_envio";
+
+      iframe.style.display =
+        "none";
+
+      document.body.appendChild(iframe);
+
+
+      const form =
+        document.createElement("form");
+
+      form.method =
+        "POST";
+
+      form.action =
+        API_ATENDIMENTO;
+
+      form.target =
+        "atendimento_envio";
+
+      form.style.display =
+        "none";
+
+
+      function campo(nomeCampo, valor) {
+
+        const input =
+          document.createElement("input");
+
+        input.type =
+          "hidden";
+
+        input.name =
+          nomeCampo;
+
+        input.value =
+          valor;
+
+        form.appendChild(input);
+
+      }
+
+
+      campo("protocolo", protocolo);
+      campo("nome", nome);
+      campo("whatsapp", whatsapp);
+      campo("tipo", tipo);
+      campo("assunto", assunto);
+      campo("mensagem", mensagem);
+
+
+      document.body.appendChild(form);
+
+      form.submit();
+
+
+      setTimeout(function () {
+
+        document.querySelector(
+          ".atendimento-corpo"
+        ).innerHTML = `
+
+          <div style="
+            text-align:center;
+            padding:25px 10px;
+          ">
+
+            <div style="
+              font-size:42px;
+              margin-bottom:12px;
+            ">
+              ✅
+            </div>
+
+            <h3 style="
+              color:#073c66;
+              margin:0 0 8px;
+            ">
+              Solicitação enviada!
+            </h3>
+
+            <p style="
+              color:#667085;
+              line-height:1.5;
+            ">
+              Sua solicitação foi registrada
+              com sucesso.
+            </p>
+
+            <div style="
+              margin:20px 0;
+              padding:15px;
+              background:#eef8fc;
+              border-radius:12px;
+            ">
+
+              <small style="
+                display:block;
+                color:#667085;
+                margin-bottom:5px;
+              ">
+                Seu protocolo
+              </small>
+
+              <strong style="
+                font-size:22px;
+                color:#073c66;
+              ">
+                ${protocolo}
+              </strong>
+
+            </div>
+
+            <p style="
+              color:#667085;
+              font-size:12px;
+              margin:0;
+            ">
+              Guarde este número para
+              acompanhar sua solicitação.
+            </p>
+
+            <button
+              type="button"
+              class="atendimento-voltar"
+              id="voltarConfirmacao"
+              style="margin-top:18px;"
+            >
+              ← Voltar ao Atendimento
+            </button>
+
+          </div>
+
+        `;
+
+
+        document
+          .getElementById("voltarConfirmacao")
+          .addEventListener(
+            "click",
+            function () {
+
+              location.reload();
+
+            }
+          );
+
+
+        form.remove();
+        iframe.remove();
+
+      }, 1500);
+
+    }
+  );
+
+
+  /* CONSULTAR PROTOCOLO */
+
+  botaoConsultar.addEventListener(
+    "click",
+    async function () {
+
+      const campo =
+        document.getElementById(
+          "numeroProtocolo"
+        );
+
+      const protocolo =
+        campo.value
+          .trim()
+          .toUpperCase();
+
+
+      if (!protocolo) {
+
+        alert(
+          "Digite o número do protocolo."
+        );
+
+        campo.focus();
+
+        return;
+
+      }
+
+
+      botaoConsultar.disabled = true;
+
+      botaoConsultar.textContent =
+        "CONSULTANDO...";
+
+
+      try {
+
+        const resposta =
+          await fetch(
+            API_ATENDIMENTO +
+            "?protocolo=" +
+            encodeURIComponent(protocolo)
+          );
+
+
+        const dados =
+          await resposta.json();
+
+
+        if (
+          !dados.sucesso ||
+          !dados.encontrado
+        ) {
+
+          resultado.style.display =
+            "block";
+
+          resultado.innerHTML = `
+
+            <div style="
+              margin-top:18px;
+              padding:16px;
+              background:#fff5f5;
+              border-left:4px solid #b51e2a;
+              border-radius:10px;
+            ">
+
+              <strong style="
+                color:#b51e2a;
+                display:block;
+                margin-bottom:5px;
+              ">
+                Protocolo não encontrado
+              </strong>
+
+              <span style="
+                color:#667085;
+                font-size:12px;
+              ">
+                Verifique o número informado
+                e tente novamente.
+              </span>
+
+            </div>
+
+          `;
+
+          return;
+
+        }
+
+
+        const status =
+          String(
+            dados.status || "PENDENTE"
+          )
+          .trim()
+          .toUpperCase();
+
+
+        let corStatus =
+          "#f9c414";
+
+        let fundoStatus =
+          "#fff9e5";
+
+
+        if (
+          status === "RESPONDIDO" ||
+          status === "CONCLUÍDO" ||
+          status === "CONCLUIDO" ||
+          status === "FINALIZADO"
+        ) {
+
+          corStatus =
+            "#079447";
+
+          fundoStatus =
+            "#eefaf3";
+
+        }
+
+
+        if (
+          status === "EM ANÁLISE" ||
+          status === "EM ANALISE"
+        ) {
+
+          corStatus =
+            "#159dd1";
+
+          fundoStatus =
+            "#eef8fc";
+
+        }
+
+
+        if (status === "ENCERRADO") {
+
+          corStatus =
+            "#b51e2a";
+
+          fundoStatus =
+            "#fff5f5";
+
+        }
+
+
+        let respostaHtml =
+          "";
+
+
+        if (dados.resposta) {
+
+          respostaHtml = `
+
+            <div style="
+              margin-top:15px;
+              padding:15px;
+              background:#eefaf3;
+              border-radius:10px;
+              border-left:4px solid #079447;
+            ">
+
+              <strong style="
+                color:#079447;
+                display:block;
+                margin-bottom:6px;
+              ">
+                Resposta da Secretaria
+              </strong>
+
+              <span style="
+                color:#475467;
+                font-size:12px;
+                line-height:1.5;
+              ">
+                ${dados.resposta}
+              </span>
+
+            </div>
+
+          `;
+
+        }
+
+
+        resultado.style.display =
+          "block";
+
+
+        resultado.innerHTML = `
+
+          <div style="
+            margin-top:18px;
+            padding:16px;
+            background:${fundoStatus};
+            border-left:4px solid ${corStatus};
+            border-radius:10px;
+          ">
+
+            <strong style="
+              color:#073c66;
+              display:block;
+              margin-bottom:10px;
+            ">
+              Protocolo: ${dados.protocolo}
+            </strong>
+
+            <div style="
+              font-size:12px;
+              color:#667085;
+              line-height:1.7;
+            ">
+
+              <strong>Status:</strong>
+
+              <span style="
+                color:${corStatus};
+                font-weight:900;
+              ">
+                ${dados.status}
+              </span>
+
+              <br>
+
+              <strong>Assunto:</strong>
+              ${dados.assunto}
+
+            </div>
+
+            ${respostaHtml}
+
+          </div>
+
+        `;
+
+
+      } catch (erro) {
+
+        resultado.style.display =
+          "block";
+
+        resultado.innerHTML = `
+
+          <div style="
+            margin-top:18px;
+            padding:16px;
+            background:#fff5f5;
+            border-left:4px solid #b51e2a;
+            border-radius:10px;
+          ">
+
+            <strong style="
+              color:#b51e2a;
+            ">
+              Não foi possível consultar.
+            </strong>
+
+          </div>
+
+        `;
+
+      } finally {
+
+        botaoConsultar.disabled =
+          false;
+
+        botaoConsultar.textContent =
+          "CONSULTAR PROTOCOLO →";
+
+      }
+
+    }
+  );
+
+});
+
+</script>
+  
 </body>
 
 </html>
