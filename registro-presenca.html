@@ -1299,6 +1299,8 @@ let registros = [];
 
 let callbackContador = 0;
 
+let justificativaAberta = false;
+
 
 /*******************************************************
  * ELEMENTOS
@@ -1912,6 +1914,23 @@ function abrirJustificativa(id){
 
     box.classList.add("aberta");
 
+    justificativaAberta = true;
+
+    const campo =
+      document.getElementById(
+        "motivo-" + id
+      );
+
+    if(campo){
+
+      setTimeout(function(){
+
+        campo.focus();
+
+      },100);
+
+    }
+
   }
 
 }
@@ -1933,6 +1952,10 @@ function fecharJustificativa(id){
     box.classList.remove("aberta");
 
   }
+
+  justificativaAberta = false;
+
+  atualizarRegistros();
 
 }
 
@@ -1961,9 +1984,16 @@ function confirmarJustificativa(id){
       "Informe o motivo da justificativa."
     );
 
+    if(campo){
+      campo.focus();
+    }
+
     return;
 
   }
+
+
+  justificativaAberta = false;
 
 
   registrar(
@@ -2130,6 +2160,12 @@ function registrar(
  *******************************************************/
 
 function atualizarRegistros(){
+
+  if(justificativaAberta){
+
+    return;
+
+  }
 
   if(
     !data.value ||
@@ -2522,18 +2558,12 @@ setInterval(
       reuniao.value.trim()
     ){
 
-      const elementoAtivo =
-        document.activeElement;
-
       /*
-       * Se alguém estiver digitando uma justificativa,
-       * não atualiza a lista para não fechar o campo.
+       * Não atualizar enquanto uma justificativa
+       * estiver aberta.
        */
 
-      if(
-        elementoAtivo &&
-        elementoAtivo.tagName === "TEXTAREA"
-      ){
+      if(justificativaAberta){
 
         return;
 
