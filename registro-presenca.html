@@ -2256,7 +2256,7 @@ function registrar(
   const pessoa =
     obreiros.find(
       item =>
-        item.id === id
+        String(item.id) === String(id)
     );
 
 
@@ -2272,7 +2272,6 @@ function registrar(
 
 
   chamarAPI(
-
     {
 
       acao:"registrar",
@@ -2281,23 +2280,32 @@ function registrar(
 
       data:data.value,
 
-      reuniao:reuniao.value.trim(),
+      reuniao:
+        reuniao.value.trim(),
 
-      horario:horario.value,
+      horario:
+        horario.value,
 
-      nome:pessoa.nome,
+      nome:
+        pessoa.nome,
 
-      congregacao:pessoa.congregacao,
+      congregacao:
+        pessoa.congregacao,
 
-      cargo:pessoa.cargo,
+      cargo:
+        pessoa.cargo,
 
-      situacao:situacao,
+      situacao:
+        situacao,
 
-      justificativa:justificativa,
+      justificativa:
+        justificativa,
 
-      operador:operador.value.trim()
+      operador:
+        operador.value.trim()
 
     },
+
 
     function(resultado){
 
@@ -2328,7 +2336,6 @@ function registrar(
 
         }
 
-
         atualizarRegistros();
 
         return;
@@ -2336,16 +2343,117 @@ function registrar(
       }
 
 
+      /* =========================
+         ATUALIZAÇÃO IMEDIATA
+      ========================= */
+
+      const registroLocal = {
+
+        idPessoa:
+          String(pessoa.id),
+
+        data:
+          data.value,
+
+        reuniao:
+          reuniao.value.trim(),
+
+        horario:
+          horario.value,
+
+        nome:
+          pessoa.nome,
+
+        congregacao:
+          pessoa.congregacao,
+
+        cargo:
+          pessoa.cargo,
+
+        situacao:
+          situacao,
+
+        justificativa:
+          justificativa,
+
+        operador:
+          operador.value.trim(),
+
+        dataHora:
+          new Date().toISOString()
+
+      };
+
+
+      /* Evita duplicar o registro
+         na memória */
+
+      const indice =
+        registros.findIndex(
+          function(r){
+
+            return (
+              String(
+                r.idPessoa || ""
+              ) ===
+              String(pessoa.id) &&
+              String(
+                r.data || ""
+              ) ===
+              String(data.value) &&
+              String(
+                r.reuniao || ""
+              ).trim() ===
+              String(
+                reuniao.value
+              ).trim()
+            );
+
+          }
+        );
+
+
+      if(indice >= 0){
+
+        registros[indice] =
+          registroLocal;
+
+      }else{
+
+        registros.push(
+          registroLocal
+        );
+
+      }
+
+
+      /* Atualiza a tela
+         imediatamente */
+
+      renderizar();
+
+      atualizarResumo();
+
+
       alert(
         situacao === "PRESENTE"
-
           ? "🟢 Presença registrada!"
-
           : "🟡 Justificativa registrada!"
       );
 
 
-      atualizarRegistros();
+      /* =========================
+         SINCRONIZA COM A PLANILHA
+      ========================= */
+
+      setTimeout(
+        function(){
+
+          atualizarRegistros();
+
+        },
+        1000
+      );
 
     }
 
