@@ -535,12 +535,39 @@
     }
 
 
-    document
-      .getElementById("botaoSair")
-      .addEventListener(
-        "click",
-        sair
-      );
+   function sair(){
+
+  sessionStorage.removeItem(
+    "acessoSecretaria"
+  );
+
+  window.location.href =
+    "index.html";
+
+}
+
+
+document
+  .getElementById("sairTopo")
+  .addEventListener(
+    "click",
+    function(event){
+
+      event.preventDefault();
+
+      sair();
+
+    }
+  );
+
+
+/* =============================
+   PROTEÇÃO DA PÁGINA
+============================= */
+
+if(sessionStorage.getItem("acessoSecretaria") !== "autorizado"){
+  window.location.href = "area-restrita.html";
+}
 
 
     document
