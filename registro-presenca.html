@@ -904,6 +904,127 @@ footer{
 
 }
 
+/* =========================
+   RELATÓRIO DA CHAMADA
+========================= */
+
+.relatorio-presenca{
+  margin-top:22px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.relatorio-box{
+  background:#fff;
+  border:1px solid #dce3e8;
+  border-radius:16px;
+  overflow:hidden;
+}
+
+.relatorio-titulo{
+  padding:16px 18px;
+  background:#f6f8fa;
+  border-bottom:1px solid #e4e9ee;
+}
+
+.relatorio-titulo h3{
+  margin:0;
+  color:#073c66;
+  font-size:16px;
+}
+
+.relatorio-titulo p{
+  margin:4px 0 0;
+  color:#777;
+  font-size:11px;
+}
+
+.relatorio-tabela{
+  width:100%;
+  border-collapse:collapse;
+  font-size:12px;
+}
+
+.relatorio-tabela th{
+  background:#fff;
+  color:#667085;
+  font-weight:900;
+  text-align:center;
+  padding:11px 8px;
+  border-bottom:1px solid #e4e9ee;
+}
+
+.relatorio-tabela th:first-child{
+  text-align:left;
+  padding-left:16px;
+}
+
+.relatorio-tabela td{
+  padding:11px 8px;
+  border-bottom:1px solid #eef1f4;
+  text-align:center;
+}
+
+.relatorio-tabela td:first-child{
+  text-align:left;
+  padding-left:16px;
+  font-weight:800;
+  color:#344054;
+}
+
+.relatorio-tabela tr:last-child td{
+  border-bottom:0;
+}
+
+.numero-presente{
+  color:#079447;
+  font-weight:900;
+}
+
+.numero-justificado{
+  color:#9a6b00;
+  font-weight:900;
+}
+
+.numero-pendente{
+  color:#b51e2a;
+  font-weight:900;
+}
+
+.relatorio-total{
+  background:#f8fafc;
+  font-weight:900;
+}
+
+.relatorio-vazio{
+  text-align:center !important;
+  color:#777 !important;
+  padding:20px !important;
+}
+
+@media(max-width:800px){
+  .relatorio-presenca{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:500px){
+  .relatorio-tabela{
+    font-size:11px;
+  }
+
+  .relatorio-tabela th,
+  .relatorio-tabela td{
+    padding:9px 5px;
+  }
+
+  .relatorio-tabela th:first-child,
+  .relatorio-tabela td:first-child{
+    padding-left:10px;
+  }
+}
+
 </style>
 
 </head>
@@ -1025,6 +1146,80 @@ footer{
 
   </section>
 
+<!-- =========================
+     RELATÓRIO DA CHAMADA
+========================= -->
+
+<section class="relatorio-presenca">
+
+  <!-- POR CARGO -->
+  <div class="relatorio-box">
+
+    <div class="relatorio-titulo">
+      <h3>📋 Presença por cargo</h3>
+      <p>Acompanhamento dos participantes por função e situação.</p>
+    </div>
+
+    <table class="relatorio-tabela">
+
+      <thead>
+        <tr>
+          <th>Cargo</th>
+          <th>Presentes</th>
+          <th>Justificados</th>
+          <th>Pendentes</th>
+        </tr>
+      </thead>
+
+      <tbody id="relatorioCargo">
+
+        <tr>
+          <td colspan="4" class="relatorio-vazio">
+            Aguardando dados...
+          </td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+
+  <!-- POR CONGREGAÇÃO -->
+  <div class="relatorio-box">
+
+    <div class="relatorio-titulo">
+      <h3>⛪ Presença por congregação</h3>
+      <p>Acompanhamento da chamada por congregação.</p>
+    </div>
+
+    <table class="relatorio-tabela">
+
+      <thead>
+        <tr>
+          <th>Congregação</th>
+          <th>Presentes</th>
+          <th>Justificados</th>
+          <th>Pendentes</th>
+        </tr>
+      </thead>
+
+      <tbody id="relatorioCongregacao">
+
+        <tr>
+          <td colspan="4" class="relatorio-vazio">
+            Aguardando dados...
+          </td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
 
   <!-- =========================
        RESUMO
@@ -2306,6 +2501,8 @@ function atualizarResumo(){
   ).textContent =
     pendentes;
 
+  atualizarRelatorios();
+  
 }
 
 
@@ -2672,7 +2869,236 @@ colocarDataAtual();
 
 carregarObreiros();
 
+/* =========================
+   RELATÓRIO DA CHAMADA
+========================= */
 
+function atualizarRelatorios(){
+
+  const cargoBody =
+    document.getElementById("relatorioCargo");
+
+  const congregacaoBody =
+    document.getElementById("relatorioCongregacao");
+
+  if(!cargoBody || !congregacaoBody){
+    return;
+  }
+
+
+  /* =========================
+     POR CARGO
+  ========================= */
+
+  const cargos = [
+    "PASTOR",
+    "EVANGELISTA",
+    "PRESBÍTERO",
+    "COOPERADOR",
+    "DIÁCONO"
+  ];
+
+  let htmlCargo = "";
+
+  cargos.forEach(function(cargo){
+
+    const participantes =
+      obreiros.filter(function(p){
+
+        return String(p.cargo || "")
+          .trim()
+          .toUpperCase() === cargo;
+
+      });
+
+    const presentes =
+      participantes.filter(function(p){
+
+        return registros.some(function(r){
+
+          return (
+            String(r.idPessoa || "") ===
+              String(p.idPessoa || "") &&
+            String(r.situacao || "")
+              .toUpperCase() === "PRESENTE"
+          );
+
+        });
+
+      }).length;
+
+
+    const justificados =
+      participantes.filter(function(p){
+
+        return registros.some(function(r){
+
+          return (
+            String(r.idPessoa || "") ===
+              String(p.idPessoa || "") &&
+            String(r.situacao || "")
+              .toUpperCase() === "JUSTIFICADO"
+          );
+
+        });
+
+      }).length;
+
+
+    const pendentes =
+      participantes.length -
+      presentes -
+      justificados;
+
+
+    htmlCargo += `
+      <tr>
+
+        <td>${cargo}</td>
+
+        <td class="numero-presente">
+          ${presentes}
+        </td>
+
+        <td class="numero-justificado">
+          ${justificados}
+        </td>
+
+        <td class="numero-pendente">
+          ${pendentes}
+        </td>
+
+      </tr>
+    `;
+
+  });
+
+
+  cargoBody.innerHTML = htmlCargo;
+
+
+  /* =========================
+     POR CONGREGAÇÃO
+  ========================= */
+
+  const congregacoes = {};
+
+  obreiros.forEach(function(p){
+
+    const congregacao =
+      String(p.congregacao || "")
+        .trim();
+
+    if(!congregacao){
+      return;
+    }
+
+    if(!congregacoes[congregacao]){
+      congregacoes[congregacao] = [];
+    }
+
+    congregacoes[congregacao].push(p);
+
+  });
+
+
+  const nomesCongregacoes =
+    Object.keys(congregacoes)
+      .sort(function(a,b){
+
+        return a.localeCompare(
+          b,
+          "pt-BR"
+        );
+
+      });
+
+
+  let htmlCongregacao = "";
+
+
+  nomesCongregacoes.forEach(function(congregacao){
+
+    const participantes =
+      congregacoes[congregacao];
+
+
+    const presentes =
+      participantes.filter(function(p){
+
+        return registros.some(function(r){
+
+          return (
+            String(r.idPessoa || "") ===
+              String(p.idPessoa || "") &&
+            String(r.situacao || "")
+              .toUpperCase() === "PRESENTE"
+          );
+
+        });
+
+      }).length;
+
+
+    const justificados =
+      participantes.filter(function(p){
+
+        return registros.some(function(r){
+
+          return (
+            String(r.idPessoa || "") ===
+              String(p.idPessoa || "") &&
+            String(r.situacao || "")
+              .toUpperCase() === "JUSTIFICADO"
+          );
+
+        });
+
+      }).length;
+
+
+    const pendentes =
+      participantes.length -
+      presentes -
+      justificados;
+
+
+    htmlCongregacao += `
+      <tr>
+
+        <td>${congregacao}</td>
+
+        <td class="numero-presente">
+          ${presentes}
+        </td>
+
+        <td class="numero-justificado">
+          ${justificados}
+        </td>
+
+        <td class="numero-pendente">
+          ${pendentes}
+        </td>
+
+      </tr>
+    `;
+
+  });
+
+
+  congregacaoBody.innerHTML =
+    htmlCongregacao ||
+    `
+      <tr>
+        <td colspan="4"
+            class="relatorio-vazio">
+          Nenhuma congregação encontrada.
+        </td>
+      </tr>
+    `;
+
+}
+  
 </script>
 
 </body>
