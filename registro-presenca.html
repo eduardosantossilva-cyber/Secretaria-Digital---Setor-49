@@ -1025,6 +1025,54 @@ footer{
   }
 }
 
+/* PAINÉIS RECOLHÍVEIS DOS RELATÓRIOS */
+
+.relatorio-cabecalho{
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  user-select:none;
+}
+
+.relatorio-cabecalho:hover{
+  background:#f8fafc;
+}
+
+.relatorio-seta{
+  width:34px;
+  height:34px;
+  border:1px solid #dce3e8;
+  border-radius:9px;
+  background:#fff;
+  color:#073c66;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+  font-weight:900;
+  transition:.2s;
+  flex-shrink:0;
+}
+
+.relatorio-seta:hover{
+  background:#eef8fc;
+  border-color:#159dd1;
+}
+
+.relatorio-conteudo{
+  display:none;
+}
+
+.relatorio-conteudo.aberto{
+  display:block;
+}
+
+.relatorio-cabecalho.aberto .relatorio-seta{
+  transform:rotate(180deg);
+}
+  
 </style>
 
 </head>
@@ -1155,13 +1203,18 @@ footer{
   <!-- POR CARGO -->
   <div class="relatorio-box">
 
-    <div class="relatorio-titulo">
-      <h3>📋 Presença por cargo</h3>
-      <p>Acompanhamento dos participantes por função e situação.</p>
-    </div>
+<div class="relatorio-cabecalho" onclick="alternarRelatorio('cargo', this)">
+  <div>
+    <h3>📋 Presença por cargo</h3>
+    <p>Acompanhamento dos participantes por função e situação.</p>
+  </div>
 
-    <table class="relatorio-tabela">
+  <div class="relatorio-seta">▼</div>
+</div>
 
+<div class="relatorio-conteudo" id="relatorioConteudoCargo">
+  <div class="relatorio-tabela">
+    <table>
       <thead>
         <tr>
           <th>Cargo</th>
@@ -1171,31 +1224,27 @@ footer{
         </tr>
       </thead>
 
-      <tbody id="relatorioCargo">
-
-        <tr>
-          <td colspan="4" class="relatorio-vazio">
-            Aguardando dados...
-          </td>
-        </tr>
-
-      </tbody>
-
+      <tbody id="relatorioCargo"></tbody>
     </table>
-
   </div>
+</div>
 
 
   <!-- POR CONGREGAÇÃO -->
   <div class="relatorio-box">
 
-    <div class="relatorio-titulo">
-      <h3>⛪ Presença por congregação</h3>
-      <p>Acompanhamento da chamada por congregação.</p>
-    </div>
+<div class="relatorio-cabecalho" onclick="alternarRelatorio('congregacao', this)">
+  <div>
+    <h3>⛪ Presença por congregação</h3>
+    <p>Acompanhamento da chamada por congregação.</p>
+  </div>
 
-    <table class="relatorio-tabela">
+  <div class="relatorio-seta">▼</div>
+</div>
 
+<div class="relatorio-conteudo" id="relatorioConteudoCongregacao">
+  <div class="relatorio-tabela">
+    <table>
       <thead>
         <tr>
           <th>Congregação</th>
@@ -1205,19 +1254,10 @@ footer{
         </tr>
       </thead>
 
-      <tbody id="relatorioCongregacao">
-
-        <tr>
-          <td colspan="4" class="relatorio-vazio">
-            Aguardando dados...
-          </td>
-        </tr>
-
-      </tbody>
-
+      <tbody id="relatorioCongregacao"></tbody>
     </table>
-
   </div>
+</div>
 
 </section>
 
@@ -3245,6 +3285,33 @@ function atualizarRelatorios(){
 
 }
 
+function alternarRelatorio(tipo, cabecalho){
+
+  let conteudo;
+
+  if(tipo === "cargo"){
+    conteudo =
+      document.getElementById("relatorioConteudoCargo");
+  }
+
+  if(tipo === "congregacao"){
+    conteudo =
+      document.getElementById("relatorioConteudoCongregacao");
+  }
+
+  if(!conteudo){
+    return;
+  }
+
+  const aberto =
+    conteudo.classList.toggle("aberto");
+
+  cabecalho.classList.toggle(
+    "aberto",
+    aberto
+  );
+}
+  
 </script>
 
 </body>
