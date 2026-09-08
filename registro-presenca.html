@@ -1,0 +1,2629 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Registro de Presença | AD Belém 49</title>
+
+<style>
+
+:root{
+  --blue:#159dd1;
+  --green:#079447;
+  --yellow:#f9c414;
+  --orange:#f47a20;
+  --red:#b51e2a;
+  --navy:#073c66;
+  --muted:#667085;
+  --bg:#f6f8fa;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial, Helvetica, sans-serif;
+  background:var(--bg);
+  color:#344054;
+  min-height:100vh;
+}
+
+
+/* =========================
+   CABEÇALHO
+========================= */
+
+header{
+  background:linear-gradient(
+    135deg,
+    var(--navy),
+    var(--blue)
+  );
+
+  color:#fff;
+
+  padding:20px;
+  box-shadow:0 3px 10px rgba(0,0,0,.15);
+}
+
+.cabecalho{
+  max-width:1200px;
+  margin:auto;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:25px;
+}
+
+.titulo{
+  flex:1;
+}
+
+.titulo h1{
+  font-size:28px;
+  line-height:1.2;
+  margin-bottom:6px;
+}
+
+.titulo p{
+  font-size:14px;
+  opacity:.9;
+}
+
+.acoes-cabecalho{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.btn-voltar{
+  height:42px;
+  padding:0 16px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  background:#fff;
+  color:var(--navy);
+
+  border-radius:9px;
+  text-decoration:none;
+
+  font-size:13px;
+  font-weight:900;
+
+  transition:.2s;
+}
+
+.btn-voltar:hover{
+  background:#eef8fc;
+  color:var(--green);
+}
+
+.logo{
+  width:65px;
+  height:65px;
+
+  object-fit:contain;
+
+  background:#fff;
+  border-radius:13px;
+  padding:5px;
+}
+
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+main{
+  max-width:1200px;
+  margin:25px auto;
+  padding:0 20px;
+}
+
+
+/* =========================
+   CONFIGURAÇÃO
+========================= */
+
+.configuracao{
+  background:#fff;
+
+  border-radius:15px;
+  padding:22px;
+
+  border-top:4px solid var(--blue);
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.08);
+
+  margin-bottom:20px;
+}
+
+.configuracao h2{
+  color:var(--navy);
+  font-size:20px;
+  margin-bottom:18px;
+}
+
+.config-grid{
+  display:grid;
+
+  grid-template-columns:
+    2fr 1fr 1fr 1fr;
+
+  gap:14px;
+}
+
+.campo label{
+  display:block;
+
+  font-size:12px;
+  font-weight:900;
+
+  color:#344054;
+
+  margin-bottom:6px;
+}
+
+.campo input,
+.campo select,
+.campo textarea{
+
+  width:100%;
+
+  padding:11px 12px;
+
+  border:1px solid #d9dfe3;
+
+  border-radius:8px;
+
+  background:#fff;
+
+  font-family:inherit;
+  font-size:13px;
+
+  outline:none;
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus{
+
+  border-color:var(--blue);
+
+  box-shadow:
+    0 0 0 3px rgba(21,157,209,.10);
+}
+
+
+/* =========================
+   RESUMO
+========================= */
+
+.resumo{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:15px;
+
+  margin-bottom:20px;
+}
+
+.resumo-card{
+
+  background:#fff;
+
+  border-radius:13px;
+
+  padding:18px;
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.07);
+
+  border-left:5px solid var(--blue);
+}
+
+.resumo-card h3{
+
+  font-size:12px;
+
+  color:#667085;
+
+  margin-bottom:8px;
+}
+
+.resumo-numero{
+
+  font-size:29px;
+
+  font-weight:900;
+
+  color:var(--navy);
+}
+
+.resumo-card.presente{
+  border-left-color:var(--green);
+}
+
+.resumo-card.justificado{
+  border-left-color:var(--yellow);
+}
+
+.resumo-card.pendente{
+  border-left-color:var(--red);
+}
+
+
+/* =========================
+   LISTA
+========================= */
+
+.painel-lista{
+
+  background:#fff;
+
+  border-radius:15px;
+
+  padding:22px;
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.08);
+}
+
+.painel-topo{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:15px;
+
+  margin-bottom:18px;
+}
+
+.painel-topo h2{
+
+  color:var(--navy);
+
+  font-size:20px;
+}
+
+.atualizacao{
+
+  color:#667085;
+
+  font-size:11px;
+}
+
+
+/* =========================
+   FILTROS
+========================= */
+
+.filtros{
+
+  display:grid;
+
+  grid-template-columns:
+    2fr 1fr 1fr;
+
+  gap:10px;
+
+  margin-bottom:20px;
+}
+
+.filtros input,
+.filtros select{
+
+  width:100%;
+
+  padding:12px;
+
+  border:1px solid #d9dfe3;
+
+  border-radius:8px;
+
+  font-family:inherit;
+
+  font-size:13px;
+
+  outline:none;
+}
+
+.filtros input:focus,
+.filtros select:focus{
+
+  border-color:var(--blue);
+
+  box-shadow:
+    0 0 0 3px rgba(21,157,209,.10);
+}
+
+
+/* =========================
+   PARTICIPANTE
+========================= */
+
+.lista{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:10px;
+}
+
+.participante{
+
+  border:1px solid #e1e6ea;
+
+  border-radius:11px;
+
+  padding:15px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:15px;
+
+  transition:.2s;
+
+  background:#fff;
+}
+
+.participante:hover{
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.07);
+}
+
+.participante-info{
+
+  flex:1;
+
+  min-width:0;
+}
+
+.participante-nome{
+
+  color:var(--navy);
+
+  font-size:14px;
+
+  font-weight:900;
+
+  margin-bottom:5px;
+}
+
+.participante-detalhes{
+
+  color:#667085;
+
+  font-size:11px;
+
+  line-height:1.5;
+}
+
+.participante-status{
+
+  font-size:11px;
+
+  font-weight:900;
+
+  margin-top:5px;
+}
+
+
+/* =========================
+   BOTÕES
+========================= */
+
+.acoes{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  flex-shrink:0;
+}
+
+.btn{
+
+  border:0;
+
+  border-radius:8px;
+
+  padding:10px 13px;
+
+  font-size:11px;
+
+  font-weight:900;
+
+  cursor:pointer;
+
+  transition:.2s;
+
+  white-space:nowrap;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+.btn-presente{
+
+  background:#eaf8f0;
+
+  color:var(--green);
+
+  border:1px solid #b9e4ca;
+}
+
+.btn-presente:hover{
+
+  background:var(--green);
+
+  color:#fff;
+}
+
+.btn-justificar{
+
+  background:#fff8dc;
+
+  color:#8a6800;
+
+  border:1px solid #ead37b;
+}
+
+.btn-justificar:hover{
+
+  background:var(--yellow);
+
+  color:#073c66;
+}
+
+
+/* =========================
+   STATUS REGISTRADO
+========================= */
+
+.registrado{
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:flex-end;
+
+  gap:4px;
+}
+
+.badge{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:7px 11px;
+
+  border-radius:20px;
+
+  font-size:10px;
+
+  font-weight:900;
+}
+
+.badge-presente{
+
+  background:#eaf8f0;
+
+  color:var(--green);
+}
+
+.badge-justificado{
+
+  background:#fff8dc;
+
+  color:#8a6800;
+}
+
+.registrado-por{
+
+  color:#8a94a3;
+
+  font-size:9px;
+}
+
+
+/* =========================
+   JUSTIFICATIVA
+========================= */
+
+.justificativa-box{
+
+  display:none;
+
+  margin-top:12px;
+
+  padding:13px;
+
+  background:#fffaf0;
+
+  border:1px solid #eadfbd;
+
+  border-radius:9px;
+}
+
+.justificativa-box.aberta{
+  display:block;
+}
+
+.justificativa-box label{
+
+  display:block;
+
+  color:#344054;
+
+  font-size:11px;
+
+  font-weight:900;
+
+  margin-bottom:6px;
+}
+
+.justificativa-box textarea{
+
+  width:100%;
+
+  min-height:75px;
+
+  resize:vertical;
+
+  padding:10px;
+
+  border:1px solid #d9dfe3;
+
+  border-radius:8px;
+
+  font-family:inherit;
+
+  font-size:12px;
+
+  outline:none;
+}
+
+.justificativa-acoes{
+
+  display:flex;
+
+  justify-content:flex-end;
+
+  gap:8px;
+
+  margin-top:8px;
+}
+
+.btn-confirmar{
+
+  background:var(--yellow);
+
+  color:#073c66;
+}
+
+.btn-cancelar{
+
+  background:#eef1f3;
+
+  color:#344054;
+}
+
+
+/* =========================
+   AVULSO
+========================= */
+
+.avulso{
+
+  margin-top:20px;
+
+  padding-top:20px;
+
+  border-top:1px solid #edf0f2;
+}
+
+.btn-avulso{
+
+  width:100%;
+
+  background:#eef8fc;
+
+  color:var(--navy);
+
+  border:1px dashed #9ccddd;
+
+  border-radius:10px;
+
+  padding:14px;
+
+  font-size:12px;
+
+  font-weight:900;
+
+  cursor:pointer;
+}
+
+.btn-avulso:hover{
+
+  background:#dff2fa;
+
+  border-color:var(--blue);
+}
+
+.form-avulso{
+
+  display:none;
+
+  margin-top:15px;
+
+  padding:18px;
+
+  background:#f8fafc;
+
+  border-radius:10px;
+
+  border:1px solid #e1e7eb;
+}
+
+.form-avulso.aberto{
+  display:block;
+}
+
+.form-avulso-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    2fr 1fr 1fr;
+
+  gap:10px;
+}
+
+.form-avulso .campo:last-child{
+
+  grid-column:1/-1;
+}
+
+.acoes-avulso{
+
+  display:flex;
+
+  justify-content:flex-end;
+
+  gap:8px;
+
+  margin-top:12px;
+}
+
+.btn-cadastrar{
+
+  background:var(--green);
+
+  color:#fff;
+}
+
+
+/* =========================
+   MENSAGEM
+========================= */
+
+.mensagem{
+
+  text-align:center;
+
+  padding:35px 20px;
+
+  color:#777;
+
+  font-size:13px;
+}
+
+
+/* =========================
+   RODAPÉ
+========================= */
+
+footer{
+
+  background:#20262b;
+
+  color:#d0d5dd;
+
+  padding:30px 22px;
+
+  text-align:center;
+
+  font-size:13px;
+
+  margin-top:35px;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media(max-width:900px){
+
+  .config-grid{
+
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+  .resumo{
+
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+  .filtros{
+
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+  .filtros input{
+
+    grid-column:1/-1;
+  }
+
+}
+
+@media(max-width:650px){
+
+  header{
+    padding:16px;
+  }
+
+  .cabecalho{
+
+    flex-direction:column;
+
+    text-align:center;
+
+    gap:15px;
+  }
+
+  .titulo h1{
+    font-size:22px;
+  }
+
+  .titulo p{
+    font-size:12px;
+  }
+
+  .acoes-cabecalho{
+    width:100%;
+  }
+
+  .btn-voltar{
+    flex:1;
+  }
+
+  .logo{
+    width:55px;
+    height:55px;
+  }
+
+  main{
+    padding:0 14px;
+  }
+
+  .config-grid{
+
+    grid-template-columns:1fr;
+  }
+
+  .resumo{
+
+    grid-template-columns:
+      1fr 1fr;
+
+    gap:10px;
+  }
+
+  .resumo-card{
+    padding:14px;
+  }
+
+  .resumo-numero{
+    font-size:24px;
+  }
+
+  .filtros{
+
+    grid-template-columns:1fr;
+  }
+
+  .filtros input{
+    grid-column:auto;
+  }
+
+  .participante{
+
+    flex-direction:column;
+
+    align-items:stretch;
+  }
+
+  .acoes{
+
+    width:100%;
+  }
+
+  .acoes .btn{
+
+    flex:1;
+  }
+
+  .registrado{
+    align-items:flex-start;
+  }
+
+  .form-avulso-grid{
+
+    grid-template-columns:1fr;
+  }
+
+  .form-avulso .campo:last-child{
+    grid-column:auto;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+  <div class="cabecalho">
+
+    <div class="titulo">
+
+      <h1>👥 Registro de Presença</h1>
+
+      <p>
+        Controle de presença — AD Belém 49
+      </p>
+
+    </div>
+
+
+    <div class="acoes-cabecalho">
+
+      <a
+        href="area-administrativa.html"
+        class="btn-voltar"
+      >
+        ← Área Administrativa
+      </a>
+
+      <img
+        src="assets/Logo-Belem.png"
+        class="logo"
+        alt="AD Belém"
+      >
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<main>
+
+
+  <!-- =========================
+       CONFIGURAÇÃO
+  ========================= -->
+
+  <section class="configuracao">
+
+    <h2>📋 Dados da reunião</h2>
+
+    <div class="config-grid">
+
+
+      <div class="campo">
+
+        <label for="reuniao">
+          Reunião / Evento
+        </label>
+
+        <input
+          type="text"
+          id="reuniao"
+          placeholder="Ex.: Reunião de Obreiros"
+        >
+
+      </div>
+
+
+      <div class="campo">
+
+        <label for="data">
+          Data
+        </label>
+
+        <input
+          type="date"
+          id="data"
+        >
+
+      </div>
+
+
+      <div class="campo">
+
+        <label for="horario">
+          Horário
+        </label>
+
+        <input
+          type="time"
+          id="horario"
+        >
+
+      </div>
+
+
+      <div class="campo">
+
+        <label for="operador">
+          Operador
+        </label>
+
+        <input
+          type="text"
+          id="operador"
+          placeholder="Seu nome"
+        >
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       RESUMO
+  ========================= -->
+
+  <section class="resumo">
+
+
+    <div class="resumo-card">
+
+      <h3>👥 Total de participantes</h3>
+
+      <div
+        class="resumo-numero"
+        id="total"
+      >
+        0
+      </div>
+
+    </div>
+
+
+    <div class="resumo-card presente">
+
+      <h3>🟢 Presentes</h3>
+
+      <div
+        class="resumo-numero"
+        id="presentes"
+      >
+        0
+      </div>
+
+    </div>
+
+
+    <div class="resumo-card justificado">
+
+      <h3>🟡 Justificados</h3>
+
+      <div
+        class="resumo-numero"
+        id="justificados"
+      >
+        0
+      </div>
+
+    </div>
+
+
+    <div class="resumo-card pendente">
+
+      <h3>🔴 Não registrados</h3>
+
+      <div
+        class="resumo-numero"
+        id="pendentes"
+      >
+        0
+      </div>
+
+    </div>
+
+
+  </section>
+
+
+  <!-- =========================
+       LISTA
+  ========================= -->
+
+  <section class="painel-lista">
+
+
+    <div class="painel-topo">
+
+      <h2>👤 Participantes</h2>
+
+      <span
+        class="atualizacao"
+        id="ultimaAtualizacao"
+      >
+        Aguardando dados...
+      </span>
+
+    </div>
+
+
+    <!-- FILTROS -->
+
+    <div class="filtros">
+
+
+      <input
+        type="text"
+        id="busca"
+        placeholder="🔎 Pesquisar pelo nome..."
+      >
+
+
+      <select id="filtroCongregacao">
+
+        <option value="">
+          ⛪ Todas as congregações
+        </option>
+
+      </select>
+
+
+      <select id="filtroCargo">
+
+        <option value="">
+          👔 Todos os cargos
+        </option>
+
+      </select>
+
+
+    </div>
+
+
+    <!-- LISTA -->
+
+    <div
+      class="lista"
+      id="lista"
+    >
+
+      <div class="mensagem">
+        Carregando participantes...
+      </div>
+
+    </div>
+
+
+    <!-- AVULSO -->
+
+    <div class="avulso">
+
+      <button
+        type="button"
+        class="btn-avulso"
+        onclick="abrirAvulso()"
+      >
+        ➕ Cadastrar participante avulso
+      </button>
+
+
+      <div
+        class="form-avulso"
+        id="formAvulso"
+      >
+
+        <div class="form-avulso-grid">
+
+
+          <div class="campo">
+
+            <label for="avulsoNome">
+              Nome completo
+            </label>
+
+            <input
+              type="text"
+              id="avulsoNome"
+              placeholder="Nome do participante"
+            >
+
+          </div>
+
+
+          <div class="campo">
+
+            <label for="avulsoCongregacao">
+              Congregação
+            </label>
+
+            <select id="avulsoCongregacao">
+
+              <option value="">
+                Selecione
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="campo">
+
+            <label for="avulsoCargo">
+              Cargo
+            </label>
+
+            <select id="avulsoCargo">
+
+              <option value="">
+                Selecione
+              </option>
+
+            </select>
+
+          </div>
+
+
+        </div>
+
+
+        <div class="acoes-avulso">
+
+          <button
+            type="button"
+            class="btn btn-cancelar"
+            onclick="fecharAvulso()"
+          >
+            Cancelar
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-cadastrar"
+            onclick="cadastrarAvulso()"
+          >
+            ➕ Cadastrar e registrar
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </section>
+
+
+</main>
+
+
+<footer>
+
+  ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM
+  · SETOR 49 - JARDIM DOS PIMENTAS
+
+  <br>
+
+  <small>
+    PORTAL AD BELÉM - SETOR 49
+  </small>
+
+</footer>
+
+
+<script>
+
+
+/*******************************************************
+ * API
+ *******************************************************/
+
+const API_URL =
+  "https://script.google.com/macros/s/AKfycbxAx9Hu8eTMGGGSIZqNLXfmSVopSYz8Gd5hWENdq8jM3WBBkITLh-yxANER0awn4UOD/exec";
+
+
+/*******************************************************
+ * VARIÁVEIS
+ *******************************************************/
+
+let obreiros = [];
+
+let registros = [];
+
+let callbackContador = 0;
+
+
+/*******************************************************
+ * ELEMENTOS
+ *******************************************************/
+
+const lista =
+  document.getElementById("lista");
+
+const busca =
+  document.getElementById("busca");
+
+const filtroCongregacao =
+  document.getElementById("filtroCongregacao");
+
+const filtroCargo =
+  document.getElementById("filtroCargo");
+
+const reuniao =
+  document.getElementById("reuniao");
+
+const data =
+  document.getElementById("data");
+
+const horario =
+  document.getElementById("horario");
+
+const operador =
+  document.getElementById("operador");
+
+
+/*******************************************************
+ * DATA ATUAL
+ *******************************************************/
+
+function colocarDataAtual(){
+
+  const hoje =
+    new Date();
+
+  const ano =
+    hoje.getFullYear();
+
+  const mes =
+    String(
+      hoje.getMonth() + 1
+    ).padStart(2,"0");
+
+  const dia =
+    String(
+      hoje.getDate()
+    ).padStart(2,"0");
+
+  data.value =
+    `${ano}-${mes}-${dia}`;
+
+}
+
+
+/*******************************************************
+ * JSONP
+ *******************************************************/
+
+function chamarAPI(
+  parametros,
+  callback
+){
+
+  const nomeCallback =
+    "callbackPresenca_" +
+    Date.now() +
+    "_" +
+    callbackContador++;
+
+  window[nomeCallback] =
+    function(dados){
+
+      try{
+
+        callback(dados);
+
+      }finally{
+
+        delete window[nomeCallback];
+
+        const script =
+          document.getElementById(
+            nomeCallback
+          );
+
+        if(script){
+          script.remove();
+        }
+
+      }
+
+    };
+
+
+  const query =
+    Object.keys(parametros)
+
+      .map(
+        chave =>
+          encodeURIComponent(chave) +
+          "=" +
+          encodeURIComponent(
+            parametros[chave]
+          )
+      )
+
+      .join("&");
+
+
+  const script =
+    document.createElement("script");
+
+
+  script.id =
+    nomeCallback;
+
+
+  script.src =
+    API_URL +
+    "?" +
+    query +
+    "&callback=" +
+    encodeURIComponent(
+      nomeCallback
+    );
+
+
+  script.onerror =
+    function(){
+
+      delete window[nomeCallback];
+
+      script.remove();
+
+      callback({
+
+        sucesso:false,
+
+        erro:
+          "Não foi possível conectar com a API."
+
+      });
+
+    };
+
+
+  document.body.appendChild(script);
+
+}
+
+
+/*******************************************************
+ * CARREGAR OBREIROS
+ *******************************************************/
+
+function carregarObreiros(){
+
+  lista.innerHTML =
+    `<div class="mensagem">
+      Carregando participantes...
+    </div>`;
+
+
+  chamarAPI(
+
+    {
+      acao:"obreiros"
+    },
+
+    function(dados){
+
+      if(
+        !dados ||
+        !dados.sucesso
+      ){
+
+        lista.innerHTML =
+          `<div class="mensagem">
+            ⚠️ Não foi possível carregar os participantes.
+            <br><br>
+            ${dados?.erro || ""}
+          </div>`;
+
+        return;
+
+      }
+
+
+      obreiros =
+        dados.obreiros || [];
+
+
+      montarFiltros();
+
+      renderizar();
+
+      atualizarResumo();
+
+      atualizarRegistros();
+
+    }
+
+  );
+
+}
+
+
+/*******************************************************
+ * MONTAR FILTROS
+ *******************************************************/
+
+function montarFiltros(){
+
+  const congregacoes =
+    [...new Set(
+
+      obreiros
+
+        .map(
+          pessoa =>
+            pessoa.congregacao
+        )
+
+        .filter(Boolean)
+
+    )]
+
+    .sort();
+
+
+  const cargos =
+    [...new Set(
+
+      obreiros
+
+        .map(
+          pessoa =>
+            pessoa.cargo
+        )
+
+        .filter(Boolean)
+
+    )]
+
+    .sort();
+
+
+  filtroCongregacao.innerHTML =
+    `<option value="">
+      ⛪ Todas as congregações
+    </option>`;
+
+
+  congregacoes.forEach(
+    congregacao => {
+
+      filtroCongregacao.innerHTML +=
+        `<option value="${escapeHTML(congregacao)}">
+          ${escapeHTML(congregacao)}
+        </option>`;
+
+    }
+  );
+
+
+  filtroCargo.innerHTML =
+    `<option value="">
+      👔 Todos os cargos
+    </option>`;
+
+
+  cargos.forEach(
+    cargo => {
+
+      filtroCargo.innerHTML +=
+        `<option value="${escapeHTML(cargo)}">
+          ${escapeHTML(cargo)}
+        </option>`;
+
+    }
+  );
+
+
+  const avulsoCongregacao =
+    document.getElementById(
+      "avulsoCongregacao"
+    );
+
+
+  const avulsoCargo =
+    document.getElementById(
+      "avulsoCargo"
+    );
+
+
+  avulsoCongregacao.innerHTML =
+    `<option value="">
+      Selecione
+    </option>`;
+
+
+  congregacoes.forEach(
+    congregacao => {
+
+      avulsoCongregacao.innerHTML +=
+        `<option value="${escapeHTML(congregacao)}">
+          ${escapeHTML(congregacao)}
+        </option>`;
+
+    }
+  );
+
+
+  avulsoCargo.innerHTML =
+    `<option value="">
+      Selecione
+    </option>`;
+
+
+  cargos.forEach(
+    cargo => {
+
+      avulsoCargo.innerHTML +=
+        `<option value="${escapeHTML(cargo)}">
+          ${escapeHTML(cargo)}
+        </option>`;
+
+    }
+  );
+
+}
+
+
+/*******************************************************
+ * RENDERIZAR
+ *******************************************************/
+
+function renderizar(){
+
+  const termo =
+    normalizar(
+      busca.value
+    );
+
+
+  const congregacaoSelecionada =
+    filtroCongregacao.value;
+
+
+  const cargoSelecionado =
+    filtroCargo.value;
+
+
+  const filtrados =
+    obreiros.filter(
+      pessoa => {
+
+        const nome =
+          normalizar(
+            pessoa.nome
+          );
+
+
+        const correspondeNome =
+          !termo ||
+          nome.includes(termo);
+
+
+        const correspondeCongregacao =
+          !congregacaoSelecionada ||
+          pessoa.congregacao ===
+          congregacaoSelecionada;
+
+
+        const correspondeCargo =
+          !cargoSelecionado ||
+          pessoa.cargo ===
+          cargoSelecionado;
+
+
+        return (
+          correspondeNome &&
+          correspondeCongregacao &&
+          correspondeCargo
+        );
+
+      }
+    );
+
+
+  if(!filtrados.length){
+
+    lista.innerHTML =
+      `<div class="mensagem">
+        🔎 Nenhum participante encontrado.
+      </div>`;
+
+    return;
+
+  }
+
+
+  lista.innerHTML =
+    filtrados
+      .map(
+        pessoa =>
+          criarParticipante(pessoa)
+      )
+      .join("");
+
+}
+
+
+/*******************************************************
+ * CRIAR PARTICIPANTE
+ *******************************************************/
+
+function criarParticipante(pessoa){
+
+  const registro =
+    encontrarRegistro(
+      pessoa.id
+    );
+
+
+  if(registro){
+
+    const classe =
+      registro.situacao ===
+      "PRESENTE"
+
+        ? "badge-presente"
+
+        : "badge-justificado";
+
+
+    const icone =
+      registro.situacao ===
+      "PRESENTE"
+
+        ? "🟢"
+
+        : "🟡";
+
+
+    return `
+
+      <div
+        class="participante"
+        id="participante-${escapeHTML(pessoa.id)}"
+      >
+
+        <div class="participante-info">
+
+          <div class="participante-nome">
+            ${escapeHTML(pessoa.nome)}
+          </div>
+
+          <div class="participante-detalhes">
+            ⛪ ${escapeHTML(pessoa.congregacao || "-")}
+            ·
+            👔 ${escapeHTML(pessoa.cargo || "-")}
+          </div>
+
+          ${
+            registro.situacao ===
+            "JUSTIFICADO"
+
+              ? `
+                <div class="participante-status">
+                  Motivo: ${escapeHTML(
+                    registro.justificativa || "-"
+                  )}
+                </div>
+              `
+
+              : ""
+          }
+
+        </div>
+
+
+        <div class="registrado">
+
+          <span
+            class="badge ${classe}"
+          >
+            ${icone}
+            ${escapeHTML(
+              registro.situacao
+            )}
+          </span>
+
+          <span class="registrado-por">
+            Registrado por:
+            ${escapeHTML(
+              registro.operador || "-"
+            )}
+          </span>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+
+  return `
+
+    <div
+      class="participante"
+      id="participante-${escapeHTML(pessoa.id)}"
+    >
+
+      <div class="participante-info">
+
+        <div class="participante-nome">
+          ${escapeHTML(pessoa.nome)}
+        </div>
+
+        <div class="participante-detalhes">
+          ⛪ ${escapeHTML(pessoa.congregacao || "-")}
+          ·
+          👔 ${escapeHTML(pessoa.cargo || "-")}
+        </div>
+
+        <div
+          class="justificativa-box"
+          id="justificativa-${escapeHTML(pessoa.id)}"
+        >
+
+          <label>
+            Motivo da justificativa
+          </label>
+
+          <textarea
+            id="motivo-${escapeHTML(pessoa.id)}"
+            placeholder="Informe o motivo da ausência..."
+          ></textarea>
+
+          <div class="justificativa-acoes">
+
+            <button
+              type="button"
+              class="btn btn-cancelar"
+              onclick="fecharJustificativa('${escapeJS(pessoa.id)}')"
+            >
+              Cancelar
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-confirmar"
+              onclick="confirmarJustificativa('${escapeJS(pessoa.id)}')"
+            >
+              🟡 Confirmar
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="acoes">
+
+        <button
+          type="button"
+          class="btn btn-presente"
+          onclick="registrar('${escapeJS(pessoa.id)}','PRESENTE')"
+        >
+          🟢 Presente
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-justificar"
+          onclick="abrirJustificativa('${escapeJS(pessoa.id)}')"
+        >
+          🟡 Justificar
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/*******************************************************
+ * ABRIR JUSTIFICATIVA
+ *******************************************************/
+
+function abrirJustificativa(id){
+
+  const box =
+    document.getElementById(
+      "justificativa-" + id
+    );
+
+  if(box){
+
+    box.classList.add("aberta");
+
+  }
+
+}
+
+
+/*******************************************************
+ * FECHAR JUSTIFICATIVA
+ *******************************************************/
+
+function fecharJustificativa(id){
+
+  const box =
+    document.getElementById(
+      "justificativa-" + id
+    );
+
+  if(box){
+
+    box.classList.remove("aberta");
+
+  }
+
+}
+
+
+/*******************************************************
+ * CONFIRMAR JUSTIFICATIVA
+ *******************************************************/
+
+function confirmarJustificativa(id){
+
+  const campo =
+    document.getElementById(
+      "motivo-" + id
+    );
+
+
+  const motivo =
+    campo
+      ? campo.value.trim()
+      : "";
+
+
+  if(!motivo){
+
+    alert(
+      "Informe o motivo da justificativa."
+    );
+
+    return;
+
+  }
+
+
+  registrar(
+    id,
+    "JUSTIFICADO",
+    motivo
+  );
+
+}
+
+
+/*******************************************************
+ * REGISTRAR
+ *******************************************************/
+
+function registrar(
+  id,
+  situacao,
+  justificativa = ""
+){
+
+  if(!reuniao.value.trim()){
+
+    alert(
+      "Informe o nome da reunião."
+    );
+
+    reuniao.focus();
+
+    return;
+
+  }
+
+
+  if(!data.value){
+
+    alert(
+      "Informe a data."
+    );
+
+    data.focus();
+
+    return;
+
+  }
+
+
+  if(!operador.value.trim()){
+
+    alert(
+      "Informe o nome do operador."
+    );
+
+    operador.focus();
+
+    return;
+
+  }
+
+
+  const pessoa =
+    obreiros.find(
+      item =>
+        item.id === id
+    );
+
+
+  if(!pessoa){
+
+    alert(
+      "Participante não encontrado."
+    );
+
+    return;
+
+  }
+
+
+  chamarAPI(
+
+    {
+
+      acao:"registrar",
+
+      idPessoa:pessoa.id,
+
+      data:data.value,
+
+      reuniao:reuniao.value.trim(),
+
+      horario:horario.value,
+
+      nome:pessoa.nome,
+
+      congregacao:pessoa.congregacao,
+
+      cargo:pessoa.cargo,
+
+      situacao:situacao,
+
+      justificativa:justificativa,
+
+      operador:operador.value.trim()
+
+    },
+
+    function(resultado){
+
+      if(
+        !resultado ||
+        !resultado.sucesso
+      ){
+
+        if(
+          resultado &&
+          resultado.duplicado
+        ){
+
+          alert(
+            "⚠️ Este participante já foi registrado nesta reunião."
+          );
+
+        }else{
+
+          alert(
+            "Não foi possível registrar:\n\n" +
+            (
+              resultado?.erro ||
+              resultado?.mensagem ||
+              "Erro desconhecido."
+            )
+          );
+
+        }
+
+
+        atualizarRegistros();
+
+        return;
+
+      }
+
+
+      alert(
+        situacao === "PRESENTE"
+
+          ? "🟢 Presença registrada!"
+
+          : "🟡 Justificativa registrada!"
+      );
+
+
+      atualizarRegistros();
+
+    }
+
+  );
+
+}
+
+
+/*******************************************************
+ * ATUALIZAR REGISTROS
+ *******************************************************/
+
+function atualizarRegistros(){
+
+  if(
+    !data.value ||
+    !reuniao.value.trim()
+  ){
+
+    atualizarResumo();
+
+    return;
+
+  }
+
+
+  chamarAPI(
+
+    {
+
+      acao:"registros",
+
+      data:data.value,
+
+      reuniao:reuniao.value.trim()
+
+    },
+
+    function(resultado){
+
+      if(
+        !resultado ||
+        !resultado.sucesso
+      ){
+
+        return;
+
+      }
+
+
+      registros =
+        resultado.registros || [];
+
+
+      renderizar();
+
+      atualizarResumo();
+
+
+      document.getElementById(
+        "ultimaAtualizacao"
+      ).textContent =
+        "Atualizado às " +
+        new Date().toLocaleTimeString(
+          "pt-BR",
+          {
+            hour:"2-digit",
+            minute:"2-digit"
+          }
+        );
+
+    }
+
+  );
+
+}
+
+
+/*******************************************************
+ * RESUMO
+ *******************************************************/
+
+function atualizarResumo(){
+
+  const total =
+    obreiros.length;
+
+
+  let presentes = 0;
+
+  let justificados = 0;
+
+
+  registros.forEach(
+    registro => {
+
+      if(
+        registro.situacao ===
+        "PRESENTE"
+      ){
+
+        presentes++;
+
+      }
+
+      if(
+        registro.situacao ===
+        "JUSTIFICADO"
+      ){
+
+        justificados++;
+
+      }
+
+    }
+  );
+
+
+  const pendentes =
+    Math.max(
+      0,
+      total -
+      presentes -
+      justificados
+    );
+
+
+  document.getElementById(
+    "total"
+  ).textContent = total;
+
+
+  document.getElementById(
+    "presentes"
+  ).textContent =
+    presentes;
+
+
+  document.getElementById(
+    "justificados"
+  ).textContent =
+    justificados;
+
+
+  document.getElementById(
+    "pendentes"
+  ).textContent =
+    pendentes;
+
+}
+
+
+/*******************************************************
+ * ENCONTRAR REGISTRO
+ *******************************************************/
+
+function encontrarRegistro(id){
+
+  return registros.find(
+    registro =>
+      registro.idPessoa === id
+  );
+
+}
+
+
+/*******************************************************
+ * AVULSO
+ *******************************************************/
+
+function abrirAvulso(){
+
+  document
+    .getElementById(
+      "formAvulso"
+    )
+    .classList.add("aberto");
+
+}
+
+
+function fecharAvulso(){
+
+  document
+    .getElementById(
+      "formAvulso"
+    )
+    .classList.remove("aberto");
+
+}
+
+
+/*******************************************************
+ * CADASTRAR AVULSO
+ *******************************************************/
+
+function cadastrarAvulso(){
+
+  const nome =
+    document
+      .getElementById(
+        "avulsoNome"
+      )
+      .value
+      .trim();
+
+
+  const congregacao =
+    document
+      .getElementById(
+        "avulsoCongregacao"
+      )
+      .value;
+
+
+  const cargo =
+    document
+      .getElementById(
+        "avulsoCargo"
+      )
+      .value;
+
+
+  if(!nome){
+
+    alert(
+      "Informe o nome do participante."
+    );
+
+    return;
+
+  }
+
+
+  if(!data.value){
+
+    alert(
+      "Informe a data."
+    );
+
+    return;
+
+  }
+
+
+  if(!reuniao.value.trim()){
+
+    alert(
+      "Informe a reunião."
+    );
+
+    return;
+
+  }
+
+
+  if(!operador.value.trim()){
+
+    alert(
+      "Informe o nome do operador."
+    );
+
+    return;
+
+  }
+
+
+  chamarAPI(
+
+    {
+
+      acao:"cadastrarAvulso",
+
+      nome:nome,
+
+      congregacao:congregacao,
+
+      cargo:cargo,
+
+      data:data.value,
+
+      reuniao:reuniao.value.trim(),
+
+      horario:horario.value,
+
+      situacao:"PRESENTE",
+
+      justificativa:"",
+
+      operador:operador.value.trim()
+
+    },
+
+    function(resultado){
+
+      if(
+        !resultado ||
+        !resultado.sucesso
+      ){
+
+        alert(
+          "Não foi possível cadastrar:\n\n" +
+          (
+            resultado?.erro ||
+            "Erro desconhecido."
+          )
+        );
+
+        return;
+
+      }
+
+
+      alert(
+        "🟢 Participante avulso cadastrado e registrado!"
+      );
+
+
+      document
+        .getElementById(
+          "avulsoNome"
+        )
+        .value = "";
+
+
+      fecharAvulso();
+
+      atualizarRegistros();
+
+    }
+
+  );
+
+}
+
+
+/*******************************************************
+ * BUSCA / FILTROS
+ *******************************************************/
+
+busca.addEventListener(
+  "input",
+  renderizar
+);
+
+
+filtroCongregacao.addEventListener(
+  "change",
+  renderizar
+);
+
+
+filtroCargo.addEventListener(
+  "change",
+  renderizar
+);
+
+
+/*******************************************************
+ * ALTERAÇÃO DA REUNIÃO
+ *******************************************************/
+
+data.addEventListener(
+  "change",
+  function(){
+
+    registros = [];
+
+    atualizarRegistros();
+
+  }
+);
+
+
+reuniao.addEventListener(
+  "input",
+  function(){
+
+    registros = [];
+
+    atualizarRegistros();
+
+  }
+);
+
+
+/*******************************************************
+ * SINCRONIZAÇÃO
+ *******************************************************/
+
+/*
+ * Atualiza automaticamente a cada 5 segundos.
+ *
+ * Isso permite que os 5 operadores acompanhem
+ * os registros realizados pelos demais.
+ */
+
+setInterval(
+  function(){
+
+    if(
+      data.value &&
+      reuniao.value.trim()
+    ){
+
+      atualizarRegistros();
+
+    }
+
+  },
+  5000
+);
+
+
+/*******************************************************
+ * UTILITÁRIOS
+ *******************************************************/
+
+function normalizar(texto){
+
+  return String(
+    texto || ""
+  )
+
+    .normalize("NFD")
+
+    .replace(
+      /[\u0300-\u036f]/g,
+      ""
+    )
+
+    .toUpperCase()
+
+    .trim();
+
+}
+
+
+function escapeHTML(texto){
+
+  return String(
+    texto || ""
+  )
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+
+function escapeJS(texto){
+
+  return String(
+    texto || ""
+  )
+
+    .replace(
+      /\\/g,
+      "\\\\"
+    )
+
+    .replace(
+      /'/g,
+      "\\'"
+    )
+
+    .replace(
+      /"/g,
+      '\\"'
+    );
+
+}
+
+
+/*******************************************************
+ * INICIALIZAÇÃO
+ *******************************************************/
+
+colocarDataAtual();
+
+carregarObreiros();
+
+
+</script>
+
+</body>
+
+</html>
