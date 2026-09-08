@@ -1285,6 +1285,10 @@ footer{
  * API
  *******************************************************/
 
+if(sessionStorage.getItem("acessoSecretaria") !== "autorizado"){
+  window.location.href = "area-restrita.html";
+}
+  
 const API_URL =
   "https://script.google.com/macros/s/AKfycbxAx9Hu8eTMGGGSIZqNLXfmSVopSYz8Gd5hWENdq8jM3WBBkITLh-yxANER0awn4UOD/exec";
 
