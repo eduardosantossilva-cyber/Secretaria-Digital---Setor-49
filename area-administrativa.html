@@ -578,16 +578,9 @@
        PROTEÇÃO DA PÁGINA
     ============================= */
 
-    if(
-      sessionStorage.getItem(
-        "acessoSecretaria"
-      ) !== "true"
-    ){
-
-      window.location.href =
-        "area-restrita.html";
-
-    }
+  if(sessionStorage.getItem("acessoSecretaria") !== "autorizado"){
+  window.location.href = "area-restrita.html";
+}
 
   </script>
 
