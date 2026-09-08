@@ -35,7 +35,44 @@
       display:flex;
       flex-direction:column;
     }
+body{
+  font-family:Arial, Helvetica, sans-serif;
+  background:var(--bg);
+  color:#344054;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
 
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:url("assets/fundo-area-restrita.jpg");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  filter:blur(3px);
+  opacity:.18;
+  transform:scale(1.03);
+  z-index:-2;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(255,255,255,.68);
+  z-index:-1;
+  pointer-events:none;
+}
+
+header,
+main,
+footer{
+  position:relative;
+  z-index:1;
+}
 
     /* =========================
        CABEÇALHO
