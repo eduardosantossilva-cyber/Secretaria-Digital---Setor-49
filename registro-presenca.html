@@ -3611,6 +3611,265 @@ function alternarRelatorio(tipo, cabecalho){
     aberto
   );
 }
+
+/* =========================
+   IMPRIMIR RESUMO
+========================= */
+
+document
+  .getElementById("btnImprimirRelatorio")
+  .addEventListener("click", function(){
+
+    if(!data.value){
+      alert("Informe a data antes de imprimir o relatório.");
+      data.focus();
+      return;
+    }
+
+    if(!reuniao.value.trim()){
+      alert("Informe o nome da reunião antes de imprimir o relatório.");
+      reuniao.focus();
+      return;
+    }
+
+    const cargo =
+      document.getElementById("relatorioCargo");
+
+    const congregacao =
+      document.getElementById("relatorioCongregacao");
+
+    if(!cargo || !congregacao){
+      alert("Os relatórios ainda não estão disponíveis.");
+      return;
+    }
+
+    const janela =
+      window.open(
+        "",
+        "_blank",
+        "width=1000,height=800"
+      );
+
+    if(!janela){
+      alert(
+        "O navegador bloqueou a janela. Permita pop-ups para este site."
+      );
+      return;
+    }
+
+    janela.document.write(`
+      <!DOCTYPE html>
+
+      <html lang="pt-BR">
+
+      <head>
+
+        <meta charset="UTF-8">
+
+        <title>Relatório de Presença - Setor 49</title>
+
+        <style>
+
+          body{
+            font-family:Arial, Helvetica, sans-serif;
+            margin:30px;
+            color:#344054;
+          }
+
+          h1{
+            text-align:center;
+            color:#073c66;
+            margin-bottom:5px;
+          }
+
+          h2{
+            text-align:center;
+            font-size:16px;
+            color:#344054;
+            margin-top:0;
+          }
+
+          .info{
+            text-align:center;
+            margin:20px 0 30px;
+            font-size:13px;
+          }
+
+          .secao{
+            margin-top:30px;
+          }
+
+          .secao h3{
+            color:#073c66;
+            font-size:16px;
+            border-bottom:2px solid #073c66;
+            padding-bottom:8px;
+          }
+
+          table{
+            width:100%;
+            border-collapse:collapse;
+            font-size:12px;
+          }
+
+          th{
+            background:#f1f5f7;
+            color:#073c66;
+            font-weight:900;
+            padding:9px;
+            border:1px solid #dce3e8;
+          }
+
+          td{
+            padding:8px;
+            border:1px solid #dce3e8;
+          }
+
+          td:not(:first-child),
+          th:not(:first-child){
+            text-align:center;
+          }
+
+          .rodape{
+            margin-top:40px;
+            padding-top:15px;
+            border-top:1px solid #dce3e8;
+            text-align:center;
+            font-size:10px;
+            color:#667085;
+          }
+
+          @media print{
+
+            body{
+              margin:15mm;
+            }
+
+          }
+
+        </style>
+
+      </head>
+
+      <body>
+
+        <h1>
+          ASSEMBLEIA DE DEUS
+        </h1>
+
+        <h2>
+          MINISTÉRIO DO BELÉM — SETOR 49
+        </h2>
+
+        <div class="info">
+
+          <strong>RELATÓRIO DE PRESENÇA</strong><br><br>
+
+          <strong>Reunião:</strong>
+          ${escapeHTML(reuniao.value.trim())}
+          <br>
+
+          <strong>Data:</strong>
+          ${new Date(
+            data.value + "T00:00:00"
+          ).toLocaleDateString("pt-BR")}
+
+          ${
+            horario.value
+              ? `
+                <br>
+                <strong>Horário:</strong>
+                ${escapeHTML(horario.value)}
+              `
+              : ""
+          }
+
+        </div>
+
+
+        <div class="secao">
+
+          <h3>
+            📋 Presença por cargo
+          </h3>
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>Cargo</th>
+                <th>Presentes</th>
+                <th>Justificados</th>
+                <th>Pendentes</th>
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              ${cargo.innerHTML}
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+
+        <div class="secao">
+
+          <h3>
+            ⛪ Presença por congregação
+          </h3>
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>Congregação</th>
+                <th>Presentes</th>
+                <th>Justificados</th>
+                <th>Pendentes</th>
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              ${congregacao.innerHTML}
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+
+        <div class="rodape">
+
+          ASSEMBLEIA DE DEUS — MINISTÉRIO DO BELÉM<br>
+          SETOR 49 — JARDIM DOS PIMENTAS
+
+        </div>
+
+      </body>
+
+      </html>
+    `);
+
+    janela.document.close();
+
+    janela.onload = function(){
+
+      janela.focus();
+
+      janela.print();
+
+    };
+
+  });
   
 </script>
 
