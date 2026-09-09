@@ -3616,6 +3616,10 @@ function alternarRelatorio(tipo, cabecalho){
    IMPRIMIR RESUMO
 ========================= */
 
+/* =========================
+   IMPRIMIR SEM ABRIR NOVA JANELA
+========================= */
+
 document
   .getElementById("btnImprimirRelatorio")
   .addEventListener("click", function(){
@@ -3643,26 +3647,10 @@ document
       return;
     }
 
-    const janela =
-      window.open(
-        "",
-        "_blank",
-        "width=1000,height=800"
-      );
-
-    if(!janela){
-      alert(
-        "O navegador bloqueou a janela. Permita pop-ups para este site."
-      );
-      return;
-    }
-
     const dataFormatada =
       new Date(
         data.value + "T00:00:00"
-      ).toLocaleDateString(
-        "pt-BR"
-      );
+      ).toLocaleDateString("pt-BR");
 
     const nomeReuniao =
       escapeHTML(
@@ -3675,722 +3663,471 @@ document
         : "Não informado";
 
 
-    janela.document.write(`
+    /* Remove impressão anterior, se existir */
+
+    const anterior =
+      document.getElementById(
+        "areaImpressaoRelatorio"
+      );
+
+    if(anterior){
+      anterior.remove();
+    }
+
+
+    /* Cria área exclusiva para impressão */
+
+    const area =
+      document.createElement("div");
+
+    area.id =
+      "areaImpressaoRelatorio";
+
+    area.innerHTML = `
+
+      <style>
+
+        @page{
+          size:A4 portrait;
+          margin:7mm;
+        }
+
+        #areaImpressaoRelatorio{
+          display:block;
+          width:100%;
+          font-family:Arial, Helvetica, sans-serif;
+          color:#172b4d;
+          background:#fff;
+        }
+
+        #areaImpressaoRelatorio .cabecalho{
+          border:2px solid #17365d;
+          border-radius:5px;
+          min-height:92px;
+          display:flex;
+          align-items:center;
+          padding:8px 12px;
+        }
+
+        #areaImpressaoRelatorio .logo{
+          width:78px;
+          height:78px;
+          object-fit:contain;
+          flex-shrink:0;
+        }
+
+        #areaImpressaoRelatorio .cabecalho-texto{
+          flex:1;
+          text-align:center;
+          padding-right:78px;
+        }
+
+        #areaImpressaoRelatorio .linha1{
+          font-size:13px;
+          font-weight:900;
+          color:#111;
+          margin-bottom:2px;
+        }
+
+        #areaImpressaoRelatorio .linha2{
+          font-size:11px;
+          font-weight:700;
+          color:#333;
+          margin-bottom:3px;
+        }
+
+        #areaImpressaoRelatorio .setor{
+          font-size:13px;
+          font-weight:900;
+          color:#1f5fbd;
+          margin-bottom:3px;
+        }
+
+        #areaImpressaoRelatorio .pastor{
+          font-size:8.5px;
+          font-weight:700;
+          color:#555;
+          margin-bottom:2px;
+        }
+
+        #areaImpressaoRelatorio .endereco{
+          font-size:7.5px;
+          color:#666;
+        }
+
+        #areaImpressaoRelatorio .linhas{
+          margin-top:5px;
+          margin-bottom:6px;
+        }
+
+        #areaImpressaoRelatorio .linha-azul{
+          height:3px;
+          background:#1f5fbd;
+        }
+
+        #areaImpressaoRelatorio .linha-amarela{
+          height:3px;
+          background:#f4c542;
+          margin-top:3px;
+        }
+
+        #areaImpressaoRelatorio .titulo-relatorio{
+          display:flex;
+          margin-top:6px;
+          height:34px;
+        }
+
+        #areaImpressaoRelatorio .titulo{
+          flex:1;
+          background:#17365d;
+          color:#fff;
+          display:flex;
+          align-items:center;
+          padding:0 14px;
+          font-size:16px;
+          font-weight:900;
+          letter-spacing:.3px;
+        }
+
+        #areaImpressaoRelatorio .titulo-setor{
+          width:105px;
+          background:#f4c542;
+          color:#17365d;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          font-size:13px;
+          font-weight:900;
+        }
+
+        #areaImpressaoRelatorio .informacoes{
+          background:#eef1f5;
+          border-left:1px solid #d5dbe3;
+          border-right:1px solid #d5dbe3;
+          border-bottom:1px solid #d5dbe3;
+          text-align:center;
+          padding:6px;
+          font-size:9px;
+          color:#17365d;
+        }
+
+        #areaImpressaoRelatorio .resumo{
+          display:grid;
+          grid-template-columns:repeat(4,1fr);
+          gap:5px;
+          margin-top:8px;
+          margin-bottom:9px;
+        }
+
+        #areaImpressaoRelatorio .resumo-item{
+          border:1px solid #d7dde5;
+          background:#f8f9fb;
+          text-align:center;
+          padding:6px 4px;
+        }
+
+        #areaImpressaoRelatorio .rotulo{
+          font-size:7px;
+          font-weight:900;
+          color:#596579;
+          margin-bottom:3px;
+        }
+
+        #areaImpressaoRelatorio .numero{
+          font-size:15px;
+          font-weight:900;
+          color:#17365d;
+        }
+
+        #areaImpressaoRelatorio .secao{
+          margin-top:9px;
+        }
+
+        #areaImpressaoRelatorio .secao-titulo{
+          background:#17365d;
+          color:#fff;
+          padding:5px 8px;
+          font-size:10px;
+          font-weight:900;
+          border-left:5px solid #f4c542;
+        }
+
+        #areaImpressaoRelatorio table{
+          width:100%;
+          border-collapse:collapse;
+          table-layout:fixed;
+          font-size:7px;
+        }
+
+        #areaImpressaoRelatorio th{
+          background:#dfe7f2;
+          color:#17365d;
+          font-weight:900;
+          padding:3px 5px;
+          border:1px solid #cbd4df;
+          text-align:left;
+        }
+
+        #areaImpressaoRelatorio td{
+          padding:2px 5px;
+          border:1px solid #d9dee6;
+          color:#243b5a;
+        }
+
+        #areaImpressaoRelatorio th:not(:first-child),
+        #areaImpressaoRelatorio td:not(:first-child){
+          text-align:center;
+        }
+
+        #areaImpressaoRelatorio tr{
+          page-break-inside:avoid;
+        }
+
+        #areaImpressaoRelatorio .rodape{
+          margin-top:15px;
+          padding-top:8px;
+          border-top:1px solid #d5dbe3;
+          text-align:center;
+          font-size:7.5px;
+          font-weight:700;
+          color:#666;
+        }
+
+        @media screen{
+
+          #areaImpressaoRelatorio{
+            display:none !important;
+          }
+
+        }
+
+        @media print{
+
+          body > *:not(#areaImpressaoRelatorio){
+            display:none !important;
+          }
+
+          #areaImpressaoRelatorio{
+            display:block !important;
+          }
+
+          body{
+            margin:0 !important;
+            padding:0 !important;
+            background:#fff !important;
+          }
+
+          *{
+            -webkit-print-color-adjust:exact !important;
+            print-color-adjust:exact !important;
+          }
+
+        }
+
+      </style>
+
+
+      <div class="cabecalho">
+
+        <img
+          src="logo.png"
+          class="logo"
+          alt="Logo"
+        >
+
+        <div class="cabecalho-texto">
+
+          <div class="linha1">
+            IGREJA EVANGÉLICA ASSEMBLEIA DE DEUS EM SÃO PAULO
+          </div>
+
+          <div class="linha2">
+            MINISTÉRIO DO BELÉM
+          </div>
+
+          <div class="setor">
+            SETOR 49 — JARDIM DOS PIMENTAS
+          </div>
+
+          <div class="pastor">
+            PASTOR SETORIAL: SAMUEL GARCIA
+          </div>
+
+          <div class="endereco">
+            RUA ANTONIO BITTENCOURT, 684 —
+            CEP 07260-040 — JARDIM DOS PIMENTAS —
+            GUARULHOS (SP)
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="linhas">
+
+        <div class="linha-azul"></div>
+
+        <div class="linha-amarela"></div>
+
+      </div>
+
+
+      <div class="titulo-relatorio">
+
+        <div class="titulo">
+          RELATÓRIO DE PRESENÇA
+        </div>
+
+        <div class="titulo-setor">
+          SETOR 49
+        </div>
+
+      </div>
+
+
+      <div class="informacoes">
+
+        <strong>REUNIÃO / EVENTO:</strong>
+        ${nomeReuniao}
+
+        &nbsp;&nbsp; | &nbsp;&nbsp;
+
+        <strong>DATA:</strong>
+        ${dataFormatada}
+
+        &nbsp;&nbsp; | &nbsp;&nbsp;
+
+        <strong>HORÁRIO:</strong>
+        ${horarioRelatorio}
+
+      </div>
 
-<!DOCTYPE html>
 
-<html lang="pt-BR">
+      <div class="resumo">
 
-<head>
+        <div class="resumo-item">
+          <div class="rotulo">
+            TOTAL DE PARTICIPANTES
+          </div>
+          <div class="numero">
+            ${document.getElementById("total")?.textContent || "0"}
+          </div>
+        </div>
 
-<meta charset="UTF-8">
+        <div class="resumo-item">
+          <div class="rotulo">
+            PRESENTES
+          </div>
+          <div class="numero">
+            ${document.getElementById("presentes")?.textContent || "0"}
+          </div>
+        </div>
 
-<base href="${window.location.origin}/">
+        <div class="resumo-item">
+          <div class="rotulo">
+            JUSTIFICADOS
+          </div>
+          <div class="numero">
+            ${document.getElementById("justificados")?.textContent || "0"}
+          </div>
+        </div>
 
-<title>Relatório de Presença — Setor 49</title>
+        <div class="resumo-item">
+          <div class="rotulo">
+            NÃO REGISTRADOS
+          </div>
+          <div class="numero">
+            ${document.getElementById("pendentes")?.textContent || "0"}
+          </div>
+        </div>
 
-<style>
+      </div>
 
-*{
-  box-sizing:border-box;
-}
 
-@page{
-  size:A4 portrait;
-  margin:10mm;
-}
+      <div class="secao">
 
-body{
-  margin:0;
-  padding:0;
-  font-family:Arial, Helvetica, sans-serif;
-  color:#172b4d;
-  background:#fff;
-}
+        <div class="secao-titulo">
+          PRESENÇA POR CARGO
+        </div>
 
+        <table>
 
-/* =========================
-   CABEÇALHO OFICIAL
-========================= */
+          <thead>
 
-.cabecalho{
+            <tr>
+              <th style="width:55%;">CARGO</th>
+              <th style="width:15%;">PRESENTES</th>
+              <th style="width:15%;">JUSTIFICADOS</th>
+              <th style="width:15%;">PENDENTES</th>
+            </tr>
 
-  border:2px solid #17365d;
-  border-radius:5px;
+          </thead>
 
-  min-height:92px;
+          <tbody>
+            ${cargo.innerHTML}
+          </tbody>
 
-  display:flex;
-  align-items:center;
+        </table>
 
-  padding:8px 12px;
+      </div>
 
-}
 
-.logo{
+      <div class="secao">
 
-  width:78px;
-  height:78px;
+        <div class="secao-titulo">
+          PRESENÇA POR CONGREGAÇÃO
+        </div>
 
-  object-fit:contain;
+        <table>
 
-  flex-shrink:0;
+          <thead>
 
-}
+            <tr>
+              <th style="width:55%;">CONGREGAÇÃO</th>
+              <th style="width:15%;">PRESENTES</th>
+              <th style="width:15%;">JUSTIFICADOS</th>
+              <th style="width:15%;">PENDENTES</th>
+            </tr>
 
-.cabecalho-texto{
+          </thead>
 
-  flex:1;
+          <tbody>
+            ${congregacao.innerHTML}
+          </tbody>
 
-  text-align:center;
+        </table>
 
-  padding-right:78px;
+      </div>
 
-}
 
-.cabecalho-texto .linha1{
+      <div class="rodape">
+        SECRETARIA SETORIAL — SETOR 49
+      </div>
 
-  font-size:13px;
-  font-weight:900;
+    `;
 
-  color:#111;
 
-  margin-bottom:2px;
+    document.body.appendChild(area);
 
-}
 
-.cabecalho-texto .linha2{
+    /* Abre diretamente a impressão */
 
-  font-size:11px;
-  font-weight:700;
+    window.print();
 
-  color:#333;
 
-  margin-bottom:3px;
+    /* Remove a área depois da impressão */
 
-}
+    window.onafterprint = function(){
 
-.cabecalho-texto .setor{
+      const elemento =
+        document.getElementById(
+          "areaImpressaoRelatorio"
+        );
 
-  font-size:13px;
-  font-weight:900;
-
-  color:#1f5fbd;
-
-  margin-bottom:3px;
-
-}
-
-.cabecalho-texto .pastor{
-
-  font-size:8.5px;
-  font-weight:700;
-
-  color:#555;
-
-  margin-bottom:2px;
-
-}
-
-.cabecalho-texto .endereco{
-
-  font-size:7.5px;
-
-  color:#666;
-
-}
-
-
-/* =========================
-   LINHAS INSTITUCIONAIS
-========================= */
-
-.linhas{
-
-  margin-top:5px;
-  margin-bottom:6px;
-
-}
-
-.linha-azul{
-
-  height:3px;
-  background:#1f5fbd;
-
-}
-
-.linha-amarela{
-
-  height:3px;
-  background:#f4c542;
-
-  margin-top:3px;
-
-}
-
-
-/* =========================
-   TÍTULO
-========================= */
-
-.titulo-relatorio{
-
-  display:flex;
-
-  margin-top:6px;
-
-  height:34px;
-
-}
-
-.titulo-relatorio .titulo{
-
-  flex:1;
-
-  background:#17365d;
-
-  color:#fff;
-
-  display:flex;
-  align-items:center;
-
-  padding:0 14px;
-
-  font-size:16px;
-  font-weight:900;
-
-  letter-spacing:.3px;
-
-}
-
-.titulo-relatorio .setor{
-
-  width:105px;
-
-  background:#f4c542;
-
-  color:#17365d;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  font-size:13px;
-  font-weight:900;
-
-}
-
-
-/* =========================
-   INFORMAÇÕES
-========================= */
-
-.informacoes{
-
-  background:#eef1f5;
-
-  border-left:1px solid #d5dbe3;
-  border-right:1px solid #d5dbe3;
-  border-bottom:1px solid #d5dbe3;
-
-  text-align:center;
-
-  padding:6px;
-
-  font-size:9px;
-
-  color:#17365d;
-
-}
-
-.informacoes strong{
-
-  font-weight:900;
-
-}
-
-
-/* =========================
-   RESUMO
-========================= */
-
-.resumo{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
-  gap:5px;
-
-  margin-top:8px;
-  margin-bottom:9px;
-
-}
-
-.resumo-item{
-
-  border:1px solid #d7dde5;
-
-  background:#f8f9fb;
-
-  text-align:center;
-
-  padding:6px 4px;
-
-}
-
-.resumo-item .rotulo{
-
-  font-size:7px;
-
-  font-weight:900;
-
-  color:#596579;
-
-  margin-bottom:3px;
-
-}
-
-.resumo-item .numero{
-
-  font-size:15px;
-
-  font-weight:900;
-
-  color:#17365d;
-
-}
-
-
-/* =========================
-   SEÇÕES
-========================= */
-
-.secao{
-
-  margin-top:9px;
-
-}
-
-.secao-titulo{
-
-  background:#17365d;
-
-  color:#fff;
-
-  padding:5px 8px;
-
-  font-size:10px;
-
-  font-weight:900;
-
-  border-left:5px solid #f4c542;
-
-}
-
-
-/* =========================
-   TABELAS
-========================= */
-
-table{
-
-  width:100%;
-
-  border-collapse:collapse;
-
-  table-layout:fixed;
-
-  font-size:7.5px;
-
-}
-
-thead{
-
-  display:table-header-group;
-
-}
-
-th{
-
-  background:#dfe7f2;
-
-  color:#17365d;
-
-  font-weight:900;
-
-  padding:4px 5px;
-
-  border:1px solid #cbd4df;
-
-  text-align:left;
-
-}
-
-td{
-
-  padding:3px 5px;
-
-  border:1px solid #d9dee6;
-
-  color:#243b5a;
-
-}
-
-tr{
-
-  page-break-inside:avoid;
-
-}
-
-th:not(:first-child),
-td:not(:first-child){
-
-  text-align:center;
-
-}
-
-td.numero-presente{
-
-  color:#079447;
-
-  font-weight:900;
-
-}
-
-td.numero-justificado{
-
-  color:#a26b00;
-
-  font-weight:900;
-
-}
-
-td.numero-pendente{
-
-  color:#b51e2a;
-
-  font-weight:900;
-
-}
-
-
-/* =========================
-   RODAPÉ
-========================= */
-
-.rodape{
-
-  margin-top:15px;
-
-  padding-top:8px;
-
-  border-top:1px solid #d5dbe3;
-
-  text-align:center;
-
-  font-size:7.5px;
-
-  font-weight:700;
-
-  color:#666;
-
-}
-
-
-/* =========================
-   IMPRESSÃO
-========================= */
-
-@media print{
-
-  body{
-
-    -webkit-print-color-adjust:exact !important;
-    print-color-adjust:exact !important;
-
-  }
-
-  .secao{
-
-    page-break-inside:auto;
-
-  }
-
-}
-
-</style>
-
-</head>
-
-
-<body>
-
-
-<!-- CABEÇALHO -->
-
-<div class="cabecalho">
-
-  <img
-    src="logo.png"
-    class="logo"
-    alt="Logo"
-  >
-
-  <div class="cabecalho-texto">
-
-    <div class="linha1">
-      IGREJA EVANGÉLICA ASSEMBLEIA DE DEUS EM SÃO PAULO
-    </div>
-
-    <div class="linha2">
-      MINISTÉRIO DO BELÉM
-    </div>
-
-    <div class="setor">
-      SETOR 49 — JARDIM DOS PIMENTAS
-    </div>
-
-    <div class="pastor">
-      PASTOR SETORIAL: SAMUEL GARCIA
-    </div>
-
-    <div class="endereco">
-      RUA ANTONIO BITTENCOURT, 684 —
-      CEP 07260-040 — JARDIM DOS PIMENTAS —
-      GUARULHOS (SP)
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- LINHAS -->
-
-<div class="linhas">
-
-  <div class="linha-azul"></div>
-
-  <div class="linha-amarela"></div>
-
-</div>
-
-
-<!-- TÍTULO -->
-
-<div class="titulo-relatorio">
-
-  <div class="titulo">
-    RELATÓRIO DE PRESENÇA
-  </div>
-
-  <div class="setor">
-    SETOR 49
-  </div>
-
-</div>
-
-
-<!-- INFORMAÇÕES -->
-
-<div class="informacoes">
-
-  <strong>REUNIÃO / EVENTO:</strong>
-  ${nomeReuniao}
-
-  &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
-
-  <strong>DATA:</strong>
-  ${dataFormatada}
-
-  &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
-
-  <strong>HORÁRIO:</strong>
-  ${horarioRelatorio}
-
-</div>
-
-
-<!-- RESUMO -->
-
-<div class="resumo">
-
-  <div class="resumo-item">
-
-    <div class="rotulo">
-      TOTAL DE PARTICIPANTES
-    </div>
-
-    <div class="numero">
-      ${
-        document.getElementById("total")?.textContent || "0"
+      if(elemento){
+        elemento.remove();
       }
-    </div>
-
-  </div>
-
-
-  <div class="resumo-item">
-
-    <div class="rotulo">
-      PRESENTES
-    </div>
-
-    <div class="numero">
-      ${
-        document.getElementById("presentes")?.textContent || "0"
-      }
-    </div>
-
-  </div>
-
-
-  <div class="resumo-item">
-
-    <div class="rotulo">
-      JUSTIFICADOS
-    </div>
-
-    <div class="numero">
-      ${
-        document.getElementById("justificados")?.textContent || "0"
-      }
-    </div>
-
-  </div>
-
-
-  <div class="resumo-item">
-
-    <div class="rotulo">
-      NÃO REGISTRADOS
-    </div>
-
-    <div class="numero">
-      ${
-        document.getElementById("pendentes")?.textContent || "0"
-      }
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- POR CARGO -->
-
-<div class="secao">
-
-  <div class="secao-titulo">
-    PRESENÇA POR CARGO
-  </div>
-
-  <table>
-
-    <thead>
-
-      <tr>
-
-        <th style="width:55%;">
-          CARGO
-        </th>
-
-        <th style="width:15%;">
-          PRESENTES
-        </th>
-
-        <th style="width:15%;">
-          JUSTIFICADOS
-        </th>
-
-        <th style="width:15%;">
-          PENDENTES
-        </th>
-
-      </tr>
-
-    </thead>
-
-    <tbody>
-
-      ${cargo.innerHTML}
-
-    </tbody>
-
-  </table>
-
-</div>
-
-
-<!-- POR CONGREGAÇÃO -->
-
-<div class="secao">
-
-  <div class="secao-titulo">
-    PRESENÇA POR CONGREGAÇÃO
-  </div>
-
-  <table>
-
-    <thead>
-
-      <tr>
-
-        <th style="width:55%;">
-          CONGREGAÇÃO
-        </th>
-
-        <th style="width:15%;">
-          PRESENTES
-        </th>
-
-        <th style="width:15%;">
-          JUSTIFICADOS
-        </th>
-
-        <th style="width:15%;">
-          PENDENTES
-        </th>
-
-      </tr>
-
-    </thead>
-
-    <tbody>
-
-      ${congregacao.innerHTML}
-
-    </tbody>
-
-  </table>
-
-</div>
-
-
-<!-- RODAPÉ -->
-
-<div class="rodape">
-
-  SECRETARIA SETORIAL — SETOR 49
-
-</div>
-
-
-</body>
-
-</html>
-
-    `);
-
-    janela.document.close();
-
-    janela.onload = function(){
-
-      janela.focus();
-
-      janela.print();
 
     };
 
