@@ -908,6 +908,48 @@ footer{
    RELATÓRIO DA CHAMADA
 ========================= */
 
+/* =========================
+   BOTÕES DO RELATÓRIO
+========================= */
+
+.acoes-relatorio{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin-top:22px;
+  margin-bottom:0;
+}
+
+.btn-relatorio{
+  border:0;
+  border-radius:10px;
+  padding:11px 16px;
+  background:#073c66;
+  color:#fff;
+  font-family:inherit;
+  font-size:12px;
+  font-weight:900;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.btn-relatorio:hover{
+  background:#159dd1;
+  transform:translateY(-1px);
+}
+
+@media(max-width:600px){
+
+  .acoes-relatorio{
+    flex-direction:column;
+  }
+
+  .btn-relatorio{
+    width:100%;
+  }
+
+}
+  
 .relatorio-presenca{
   margin-top:22px;
   margin-bottom:28px;
@@ -1370,6 +1412,26 @@ footer{
      RELATÓRIO DA CHAMADA
 ========================= -->
 
+<div class="acoes-relatorio">
+
+  <button
+    type="button"
+    class="btn-relatorio"
+    id="btnImprimirRelatorio"
+  >
+    🖨️ Imprimir relatório
+  </button>
+
+  <button
+    type="button"
+    class="btn-relatorio"
+    id="btnGerarPDF"
+  >
+    📄 Gerar PDF
+  </button>
+
+</div>
+  
 <section class="relatorio-presenca">
 
   <!-- =========================
