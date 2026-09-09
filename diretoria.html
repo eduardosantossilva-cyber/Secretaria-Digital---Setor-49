@@ -31,10 +31,12 @@
 }
 
 body{
-  margin:0;
-  font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;
+  font-family:Arial, Helvetica, sans-serif;
   background:var(--bg);
-  color:var(--ink)
+  color:#344054;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
 }
 
 
@@ -756,7 +758,7 @@ e à expansão do Reino de Deus.
 </p>
 
 
-<div class="cards">
+<div class="cards" id="cardsDiretoria">
 
 
 <!-- PASTOR PRESIDENTE -->
@@ -834,6 +836,21 @@ SETOR 49 - JARDIM DOS PIMENTAS
 </p>
 
 </article>
+
+
+<!-- MEMBROS DA DIRETORIA VINDOS DA API -->
+
+<div
+  id="carregandoDiretoria"
+  style="
+    grid-column:1/-1;
+    text-align:center;
+    padding:30px;
+    color:#667085;
+  "
+>
+  Carregando diretoria...
+</div>
 
 
 </div>
@@ -2038,6 +2055,138 @@ document.addEventListener(
 
 );
 
+/* =====================================================
+   DIRETORIA — API
+===================================================== */
+
+const API_DIRETORIA =
+  "https://script.google.com/macros/s/AKfycbxFoARLRmnLX5gzx_1tdTXYXA2eMMTTIrIRDG3JzVikl0CPgeIgxswqaGyl76jsfF3I/exec";
+
+
+async function carregarDiretoria(){
+
+  const container =
+    document.getElementById("cardsDiretoria");
+
+  const carregando =
+    document.getElementById("carregandoDiretoria");
+
+  if(!container){
+    return;
+  }
+
+  try{
+
+    const resposta =
+      await fetch(
+        API_DIRETORIA + "?acao=diretoria"
+      );
+
+    const dados =
+      await resposta.json();
+
+    if(!dados || !dados.sucesso){
+      throw new Error(
+        dados?.erro ||
+        "Não foi possível carregar a diretoria."
+      );
+    }
+
+    if(carregando){
+      carregando.remove();
+    }
+
+    const membros =
+      dados.diretoria || [];
+
+    membros.forEach(function(membro){
+
+      const card =
+        document.createElement("article");
+
+      card.className = "card";
+
+      const foto =
+        String(
+          membro.foto || ""
+        ).trim();
+
+      const nome =
+        String(
+          membro.nome || ""
+        ).trim();
+
+      const cargo =
+        String(
+          membro.cargo || ""
+        ).trim();
+
+      const descricao =
+        String(
+          membro.descricao || ""
+        ).trim();
+
+      card.innerHTML = `
+
+        ${
+          foto
+          ? `
+            <img
+              class="pastor-photo"
+              src="${foto}"
+              alt="${nome}"
+            >
+          `
+          : `
+            <div class="icon">
+              👤
+            </div>
+          `
+        }
+
+        <h2>
+          ${nome}
+        </h2>
+
+        <div class="role">
+          ${cargo}
+        </div>
+
+        <p>
+          ${descricao}
+        </p>
+
+      `;
+
+      container.appendChild(card);
+
+    });
+
+  }catch(erro){
+
+    console.error(
+      "Erro ao carregar Diretoria:",
+      erro
+    );
+
+    if(carregando){
+
+      carregando.innerHTML = `
+        Não foi possível carregar os demais membros da diretoria.
+      `;
+
+    }
+
+  }
+
+}
+
+
+document.addEventListener(
+  "DOMContentLoaded",
+  carregarDiretoria
+);
+      
 </script>
 
 </body>
