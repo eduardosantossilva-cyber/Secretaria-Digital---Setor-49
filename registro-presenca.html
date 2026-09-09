@@ -4162,12 +4162,7 @@ document
       return;
     }
 
-    if(
-      typeof window.jspdf.jsPDF.API.autoTable !== "function"
-    ){
-      alert("Não foi possível carregar o módulo de tabelas do PDF.");
-      return;
-    }
+
 
     const { jsPDF } = window.jspdf;
 
@@ -4176,6 +4171,11 @@ document
       unit:"mm",
       format:"a4"
     });
+
+    if(typeof pdf.autoTable !== "function"){
+  alert("Não foi possível carregar o módulo de tabelas do PDF.");
+  return;
+}
 
     /* =========================
        CORES — MESMAS DA IMPRESSÃO
