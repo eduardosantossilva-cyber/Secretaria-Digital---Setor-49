@@ -3804,1122 +3804,1561 @@ footer{
 
   }
 
-        pdf.text(
-        "RELATÓRIO DE PRESENÇA",
-        14,
-        51.5
-      );
-
-      pdf.setTextColor(
-        ...azulEscuro
-      );
-
-      pdf.setFontSize(
-        9
-      );
-
-      pdf.text(
-        "SETOR 49",
-        182.5,
-        51.5,
-        {
-          align:"center"
-        }
-      );
-
-
       /* =========================
-         INFORMAÇÕES
-      ========================= */
+     IMPRESSÃO DO RELATÓRIO
+  ========================= */
 
-      pdf.setFillColor(
-        ...cinza
+  document
+    .getElementById("btnImprimirRelatorio")
+    .addEventListener("click", function(){
+
+      if(!data.value){
+        alert("Informe a data antes de imprimir o relatório.");
+        data.focus();
+        return;
+      }
+
+      if(!reuniao.value.trim()){
+        alert("Informe o nome da reunião antes de imprimir o relatório.");
+        reuniao.focus();
+        return;
+      }
+
+      const cargo =
+        document.getElementById("relatorioCargo");
+
+      const congregacao =
+        document.getElementById("relatorioCongregacao");
+
+      if(!cargo || !congregacao){
+        alert("Os relatórios ainda não estão disponíveis.");
+        return;
+      }
+
+      const dataFormatada =
+        new Date(
+          data.value + "T00:00:00"
+        ).toLocaleDateString("pt-BR");
+
+      const nomeReuniao =
+        escapeHTML(
+          reuniao.value.trim()
+        );
+
+      const horarioRelatorio =
+        horario.value
+          ? escapeHTML(horario.value)
+          : "Não informado";
+
+      const anterior =
+        document.getElementById(
+          "areaImpressaoRelatorio"
+        );
+
+      if(anterior){
+        anterior.remove();
+      }
+
+      const area =
+        document.createElement("div");
+
+      area.id =
+        "areaImpressaoRelatorio";
+
+      area.innerHTML = `
+
+        <style>
+
+          @page{
+            size:A4 portrait;
+            margin:7mm;
+          }
+
+          #areaImpressaoRelatorio{
+            display:block;
+            width:100%;
+            font-family:Arial, Helvetica, sans-serif;
+            color:#172b4d;
+            background:#fff;
+          }
+
+          #areaImpressaoRelatorio .cabecalho{
+            border:2px solid #17365d;
+            border-radius:5px;
+            min-height:92px;
+            display:flex;
+            align-items:center;
+            padding:8px 12px;
+          }
+
+          #areaImpressaoRelatorio .logo{
+            width:78px;
+            height:78px;
+            object-fit:contain;
+            flex-shrink:0;
+          }
+
+          #areaImpressaoRelatorio .cabecalho-texto{
+            flex:1;
+            text-align:center;
+            padding-right:78px;
+          }
+
+          #areaImpressaoRelatorio .linha1{
+            font-size:13px;
+            font-weight:900;
+            color:#111;
+            margin-bottom:2px;
+          }
+
+          #areaImpressaoRelatorio .linha2{
+            font-size:11px;
+            font-weight:700;
+            color:#333;
+            margin-bottom:3px;
+          }
+
+          #areaImpressaoRelatorio .setor{
+            font-size:13px;
+            font-weight:900;
+            color:#1f5fbd;
+            margin-bottom:3px;
+          }
+
+          #areaImpressaoRelatorio .pastor{
+            font-size:8.5px;
+            font-weight:700;
+            color:#555;
+            margin-bottom:2px;
+          }
+
+          #areaImpressaoRelatorio .endereco{
+            font-size:7.5px;
+            color:#666;
+          }
+
+          #areaImpressaoRelatorio .linhas{
+            margin-top:5px;
+            margin-bottom:6px;
+          }
+
+          #areaImpressaoRelatorio .linha-azul{
+            height:3px;
+            background:#1f5fbd;
+          }
+
+          #areaImpressaoRelatorio .linha-amarela{
+            height:3px;
+            background:#f4c542;
+            margin-top:3px;
+          }
+
+          #areaImpressaoRelatorio .titulo-relatorio{
+            display:flex;
+            margin-top:6px;
+            height:34px;
+          }
+
+          #areaImpressaoRelatorio .titulo{
+            flex:1;
+            background:#17365d;
+            color:#fff;
+            display:flex;
+            align-items:center;
+            padding:0 14px;
+            font-size:16px;
+            font-weight:900;
+            letter-spacing:.3px;
+          }
+
+          #areaImpressaoRelatorio .titulo-setor{
+            width:105px;
+            background:#f4c542;
+            color:#17365d;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:13px;
+            font-weight:900;
+          }
+
+          #areaImpressaoRelatorio .informacoes{
+            background:#eef1f5;
+            border-left:1px solid #d5dbe3;
+            border-right:1px solid #d5dbe3;
+            border-bottom:1px solid #d5dbe3;
+            text-align:center;
+            padding:6px;
+            font-size:9px;
+            color:#17365d;
+          }
+
+          #areaImpressaoRelatorio .resumo{
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:5px;
+            margin-top:8px;
+            margin-bottom:9px;
+          }
+
+          #areaImpressaoRelatorio .resumo-item{
+            border:1px solid #d7dde5;
+            background:#f8f9fb;
+            text-align:center;
+            padding:6px 4px;
+          }
+
+          #areaImpressaoRelatorio .rotulo{
+            font-size:7px;
+            font-weight:900;
+            color:#596579;
+            margin-bottom:3px;
+          }
+
+          #areaImpressaoRelatorio .numero{
+            font-size:15px;
+            font-weight:900;
+            color:#17365d;
+          }
+
+          #areaImpressaoRelatorio .secao{
+            margin-top:9px;
+          }
+
+          #areaImpressaoRelatorio .secao-titulo{
+            background:#17365d;
+            color:#fff;
+            padding:5px 8px;
+            font-size:10px;
+            font-weight:900;
+            border-left:5px solid #f4c542;
+          }
+
+          #areaImpressaoRelatorio table{
+            width:100%;
+            border-collapse:collapse;
+            table-layout:fixed;
+            font-size:7px;
+          }
+
+          #areaImpressaoRelatorio th{
+            background:#dfe7f2;
+            color:#17365d;
+            font-weight:900;
+            padding:3px 5px;
+            border:1px solid #cbd4df;
+            text-align:left;
+          }
+
+          #areaImpressaoRelatorio td{
+            padding:2px 5px;
+            border:1px solid #d9dee6;
+            color:#243b5a;
+          }
+
+          #areaImpressaoRelatorio th:not(:first-child),
+          #areaImpressaoRelatorio td:not(:first-child){
+            text-align:center;
+          }
+
+          #areaImpressaoRelatorio tr{
+            page-break-inside:avoid;
+          }
+
+          #areaImpressaoRelatorio .rodape{
+            margin-top:15px;
+            padding-top:8px;
+            border-top:1px solid #d5dbe3;
+            text-align:center;
+            font-size:7.5px;
+            font-weight:700;
+            color:#666;
+          }
+
+          @media screen{
+
+            #areaImpressaoRelatorio{
+              display:none !important;
+            }
+
+          }
+
+          @media print{
+
+            body > *:not(#areaImpressaoRelatorio){
+              display:none !important;
+            }
+
+            #areaImpressaoRelatorio{
+              display:block !important;
+            }
+
+            body{
+              margin:0 !important;
+              padding:0 !important;
+              background:#fff !important;
+            }
+
+            *{
+              -webkit-print-color-adjust:exact !important;
+              print-color-adjust:exact !important;
+            }
+
+          }
+
+        </style>
+
+        <div class="cabecalho">
+
+          <img
+            src="logo.png"
+            class="logo"
+            alt="Logo"
+          >
+
+          <div class="cabecalho-texto">
+
+            <div class="linha1">
+              IGREJA EVANGÉLICA ASSEMBLEIA DE DEUS EM SÃO PAULO
+            </div>
+
+            <div class="linha2">
+              MINISTÉRIO DO BELÉM
+            </div>
+
+            <div class="setor">
+              SETOR 49 — JARDIM DOS PIMENTAS
+            </div>
+
+            <div class="pastor">
+              PASTOR SETORIAL: SAMUEL GARCIA
+            </div>
+
+            <div class="endereco">
+              RUA ANTONIO BITTENCOURT, 684 —
+              CEP 07260-040 — JARDIM DOS PIMENTAS —
+              GUARULHOS (SP)
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="linhas">
+
+          <div class="linha-azul"></div>
+
+          <div class="linha-amarela"></div>
+
+        </div>
+
+        <div class="titulo-relatorio">
+
+          <div class="titulo">
+            RELATÓRIO DE PRESENÇA
+          </div>
+
+          <div class="titulo-setor">
+            SETOR 49
+          </div>
+
+        </div>
+
+        <div class="informacoes">
+
+          <strong>REUNIÃO / EVENTO:</strong>
+          ${nomeReuniao}
+
+          &nbsp;&nbsp; | &nbsp;&nbsp;
+
+          <strong>DATA:</strong>
+          ${dataFormatada}
+
+          &nbsp;&nbsp; | &nbsp;&nbsp;
+
+          <strong>HORÁRIO:</strong>
+          ${horarioRelatorio}
+
+        </div>
+
+        <div class="resumo">
+
+          <div class="resumo-item">
+            <div class="rotulo">
+              TOTAL DE PARTICIPANTES
+            </div>
+            <div class="numero">
+              ${document.getElementById("total")?.textContent || "0"}
+            </div>
+          </div>
+
+          <div class="resumo-item">
+            <div class="rotulo">
+              PRESENTES
+            </div>
+            <div class="numero">
+              ${document.getElementById("presentes")?.textContent || "0"}
+            </div>
+          </div>
+
+          <div class="resumo-item">
+            <div class="rotulo">
+              JUSTIFICADOS
+            </div>
+            <div class="numero">
+              ${document.getElementById("justificados")?.textContent || "0"}
+            </div>
+          </div>
+
+          <div class="resumo-item">
+            <div class="rotulo">
+              NÃO REGISTRADOS
+            </div>
+            <div class="numero">
+              ${document.getElementById("pendentes")?.textContent || "0"}
+            </div>
+          </div>
+
+        </div>
+
+        <div class="secao">
+
+          <div class="secao-titulo">
+            PRESENÇA POR CARGO
+          </div>
+
+          <table>
+
+            <thead>
+              <tr>
+                <th style="width:55%;">CARGO</th>
+                <th style="width:15%;">PRESENTES</th>
+                <th style="width:15%;">JUSTIFICADOS</th>
+                <th style="width:15%;">PENDENTES</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              ${cargo.innerHTML}
+            </tbody>
+
+          </table>
+
+        </div>
+
+        <div class="secao">
+
+          <div class="secao-titulo">
+            PRESENÇA POR CONGREGAÇÃO
+          </div>
+
+          <table>
+
+            <thead>
+              <tr>
+                <th style="width:55%;">CONGREGAÇÃO</th>
+                <th style="width:15%;">PRESENTES</th>
+                <th style="width:15%;">JUSTIFICADOS</th>
+                <th style="width:15%;">PENDENTES</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              ${congregacao.innerHTML}
+            </tbody>
+
+          </table>
+
+        </div>
+
+        <div class="rodape">
+          SECRETARIA SETORIAL — SETOR 49
+        </div>
+
+      `;
+
+      document.body.appendChild(
+        area
       );
 
-      pdf.setDrawColor(
-        ...cinzaBorda
-      );
+      window.print();
 
-      pdf.setLineWidth(
-        0.2
-      );
+      window.onafterprint =
+        function(){
 
-      pdf.rect(
-        margem,
-        55,
-        190,
-        8,
-        "FD"
-      );
-
-
-      pdf.setTextColor(
-        ...azulEscuro
-      );
-
-      pdf.setFont(
-        "helvetica",
-        "bold"
-      );
-
-      pdf.setFontSize(
-        6.8
-      );
-
-
-      pdf.text(
-        "REUNIÃO / EVENTO:",
-        11,
-        60
-      );
-
-
-      pdf.setFont(
-        "helvetica",
-        "normal"
-      );
-
-
-      pdf.text(
-        nomeReuniao,
-        42,
-        60
-      );
-
-
-      pdf.setFont(
-        "helvetica",
-        "bold"
-      );
-
-
-      pdf.text(
-        "DATA:",
-        110,
-        60
-      );
-
-
-      pdf.setFont(
-        "helvetica",
-        "normal"
-      );
-
-
-      pdf.text(
-        dataFormatada,
-        122,
-        60
-      );
-
-
-      pdf.setFont(
-        "helvetica",
-        "bold"
-      );
-
-
-      pdf.text(
-        "HORÁRIO:",
-        153,
-        60
-      );
-
-
-      pdf.setFont(
-        "helvetica",
-        "normal"
-      );
-
-
-      pdf.text(
-        horarioRelatorio,
-        171,
-        60
-      );
-
-
-      /* =========================
-         RESUMO
-      ========================= */
-
-      const resumoY =
-        66;
-
-      const espaco =
-        4;
-
-      const larguraBox =
-        (
-          190 -
-          espaco * 3
-        ) / 4;
-
-
-      const resumo = [
-
-        [
-          "TOTAL DE PARTICIPANTES",
-          total,
-          azulEscuro
-        ],
-
-        [
-          "PRESENTES",
-          presentes,
-          verde
-        ],
-
-        [
-          "JUSTIFICADOS",
-          justificados,
-          dourado
-        ],
-
-        [
-          "NÃO REGISTRADOS",
-          pendentes,
-          vermelho
-        ]
-
-      ];
-
-
-      resumo.forEach(
-        function(item,index){
-
-          const x =
-            margem +
-            index *
-            (
-              larguraBox +
-              espaco
+          const elemento =
+            document.getElementById(
+              "areaImpressaoRelatorio"
             );
 
+          if(elemento){
+            elemento.remove();
+          }
 
-          pdf.setFillColor(
-            248,
-            249,
-            251
+        };
+
+    });
+
+
+  /* =========================
+     GERAR PDF AUTOMATICAMENTE
+     MESMO MODELO DA IMPRESSÃO
+  ========================= */
+
+  document
+    .getElementById("btnGerarPDF")
+    .addEventListener("click", function(){
+
+      if(!data.value){
+        alert("Informe a data antes de gerar o PDF.");
+        data.focus();
+        return;
+      }
+
+      if(!reuniao.value.trim()){
+        alert("Informe o nome da reunião antes de gerar o PDF.");
+        reuniao.focus();
+        return;
+      }
+
+      if(
+        typeof window.jspdf === "undefined" ||
+        typeof window.jspdf.jsPDF === "undefined"
+      ){
+        alert(
+          "Não foi possível carregar o gerador de PDF. Atualize a página e tente novamente."
+        );
+        return;
+      }
+
+      const { jsPDF } =
+        window.jspdf;
+
+      const pdf =
+        new jsPDF({
+          orientation:"portrait",
+          unit:"mm",
+          format:"a4"
+        });
+
+      if(
+        typeof pdf.autoTable !==
+        "function"
+      ){
+        alert(
+          "Não foi possível carregar o módulo de tabelas do PDF. Atualize a página e tente novamente."
+        );
+        return;
+      }
+
+      const azulEscuro = [
+        23,54,93
+      ];
+
+      const azul = [
+        31,95,189
+      ];
+
+      const amarelo = [
+        244,197,66
+      ];
+
+      const azulClaro = [
+        223,231,242
+      ];
+
+      const cinza = [
+        238,241,245
+      ];
+
+      const cinzaBorda = [
+        213,219,227
+      ];
+
+      const verde = [
+        7,148,71
+      ];
+
+      const vermelho = [
+        181,30,42
+      ];
+
+      const dourado = [
+        162,107,0
+      ];
+
+      const margem = 7;
+
+      const larguraConteudo =
+        196;
+
+      const centro =
+        105;
+
+      const alturaPagina =
+        297;
+
+      const nomeReuniao =
+        reuniao.value.trim();
+
+      const dataFormatada =
+        new Date(
+          data.value +
+          "T00:00:00"
+        ).toLocaleDateString(
+          "pt-BR"
+        );
+
+      const horarioRelatorio =
+        horario.value ||
+        "Não informado";
+
+      const total =
+        document.getElementById(
+          "total"
+        )?.textContent || "0";
+
+      const presentes =
+        document.getElementById(
+          "presentes"
+        )?.textContent || "0";
+
+      const justificados =
+        document.getElementById(
+          "justificados"
+        )?.textContent || "0";
+
+      const pendentes =
+        document.getElementById(
+          "pendentes"
+        )?.textContent || "0";
+
+      function extrairLinhas(id){
+
+        const corpo =
+          document.getElementById(
+            id
           );
 
-
-          pdf.setDrawColor(
-            ...cinzaBorda
-          );
-
-
-          pdf.rect(
-            x,
-            resumoY,
-            larguraBox,
-            18,
-            "FD"
-          );
-
-
-          pdf.setFont(
-            "helvetica",
-            "bold"
-          );
-
-
-          pdf.setFontSize(
-            6.2
-          );
-
-
-          pdf.setTextColor(
-            89,
-            101,
-            121
-          );
-
-
-          pdf.text(
-            item[0],
-            x +
-            larguraBox / 2,
-            resumoY + 5,
-            {
-              align:"center"
-            }
-          );
-
-
-          pdf.setFontSize(
-            15
-          );
-
-
-          pdf.setTextColor(
-            ...item[2]
-          );
-
-
-          pdf.text(
-            item[1],
-            x +
-            larguraBox / 2,
-            resumoY + 14,
-            {
-              align:"center"
-            }
-          );
-
-        }
-      );
-
-
-      /* =========================
-         FUNÇÃO PARA LER TABELAS
-      ========================= */
-
-      function obterLinhasTabela(id){
-
-        const tbody =
-          document.getElementById(id);
-
-
-        if(!tbody){
+        if(!corpo){
           return [];
         }
 
+        const trs =
+          corpo.querySelectorAll(
+            "tr"
+          );
 
-        const linhas =
-          tbody.querySelectorAll("tr");
+        const linhas = [];
 
-
-        const resultado = [];
-
-
-        linhas.forEach(
+        trs.forEach(
           function(tr){
 
             const celulas =
-              tr.querySelectorAll("td");
-
+              tr.querySelectorAll(
+                "td"
+              );
 
             if(!celulas.length){
               return;
             }
 
-
             const linha = [];
-
 
             celulas.forEach(
               function(td){
 
                 linha.push(
                   td.textContent
-                    .replace(/\s+/g," ")
+                    .replace(
+                      /\s+/g,
+                      " "
+                    )
                     .trim()
                 );
 
               }
             );
 
-
-            resultado.push(linha);
+            linhas.push(
+              linha
+            );
 
           }
         );
 
-
-        return resultado;
+        return linhas;
 
       }
 
+      function desenharCabecalho(){
 
-      /* =========================
-         SEÇÃO
-      ========================= */
-
-      function desenharSecao(
-        titulo,
-        y
-      ){
-
-        pdf.setFillColor(
+        pdf.setDrawColor(
           ...azulEscuro
         );
 
+        pdf.setLineWidth(
+          0.6
+        );
 
-        pdf.rect(
+        pdf.roundedRect(
           margem,
-          y,
-          190,
-          9,
-          "F"
+          7,
+          larguraConteudo,
+          28,
+          1.5,
+          1.5
         );
 
+        const logo =
+          new Image();
 
-        pdf.setFillColor(
-          ...amarelo
-        );
+        logo.onload =
+          function(){
 
+            try{
 
-        pdf.rect(
-          margem,
-          y,
-          4,
-          9,
-          "F"
-        );
+              pdf.addImage(
+                logo,
+                "PNG",
+                11,
+                10,
+                22,
+                22
+              );
 
+            }catch(e){}
+
+            finalizarCabecalho();
+
+          };
+
+        logo.onerror =
+          function(){
+
+            finalizarCabecalho();
+
+          };
+
+        logo.src =
+          "logo.png";
+
+      }
+
+      function finalizarCabecalho(){
 
         pdf.setTextColor(
-          255,
-          255,
-          255
+          17,17,17
         );
-
 
         pdf.setFont(
           "helvetica",
           "bold"
         );
 
-
         pdf.setFontSize(
-          8
+          10
         );
-
 
         pdf.text(
-          titulo,
-          margem + 8,
-          y + 6
+          "IGREJA EVANGÉLICA ASSEMBLEIA DE DEUS EM SÃO PAULO",
+          115,
+          14,
+          {
+            align:"center"
+          }
         );
 
-      }
-
-
-      /* =========================
-         PRESENÇA POR CARGO
-      ========================= */
-
-      let yCargo =
-        90;
-
-
-      desenharSecao(
-        "PRESENÇA POR CARGO",
-        yCargo
-      );
-
-
-      const linhasCargo =
-        obterLinhasTabela(
-          "relatorioCargo"
+        pdf.setFont(
+          "helvetica",
+          "normal"
         );
 
-
-      pdf.autoTable({
-
-        startY:
-          yCargo + 11,
-
-        margin:{
-          left:margem,
-          right:margem
-        },
-
-        tableWidth:
-          190,
-
-        head:[
-          [
-            "CARGO",
-            "PRESENTES",
-            "JUSTIFICADOS",
-            "PENDENTES"
-          ]
-        ],
-
-        body:
-          linhasCargo,
-
-        theme:
-          "grid",
-
-        styles:{
-          font:
-            "helvetica",
-
-          fontSize:
-            7,
-
-          cellPadding:
-            1.8,
-
-          textColor:[
-            36,
-            59,
-            90
-          ],
-
-          lineColor:[
-            217,
-            222,
-            230
-          ],
-
-          lineWidth:
-            0.2,
-
-          valign:
-            "middle"
-        },
-
-        headStyles:{
-          fillColor:
-            azulClaro,
-
-          textColor:
-            azulEscuro,
-
-          fontStyle:
-            "bold",
-
-          fontSize:
-            7,
-
-          halign:
-            "center"
-        },
-
-        columnStyles:{
-
-          0:{
-            cellWidth:
-              104.5,
-
-            halign:
-              "left"
-          },
-
-          1:{
-            cellWidth:
-              28.5,
-
-            halign:
-              "center",
-
-            textColor:
-              verde
-          },
-
-          2:{
-            cellWidth:
-              28.5,
-
-            halign:
-              "center",
-
-            textColor:
-              dourado
-          },
-
-          3:{
-            cellWidth:
-              28.5,
-
-            halign:
-              "center",
-
-            textColor:
-              vermelho
-          }
-
-        },
-
-        alternateRowStyles:{
-          fillColor:[
-            248,
-            249,
-            251
-          ]
-        },
-
-        didParseCell:
-          function(cell){
-
-            if(
-              cell.section ===
-              "body"
-            ){
-
-              if(
-                cell.column.index >
-                0
-              ){
-
-                cell.styles.fontStyle =
-                  "bold";
-
-              }
-
-            }
-
-          }
-
-      });
-
-
-      /* =========================
-         PRESENÇA POR CONGREGAÇÃO
-      ========================= */
-
-      let yCongregacao =
-        pdf.lastAutoTable.finalY +
-        8;
-
-
-      if(
-        yCongregacao > 250
-      ){
-
-        pdf.addPage();
-
-        yCongregacao =
-          12;
-
-      }
-
-
-      desenharSecao(
-        "PRESENÇA POR CONGREGAÇÃO",
-        yCongregacao
-      );
-
-
-      const linhasCongregacao =
-        obterLinhasTabela(
-          "relatorioCongregacao"
+        pdf.setFontSize(
+          8.5
         );
 
+        pdf.setTextColor(
+          51,51,51
+        );
 
-      pdf.autoTable({
-
-        startY:
-          yCongregacao + 11,
-
-        margin:{
-          left:margem,
-          right:margem
-        },
-
-        tableWidth:
-          190,
-
-        head:[
-          [
-            "CONGREGAÇÃO",
-            "PRESENTES",
-            "JUSTIFICADOS",
-            "PENDENTES"
-          ]
-        ],
-
-        body:
-          linhasCongregacao,
-
-        theme:
-          "grid",
-
-        styles:{
-          font:
-            "helvetica",
-
-          fontSize:
-            6.5,
-
-          cellPadding:
-            1.5,
-
-          textColor:[
-            36,
-            59,
-            90
-          ],
-
-          lineColor:[
-            217,
-            222,
-            230
-          ],
-
-          lineWidth:
-            0.2,
-
-          valign:
-            "middle"
-        },
-
-        headStyles:{
-          fillColor:
-            azulClaro,
-
-          textColor:
-            azulEscuro,
-
-          fontStyle:
-            "bold",
-
-          fontSize:
-            6.5,
-
-          halign:
-            "center"
-        },
-
-        columnStyles:{
-
-          0:{
-            cellWidth:
-              104.5,
-
-            halign:
-              "left"
-          },
-
-          1:{
-            cellWidth:
-              28.5,
-
-            halign:
-              "center",
-
-            textColor:
-              verde
-          },
-
-          2:{
-            cellWidth:
-              28.5,
-
-            halign:
-              "center",
-
-            textColor:
-              dourado
-          },
-
-          3:{
-            cellWidth:
-              28.5,
-
-            halign:
-              "center",
-
-            textColor:
-              vermelho
+        pdf.text(
+          "MINISTÉRIO DO BELÉM",
+          115,
+          18.5,
+          {
+            align:"center"
           }
+        );
 
-        },
+        pdf.setFont(
+          "helvetica",
+          "bold"
+        );
 
-        alternateRowStyles:{
-          fillColor:[
-            248,
-            249,
-            251
-          ]
-        },
+        pdf.setFontSize(
+          10
+        );
 
-        didParseCell:
-          function(cell){
+        pdf.setTextColor(
+          ...azul
+        );
 
-            if(
-              cell.section ===
-              "body"
-            ){
-
-              if(
-                cell.column.index >
-                0
-              ){
-
-                cell.styles.fontStyle =
-                  "bold";
-
-              }
-
-            }
-
+        pdf.text(
+          "SETOR 49 — JARDIM DOS PIMENTAS",
+          115,
+          23,
+          {
+            align:"center"
           }
+        );
 
-      });
+        pdf.setFontSize(
+          7
+        );
 
+        pdf.setTextColor(
+          85,85,85
+        );
 
-      /* =========================
-         RODAPÉ
-      ========================= */
+        pdf.text(
+          "PASTOR SETORIAL: SAMUEL GARCIA",
+          115,
+          27,
+          {
+            align:"center"
+          }
+        );
 
-      const alturaPagina =
-        pdf.internal.pageSize
-          .getHeight();
+        pdf.setFont(
+          "helvetica",
+          "normal"
+        );
 
+        pdf.setFontSize(
+          5.5
+        );
 
-      pdf.setDrawColor(
-        ...cinzaBorda
-      );
+        pdf.setTextColor(
+          102,102,102
+        );
 
+        pdf.text(
+          "RUA ANTONIO BITTENCOURT, 684 — CEP 07260-040 — JARDIM DOS PIMENTAS — GUARULHOS (SP)",
+          115,
+          31,
+          {
+            align:"center"
+          }
+        );
 
-      pdf.setLineWidth(
-        0.3
-      );
+        pdf.setFillColor(
+          ...azul
+        );
 
+        pdf.rect(
+          margem,
+          37,
+          larguraConteudo,
+          1.2,
+          "F"
+        );
 
-      pdf.line(
-        margem,
-        alturaPagina - 13,
-        210 - margem,
-        alturaPagina - 13
-      );
+        pdf.setFillColor(
+          ...amarelo
+        );
 
+        pdf.rect(
+          margem,
+          39,
+          larguraConteudo,
+          1.2,
+          "F"
+        );
 
-      pdf.setTextColor(
-        102,
-        102,
-        102
-      );
+        pdf.setFillColor(
+          ...azulEscuro
+        );
 
-
-      pdf.setFont(
-        "helvetica",
-        "bold"
-      );
-
-
-      pdf.setFontSize(
-        7.5
-      );
-
-
-      pdf.text(
-        "SECRETARIA SETORIAL — SETOR 49",
-        centro,
-        alturaPagina - 8,
-        {
-          align:"center"
-        }
-      );
-
-
-      /* =========================
-         SALVAR PDF
-      ========================= */
-
-      const nomeArquivo =
-        "Relatorio-Presenca-" +
-        data.value +
-        "-" +
-        nomeReuniao
-          .replace(
-            /[\\/:*?"<>|]/g,
-            "-"
-          )
-          .replace(
-            /\s+/g,
-            "-"
-          );
-
-
-      pdf.save(
-        nomeArquivo +
-        ".pdf"
-      );
-
-    }
-
-
-    /* =========================
-       CARREGAR LOGO
-    ========================= */
-
-    if(
-      logo.complete &&
-      logo.naturalWidth > 0
-    ){
-
-      try{
-
-        pdf.addImage(
-          logo,
-          "PNG",
-          11,
+        pdf.rect(
+          margem,
+          42,
+          155,
           10,
-          22,
-          22
+          "F"
         );
 
-      }catch(e){}
+        pdf.setFillColor(
+          ...amarelo
+        );
 
+        pdf.rect(
+          162,
+          42,
+          41,
+          10,
+          "F"
+        );
 
-      continuarPDF();
+        pdf.setTextColor(
+          255,255,255
+        );
 
-    }else{
+        pdf.setFont(
+          "helvetica",
+          "bold"
+        );
 
-      logo.onload =
-        function(){
+        pdf.setFontSize(
+          11
+        );
 
-          try{
+        pdf.text(
+          "RELATÓRIO DE PRESENÇA",
+          14,
+          48.5
+        );
 
-            pdf.addImage(
-              logo,
-              "PNG",
-              11,
-              10,
-              22,
-              22
+        pdf.setTextColor(
+          ...azulEscuro
+        );
+
+        pdf.setFontSize(
+          9
+        );
+
+        pdf.text(
+          "SETOR 49",
+          182.5,
+          48.5,
+          {
+            align:"center"
+          }
+        );
+
+        pdf.setFillColor(
+          ...cinza
+        );
+
+        pdf.setDrawColor(
+          ...cinzaBorda
+        );
+
+        pdf.setLineWidth(
+          0.2
+        );
+
+        pdf.rect(
+          margem,
+          55,
+          larguraConteudo,
+          8,
+          "FD"
+        );
+
+        pdf.setTextColor(
+          ...azulEscuro
+        );
+
+        pdf.setFont(
+          "helvetica",
+          "bold"
+        );
+
+        pdf.setFontSize(
+          6.8
+        );
+
+        pdf.text(
+          "REUNIÃO / EVENTO:",
+          11,
+          60
+        );
+
+        pdf.setFont(
+          "helvetica",
+          "normal"
+        );
+
+        pdf.text(
+          nomeReuniao,
+          42,
+          60
+        );
+
+        pdf.setFont(
+          "helvetica",
+          "bold"
+        );
+
+        pdf.text(
+          "DATA:",
+          110,
+          60
+        );
+
+        pdf.setFont(
+          "helvetica",
+          "normal"
+        );
+
+        pdf.text(
+          dataFormatada,
+          123,
+          60
+        );
+
+        pdf.setFont(
+          "helvetica",
+          "bold"
+        );
+
+        pdf.text(
+          "HORÁRIO:",
+          153,
+          60
+        );
+
+        pdf.setFont(
+          "helvetica",
+          "normal"
+        );
+
+        pdf.text(
+          horarioRelatorio,
+          171,
+          60
+        );
+
+        const resumoY =
+          66;
+
+        const espaco =
+          4;
+
+        const larguraBox =
+          (
+            larguraConteudo -
+            espaco * 3
+          ) / 4;
+
+        const resumo = [
+
+          [
+            "TOTAL DE PARTICIPANTES",
+            total,
+            azulEscuro
+          ],
+
+          [
+            "PRESENTES",
+            presentes,
+            verde
+          ],
+
+          [
+            "JUSTIFICADOS",
+            justificados,
+            dourado
+          ],
+
+          [
+            "NÃO REGISTRADOS",
+            pendentes,
+            vermelho
+          ]
+
+        ];
+
+        resumo.forEach(
+          function(item,index){
+
+            const x =
+              margem +
+              index *
+              (
+                larguraBox +
+                espaco
+              );
+
+            pdf.setFillColor(
+              248,249,251
             );
 
-          }catch(e){}
+            pdf.setDrawColor(
+              ...cinzaBorda
+            );
 
+            pdf.roundedRect(
+              x,
+              resumoY,
+              larguraBox,
+              18,
+              1,
+              1,
+              "FD"
+            );
 
-          continuarPDF();
+            pdf.setFont(
+              "helvetica",
+              "bold"
+            );
 
-        };
+            pdf.setFontSize(
+              5.5
+            );
 
+            pdf.setTextColor(
+              52,64,84
+            );
 
-      logo.onerror =
-        function(){
+            pdf.text(
+              item[0],
+              x +
+              larguraBox / 2,
+              resumoY + 5,
+              {
+                align:"center"
+              }
+            );
 
-          continuarPDF();
+            pdf.setFontSize(
+              14
+            );
 
-        };
+            pdf.setTextColor(
+              ...item[2]
+            );
 
-    }
+            pdf.text(
+              item[1],
+              x +
+              larguraBox / 2,
+              resumoY + 14,
+              {
+                align:"center"
+              }
+            );
 
-  });
+          }
+        );
 
+        function desenharSecao(
+          titulo,
+          y
+        ){
 
-  /* =========================
-     ATENDIMENTO
-  ========================= */
+          pdf.setFillColor(
+            ...azulEscuro
+          );
 
-  const atendimentoBotao =
-    document.getElementById(
-      "atendimentoBotao"
-    );
+          pdf.rect(
+            margem,
+            y,
+            larguraConteudo,
+            9,
+            "F"
+          );
 
-  const atendimentoChat =
-    document.getElementById(
-      "atendimentoChat"
-    );
+          pdf.setFillColor(
+            ...amarelo
+          );
 
-  const atendimentoFechar =
-    document.getElementById(
-      "atendimentoFechar"
-    );
+          pdf.rect(
+            margem,
+            y,
+            4,
+            9,
+            "F"
+          );
 
+          pdf.setTextColor(
+            255,255,255
+          );
 
-  if(
-    atendimentoBotao &&
-    atendimentoChat
-  ){
+          pdf.setFont(
+            "helvetica",
+            "bold"
+          );
 
-    atendimentoBotao.addEventListener(
-      "click",
-      function(){
+          pdf.setFontSize(
+            8
+          );
 
-        atendimentoChat.classList.toggle(
-          "aberto"
+          pdf.text(
+            titulo,
+            margem + 8,
+            y + 6
+          );
+
+        }
+
+        const linhasCargo =
+          extrairLinhas(
+            "relatorioCargo"
+          );
+
+        let yCargo =
+          90;
+
+        desenharSecao(
+          "PRESENÇA POR CARGO",
+          yCargo
+        );
+
+        if(
+          linhasCargo.length
+        ){
+
+          pdf.autoTable({
+
+            startY:
+              yCargo + 11,
+
+            margin:{
+              left:margem,
+              right:margem
+            },
+
+            head:[[
+              "CARGO",
+              "PRESENTES",
+              "JUSTIFICADOS",
+              "PENDENTES"
+            ]],
+
+            body:
+              linhasCargo,
+
+            theme:
+              "grid",
+
+            tableWidth:
+              larguraConteudo,
+
+            styles:{
+              font:
+                "helvetica",
+
+              fontSize:
+                6.5,
+
+              cellPadding:
+                1.7,
+
+              textColor:[
+                23,60,102
+              ],
+
+              lineColor:
+                cinzaBorda,
+
+              lineWidth:
+                0.2,
+
+              valign:
+                "middle"
+            },
+
+            headStyles:{
+              fillColor:
+                azulClaro,
+
+              textColor:
+                azulEscuro,
+
+              fontStyle:
+                "bold",
+
+              fontSize:
+                6.5,
+
+              halign:
+                "left"
+            },
+
+            alternateRowStyles:{
+              fillColor:[
+                248,249,251
+              ]
+            },
+
+            columnStyles:{
+
+              0:{
+                cellWidth:
+                  107.8
+              },
+
+              1:{
+                cellWidth:
+                  29.4,
+
+                halign:
+                  "center",
+
+                textColor:
+                  verde,
+
+                fontStyle:
+                  "bold"
+              },
+
+              2:{
+                cellWidth:
+                  29.4,
+
+                halign:
+                  "center",
+
+                textColor:
+                  dourado,
+
+                fontStyle:
+                  "bold"
+              },
+
+              3:{
+                cellWidth:
+                  29.4,
+
+                halign:
+                  "center",
+
+                textColor:
+                  vermelho,
+
+                fontStyle:
+                  "bold"
+              }
+
+            }
+
+          });
+
+        }
+
+        let yCong =
+          pdf.lastAutoTable
+            ? pdf.lastAutoTable.finalY + 8
+            : 118;
+
+        if(
+          yCong > 260
+        ){
+
+          pdf.addPage();
+
+          yCong =
+            12;
+
+        }
+
+        desenharSecao(
+          "PRESENÇA POR CONGREGAÇÃO",
+          yCong
+        );
+
+        const linhasCongregacao =
+          extrairLinhas(
+            "relatorioCongregacao"
+          );
+
+        if(
+          linhasCongregacao.length
+        ){
+
+          pdf.autoTable({
+
+            startY:
+              yCong + 11,
+
+            margin:{
+              left:margem,
+              right:margem
+            },
+
+            head:[[
+              "CONGREGAÇÃO",
+              "PRESENTES",
+              "JUSTIFICADOS",
+              "PENDENTES"
+            ]],
+
+            body:
+              linhasCongregacao,
+
+            theme:
+              "grid",
+
+            tableWidth:
+              larguraConteudo,
+
+            styles:{
+              font:
+                "helvetica",
+
+              fontSize:
+                6.1,
+
+              cellPadding:
+                1.45,
+
+              textColor:[
+                23,60,102
+              ],
+
+              lineColor:
+                cinzaBorda,
+
+              lineWidth:
+                0.2,
+
+              valign:
+                "middle"
+            },
+
+            headStyles:{
+              fillColor:
+                azulClaro,
+
+              textColor:
+                azulEscuro,
+
+              fontStyle:
+                "bold",
+
+              fontSize:
+                6.1,
+
+              halign:
+                "left"
+            },
+
+            alternateRowStyles:{
+              fillColor:[
+                248,249,251
+              ]
+            },
+
+            columnStyles:{
+
+              0:{
+                cellWidth:
+                  107.8
+              },
+
+              1:{
+                cellWidth:
+                  29.4,
+
+                halign:
+                  "center",
+
+                textColor:
+                  verde,
+
+                fontStyle:
+                  "bold"
+              },
+
+              2:{
+                cellWidth:
+                  29.4,
+
+                halign:
+                  "center",
+
+                textColor:
+                  dourado,
+
+                fontStyle:
+                  "bold"
+              },
+
+              3:{
+                cellWidth:
+                  29.4,
+
+                halign:
+                  "center",
+
+                textColor:
+                  vermelho,
+
+                fontStyle:
+                  "bold"
+              }
+
+            }
+
+          });
+
+        }
+
+        pdf.setDrawColor(
+          ...cinzaBorda
+        );
+
+        pdf.setLineWidth(
+          0.3
+        );
+
+        pdf.line(
+          margem,
+          alturaPagina - 13,
+          210 - margem,
+          alturaPagina - 13
+        );
+
+        pdf.setTextColor(
+          100,116,139
+        );
+
+        pdf.setFont(
+          "helvetica",
+          "normal"
+        );
+
+        pdf.setFontSize(
+          6.5
+        );
+
+        pdf.text(
+          "SECRETARIA SETORIAL — SETOR 49",
+          centro,
+          alturaPagina - 8,
+          {
+            align:"center"
+          }
+        );
+
+        const nomeArquivo =
+          "Relatorio-Presenca-" +
+          data.value +
+          "-" +
+          nomeReuniao
+            .replace(
+              /[\\/:*?"<>|]/g,
+              "-"
+            )
+            .replace(
+              /\s+/g,
+              "-"
+            );
+
+        pdf.save(
+          nomeArquivo +
+          ".pdf"
         );
 
       }
-    );
 
-  }
+      desenharCabecalho();
 
-
-  if(
-    atendimentoFechar &&
-    atendimentoChat
-  ){
-
-    atendimentoFechar.addEventListener(
-      "click",
-      function(){
-
-        atendimentoChat.classList.remove(
-          "aberto"
-        );
-
-      }
-    );
-
-  }
-
-
-  /* =========================
-     ATENDIMENTO — SOLICITAÇÃO
-  ========================= */
-
-  const novaSolicitacao =
-    document.getElementById(
-      "novaSolicitacao"
-    );
-
-  const consultarProtocolo =
-    document.getElementById(
-      "consultarProtocolo"
-    );
-
-  const atendimentoOpcoes =
-    document.getElementById(
-      "atendimentoOpcoes"
-    );
-
-  const formularioAtendimento =
-    document.getElementById(
-      "formularioAtendimento"
-    );
-
-  const consultaProtocolo =
-    document.getElementById(
-      "consultaProtocolo"
-    );
-
-
-  if(novaSolicitacao){
-
-    novaSolicitacao.addEventListener(
-      "click",
-      function(){
-
-        atendimentoOpcoes.style.display =
-          "none";
-
-        formularioAtendimento.style.display =
-          "block";
-
-      }
-    );
-
-  }
-
-
-  if(consultarProtocolo){
-
-    consultarProtocolo.addEventListener(
-      "click",
-      function(){
-
-        atendimentoOpcoes.style.display =
-          "none";
-
-        consultaProtocolo.style.display =
-          "block";
-
-      }
-    );
-
-  }
-
-
-  /* =========================
-     VOLTAR
-  ========================= */
-
-  const voltarSolicitacao =
-    document.getElementById(
-      "voltarSolicitacao"
-    );
-
-
-  if(voltarSolicitacao){
-
-    voltarSolicitacao.addEventListener(
-      "click",
-      function(){
-
-        formularioAtendimento.style.display =
-          "none";
-
-        atendimentoOpcoes.style.display =
-          "grid";
-
-      }
-    );
-
-  }
-
-
-  const voltarAtendimento =
-    document.getElementById(
-      "voltarAtendimento"
-    );
-
-
-  if(voltarAtendimento){
-
-    voltarAtendimento.addEventListener(
-      "click",
-      function(){
-
-        consultaProtocolo.style.display =
-          "none";
-
-        atendimentoOpcoes.style.display =
-          "grid";
-
-      }
-    );
-
-  }
-
-
-  /* =========================
-     INICIALIZAÇÃO
-  ========================= */
-
-  carregarParticipantes();
-
-
-  /* =========================
-     DATA ATUAL
-  ========================= */
-
-  if(!data.value){
-
-    const hoje =
-      new Date();
-
-    const ano =
-      hoje.getFullYear();
-
-    const mes =
-      String(
-        hoje.getMonth() + 1
-      ).padStart(
-        2,
-        "0"
-      );
-
-    const dia =
-      String(
-        hoje.getDate()
-      ).padStart(
-        2,
-        "0"
-      );
-
-    data.value =
-      ano +
-      "-" +
-      mes +
-      "-" +
-      dia;
-
-  }
-
-  </script>
-
+    });
   <!-- =========================
-       BIBLIOTECAS PDF
+       BIBLIOTECAS DO PDF
   ========================= -->
 
   <script
@@ -4933,3 +5372,4 @@ footer{
 </body>
 
 </html>
+      
