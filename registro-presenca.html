@@ -3870,6 +3870,539 @@ document
     };
 
   });
+
+/* =========================
+   GERAR PDF AUTOMATICAMENTE
+========================= */
+
+document
+  .getElementById("btnGerarPDF")
+  .addEventListener("click", function(){
+
+    if(!data.value){
+      alert("Informe a data antes de gerar o PDF.");
+      data.focus();
+      return;
+    }
+
+    if(!reuniao.value.trim()){
+      alert("Informe o nome da reunião antes de gerar o PDF.");
+      reuniao.focus();
+      return;
+    }
+
+    /* Verifica se a biblioteca carregou */
+    if(
+      typeof window.jspdf === "undefined" ||
+      typeof window.jspdf.jsPDF === "undefined"
+    ){
+
+      alert(
+        "Não foi possível carregar o gerador de PDF. Verifique sua conexão com a internet."
+      );
+
+      return;
+    }
+
+    const { jsPDF } = window.jspdf;
+
+    const pdf =
+      new jsPDF({
+        orientation:"landscape",
+        unit:"mm",
+        format:"a4"
+      });
+
+
+    /* =========================
+       DADOS
+    ========================= */
+
+    const nomeReuniao =
+      reuniao.value.trim();
+
+    const dataFormatada =
+      new Date(
+        data.value + "T00:00:00"
+      ).toLocaleDateString(
+        "pt-BR"
+      );
+
+    const horarioRelatorio =
+      horario.value || "Não informado";
+
+
+    /* =========================
+       CABEÇALHO
+    ========================= */
+
+    pdf.setTextColor(
+      7,
+      60,
+      102
+    );
+
+    pdf.setFont(
+      "helvetica",
+      "bold"
+    );
+
+    pdf.setFontSize(18);
+
+    pdf.text(
+      "ASSEMBLEIA DE DEUS",
+      148.5,
+      18,
+      {
+        align:"center"
+      }
+    );
+
+
+    pdf.setFontSize(12);
+
+    pdf.text(
+      "MINISTÉRIO DO BELÉM — SETOR 49",
+      148.5,
+      25,
+      {
+        align:"center"
+      }
+    );
+
+
+    pdf.setFontSize(10);
+
+    pdf.setTextColor(
+      52,
+      64,
+      84
+    );
+
+    pdf.text(
+      "RELATÓRIO DE PRESENÇA",
+      148.5,
+      32,
+      {
+        align:"center"
+      }
+    );
+
+
+    /* =========================
+       INFORMAÇÕES
+    ========================= */
+
+    pdf.setFontSize(9);
+
+    pdf.setFont(
+      "helvetica",
+      "normal"
+    );
+
+    pdf.text(
+      "Reunião: " + nomeReuniao,
+      15,
+      42
+    );
+
+    pdf.text(
+      "Data: " + dataFormatada,
+      120,
+      42
+    );
+
+    pdf.text(
+      "Horário: " + horarioRelatorio,
+      210,
+      42
+    );
+
+
+    /* =========================
+       RESUMO GERAL
+    ========================= */
+
+    const total =
+      document.getElementById(
+        "total"
+      )?.textContent || "0";
+
+    const presentes =
+      document.getElementById(
+        "presentes"
+      )?.textContent || "0";
+
+    const justificados =
+      document.getElementById(
+        "justificados"
+      )?.textContent || "0";
+
+    const pendentes =
+      document.getElementById(
+        "pendentes"
+      )?.textContent || "0";
+
+
+    pdf.setFont(
+      "helvetica",
+      "bold"
+    );
+
+    pdf.setFontSize(9);
+
+    pdf.setTextColor(
+      7,
+      60,
+      102
+    );
+
+    pdf.text(
+      "RESUMO GERAL",
+      15,
+      51
+    );
+
+
+    pdf.setFont(
+      "helvetica",
+      "normal"
+    );
+
+    pdf.setTextColor(
+      52,
+      64,
+      84
+    );
+
+    pdf.text(
+      "Total de participantes: " + total,
+      15,
+      58
+    );
+
+    pdf.text(
+      "Presentes: " + presentes,
+      80,
+      58
+    );
+
+    pdf.text(
+      "Justificados: " + justificados,
+      135,
+      58
+    );
+
+    pdf.text(
+      "Não registrados: " + pendentes,
+      205,
+      58
+    );
+
+
+    /* =========================
+       TABELA POR CARGO
+    ========================= */
+
+    const tabelaCargo =
+      document.getElementById(
+        "relatorioCargo"
+      );
+
+    const linhasCargo = [];
+
+    if(tabelaCargo){
+
+      tabelaCargo
+        .querySelectorAll("tr")
+        .forEach(function(linha){
+
+          const celulas =
+            Array.from(
+              linha.querySelectorAll("td")
+            )
+            .map(function(td){
+              return td.textContent.trim();
+            });
+
+          if(celulas.length === 4){
+            linhasCargo.push(celulas);
+          }
+
+        });
+
+    }
+
+
+    pdf.setFont(
+      "helvetica",
+      "bold"
+    );
+
+    pdf.setFontSize(11);
+
+    pdf.setTextColor(
+      7,
+      60,
+      102
+    );
+
+    pdf.text(
+      "Presença por cargo",
+      15,
+      68
+    );
+
+
+    pdf.autoTable({
+
+      startY:72,
+
+      head:[
+        [
+          "Cargo",
+          "Presentes",
+          "Justificados",
+          "Pendentes"
+        ]
+      ],
+
+      body:linhasCargo,
+
+      theme:"grid",
+
+      styles:{
+        font:"helvetica",
+        fontSize:8,
+        cellPadding:2.5
+      },
+
+      headStyles:{
+        fillColor:[
+          7,
+          60,
+          102
+        ],
+        textColor:[
+          255,
+          255,
+          255
+        ],
+        fontStyle:"bold"
+      },
+
+      columnStyles:{
+        0:{
+          cellWidth:90
+        },
+        1:{
+          halign:"center",
+          cellWidth:35
+        },
+        2:{
+          halign:"center",
+          cellWidth:35
+        },
+        3:{
+          halign:"center",
+          cellWidth:35
+        }
+      },
+
+      margin:{
+        left:15,
+        right:15
+      }
+
+    });
+
+
+    /* =========================
+       TABELA POR CONGREGAÇÃO
+    ========================= */
+
+    let proximaY =
+      pdf.lastAutoTable.finalY + 12;
+
+
+    /* Se não couber, cria nova página */
+
+    if(proximaY > 175){
+
+      pdf.addPage();
+
+      proximaY = 18;
+
+    }
+
+
+    const tabelaCongregacao =
+      document.getElementById(
+        "relatorioCongregacao"
+      );
+
+    const linhasCongregacao = [];
+
+    if(tabelaCongregacao){
+
+      tabelaCongregacao
+        .querySelectorAll("tr")
+        .forEach(function(linha){
+
+          const celulas =
+            Array.from(
+              linha.querySelectorAll("td")
+            )
+            .map(function(td){
+              return td.textContent.trim();
+            });
+
+          if(celulas.length === 4){
+            linhasCongregacao.push(celulas);
+          }
+
+        });
+
+    }
+
+
+    pdf.setFont(
+      "helvetica",
+      "bold"
+    );
+
+    pdf.setFontSize(11);
+
+    pdf.setTextColor(
+      7,
+      60,
+      102
+    );
+
+    pdf.text(
+      "Presença por congregação",
+      15,
+      proximaY
+    );
+
+
+    pdf.autoTable({
+
+      startY:
+        proximaY + 4,
+
+      head:[
+        [
+          "Congregação",
+          "Presentes",
+          "Justificados",
+          "Pendentes"
+        ]
+      ],
+
+      body:
+        linhasCongregacao,
+
+      theme:"grid",
+
+      styles:{
+        font:"helvetica",
+        fontSize:7,
+        cellPadding:2
+      },
+
+      headStyles:{
+        fillColor:[
+          7,
+          60,
+          102
+        ],
+        textColor:[
+          255,
+          255,
+          255
+        ],
+        fontStyle:"bold"
+      },
+
+      columnStyles:{
+        0:{
+          cellWidth:150
+        },
+        1:{
+          halign:"center",
+          cellWidth:35
+        },
+        2:{
+          halign:"center",
+          cellWidth:35
+        },
+        3:{
+          halign:"center",
+          cellWidth:35
+        }
+      },
+
+      margin:{
+        left:15,
+        right:15
+      },
+
+      didDrawPage:function(){
+
+        pdf.setFontSize(7);
+
+        pdf.setFont(
+          "helvetica",
+          "normal"
+        );
+
+        pdf.setTextColor(
+          102,
+          112,
+          133
+        );
+
+        pdf.text(
+          "ASSEMBLEIA DE DEUS — MINISTÉRIO DO BELÉM · SETOR 49 — JARDIM DOS PIMENTAS",
+          148.5,
+          202,
+          {
+            align:"center"
+          }
+        );
+
+      }
+
+    });
+
+
+    /* =========================
+       DOWNLOAD AUTOMÁTICO
+    ========================= */
+
+    const nomeArquivo =
+      "Relatorio-Presenca-" +
+      nomeReuniao
+        .replace(
+          /[^a-zA-Z0-9À-ÿ\s-]/g,
+          ""
+        )
+        .trim()
+        .replace(
+          /\s+/g,
+          "-"
+        ) +
+      "-" +
+      data.value +
+      ".pdf";
+
+
+    pdf.save(
+      nomeArquivo
+    );
+
+  });
   
 </script>
 
