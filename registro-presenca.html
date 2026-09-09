@@ -3657,206 +3657,731 @@ document
       return;
     }
 
+    const dataFormatada =
+      new Date(
+        data.value + "T00:00:00"
+      ).toLocaleDateString(
+        "pt-BR"
+      );
+
+    const nomeReuniao =
+      escapeHTML(
+        reuniao.value.trim()
+      );
+
+    const horarioRelatorio =
+      horario.value
+        ? escapeHTML(horario.value)
+        : "Não informado";
+
+
     janela.document.write(`
-      <!DOCTYPE html>
 
-      <html lang="pt-BR">
+<!DOCTYPE html>
 
-      <head>
+<html lang="pt-BR">
 
-        <meta charset="UTF-8">
+<head>
 
-        <title>Relatório de Presença - Setor 49</title>
+<meta charset="UTF-8">
 
-        <style>
+<base href="${window.location.origin}/">
 
-          body{
-            font-family:Arial, Helvetica, sans-serif;
-            margin:30px;
-            color:#344054;
-          }
+<title>Relatório de Presença — Setor 49</title>
 
-          h1{
-            text-align:center;
-            color:#073c66;
-            margin-bottom:5px;
-          }
+<style>
 
-          h2{
-            text-align:center;
-            font-size:16px;
-            color:#344054;
-            margin-top:0;
-          }
+*{
+  box-sizing:border-box;
+}
 
-          .info{
-            text-align:center;
-            margin:20px 0 30px;
-            font-size:13px;
-          }
+@page{
+  size:A4 portrait;
+  margin:10mm;
+}
 
-          .secao{
-            margin-top:30px;
-          }
-
-          .secao h3{
-            color:#073c66;
-            font-size:16px;
-            border-bottom:2px solid #073c66;
-            padding-bottom:8px;
-          }
-
-          table{
-            width:100%;
-            border-collapse:collapse;
-            font-size:12px;
-          }
-
-          th{
-            background:#f1f5f7;
-            color:#073c66;
-            font-weight:900;
-            padding:9px;
-            border:1px solid #dce3e8;
-          }
-
-          td{
-            padding:8px;
-            border:1px solid #dce3e8;
-          }
-
-          td:not(:first-child),
-          th:not(:first-child){
-            text-align:center;
-          }
-
-          .rodape{
-            margin-top:40px;
-            padding-top:15px;
-            border-top:1px solid #dce3e8;
-            text-align:center;
-            font-size:10px;
-            color:#667085;
-          }
-
-          @media print{
-
-            body{
-              margin:15mm;
-            }
-
-          }
-
-        </style>
-
-      </head>
-
-      <body>
-
-        <h1>
-          ASSEMBLEIA DE DEUS
-        </h1>
-
-        <h2>
-          MINISTÉRIO DO BELÉM — SETOR 49
-        </h2>
-
-        <div class="info">
-
-          <strong>RELATÓRIO DE PRESENÇA</strong><br><br>
-
-          <strong>Reunião:</strong>
-          ${escapeHTML(reuniao.value.trim())}
-          <br>
-
-          <strong>Data:</strong>
-          ${new Date(
-            data.value + "T00:00:00"
-          ).toLocaleDateString("pt-BR")}
-
-          ${
-            horario.value
-              ? `
-                <br>
-                <strong>Horário:</strong>
-                ${escapeHTML(horario.value)}
-              `
-              : ""
-          }
-
-        </div>
+body{
+  margin:0;
+  padding:0;
+  font-family:Arial, Helvetica, sans-serif;
+  color:#172b4d;
+  background:#fff;
+}
 
 
-        <div class="secao">
+/* =========================
+   CABEÇALHO OFICIAL
+========================= */
 
-          <h3>
-            📋 Presença por cargo
-          </h3>
+.cabecalho{
 
-          <table>
+  border:2px solid #17365d;
+  border-radius:5px;
 
-            <thead>
+  min-height:92px;
 
-              <tr>
-                <th>Cargo</th>
-                <th>Presentes</th>
-                <th>Justificados</th>
-                <th>Pendentes</th>
-              </tr>
+  display:flex;
+  align-items:center;
 
-            </thead>
+  padding:8px 12px;
 
-            <tbody>
+}
 
-              ${cargo.innerHTML}
+.logo{
 
-            </tbody>
+  width:78px;
+  height:78px;
 
-          </table>
+  object-fit:contain;
 
-        </div>
+  flex-shrink:0;
+
+}
+
+.cabecalho-texto{
+
+  flex:1;
+
+  text-align:center;
+
+  padding-right:78px;
+
+}
+
+.cabecalho-texto .linha1{
+
+  font-size:13px;
+  font-weight:900;
+
+  color:#111;
+
+  margin-bottom:2px;
+
+}
+
+.cabecalho-texto .linha2{
+
+  font-size:11px;
+  font-weight:700;
+
+  color:#333;
+
+  margin-bottom:3px;
+
+}
+
+.cabecalho-texto .setor{
+
+  font-size:13px;
+  font-weight:900;
+
+  color:#1f5fbd;
+
+  margin-bottom:3px;
+
+}
+
+.cabecalho-texto .pastor{
+
+  font-size:8.5px;
+  font-weight:700;
+
+  color:#555;
+
+  margin-bottom:2px;
+
+}
+
+.cabecalho-texto .endereco{
+
+  font-size:7.5px;
+
+  color:#666;
+
+}
 
 
-        <div class="secao">
+/* =========================
+   LINHAS INSTITUCIONAIS
+========================= */
 
-          <h3>
-            ⛪ Presença por congregação
-          </h3>
+.linhas{
 
-          <table>
+  margin-top:5px;
+  margin-bottom:6px;
 
-            <thead>
+}
 
-              <tr>
-                <th>Congregação</th>
-                <th>Presentes</th>
-                <th>Justificados</th>
-                <th>Pendentes</th>
-              </tr>
+.linha-azul{
 
-            </thead>
+  height:3px;
+  background:#1f5fbd;
 
-            <tbody>
+}
 
-              ${congregacao.innerHTML}
+.linha-amarela{
 
-            </tbody>
+  height:3px;
+  background:#f4c542;
 
-          </table>
+  margin-top:3px;
 
-        </div>
+}
 
 
-        <div class="rodape">
+/* =========================
+   TÍTULO
+========================= */
 
-          ASSEMBLEIA DE DEUS — MINISTÉRIO DO BELÉM<br>
-          SETOR 49 — JARDIM DOS PIMENTAS
+.titulo-relatorio{
 
-        </div>
+  display:flex;
 
-      </body>
+  margin-top:6px;
 
-      </html>
+  height:34px;
+
+}
+
+.titulo-relatorio .titulo{
+
+  flex:1;
+
+  background:#17365d;
+
+  color:#fff;
+
+  display:flex;
+  align-items:center;
+
+  padding:0 14px;
+
+  font-size:16px;
+  font-weight:900;
+
+  letter-spacing:.3px;
+
+}
+
+.titulo-relatorio .setor{
+
+  width:105px;
+
+  background:#f4c542;
+
+  color:#17365d;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:13px;
+  font-weight:900;
+
+}
+
+
+/* =========================
+   INFORMAÇÕES
+========================= */
+
+.informacoes{
+
+  background:#eef1f5;
+
+  border-left:1px solid #d5dbe3;
+  border-right:1px solid #d5dbe3;
+  border-bottom:1px solid #d5dbe3;
+
+  text-align:center;
+
+  padding:6px;
+
+  font-size:9px;
+
+  color:#17365d;
+
+}
+
+.informacoes strong{
+
+  font-weight:900;
+
+}
+
+
+/* =========================
+   RESUMO
+========================= */
+
+.resumo{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:5px;
+
+  margin-top:8px;
+  margin-bottom:9px;
+
+}
+
+.resumo-item{
+
+  border:1px solid #d7dde5;
+
+  background:#f8f9fb;
+
+  text-align:center;
+
+  padding:6px 4px;
+
+}
+
+.resumo-item .rotulo{
+
+  font-size:7px;
+
+  font-weight:900;
+
+  color:#596579;
+
+  margin-bottom:3px;
+
+}
+
+.resumo-item .numero{
+
+  font-size:15px;
+
+  font-weight:900;
+
+  color:#17365d;
+
+}
+
+
+/* =========================
+   SEÇÕES
+========================= */
+
+.secao{
+
+  margin-top:9px;
+
+}
+
+.secao-titulo{
+
+  background:#17365d;
+
+  color:#fff;
+
+  padding:5px 8px;
+
+  font-size:10px;
+
+  font-weight:900;
+
+  border-left:5px solid #f4c542;
+
+}
+
+
+/* =========================
+   TABELAS
+========================= */
+
+table{
+
+  width:100%;
+
+  border-collapse:collapse;
+
+  table-layout:fixed;
+
+  font-size:7.5px;
+
+}
+
+thead{
+
+  display:table-header-group;
+
+}
+
+th{
+
+  background:#dfe7f2;
+
+  color:#17365d;
+
+  font-weight:900;
+
+  padding:4px 5px;
+
+  border:1px solid #cbd4df;
+
+  text-align:left;
+
+}
+
+td{
+
+  padding:3px 5px;
+
+  border:1px solid #d9dee6;
+
+  color:#243b5a;
+
+}
+
+tr{
+
+  page-break-inside:avoid;
+
+}
+
+th:not(:first-child),
+td:not(:first-child){
+
+  text-align:center;
+
+}
+
+td.numero-presente{
+
+  color:#079447;
+
+  font-weight:900;
+
+}
+
+td.numero-justificado{
+
+  color:#a26b00;
+
+  font-weight:900;
+
+}
+
+td.numero-pendente{
+
+  color:#b51e2a;
+
+  font-weight:900;
+
+}
+
+
+/* =========================
+   RODAPÉ
+========================= */
+
+.rodape{
+
+  margin-top:15px;
+
+  padding-top:8px;
+
+  border-top:1px solid #d5dbe3;
+
+  text-align:center;
+
+  font-size:7.5px;
+
+  font-weight:700;
+
+  color:#666;
+
+}
+
+
+/* =========================
+   IMPRESSÃO
+========================= */
+
+@media print{
+
+  body{
+
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+
+  }
+
+  .secao{
+
+    page-break-inside:auto;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- CABEÇALHO -->
+
+<div class="cabecalho">
+
+  <img
+    src="logo.png"
+    class="logo"
+    alt="Logo"
+  >
+
+  <div class="cabecalho-texto">
+
+    <div class="linha1">
+      IGREJA EVANGÉLICA ASSEMBLEIA DE DEUS EM SÃO PAULO
+    </div>
+
+    <div class="linha2">
+      MINISTÉRIO DO BELÉM
+    </div>
+
+    <div class="setor">
+      SETOR 49 — JARDIM DOS PIMENTAS
+    </div>
+
+    <div class="pastor">
+      PASTOR SETORIAL: SAMUEL GARCIA
+    </div>
+
+    <div class="endereco">
+      RUA ANTONIO BITTENCOURT, 684 —
+      CEP 07260-040 — JARDIM DOS PIMENTAS —
+      GUARULHOS (SP)
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- LINHAS -->
+
+<div class="linhas">
+
+  <div class="linha-azul"></div>
+
+  <div class="linha-amarela"></div>
+
+</div>
+
+
+<!-- TÍTULO -->
+
+<div class="titulo-relatorio">
+
+  <div class="titulo">
+    RELATÓRIO DE PRESENÇA
+  </div>
+
+  <div class="setor">
+    SETOR 49
+  </div>
+
+</div>
+
+
+<!-- INFORMAÇÕES -->
+
+<div class="informacoes">
+
+  <strong>REUNIÃO / EVENTO:</strong>
+  ${nomeReuniao}
+
+  &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+
+  <strong>DATA:</strong>
+  ${dataFormatada}
+
+  &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+
+  <strong>HORÁRIO:</strong>
+  ${horarioRelatorio}
+
+</div>
+
+
+<!-- RESUMO -->
+
+<div class="resumo">
+
+  <div class="resumo-item">
+
+    <div class="rotulo">
+      TOTAL DE PARTICIPANTES
+    </div>
+
+    <div class="numero">
+      ${
+        document.getElementById("total")?.textContent || "0"
+      }
+    </div>
+
+  </div>
+
+
+  <div class="resumo-item">
+
+    <div class="rotulo">
+      PRESENTES
+    </div>
+
+    <div class="numero">
+      ${
+        document.getElementById("presentes")?.textContent || "0"
+      }
+    </div>
+
+  </div>
+
+
+  <div class="resumo-item">
+
+    <div class="rotulo">
+      JUSTIFICADOS
+    </div>
+
+    <div class="numero">
+      ${
+        document.getElementById("justificados")?.textContent || "0"
+      }
+    </div>
+
+  </div>
+
+
+  <div class="resumo-item">
+
+    <div class="rotulo">
+      NÃO REGISTRADOS
+    </div>
+
+    <div class="numero">
+      ${
+        document.getElementById("pendentes")?.textContent || "0"
+      }
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- POR CARGO -->
+
+<div class="secao">
+
+  <div class="secao-titulo">
+    PRESENÇA POR CARGO
+  </div>
+
+  <table>
+
+    <thead>
+
+      <tr>
+
+        <th style="width:55%;">
+          CARGO
+        </th>
+
+        <th style="width:15%;">
+          PRESENTES
+        </th>
+
+        <th style="width:15%;">
+          JUSTIFICADOS
+        </th>
+
+        <th style="width:15%;">
+          PENDENTES
+        </th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      ${cargo.innerHTML}
+
+    </tbody>
+
+  </table>
+
+</div>
+
+
+<!-- POR CONGREGAÇÃO -->
+
+<div class="secao">
+
+  <div class="secao-titulo">
+    PRESENÇA POR CONGREGAÇÃO
+  </div>
+
+  <table>
+
+    <thead>
+
+      <tr>
+
+        <th style="width:55%;">
+          CONGREGAÇÃO
+        </th>
+
+        <th style="width:15%;">
+          PRESENTES
+        </th>
+
+        <th style="width:15%;">
+          JUSTIFICADOS
+        </th>
+
+        <th style="width:15%;">
+          PENDENTES
+        </th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      ${congregacao.innerHTML}
+
+    </tbody>
+
+  </table>
+
+</div>
+
+
+<!-- RODAPÉ -->
+
+<div class="rodape">
+
+  SECRETARIA SETORIAL — SETOR 49
+
+</div>
+
+
+</body>
+
+</html>
+
     `);
 
     janela.document.close();
