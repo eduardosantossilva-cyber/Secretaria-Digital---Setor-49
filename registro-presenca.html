@@ -908,48 +908,6 @@ footer{
    RELATÓRIO DA CHAMADA
 ========================= */
 
-/* =========================
-   BOTÕES DO RELATÓRIO
-========================= */
-
-.acoes-relatorio{
-  display:flex;
-  justify-content:flex-end;
-  gap:10px;
-  margin-top:22px;
-  margin-bottom:0;
-}
-
-.btn-relatorio{
-  border:0;
-  border-radius:10px;
-  padding:11px 16px;
-  background:#073c66;
-  color:#fff;
-  font-family:inherit;
-  font-size:12px;
-  font-weight:900;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.btn-relatorio:hover{
-  background:#159dd1;
-  transform:translateY(-1px);
-}
-
-@media(max-width:600px){
-
-  .acoes-relatorio{
-    flex-direction:column;
-  }
-
-  .btn-relatorio{
-    width:100%;
-  }
-
-}
-
 .relatorio-presenca{
   margin-top:22px;
   margin-bottom:28px;
@@ -1069,6 +1027,7 @@ footer{
 }
 
 /* PAINÉIS RECOLHÍVEIS DOS RELATÓRIOS */
+
 
 .relatorio-card{
   background:#fff;
@@ -1285,12 +1244,14 @@ footer{
 .relatorio-conteudo.aberto{
   display:block;
 }
-
+  
 </style>
 
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -1298,15 +1259,14 @@ footer{
 
     <div class="titulo">
 
-      <h1>
-        👥 Registro de Presença
-      </h1>
+      <h1>👥 Registro de Presença</h1>
 
       <p>
         Controle de presença — AD Belém 49
       </p>
 
     </div>
+
 
     <div class="acoes-cabecalho">
 
@@ -1318,7 +1278,7 @@ footer{
       </a>
 
       <img
-        src="logo.png"
+        src="assets/Logo-Belem.png"
         class="logo"
         alt="AD Belém"
       >
@@ -1329,7 +1289,9 @@ footer{
 
 </header>
 
+
 <main>
+
 
   <!-- =========================
        CONFIGURAÇÃO
@@ -1337,11 +1299,10 @@ footer{
 
   <section class="configuracao">
 
-    <h2>
-      📋 Dados da reunião
-    </h2>
+    <h2>📋 Dados da reunião</h2>
 
     <div class="config-grid">
+
 
       <div class="campo">
 
@@ -1357,6 +1318,7 @@ footer{
 
       </div>
 
+
       <div class="campo">
 
         <label for="data">
@@ -1370,6 +1332,7 @@ footer{
 
       </div>
 
+
       <div class="campo">
 
         <label for="horario">
@@ -1382,6 +1345,7 @@ footer{
         >
 
       </div>
+
 
       <div class="campo">
 
@@ -1397,10 +1361,139 @@ footer{
 
       </div>
 
+
     </div>
 
   </section>
 
+<!-- =========================
+     RELATÓRIO DA CHAMADA
+========================= -->
+
+<section class="relatorio-presenca">
+
+  <!-- =========================
+       POR CARGO
+  ========================= -->
+  <div class="relatorio-box">
+
+    <div
+      class="relatorio-titulo"
+      onclick="alternarRelatorio('cargo', this)"
+    >
+
+      <div class="relatorio-titulo-texto">
+        <h3>📋 Presença por cargo</h3>
+        <p>Acompanhamento dos participantes por função e situação.</p>
+      </div>
+
+      <button
+        type="button"
+        class="relatorio-seta"
+        aria-label="Abrir ou fechar relatório por cargo"
+      >
+        ▼
+      </button>
+
+    </div>
+
+    <div
+      class="relatorio-conteudo"
+      id="relatorioConteudoCargo"
+    >
+
+      <table class="relatorio-tabela">
+
+        <thead>
+          <tr>
+            <th>Cargo</th>
+            <th>Presentes</th>
+            <th>Justificados</th>
+            <th>Pendentes</th>
+          </tr>
+        </thead>
+
+        <tbody id="relatorioCargo">
+
+          <tr>
+            <td
+              colspan="4"
+              class="relatorio-vazio"
+            >
+              Aguardando dados...
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       POR CONGREGAÇÃO
+  ========================= -->
+  <div class="relatorio-box">
+
+    <div
+      class="relatorio-titulo"
+      onclick="alternarRelatorio('congregacao', this)"
+    >
+
+      <div class="relatorio-titulo-texto">
+        <h3>⛪ Presença por congregação</h3>
+        <p>Acompanhamento da chamada por congregação.</p>
+      </div>
+
+      <button
+        type="button"
+        class="relatorio-seta"
+        aria-label="Abrir ou fechar relatório por congregação"
+      >
+        ▼
+      </button>
+
+    </div>
+
+    <div
+      class="relatorio-conteudo"
+      id="relatorioConteudoCongregacao"
+    >
+
+      <table class="relatorio-tabela">
+
+        <thead>
+          <tr>
+            <th>Congregação</th>
+            <th>Presentes</th>
+            <th>Justificados</th>
+            <th>Pendentes</th>
+          </tr>
+        </thead>
+
+        <tbody id="relatorioCongregacao">
+
+          <tr>
+            <td
+              colspan="4"
+              class="relatorio-vazio"
+            >
+              Aguardando dados...
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
 
   <!-- =========================
        RESUMO
@@ -1408,11 +1501,10 @@ footer{
 
   <section class="resumo">
 
+
     <div class="resumo-card">
 
-      <h3>
-        👥 Total de participantes
-      </h3>
+      <h3>👥 Total de participantes</h3>
 
       <div
         class="resumo-numero"
@@ -1423,11 +1515,10 @@ footer{
 
     </div>
 
+
     <div class="resumo-card presente">
 
-      <h3>
-        🟢 Presentes
-      </h3>
+      <h3>🟢 Presentes</h3>
 
       <div
         class="resumo-numero"
@@ -1438,11 +1529,10 @@ footer{
 
     </div>
 
+
     <div class="resumo-card justificado">
 
-      <h3>
-        🟡 Justificados
-      </h3>
+      <h3>🟡 Justificados</h3>
 
       <div
         class="resumo-numero"
@@ -1453,11 +1543,10 @@ footer{
 
     </div>
 
+
     <div class="resumo-card pendente">
 
-      <h3>
-        🔴 Não registrados
-      </h3>
+      <h3>🔴 Não registrados</h3>
 
       <div
         class="resumo-numero"
@@ -1468,6 +1557,7 @@ footer{
 
     </div>
 
+
   </section>
 
 
@@ -1477,73 +1567,78 @@ footer{
 
   <section class="painel-lista">
 
+
     <div class="painel-topo">
 
-      <h2>
-        Participantes
-      </h2>
+      <h2>👤 Participantes</h2>
 
-      <div
+      <span
         class="atualizacao"
         id="ultimaAtualizacao"
       >
-        Aguardando configuração...
-      </div>
+        Aguardando dados...
+      </span>
 
     </div>
 
 
+    <!-- FILTROS -->
+
     <div class="filtros">
+
 
       <input
         type="text"
         id="busca"
-        placeholder="🔎 Buscar por nome..."
+        placeholder="🔎 Pesquisar pelo nome..."
       >
+
 
       <select id="filtroCongregacao">
 
         <option value="">
-          Todas as congregações
+          ⛪ Todas as congregações
         </option>
 
       </select>
+
 
       <select id="filtroCargo">
 
         <option value="">
-          Todos os cargos
+          👔 Todos os cargos
         </option>
 
       </select>
 
+
     </div>
 
 
+    <!-- LISTA -->
+
     <div
       class="lista"
-      id="listaParticipantes"
+      id="lista"
     >
 
       <div class="mensagem">
-        Informe a reunião e a data para carregar os participantes.
+        Carregando participantes...
       </div>
 
     </div>
 
 
-    <!-- =========================
-         PARTICIPANTE AVULSO
-    ========================= -->
+    <!-- AVULSO -->
 
     <div class="avulso">
 
       <button
         type="button"
         class="btn-avulso"
-        id="btnAbrirAvulso"
+        onclick="abrirAvulso()"
       >
-        ➕ Registrar participante avulso
+        ➕ Cadastrar participante avulso
       </button>
 
 
@@ -1554,16 +1649,17 @@ footer{
 
         <div class="form-avulso-grid">
 
+
           <div class="campo">
 
             <label for="avulsoNome">
-              Nome
+              Nome completo
             </label>
 
             <input
               type="text"
               id="avulsoNome"
-              placeholder="Nome completo"
+              placeholder="Nome do participante"
             >
 
           </div>
@@ -1575,11 +1671,13 @@ footer{
               Congregação
             </label>
 
-            <input
-              type="text"
-              id="avulsoCongregacao"
-              placeholder="Congregação"
-            >
+            <select id="avulsoCongregacao">
+
+              <option value="">
+                Selecione
+              </option>
+
+            </select>
 
           </div>
 
@@ -1596,29 +1694,10 @@ footer{
                 Selecione
               </option>
 
-              <option value="PASTOR">
-                PASTOR
-              </option>
-
-              <option value="EVANGELISTA">
-                EVANGELISTA
-              </option>
-
-              <option value="PRESBÍTERO">
-                PRESBÍTERO
-              </option>
-
-              <option value="COOPERADOR">
-                COOPERADOR
-              </option>
-
-              <option value="DIÁCONO">
-                DIÁCONO
-              </option>
-
             </select>
 
           </div>
+
 
         </div>
 
@@ -1628,7 +1707,7 @@ footer{
           <button
             type="button"
             class="btn btn-cancelar"
-            id="btnCancelarAvulso"
+            onclick="fecharAvulso()"
           >
             Cancelar
           </button>
@@ -1636,9 +1715,9 @@ footer{
           <button
             type="button"
             class="btn btn-cadastrar"
-            id="btnCadastrarAvulso"
+            onclick="cadastrarAvulso()"
           >
-            Registrar participante
+            ➕ Cadastrar e registrar
           </button>
 
         </div>
@@ -1647,1237 +1726,905 @@ footer{
 
     </div>
 
-  </section>  
-
-    <!-- =========================
-       RELATÓRIOS
-  ========================= -->
-
-  <section class="relatorio-presenca">
-
-    <div class="relatorio-box">
-
-      <div
-        class="relatorio-titulo"
-        id="cabecalhoRelatorioCargo"
-        onclick="alternarRelatorio('cargo', this)"
-      >
-
-        <div class="relatorio-titulo-texto">
-
-          <h3>
-            📋 Presença por cargo
-          </h3>
-
-          <p>
-            Resumo da presença dos participantes por cargo eclesiástico.
-          </p>
-
-        </div>
-
-        <div
-          class="relatorio-seta"
-        >
-          ▼
-        </div>
-
-      </div>
-
-
-      <div
-        class="relatorio-conteudo"
-        id="conteudoRelatorioCargo"
-      >
-
-        <table class="relatorio-tabela">
-
-          <thead>
-
-            <tr>
-
-              <th>
-                Cargo
-              </th>
-
-              <th>
-                Presentes
-              </th>
-
-              <th>
-                Justificados
-              </th>
-
-              <th>
-                Pendentes
-              </th>
-
-            </tr>
-
-          </thead>
-
-          <tbody
-            id="relatorioCargo"
-          >
-
-          </tbody>
-
-        </table>
-
-      </div>
-
-    </div>
-
-
-    <div class="relatorio-box">
-
-      <div
-        class="relatorio-titulo"
-        id="cabecalhoRelatorioCongregacao"
-        onclick="alternarRelatorio('congregacao', this)"
-      >
-
-        <div class="relatorio-titulo-texto">
-
-          <h3>
-            ⛪ Presença por congregação
-          </h3>
-
-          <p>
-            Resumo da presença dos participantes por congregação.
-          </p>
-
-        </div>
-
-        <div
-          class="relatorio-seta"
-        >
-          ▼
-        </div>
-
-      </div>
-
-
-      <div
-        class="relatorio-conteudo"
-        id="conteudoRelatorioCongregacao"
-      >
-
-        <table class="relatorio-tabela">
-
-          <thead>
-
-            <tr>
-
-              <th>
-                Congregação
-              </th>
-
-              <th>
-                Presentes
-              </th>
-
-              <th>
-                Justificados
-              </th>
-
-              <th>
-                Pendentes
-              </th>
-
-            </tr>
-
-          </thead>
-
-          <tbody
-            id="relatorioCongregacao"
-          >
-
-          </tbody>
-
-        </table>
-
-      </div>
-
-    </div>
 
   </section>
 
 
-  <!-- =========================
-       AÇÕES DO RELATÓRIO
-  ========================= -->
+</main>
 
-  <div class="acoes-relatorio">
 
-    <button
-      type="button"
-      class="btn-relatorio"
-      id="btnImprimirRelatorio"
-    >
-      🖨️ Imprimir relatório
-    </button>
+<footer>
 
-    <button
-      type="button"
-      class="btn-relatorio"
-      id="btnGerarPDF"
-    >
-      📄 Gerar PDF
-    </button>
+  ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM
+  · SETOR 49 - JARDIM DOS PIMENTAS
 
-  </div>
+  <br>
 
+  <small>
+    PORTAL AD BELÉM - SETOR 49
+  </small>
 
-  <!-- =========================
-       MODAL DE JUSTIFICATIVA
-  ========================= -->
+</footer>
 
-  <div
-    class="modal"
-    id="modalJustificativa"
-  >
 
-    <div class="modal-caixa">
+<script>
 
-      <div class="modal-cabecalho">
 
-        <strong>
-          🟡 Justificar ausência
-        </strong>
+/*******************************************************
+ * API
+ *******************************************************/
 
-        <button
-          type="button"
-          class="modal-fechar"
-          id="fecharModalJustificativa"
-        >
-          ×
-        </button>
+if(sessionStorage.getItem("acessoSecretaria") !== "autorizado"){
+  window.location.href = "area-restrita.html";
+}
+  
+const API_URL =
+  "https://script.google.com/macros/s/AKfycbxAx9Hu8eTMGGGSIZqNLXfmSVopSYz8Gd5hWENdq8jM3WBBkITLh-yxANER0awn4UOD/exec";
 
-      </div>
 
+/*******************************************************
+ * VARIÁVEIS
+ *******************************************************/
 
-      <div class="modal-corpo">
+let obreiros = [];
 
-        <p id="textoJustificativa">
-          Informe o motivo da ausência.
-        </p>
+let registros = [];
 
-        <div class="campo">
+let callbackContador = 0;
 
-          <label for="campoJustificativa">
-            Justificativa
-          </label>
+let justificativaAberta = false;
 
-          <textarea
-            id="campoJustificativa"
-            placeholder="Digite a justificativa..."
-          ></textarea>
 
-        </div>
+/*******************************************************
+ * ELEMENTOS
+ *******************************************************/
 
+const lista =
+  document.getElementById("lista");
 
-        <div class="acoes-avulso">
+const busca =
+  document.getElementById("busca");
 
-          <button
-            type="button"
-            class="btn btn-cancelar"
-            id="cancelarJustificativa"
-          >
-            Cancelar
-          </button>
+const filtroCongregacao =
+  document.getElementById("filtroCongregacao");
 
-          <button
-            type="button"
-            class="btn btn-confirmar"
-            id="confirmarJustificativa"
-          >
-            Confirmar justificativa
-          </button>
+const filtroCargo =
+  document.getElementById("filtroCargo");
 
-        </div>
+const reuniao =
+  document.getElementById("reuniao");
 
-      </div>
+const data =
+  document.getElementById("data");
 
-    </div>
+const horario =
+  document.getElementById("horario");
 
-  </div>
+const operador =
+  document.getElementById("operador");
 
 
-  <!-- =========================
-       ATENDIMENTO
-  ========================= -->
+/*******************************************************
+ * DATA ATUAL
+ *******************************************************/
 
-  <button
-    class="atendimento-botao"
-    id="atendimentoBotao"
-    type="button"
-  >
-    💬 Atendimento
-  </button>
+function colocarDataAtual(){
 
+  const hoje =
+    new Date();
 
-  <div
-    class="atendimento-chat"
-    id="atendimentoChat"
-  >
+  const ano =
+    hoje.getFullYear();
 
-    <div class="atendimento-header">
+  const mes =
+    String(
+      hoje.getMonth() + 1
+    ).padStart(2,"0");
 
-      <div>
+  const dia =
+    String(
+      hoje.getDate()
+    ).padStart(2,"0");
 
-        <strong>
-          💬 Atendimento
-        </strong>
+  data.value =
+    `${ano}-${mes}-${dia}`;
 
-        <small>
-          Secretaria Digital — Setor 49
-        </small>
+}
 
-      </div>
 
-      <button
-        class="atendimento-fechar"
-        id="atendimentoFechar"
-        type="button"
-      >
-        ×
-      </button>
+/*******************************************************
+ * JSONP
+ *******************************************************/
 
-    </div>
+function chamarAPI(
+  parametros,
+  callback
+){
 
+  const nomeCallback =
+    "callbackPresenca_" +
+    Date.now() +
+    "_" +
+    callbackContador++;
 
-    <div class="atendimento-corpo">
+  window[nomeCallback] =
+    function(dados){
 
-      <div
-        class="atendimento-opcoes"
-        id="atendimentoOpcoes"
-      >
+      try{
 
-        <button
-          type="button"
-          class="atendimento-opcao"
-          id="novaSolicitacao"
-        >
-          💬 Fazer uma solicitação
-        </button>
+        callback(dados);
 
-        <button
-          type="button"
-          class="atendimento-opcao"
-          id="consultarProtocolo"
-        >
-          🔎 Consultar protocolo
-        </button>
+      }finally{
 
-      </div>
+        delete window[nomeCallback];
 
+        const script =
+          document.getElementById(
+            nomeCallback
+          );
 
-      <div
-        id="formularioAtendimento"
-        style="display:none;"
-      >
+        if(script){
+          script.remove();
+        }
 
-        <p>
-          Olá! Como podemos ajudar? Preencha os dados abaixo para enviar sua solicitação.
-        </p>
+      }
 
+    };
 
-        <div class="atendimento-campo">
 
-          <label for="atendimentoNome">
-            Nome
-          </label>
+  const query =
+    Object.keys(parametros)
 
-          <input
-            type="text"
-            id="atendimentoNome"
-            placeholder="Digite seu nome"
-          >
+      .map(
+        chave =>
+          encodeURIComponent(chave) +
+          "=" +
+          encodeURIComponent(
+            parametros[chave]
+          )
+      )
 
-        </div>
+      .join("&");
 
 
-        <div class="atendimento-campo">
+  const script =
+    document.createElement("script");
 
-          <label for="atendimentoWhatsapp">
-            WhatsApp
-          </label>
 
-          <input
-            type="tel"
-            id="atendimentoWhatsapp"
-            placeholder="(11) 99999-9999"
-          >
+  script.id =
+    nomeCallback;
 
-        </div>
 
+  script.src =
+    API_URL +
+    "?" +
+    query +
+    "&callback=" +
+    encodeURIComponent(
+      nomeCallback
+    );
 
-        <div class="atendimento-campo">
 
-          <label for="atendimentoTipo">
-            Tipo de atendimento
-          </label>
+  script.onerror =
+    function(){
 
-          <select id="atendimentoTipo">
+      delete window[nomeCallback];
 
-            <option value="">
-              Selecione uma opção
-            </option>
+      script.remove();
 
-            <option value="Dúvida">
-              Dúvida
-            </option>
+      callback({
 
-            <option value="Solicitação">
-              Solicitação
-            </option>
+        sucesso:false,
 
-            <option value="Informação">
-              Informação
-            </option>
-
-            <option value="Outro">
-              Outro
-            </option>
-
-          </select>
-
-        </div>
-
-
-        <div class="atendimento-campo">
-
-          <label for="atendimentoAssunto">
-            Assunto
-          </label>
-
-          <input
-            type="text"
-            id="atendimentoAssunto"
-            placeholder="Sobre o que você precisa?"
-          >
-
-        </div>
-
-
-        <div class="atendimento-campo">
-
-          <label for="atendimentoMensagem">
-            Mensagem
-          </label>
-
-          <textarea
-            id="atendimentoMensagem"
-            placeholder="Digite sua dúvida ou solicitação..."
-          ></textarea>
-
-        </div>
-
-
-        <button
-          class="atendimento-enviar"
-          id="atendimentoEnviar"
-          type="button"
-        >
-          ENVIAR SOLICITAÇÃO →
-        </button>
-
-
-        <button
-          type="button"
-          class="atendimento-voltar"
-          id="voltarSolicitacao"
-        >
-          ← Voltar
-        </button>
-
-      </div>
-
-
-      <div
-        id="consultaProtocolo"
-        style="display:none;"
-      >
-
-        <p>
-          Digite seu protocolo para consultar o andamento da sua solicitação.
-        </p>
-
-
-        <div class="atendimento-campo">
-
-          <label for="numeroProtocolo">
-            Número do protocolo
-          </label>
-
-          <input
-            type="text"
-            id="numeroProtocolo"
-            placeholder="ATD-2026-000001"
-          >
-
-        </div>
-
-
-        <button
-          type="button"
-          class="atendimento-enviar"
-          id="botaoConsultar"
-        >
-          CONSULTAR PROTOCOLO →
-        </button>
-
-
-        <button
-          type="button"
-          class="atendimento-voltar"
-          id="voltarAtendimento"
-        >
-          ← Voltar
-        </button>
-
-      </div>
-
-
-      <div
-        id="resultadoProtocolo"
-        style="display:none;"
-      ></div>
-
-    </div>
-
-  </div>
-
-
-  <!-- =========================
-       RODAPÉ
-  ========================= -->
-
-  <footer>
-
-    Secretaria Digital — AD Belém 49<br>
-
-    Setor 49 — Jardim dos Pimentas
-
-  </footer>
-
-
-  <!-- =========================
-       JAVASCRIPT
-  ========================= -->
-
-  <script>
-
-  const API =
-    "https://script.google.com/macros/s/AKfycbxAx9Hu8eTMGGGSIZqNLXfmSVopSYz8Gd5hWENdq8jM3WBBkITLh-yxANER0awn4UOD/exec";
-
-
-  let participantes = [];
-
-  let registros = [];
-
-  let pessoaSelecionada = null;
-
-  let justificativaAberta = false;
-
-
-  /* =========================
-     ELEMENTOS
-  ========================= */
-
-  const reuniao =
-    document.getElementById("reuniao");
-
-  const data =
-    document.getElementById("data");
-
-  const horario =
-    document.getElementById("horario");
-
-  const operador =
-    document.getElementById("operador");
-
-  const busca =
-    document.getElementById("busca");
-
-  const filtroCongregacao =
-    document.getElementById("filtroCongregacao");
-
-  const filtroCargo =
-    document.getElementById("filtroCargo");
-
-  const listaParticipantes =
-    document.getElementById("listaParticipantes");
-
-
-  /* =========================
-     CHAMADA API
-  ========================= */
-
-  function chamarAPI(parametros, callback){
-
-    const query =
-      new URLSearchParams(parametros);
-
-    fetch(
-      API + "?" + query.toString()
-    )
-
-      .then(function(resposta){
-
-        return resposta.json();
-
-      })
-
-      .then(function(resultado){
-
-        callback(resultado);
-
-      })
-
-      .catch(function(erro){
-
-        console.error(
-          "Erro na API:",
-          erro
-        );
-
-        alert(
-          "Não foi possível acessar o sistema."
-        );
+        erro:
+          "Não foi possível conectar com a API."
 
       });
 
-  }
+    };
 
 
-  /* =========================
-     CARREGAR PARTICIPANTES
-  ========================= */
+  document.body.appendChild(script);
 
-  function carregarParticipantes(){
-
-    listaParticipantes.innerHTML =
-      '<div class="carregando">' +
-      '<div class="spinner"></div>' +
-      'Carregando participantes...' +
-      '</div>';
+}
 
 
-    chamarAPI(
-      {
-        acao:"listarObreiros"
-      },
+/*******************************************************
+ * CARREGAR OBREIROS
+ *******************************************************/
 
-      function(resultado){
+function carregarObreiros(){
 
-        if(
-          !resultado ||
-          !resultado.sucesso
-        ){
-
-          listaParticipantes.innerHTML =
-            '<div class="mensagem">' +
-            'Não foi possível carregar os participantes.' +
-            '</div>';
-
-          return;
-        }
+  lista.innerHTML =
+    `<div class="mensagem">
+      Carregando participantes...
+    </div>`;
 
 
-        participantes =
-          resultado.obreiros ||
-          resultado.participantes ||
-          [];
+  chamarAPI(
 
+    {
+      acao:"obreiros"
+    },
 
-        preencherFiltros();
+    function(dados){
 
-        atualizarRegistros();
+      if(
+        !dados ||
+        !dados.sucesso
+      ){
+
+        lista.innerHTML =
+          `<div class="mensagem">
+            ⚠️ Não foi possível carregar os participantes.
+            <br><br>
+            ${dados?.erro || ""}
+          </div>`;
+
+        return;
 
       }
-    );
-
-  }
 
 
-  /* =========================
-     FILTROS
-  ========================= */
-
-  function preencherFiltros(){
-
-    const congregacoes =
-      [...new Set(
-        participantes.map(function(p){
-          return String(
-            p.congregacao ||
-            p.CONGREGAÇÃO ||
-            ""
-          ).trim();
-        })
-      )]
-      .filter(Boolean)
-      .sort();
+      obreiros =
+        dados.obreiros || [];
 
 
-    const cargos =
-      [...new Set(
-        participantes.map(function(p){
-          return String(
-            p.cargo ||
-            p["CARGO ECLESIÁSTICO"] ||
-            ""
-          ).trim();
-        })
-      )]
-      .filter(Boolean)
-      .sort();
+      montarFiltros();
 
-
-    filtroCongregacao.innerHTML =
-      '<option value="">Todas as congregações</option>';
-
-
-    congregacoes.forEach(function(nome){
-
-      filtroCongregacao.innerHTML +=
-        '<option value="' +
-        nome.replace(/"/g,"&quot;") +
-        '">' +
-        nome +
-        '</option>';
-
-    });
-
-
-    filtroCargo.innerHTML =
-      '<option value="">Todos os cargos</option>';
-
-
-    cargos.forEach(function(cargo){
-
-      filtroCargo.innerHTML +=
-        '<option value="' +
-        cargo.replace(/"/g,"&quot;") +
-        '">' +
-        cargo +
-        '</option>';
-
-    });
-
-  }
-
-
-  /* =========================
-     ID DA PESSOA
-  ========================= */
-
-  function obterIdPessoa(p){
-
-    return String(
-      p.id ||
-      p.idPessoa ||
-      p.ID ||
-      ""
-    ).trim();
-
-  }
-
-
-  /* =========================
-     ATUALIZAR REGISTROS
-  ========================= */
-
-  function atualizarRegistros(){
-
-    if(justificativaAberta){
-      return;
-    }
-
-
-    if(
-      !data.value ||
-      !reuniao.value.trim()
-    ){
+      renderizar();
 
       atualizarResumo();
 
-      return;
+      atualizarRegistros();
+
     }
 
+  );
 
-    chamarAPI(
-
-      {
-        acao:"registros",
-        data:data.value,
-        reuniao:reuniao.value.trim()
-      },
-
-      function(resultado){
-
-        if(
-          !resultado ||
-          !resultado.sucesso
-        ){
-          return;
-        }
+}
 
 
-        registros =
-          resultado.registros || [];
+/*******************************************************
+ * MONTAR FILTROS
+ *******************************************************/
+
+function montarFiltros(){
+
+  const congregacoes =
+    [...new Set(
+
+      obreiros
+
+        .map(
+          pessoa =>
+            pessoa.congregacao
+        )
+
+        .filter(Boolean)
+
+    )]
+
+    .sort();
 
 
-        renderizar();
+  const cargos =
+    [...new Set(
 
-        atualizarResumo();
+      obreiros
+
+        .map(
+          pessoa =>
+            pessoa.cargo
+        )
+
+        .filter(Boolean)
+
+    )]
+
+    .sort();
 
 
-        document
-          .getElementById("ultimaAtualizacao")
-          .textContent =
-            "Atualizado às " +
-            new Date()
-              .toLocaleTimeString(
-                "pt-BR",
-                {
-                  hour:"2-digit",
-                  minute:"2-digit"
-                }
-              );
+  filtroCongregacao.innerHTML =
+    `<option value="">
+      ⛪ Todas as congregações
+    </option>`;
 
-      }
 
+  congregacoes.forEach(
+    congregacao => {
+
+      filtroCongregacao.innerHTML +=
+        `<option value="${escapeHTML(congregacao)}">
+          ${escapeHTML(congregacao)}
+        </option>`;
+
+    }
+  );
+
+
+  filtroCargo.innerHTML =
+    `<option value="">
+      👔 Todos os cargos
+    </option>`;
+
+
+  cargos.forEach(
+    cargo => {
+
+      filtroCargo.innerHTML +=
+        `<option value="${escapeHTML(cargo)}">
+          ${escapeHTML(cargo)}
+        </option>`;
+
+    }
+  );
+
+
+  const avulsoCongregacao =
+    document.getElementById(
+      "avulsoCongregacao"
     );
 
-  }
 
-
-  /* =========================
-     ENCONTRAR REGISTRO
-  ========================= */
-
-  function encontrarRegistro(id){
-
-    return registros.find(
-      function(registro){
-
-        return registro.idPessoa === id;
-
-      }
+  const avulsoCargo =
+    document.getElementById(
+      "avulsoCargo"
     );
 
-  }
+
+  avulsoCongregacao.innerHTML =
+    `<option value="">
+      Selecione
+    </option>`;
 
 
-  /* =========================
-     RENDERIZAR
-  ========================= */
+  congregacoes.forEach(
+    congregacao => {
 
-  function renderizar(){
+      avulsoCongregacao.innerHTML +=
+        `<option value="${escapeHTML(congregacao)}">
+          ${escapeHTML(congregacao)}
+        </option>`;
 
-    const termo =
+    }
+  );
+
+
+  avulsoCargo.innerHTML =
+    `<option value="">
+      Selecione
+    </option>`;
+
+
+  cargos.forEach(
+    cargo => {
+
+      avulsoCargo.innerHTML +=
+        `<option value="${escapeHTML(cargo)}">
+          ${escapeHTML(cargo)}
+        </option>`;
+
+    }
+  );
+
+}
+
+
+/*******************************************************
+ * RENDERIZAR
+ *******************************************************/
+
+function renderizar(){
+
+  const termo =
+    normalizar(
       busca.value
-        .trim()
-        .toLowerCase();
+    );
 
 
-    const congregacaoSelecionada =
-      filtroCongregacao.value;
+  const congregacaoSelecionada =
+    filtroCongregacao.value;
 
 
-    const cargoSelecionado =
-      filtroCargo.value;
+  const cargoSelecionado =
+    filtroCargo.value;
 
 
-    const filtrados =
-      participantes.filter(
-        function(p){
+  const filtrados =
+    obreiros.filter(
+      pessoa => {
 
-          const nome =
-            String(
-              p.nome ||
-              p.NOME ||
-              p["NOME COMPLETO"] ||
-              ""
-            );
-
-
-          const congregacao =
-            String(
-              p.congregacao ||
-              p.CONGREGAÇÃO ||
-              ""
-            );
-
-
-          const cargo =
-            String(
-              p.cargo ||
-              p["CARGO ECLESIÁSTICO"] ||
-              ""
-            );
-
-
-          const correspondeNome =
-            !termo ||
-            nome
-              .toLowerCase()
-              .includes(termo);
-
-
-          const correspondeCongregacao =
-            !congregacaoSelecionada ||
-            congregacao ===
-              congregacaoSelecionada;
-
-
-          const correspondeCargo =
-            !cargoSelecionado ||
-            cargo === cargoSelecionado;
-
-
-          return (
-            correspondeNome &&
-            correspondeCongregacao &&
-            correspondeCargo
+        const nome =
+          normalizar(
+            pessoa.nome
           );
 
-        }
+
+        const correspondeNome =
+          !termo ||
+          nome.includes(termo);
+
+
+        const correspondeCongregacao =
+          !congregacaoSelecionada ||
+          pessoa.congregacao ===
+          congregacaoSelecionada;
+
+
+        const correspondeCargo =
+          !cargoSelecionado ||
+          pessoa.cargo ===
+          cargoSelecionado;
+
+
+        return (
+          correspondeNome &&
+          correspondeCongregacao &&
+          correspondeCargo
+        );
+
+      }
+    );
+
+
+  if(!filtrados.length){
+
+    lista.innerHTML =
+      `<div class="mensagem">
+        🔎 Nenhum participante encontrado.
+      </div>`;
+
+    return;
+
+  }
+
+
+  lista.innerHTML =
+    filtrados
+      .map(
+        pessoa =>
+          criarParticipante(pessoa)
+      )
+      .join("");
+
+}
+
+
+/*******************************************************
+ * CRIAR PARTICIPANTE
+ *******************************************************/
+
+function criarParticipante(pessoa){
+
+  const registro =
+    encontrarRegistro(
+      pessoa.id
+    );
+
+
+  if(registro){
+
+    const classe =
+      registro.situacao ===
+      "PRESENTE"
+
+        ? "badge-presente"
+
+        : "badge-justificado";
+
+
+    const icone =
+      registro.situacao ===
+      "PRESENTE"
+
+        ? "🟢"
+
+        : "🟡";
+
+
+    return `
+
+      <div
+        class="participante"
+        id="participante-${escapeHTML(pessoa.id)}"
+      >
+
+        <div class="participante-info">
+
+          <div class="participante-nome">
+            ${escapeHTML(pessoa.nome)}
+          </div>
+
+          <div class="participante-detalhes">
+            ⛪ ${escapeHTML(pessoa.congregacao || "-")}
+            ·
+            👔 ${escapeHTML(pessoa.cargo || "-")}
+          </div>
+
+          ${
+            registro.situacao ===
+            "JUSTIFICADO"
+
+              ? `
+                <div class="participante-status">
+                  Motivo: ${escapeHTML(
+                    registro.justificativa || "-"
+                  )}
+                </div>
+              `
+
+              : ""
+          }
+
+        </div>
+
+
+        <div class="registrado">
+
+          <span
+            class="badge ${classe}"
+          >
+            ${icone}
+            ${escapeHTML(
+              registro.situacao
+            )}
+          </span>
+
+          <span class="registrado-por">
+            Registrado por:
+            ${escapeHTML(
+              registro.operador || "-"
+            )}
+          </span>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+
+  return `
+
+    <div
+      class="participante"
+      id="participante-${escapeHTML(pessoa.id)}"
+    >
+
+      <div class="participante-info">
+
+        <div class="participante-nome">
+          ${escapeHTML(pessoa.nome)}
+        </div>
+
+        <div class="participante-detalhes">
+          ⛪ ${escapeHTML(pessoa.congregacao || "-")}
+          ·
+          👔 ${escapeHTML(pessoa.cargo || "-")}
+        </div>
+
+        <div
+          class="justificativa-box"
+          id="justificativa-${escapeHTML(pessoa.id)}"
+        >
+
+          <label>
+            Motivo da justificativa
+          </label>
+
+          <textarea
+            id="motivo-${escapeHTML(pessoa.id)}"
+            placeholder="Informe o motivo da ausência..."
+          ></textarea>
+
+          <div class="justificativa-acoes">
+
+            <button
+              type="button"
+              class="btn btn-cancelar"
+              onclick="fecharJustificativa('${escapeJS(pessoa.id)}')"
+            >
+              Cancelar
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-confirmar"
+              onclick="confirmarJustificativa('${escapeJS(pessoa.id)}')"
+            >
+              🟡 Confirmar
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="acoes">
+
+        <button
+          type="button"
+          class="btn btn-presente"
+          onclick="registrar('${escapeJS(pessoa.id)}','PRESENTE')"
+        >
+          🟢 Presente
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-justificar"
+          onclick="abrirJustificativa('${escapeJS(pessoa.id)}')"
+        >
+          🟡 Justificar
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/*******************************************************
+ * ABRIR JUSTIFICATIVA
+ *******************************************************/
+
+function abrirJustificativa(id){
+
+  const box =
+    document.getElementById(
+      "justificativa-" + id
+    );
+
+  if(box){
+
+    box.classList.add("aberta");
+
+    justificativaAberta = true;
+
+    const campo =
+      document.getElementById(
+        "motivo-" + id
       );
 
+    if(campo){
 
-    if(!filtrados.length){
+      setTimeout(function(){
 
-      listaParticipantes.innerHTML =
-        '<div class="mensagem">' +
-        'Nenhum participante encontrado.' +
-        '</div>';
+        campo.focus();
 
-      return;
+      },100);
 
     }
 
+  }
 
-    listaParticipantes.innerHTML = "";
-
-
-    filtrados.forEach(function(p){
-
-      const id =
-        obterIdPessoa(p);
+}
 
 
-      const nome =
-        String(
-          p.nome ||
-          p.NOME ||
-          p["NOME COMPLETO"] ||
-          ""
-        );
+/*******************************************************
+ * FECHAR JUSTIFICATIVA
+ *******************************************************/
+
+function fecharJustificativa(id){
+
+  const box =
+    document.getElementById(
+      "justificativa-" + id
+    );
+
+  if(box){
+
+    box.classList.remove("aberta");
+
+  }
+
+  justificativaAberta = false;
+
+  atualizarRegistros();
+
+}
 
 
-      const congregacao =
-        String(
-          p.congregacao ||
-          p.CONGREGAÇÃO ||
-          ""
-        );
+/*******************************************************
+ * CONFIRMAR JUSTIFICATIVA
+ *******************************************************/
+
+function confirmarJustificativa(id){
+
+  const campo =
+    document.getElementById(
+      "motivo-" + id
+    );
 
 
-      const cargo =
-        String(
-          p.cargo ||
-          p["CARGO ECLESIÁSTICO"] ||
-          ""
-        );
+  const motivo =
+    campo
+      ? campo.value.trim()
+      : "";
 
 
-      const registro =
-        encontrarRegistro(id);
+  if(!motivo){
+
+    alert(
+      "Informe o motivo da justificativa."
+    );
+
+    if(campo){
+      campo.focus();
+    }
+
+    return;
+
+  }
 
 
-      const div =
-        document.createElement("div");
+  justificativaAberta = false;
 
 
-      div.className =
-        "participante";
+  registrar(
+    id,
+    "JUSTIFICADO",
+    motivo
+  );
+
+}
 
 
-      let conteudoStatus = "";
+/*******************************************************
+ * REGISTRAR
+ *******************************************************/
+
+function registrar(
+  id,
+  situacao,
+  justificativa = ""
+){
+
+  if(!reuniao.value.trim()){
+
+    alert(
+      "Informe o nome da reunião."
+    );
+
+    reuniao.focus();
+
+    return;
+
+  }
 
 
-      if(registro){
+  if(!data.value){
+
+    alert(
+      "Informe a data."
+    );
+
+    data.focus();
+
+    return;
+
+  }
+
+
+  if(!operador.value.trim()){
+
+    alert(
+      "Informe o nome do operador."
+    );
+
+    operador.focus();
+
+    return;
+
+  }
+
+
+  const pessoa =
+    obreiros.find(
+      item =>
+        String(item.id) === String(id)
+    );
+
+
+  if(!pessoa){
+
+    alert(
+      "Participante não encontrado."
+    );
+
+    return;
+
+  }
+
+
+  chamarAPI(
+    {
+
+      acao:"registrar",
+
+      idPessoa:pessoa.id,
+
+      data:data.value,
+
+      reuniao:
+        reuniao.value.trim(),
+
+      horario:
+        horario.value,
+
+      nome:
+        pessoa.nome,
+
+      congregacao:
+        pessoa.congregacao,
+
+      cargo:
+        pessoa.cargo,
+
+      situacao:
+        situacao,
+
+      justificativa:
+        justificativa,
+
+      operador:
+        operador.value.trim()
+
+    },
+
+
+    function(resultado){
+
+      if(
+        !resultado ||
+        !resultado.sucesso
+      ){
 
         if(
-          String(
-            registro.situacao ||
-            ""
-          ).toUpperCase() ===
-          "PRESENTE"
+          resultado &&
+          resultado.duplicado
         ){
 
-          conteudoStatus =
-            '<div class="registrado">' +
-            '<span class="badge badge-presente">' +
-            '🟢 PRESENTE' +
-            '</span>' +
-            '<span class="registrado-por">' +
-            (
-              registro.operador ||
-              ""
-            ) +
-            '</span>' +
-            '</div>';
+          alert(
+            "⚠️ Este participante já foi registrado nesta reunião."
+          );
 
         }else{
 
-          conteudoStatus =
-            '<div class="registrado">' +
-            '<span class="badge badge-justificado">' +
-            '🟡 JUSTIFICADO' +
-            '</span>' +
-            '<span class="registrado-por">' +
+          alert(
+            "Não foi possível registrar:\n\n" +
             (
-              registro.justificativa ||
-              ""
-            ) +
-            '</span>' +
-            '</div>';
+              resultado?.erro ||
+              resultado?.mensagem ||
+              "Erro desconhecido."
+            )
+          );
 
         }
 
-      }else{
+        atualizarRegistros();
 
-        conteudoStatus =
-          '<div class="acoes">' +
-
-          '<button ' +
-          'type="button" ' +
-          'class="btn btn-presente" ' +
-          'onclick="registrar(\'' +
-          id +
-          '\',\'PRESENTE\')">' +
-          '🟢 Presente' +
-          '</button>' +
-
-          '<button ' +
-          'type="button" ' +
-          'class="btn btn-justificar" ' +
-          'onclick="abrirJustificativa(\'' +
-          id +
-          '\')">' +
-          '🟡 Justificar' +
-          '</button>' +
-
-          '</div>';
+        return;
 
       }
 
-
-      div.innerHTML =
-
-        '<div class="participante-info">' +
-
-          '<div class="participante-nome">' +
-            nome +
-          '</div>' +
-
-          '<div class="participante-detalhes">' +
-            congregacao +
-            ' • ' +
-            cargo +
-          '</div>' +
-
-        '</div>' +
-
-        conteudoStatus;
-
-
-      listaParticipantes.appendChild(div);
-
-    });
-
-  }
 
       /* =========================
-     ATUALIZAR RESUMO
-  ========================= */
+         ATUALIZAÇÃO IMEDIATA
+      ========================= */
 
-  function atualizarResumo(){
-
-    const total =
-      participantes.length;
-
-
-    let presentes = 0;
-
-    let justificados = 0;
-
-
-    registros.forEach(function(registro){
-
-      const situacao =
-        String(
-          registro.situacao ||
-          ""
-        ).toUpperCase();
-
-
-      if(situacao === "PRESENTE"){
-
-        presentes++;
-
-      }else if(
-        situacao === "JUSTIFICADO"
-      ){
-
-        justificados++;
-
-      }
-
-    });
-
-
-    const pendentes =
-      Math.max(
-        0,
-        total -
-        presentes -
-        justificados
-      );
-
-
-    document
-      .getElementById("total")
-      .textContent =
-        total;
-
-
-    document
-      .getElementById("presentes")
-      .textContent =
-        presentes;
-
-
-    document
-      .getElementById("justificados")
-      .textContent =
-        justificados;
-
-
-    document
-      .getElementById("pendentes")
-      .textContent =
-        pendentes;
-
-
-    atualizarRelatorios();
-
-  }
-
-
-  /* =========================
-     REGISTRAR PRESENÇA
-  ========================= */
-
-  function registrar(
-    id,
-    situacao,
-    justificativa
-  ){
-
-    if(!data.value){
-
-      alert(
-        "Informe a data da reunião."
-      );
-
-      data.focus();
-
-      return;
-    }
-
-
-    if(!reuniao.value.trim()){
-
-      alert(
-        "Informe o nome da reunião."
-      );
-
-      reuniao.focus();
-
-      return;
-    }
-
-
-    if(!operador.value.trim()){
-
-      alert(
-        "Informe o nome do operador."
-      );
-
-      operador.focus();
-
-      return;
-    }
-
-
-    const pessoa =
-      participantes.find(
-        function(p){
-
-          return obterIdPessoa(p) ===
-            String(id);
-
-        }
-      );
-
-
-    if(!pessoa){
-
-      alert(
-        "Participante não encontrado."
-      );
-
-      return;
-    }
-
-
-    const nome =
-      String(
-        pessoa.nome ||
-        pessoa.NOME ||
-        pessoa["NOME COMPLETO"] ||
-        ""
-      );
-
-
-    const congregacao =
-      String(
-        pessoa.congregacao ||
-        pessoa.CONGREGAÇÃO ||
-        ""
-      );
-
-
-    const cargo =
-      String(
-        pessoa.cargo ||
-        pessoa["CARGO ECLESIÁSTICO"] ||
-        ""
-      );
-
-
-    chamarAPI(
-
-      {
-        acao:"registrarPresenca",
+      const registroLocal = {
 
         idPessoa:
-          obterIdPessoa(pessoa),
+          String(pessoa.id),
 
         data:
           data.value,
@@ -2886,2490 +2633,925 @@ footer{
           reuniao.value.trim(),
 
         horario:
-          horario.value || "",
+          horario.value,
 
         nome:
-          nome,
+          pessoa.nome,
 
         congregacao:
-          congregacao,
+          pessoa.congregacao,
 
         cargo:
-          cargo,
+          pessoa.cargo,
 
         situacao:
           situacao,
 
         justificativa:
-          justificativa || "",
+          justificativa,
 
         operador:
-          operador.value.trim()
-      },
+          operador.value.trim(),
 
-      function(resultado){
+        dataHora:
+          new Date().toISOString()
 
-        if(
-          !resultado ||
-          !resultado.sucesso
-        ){
-
-          alert(
-            resultado &&
-            resultado.mensagem
-              ? resultado.mensagem
-              : "Não foi possível registrar a presença."
-          );
-
-          return;
-        }
-
-
-        alert(
-          "Registro realizado com sucesso!"
-        );
-
-
-        atualizarRegistros();
-
-      }
-
-    );
-
-  }
-
-
-  /* =========================
-     JUSTIFICATIVA
-  ========================= */
-
-  function abrirJustificativa(id){
-
-    pessoaSelecionada =
-      id;
-
-    justificativaAberta =
-      true;
-
-
-    const pessoa =
-      participantes.find(
-        function(p){
-
-          return obterIdPessoa(p) ===
-            String(id);
-
-        }
-      );
-
-
-    const nome =
-      pessoa
-        ? String(
-            pessoa.nome ||
-            pessoa.NOME ||
-            pessoa["NOME COMPLETO"] ||
-            ""
-          )
-        : "";
-
-
-    document
-      .getElementById("textoJustificativa")
-      .textContent =
-        "Informe o motivo da ausência de " +
-        nome +
-        ".";
-
-
-    document
-      .getElementById("campoJustificativa")
-      .value =
-        "";
-
-
-    document
-      .getElementById("modalJustificativa")
-      .classList
-      .add("aberto");
-
-
-    setTimeout(function(){
-
-      document
-        .getElementById("campoJustificativa")
-        .focus();
-
-    },100);
-
-  }
-
-
-  function fecharJustificativa(){
-
-    pessoaSelecionada =
-      null;
-
-    justificativaAberta =
-      false;
-
-
-    document
-      .getElementById("modalJustificativa")
-      .classList
-      .remove("aberto");
-
-  }
-
-
-  /* =========================
-     CONFIRMAR JUSTIFICATIVA
-  ========================= */
-
-  document
-    .getElementById("confirmarJustificativa")
-    .addEventListener(
-      "click",
-      function(){
-
-        const justificativa =
-          document
-            .getElementById(
-              "campoJustificativa"
-            )
-            .value
-            .trim();
-
-
-        if(!justificativa){
-
-          alert(
-            "Digite a justificativa."
-          );
-
-          return;
-        }
-
-
-        if(!pessoaSelecionada){
-          return;
-        }
-
-
-        const id =
-          pessoaSelecionada;
-
-
-        fecharJustificativa();
-
-
-        registrar(
-          id,
-          "JUSTIFICADO",
-          justificativa
-        );
-
-      }
-    );
-
-
-  document
-    .getElementById(
-      "fecharModalJustificativa"
-    )
-    .addEventListener(
-      "click",
-      fecharJustificativa
-    );
-
-
-  document
-    .getElementById(
-      "cancelarJustificativa"
-    )
-    .addEventListener(
-      "click",
-      fecharJustificativa
-    );
-
-
-  /* =========================
-     AVULSO
-  ========================= */
-
-  document
-    .getElementById("btnAbrirAvulso")
-    .addEventListener(
-      "click",
-      function(){
-
-        document
-          .getElementById("formAvulso")
-          .classList
-          .toggle("aberto");
-
-      }
-    );
-
-
-  document
-    .getElementById("btnCancelarAvulso")
-    .addEventListener(
-      "click",
-      function(){
-
-        document
-          .getElementById("formAvulso")
-          .classList
-          .remove("aberto");
-
-      }
-    );
-
-
-  document
-    .getElementById("btnCadastrarAvulso")
-    .addEventListener(
-      "click",
-      function(){
-
-        if(!data.value){
-
-          alert(
-            "Informe a data da reunião."
-          );
-
-          return;
-        }
-
-
-        if(!reuniao.value.trim()){
-
-          alert(
-            "Informe o nome da reunião."
-          );
-
-          return;
-        }
-
-
-        if(!operador.value.trim()){
-
-          alert(
-            "Informe o operador."
-          );
-
-          return;
-        }
-
-
-        const nome =
-          document
-            .getElementById("avulsoNome")
-            .value
-            .trim();
-
-
-        const congregacao =
-          document
-            .getElementById("avulsoCongregacao")
-            .value
-            .trim();
-
-
-        const cargo =
-          document
-            .getElementById("avulsoCargo")
-            .value
-            .trim();
-
-
-        if(!nome){
-
-          alert(
-            "Informe o nome do participante."
-          );
-
-          return;
-        }
-
-
-        chamarAPI(
-
-          {
-            acao:"cadastrarAvulso",
-
-            data:
-              data.value,
-
-            reuniao:
-              reuniao.value.trim(),
-
-            horario:
-              horario.value || "",
-
-            nome:
-              nome,
-
-            congregacao:
-              congregacao,
-
-            cargo:
-              cargo,
-
-            operador:
-              operador.value.trim(),
-
-            situacao:
-              "PRESENTE"
-
-          },
-
-          function(resultado){
-
-            if(
-              !resultado ||
-              !resultado.sucesso
-            ){
-
-              alert(
-                resultado &&
-                resultado.mensagem
-                  ? resultado.mensagem
-                  : "Não foi possível registrar o participante."
-              );
-
-              return;
-            }
-
-
-            alert(
-              "Participante avulso registrado com sucesso!"
-            );
-
-
-            document
-              .getElementById("avulsoNome")
-              .value = "";
-
-
-            document
-              .getElementById("avulsoCongregacao")
-              .value = "";
-
-
-            document
-              .getElementById("avulsoCargo")
-              .value = "";
-
-
-            document
-              .getElementById("formAvulso")
-              .classList
-              .remove("aberto");
-
-
-            atualizarRegistros();
-
-          }
-
-        );
-
-      }
-    );
-
-
-  /* =========================
-     FILTROS
-  ========================= */
-
-  busca.addEventListener(
-    "input",
-    renderizar
-  );
-
-
-  filtroCongregacao.addEventListener(
-    "change",
-    renderizar
-  );
-
-
-  filtroCargo.addEventListener(
-    "change",
-    renderizar
-  );
-
-
-  reuniao.addEventListener(
-    "change",
-    atualizarRegistros
-  );
-
-
-  data.addEventListener(
-    "change",
-    atualizarRegistros
-  );
-
-
-  horario.addEventListener(
-    "change",
-    function(){
-
-      if(data.value && reuniao.value.trim()){
-        atualizarRegistros();
-      }
-
-    }
-  );
-
-
-  /* =========================
-     RELATÓRIOS
-  ========================= */
-
-  function atualizarRelatorios(){
-
-    const cargos = [
-      "PASTOR",
-      "EVANGELISTA",
-      "PRESBÍTERO",
-      "COOPERADOR",
-      "DIÁCONO"
-    ];
-
-
-    const dadosCargo = {};
-
-
-    cargos.forEach(function(cargo){
-
-      dadosCargo[cargo] = {
-        presentes:0,
-        justificados:0,
-        pendentes:0
       };
 
-    });
+
+      /* Evita duplicar o registro
+         na memória */
+
+      const indice =
+        registros.findIndex(
+          function(r){
+
+            return (
+              String(
+                r.idPessoa || ""
+              ) ===
+              String(pessoa.id) &&
+              String(
+                r.data || ""
+              ) ===
+              String(data.value) &&
+              String(
+                r.reuniao || ""
+              ).trim() ===
+              String(
+                reuniao.value
+              ).trim()
+            );
+
+          }
+        );
 
 
-    const dadosCongregacao = {};
+      if(indice >= 0){
 
+        registros[indice] =
+          registroLocal;
 
-    participantes.forEach(
-      function(p){
+      }else{
 
-        const cargo =
-          String(
-            p.cargo ||
-            p["CARGO ECLESIÁSTICO"] ||
-            ""
-          ).trim();
-
-
-        const congregacao =
-          String(
-            p.congregacao ||
-            p.CONGREGAÇÃO ||
-            ""
-          ).trim();
-
-
-        if(!dadosCargo[cargo]){
-
-          dadosCargo[cargo] = {
-            presentes:0,
-            justificados:0,
-            pendentes:0
-          };
-
-        }
-
-
-        if(!dadosCongregacao[congregacao]){
-
-          dadosCongregacao[congregacao] = {
-            presentes:0,
-            justificados:0,
-            pendentes:0
-          };
-
-        }
-
-
-        const registro =
-          encontrarRegistro(
-            obterIdPessoa(p)
-          );
-
-
-        if(!registro){
-
-          dadosCargo[cargo].pendentes++;
-
-          dadosCongregacao[congregacao].pendentes++;
-
-          return;
-
-        }
-
-
-        const situacao =
-          String(
-            registro.situacao ||
-            ""
-          ).toUpperCase();
-
-
-        if(situacao === "PRESENTE"){
-
-          dadosCargo[cargo].presentes++;
-
-          dadosCongregacao[congregacao].presentes++;
-
-        }else if(
-          situacao === "JUSTIFICADO"
-        ){
-
-          dadosCargo[cargo].justificados++;
-
-          dadosCongregacao[congregacao].justificados++;
-
-        }else{
-
-          dadosCargo[cargo].pendentes++;
-
-          dadosCongregacao[congregacao].pendentes++;
-
-        }
+        registros.push(
+          registroLocal
+        );
 
       }
+
+
+      /* Atualiza a tela
+         imediatamente */
+
+      renderizar();
+
+      atualizarResumo();
+
+
+      alert(
+        situacao === "PRESENTE"
+          ? "🟢 Presença registrada!"
+          : "🟡 Justificativa registrada!"
+      );
+
+
+      /* =========================
+         SINCRONIZA COM A PLANILHA
+      ========================= */
+
+      setTimeout(
+        function(){
+
+          atualizarRegistros();
+
+        },
+        1000
+      );
+
+    }
+
+  );
+
+}
+
+
+/*******************************************************
+ * ATUALIZAR REGISTROS
+ *******************************************************/
+
+function atualizarRegistros(){
+
+  if(justificativaAberta){
+
+    return;
+
+  }
+
+  if(
+    !data.value ||
+    !reuniao.value.trim()
+  ){
+
+    atualizarResumo();
+
+    return;
+
+  }
+
+
+  chamarAPI(
+
+    {
+
+      acao:"registros",
+
+      data:data.value,
+
+      reuniao:reuniao.value.trim()
+
+    },
+
+    function(resultado){
+
+      if(
+        !resultado ||
+        !resultado.sucesso
+      ){
+
+        return;
+
+      }
+
+
+      registros =
+        resultado.registros || [];
+
+
+      renderizar();
+
+      atualizarResumo();
+
+
+      document.getElementById(
+        "ultimaAtualizacao"
+      ).textContent =
+        "Atualizado às " +
+        new Date().toLocaleTimeString(
+          "pt-BR",
+          {
+            hour:"2-digit",
+            minute:"2-digit"
+          }
+        );
+
+    }
+
+  );
+
+}
+
+
+/*******************************************************
+ * RESUMO
+ *******************************************************/
+
+function atualizarResumo(){
+
+  const total =
+    obreiros.length;
+
+
+  let presentes = 0;
+
+  let justificados = 0;
+
+
+  registros.forEach(
+    registro => {
+
+      if(
+        registro.situacao ===
+        "PRESENTE"
+      ){
+
+        presentes++;
+
+      }
+
+      if(
+        registro.situacao ===
+        "JUSTIFICADO"
+      ){
+
+        justificados++;
+
+      }
+
+    }
+  );
+
+
+  const pendentes =
+    Math.max(
+      0,
+      total -
+      presentes -
+      justificados
     );
 
 
-    const tabelaCargo =
-      document.getElementById(
-        "relatorioCargo"
-      );
+  document.getElementById(
+    "total"
+  ).textContent = total;
 
 
-    const tabelaCongregacao =
-      document.getElementById(
-        "relatorioCongregacao"
-      );
+  document.getElementById(
+    "presentes"
+  ).textContent =
+    presentes;
 
 
-    tabelaCargo.innerHTML = "";
+  document.getElementById(
+    "justificados"
+  ).textContent =
+    justificados;
 
 
-    cargos.forEach(function(cargo){
+  document.getElementById(
+    "pendentes"
+  ).textContent =
+    pendentes;
 
-      const dados =
-        dadosCargo[cargo] || {
-          presentes:0,
-          justificados:0,
-          pendentes:0
-        };
-
-
-      tabelaCargo.innerHTML +=
-
-        "<tr>" +
-
-        "<td>" +
-          cargo +
-        "</td>" +
-
-        '<td class="numero-presente">' +
-          dados.presentes +
-        "</td>" +
-
-        '<td class="numero-justificado">' +
-          dados.justificados +
-        "</td>" +
-
-        '<td class="numero-pendente">' +
-          dados.pendentes +
-        "</td>" +
-
-        "</tr>";
-
-    });
+  atualizarRelatorios();
+  
+}
 
 
-    tabelaCongregacao.innerHTML = "";
+/*******************************************************
+ * ENCONTRAR REGISTRO
+ *******************************************************/
+
+function encontrarRegistro(id){
+
+  return registros.find(
+    registro =>
+      registro.idPessoa === id
+  );
+
+}
 
 
-    Object.keys(
-      dadosCongregacao
+/*******************************************************
+ * AVULSO
+ *******************************************************/
+
+function abrirAvulso(){
+
+  document
+    .getElementById(
+      "formAvulso"
     )
-      .sort()
-      .forEach(
-        function(congregacao){
+    .classList.add("aberto");
 
-          const dados =
-            dadosCongregacao[
-              congregacao
-            ];
+}
 
 
-          tabelaCongregacao.innerHTML +=
+function fecharAvulso(){
 
-            "<tr>" +
+  document
+    .getElementById(
+      "formAvulso"
+    )
+    .classList.remove("aberto");
 
-            "<td>" +
-              congregacao +
-            "</td>" +
+}
 
-            '<td class="numero-presente">' +
-              dados.presentes +
-            "</td>" +
 
-            '<td class="numero-justificado">' +
-              dados.justificados +
-            "</td>" +
+/*******************************************************
+ * CADASTRAR AVULSO
+ *******************************************************/
 
-            '<td class="numero-pendente">' +
-              dados.pendentes +
-            "</td>" +
+function cadastrarAvulso(){
 
-            "</tr>";
+  const nome =
+    document
+      .getElementById(
+        "avulsoNome"
+      )
+      .value
+      .trim();
 
-        }
+
+  const congregacao =
+    document
+      .getElementById(
+        "avulsoCongregacao"
+      )
+      .value;
+
+
+  const cargo =
+    document
+      .getElementById(
+        "avulsoCargo"
+      )
+      .value;
+
+
+  if(!nome){
+
+    alert(
+      "Informe o nome do participante."
+    );
+
+    return;
+
+  }
+
+
+  if(!data.value){
+
+    alert(
+      "Informe a data."
+    );
+
+    return;
+
+  }
+
+
+  if(!reuniao.value.trim()){
+
+    alert(
+      "Informe a reunião."
+    );
+
+    return;
+
+  }
+
+
+  if(!operador.value.trim()){
+
+    alert(
+      "Informe o nome do operador."
+    );
+
+    return;
+
+  }
+
+
+  chamarAPI(
+
+    {
+
+      acao:"cadastrarAvulso",
+
+      nome:nome,
+
+      congregacao:congregacao,
+
+      cargo:cargo,
+
+      data:data.value,
+
+      reuniao:reuniao.value.trim(),
+
+      horario:horario.value,
+
+      situacao:"PRESENTE",
+
+      justificativa:"",
+
+      operador:operador.value.trim()
+
+    },
+
+    function(resultado){
+
+      if(
+        !resultado ||
+        !resultado.sucesso
+      ){
+
+        alert(
+          "Não foi possível cadastrar:\n\n" +
+          (
+            resultado?.erro ||
+            "Erro desconhecido."
+          )
+        );
+
+        return;
+
+      }
+
+
+      alert(
+        "🟢 Participante avulso cadastrado e registrado!"
       );
+
+
+      document
+        .getElementById(
+          "avulsoNome"
+        )
+        .value = "";
+
+
+      fecharAvulso();
+
+      atualizarRegistros();
+
+    }
+
+  );
+
+}
+
+
+/*******************************************************
+ * BUSCA / FILTROS
+ *******************************************************/
+
+busca.addEventListener(
+  "input",
+  renderizar
+);
+
+
+filtroCongregacao.addEventListener(
+  "change",
+  renderizar
+);
+
+
+filtroCargo.addEventListener(
+  "change",
+  renderizar
+);
+
+
+/*******************************************************
+ * ALTERAÇÃO DA REUNIÃO
+ *******************************************************/
+
+data.addEventListener(
+  "change",
+  function(){
+
+    registros = [];
+
+    atualizarRegistros();
+
+  }
+);
+
+
+reuniao.addEventListener(
+  "input",
+  function(){
+
+    registros = [];
+
+    atualizarRegistros();
+
+  }
+);
+
+
+/*******************************************************
+ * SINCRONIZAÇÃO
+ *******************************************************/
+
+/*
+ * Atualiza automaticamente a cada 5 segundos.
+ *
+ * Isso permite que os 5 operadores acompanhem
+ * os registros realizados pelos demais.
+ */
+
+setInterval(
+  function(){
+
+    if(
+      data.value &&
+      reuniao.value.trim()
+    ){
+
+      /*
+       * Não atualizar enquanto uma justificativa
+       * estiver aberta.
+       */
+
+      if(justificativaAberta){
+
+        return;
+
+      }
+
+      atualizarRegistros();
+
+    }
+
+  },
+  5000
+);
+
+
+/*******************************************************
+ * UTILITÁRIOS
+ *******************************************************/
+
+function normalizar(texto){
+
+  return String(
+    texto || ""
+  )
+
+    .normalize("NFD")
+
+    .replace(
+      /[\u0300-\u036f]/g,
+      ""
+    )
+
+    .toUpperCase()
+
+    .trim();
+
+}
+
+
+function escapeHTML(texto){
+
+  return String(
+    texto || ""
+  )
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+
+function escapeJS(texto){
+
+  return String(
+    texto || ""
+  )
+
+    .replace(
+      /\\/g,
+      "\\\\"
+    )
+
+    .replace(
+      /'/g,
+      "\\'"
+    )
+
+    .replace(
+      /"/g,
+      '\\"'
+    );
+
+}
+
+
+/*******************************************************
+ * INICIALIZAÇÃO
+ *******************************************************/
+
+colocarDataAtual();
+
+carregarObreiros();
+
+/* =========================
+   RELATÓRIO DA CHAMADA
+========================= */
+
+function atualizarRelatorios(){
+
+  const cargoBody =
+    document.getElementById("relatorioCargo");
+
+  const congregacaoBody =
+    document.getElementById("relatorioCongregacao");
+
+  if(!cargoBody || !congregacaoBody){
+    return;
+  }
+
+
+  /* =========================
+     FUNÇÃO PARA PEGAR O ID
+  ========================= */
+
+  function obterIdPessoa(p){
+    return String(
+      p.id ||
+      p.idPessoa ||
+      p.ID ||
+      ""
+    ).trim();
+  }
+
+
+  /* =========================
+     VERIFICA SITUAÇÃO
+  ========================= */
+
+  function obterSituacao(p){
+
+    const id =
+      obterIdPessoa(p);
+
+    const registro =
+      registros.find(function(r){
+
+        return String(
+          r.idPessoa ||
+          r.id ||
+          r.ID ||
+          ""
+        ).trim() === id;
+
+      });
+
+    if(!registro){
+      return "PENDENTE";
+    }
+
+    return String(
+      registro.situacao || ""
+    )
+      .trim()
+      .toUpperCase();
 
   }
 
 
   /* =========================
-     ABRIR / FECHAR RELATÓRIOS
+     POR CARGO
   ========================= */
 
-  function alternarRelatorio(
-    tipo,
-    cabecalho
-  ){
+  const cargos = [
+    "PASTOR",
+    "EVANGELISTA",
+    "PRESBÍTERO",
+    "DIÁCONO",
+    "COOPERADOR",
+  ];
 
-    let conteudo = null;
-
-
-    if(tipo === "cargo"){
-
-      conteudo =
-        document.getElementById(
-          "conteudoRelatorioCargo"
-        );
-
-    }
+  let htmlCargo = "";
 
 
-    if(tipo === "congregacao"){
+  cargos.forEach(function(cargo){
 
-      conteudo =
-        document.getElementById(
-          "conteudoRelatorioCongregacao"
-        );
+    const participantes =
+      obreiros.filter(function(p){
 
-    }
+        return String(
+          p.cargo || ""
+        )
+          .trim()
+          .toUpperCase() === cargo;
+
+      });
 
 
-    if(!conteudo){
+    let presentes = 0;
+    let justificados = 0;
+    let pendentes = 0;
+
+
+    participantes.forEach(function(p){
+
+      const situacao =
+        obterSituacao(p);
+
+
+      if(situacao === "PRESENTE"){
+        presentes++;
+      }
+
+      else if(situacao === "JUSTIFICADO"){
+        justificados++;
+      }
+
+      else{
+        pendentes++;
+      }
+
+    });
+
+
+    htmlCargo += `
+      <tr>
+
+        <td>${cargo}</td>
+
+        <td class="numero-presente">
+          ${presentes}
+        </td>
+
+        <td class="numero-justificado">
+          ${justificados}
+        </td>
+
+        <td class="numero-pendente">
+          ${pendentes}
+        </td>
+
+      </tr>
+    `;
+
+  });
+
+
+  cargoBody.innerHTML =
+    htmlCargo;
+
+
+  /* =========================
+     POR CONGREGAÇÃO
+  ========================= */
+
+  const congregacoes = {};
+
+
+  obreiros.forEach(function(p){
+
+    const congregacao =
+      String(
+        p.congregacao || ""
+      ).trim();
+
+
+    if(!congregacao){
       return;
     }
 
 
-    const aberto =
-      conteudo.classList
-        .toggle("aberto");
-
-
-    if(cabecalho){
-
-      cabecalho.classList.toggle(
-        "aberto",
-        aberto
-      );
-
+    if(!congregacoes[congregacao]){
+      congregacoes[congregacao] = [];
     }
 
-  }
 
+    congregacoes[congregacao].push(p);
 
-  /* =========================
-     ATENDIMENTO
-  ========================= */
+  });
 
-  const atendimentoBotao =
-    document.getElementById(
-      "atendimentoBotao"
-    );
 
-  const atendimentoChat =
-    document.getElementById(
-      "atendimentoChat"
-    );
+  const nomesCongregacoes =
+    Object.keys(congregacoes)
+      .sort(function(a,b){
 
-  const atendimentoFechar =
-    document.getElementById(
-      "atendimentoFechar"
-    );
-
-
-  if(
-    atendimentoBotao &&
-    atendimentoChat
-  ){
-
-    atendimentoBotao.addEventListener(
-      "click",
-      function(){
-
-        atendimentoChat
-          .classList
-          .toggle("aberto");
-
-      }
-    );
-
-  }
-
-
-  if(
-    atendimentoFechar &&
-    atendimentoChat
-  ){
-
-    atendimentoFechar.addEventListener(
-      "click",
-      function(){
-
-        atendimentoChat
-          .classList
-          .remove("aberto");
-
-      }
-    );
-
-  }
-
-
-  const novaSolicitacao =
-    document.getElementById(
-      "novaSolicitacao"
-    );
-
-  const consultarProtocolo =
-    document.getElementById(
-      "consultarProtocolo"
-    );
-
-  const atendimentoOpcoes =
-    document.getElementById(
-      "atendimentoOpcoes"
-    );
-
-  const formularioAtendimento =
-    document.getElementById(
-      "formularioAtendimento"
-    );
-
-  const consultaProtocolo =
-    document.getElementById(
-      "consultaProtocolo"
-    );
-
-
-  if(novaSolicitacao){
-
-    novaSolicitacao.addEventListener(
-      "click",
-      function(){
-
-        atendimentoOpcoes.style.display =
-          "none";
-
-        formularioAtendimento.style.display =
-          "block";
-
-      }
-    );
-
-  }
-
-
-  if(consultarProtocolo){
-
-    consultarProtocolo.addEventListener(
-      "click",
-      function(){
-
-        atendimentoOpcoes.style.display =
-          "none";
-
-        consultaProtocolo.style.display =
-          "block";
-
-      }
-    );
-
-  }
-
-
-  const voltarSolicitacao =
-    document.getElementById(
-      "voltarSolicitacao"
-    );
-
-  if(voltarSolicitacao){
-
-    voltarSolicitacao.addEventListener(
-      "click",
-      function(){
-
-        formularioAtendimento.style.display =
-          "none";
-
-        atendimentoOpcoes.style.display =
-          "grid";
-
-      }
-    );
-
-  }
-
-
-  const voltarAtendimento =
-    document.getElementById(
-      "voltarAtendimento"
-    );
-
-  if(voltarAtendimento){
-
-    voltarAtendimento.addEventListener(
-      "click",
-      function(){
-
-        consultaProtocolo.style.display =
-          "none";
-
-        atendimentoOpcoes.style.display =
-          "grid";
-
-      }
-    );
-
-  }
-
-
-  /* =========================
-     INICIALIZAÇÃO
-  ========================= */
-
-  carregarParticipantes();
-
-
-  /* =========================
-     DATA ATUAL
-  ========================= */
-
-  if(!data.value){
-
-    const hoje =
-      new Date();
-
-
-    const ano =
-      hoje.getFullYear();
-
-
-    const mes =
-      String(
-        hoje.getMonth() + 1
-      ).padStart(2,"0");
-
-
-    const dia =
-      String(
-        hoje.getDate()
-      ).padStart(2,"0");
-
-
-    data.value =
-      ano +
-      "-" +
-      mes +
-      "-" +
-      dia;
-
-  }
-
-      /* =========================
-     IMPRESSÃO DO RELATÓRIO
-  ========================= */
-
-  document
-    .getElementById("btnImprimirRelatorio")
-    .addEventListener("click", function(){
-
-      if(!data.value){
-        alert("Informe a data antes de imprimir o relatório.");
-        data.focus();
-        return;
-      }
-
-      if(!reuniao.value.trim()){
-        alert("Informe o nome da reunião antes de imprimir o relatório.");
-        reuniao.focus();
-        return;
-      }
-
-      const cargo =
-        document.getElementById("relatorioCargo");
-
-      const congregacao =
-        document.getElementById("relatorioCongregacao");
-
-      if(!cargo || !congregacao){
-        alert("Os relatórios ainda não estão disponíveis.");
-        return;
-      }
-
-      const dataFormatada =
-        new Date(
-          data.value + "T00:00:00"
-        ).toLocaleDateString("pt-BR");
-
-      const nomeReuniao =
-        escapeHTML(
-          reuniao.value.trim()
-        );
-
-      const horarioRelatorio =
-        horario.value
-          ? escapeHTML(horario.value)
-          : "Não informado";
-
-      const anterior =
-        document.getElementById(
-          "areaImpressaoRelatorio"
-        );
-
-      if(anterior){
-        anterior.remove();
-      }
-
-      const area =
-        document.createElement("div");
-
-      area.id =
-        "areaImpressaoRelatorio";
-
-      area.innerHTML = `
-
-        <style>
-
-          @page{
-            size:A4 portrait;
-            margin:7mm;
-          }
-
-          #areaImpressaoRelatorio{
-            display:block;
-            width:100%;
-            font-family:Arial, Helvetica, sans-serif;
-            color:#172b4d;
-            background:#fff;
-          }
-
-          #areaImpressaoRelatorio .cabecalho{
-            border:2px solid #17365d;
-            border-radius:5px;
-            min-height:92px;
-            display:flex;
-            align-items:center;
-            padding:8px 12px;
-          }
-
-          #areaImpressaoRelatorio .logo{
-            width:78px;
-            height:78px;
-            object-fit:contain;
-            flex-shrink:0;
-          }
-
-          #areaImpressaoRelatorio .cabecalho-texto{
-            flex:1;
-            text-align:center;
-            padding-right:78px;
-          }
-
-          #areaImpressaoRelatorio .linha1{
-            font-size:13px;
-            font-weight:900;
-            color:#111;
-            margin-bottom:2px;
-          }
-
-          #areaImpressaoRelatorio .linha2{
-            font-size:11px;
-            font-weight:700;
-            color:#333;
-            margin-bottom:3px;
-          }
-
-          #areaImpressaoRelatorio .setor{
-            font-size:13px;
-            font-weight:900;
-            color:#1f5fbd;
-            margin-bottom:3px;
-          }
-
-          #areaImpressaoRelatorio .pastor{
-            font-size:8.5px;
-            font-weight:700;
-            color:#555;
-            margin-bottom:2px;
-          }
-
-          #areaImpressaoRelatorio .endereco{
-            font-size:7.5px;
-            color:#666;
-          }
-
-          #areaImpressaoRelatorio .linhas{
-            margin-top:5px;
-            margin-bottom:6px;
-          }
-
-          #areaImpressaoRelatorio .linha-azul{
-            height:3px;
-            background:#1f5fbd;
-          }
-
-          #areaImpressaoRelatorio .linha-amarela{
-            height:3px;
-            background:#f4c542;
-            margin-top:3px;
-          }
-
-          #areaImpressaoRelatorio .titulo-relatorio{
-            display:flex;
-            margin-top:6px;
-            height:34px;
-          }
-
-          #areaImpressaoRelatorio .titulo{
-            flex:1;
-            background:#17365d;
-            color:#fff;
-            display:flex;
-            align-items:center;
-            padding:0 14px;
-            font-size:16px;
-            font-weight:900;
-            letter-spacing:.3px;
-          }
-
-          #areaImpressaoRelatorio .titulo-setor{
-            width:105px;
-            background:#f4c542;
-            color:#17365d;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-size:13px;
-            font-weight:900;
-          }
-
-          #areaImpressaoRelatorio .informacoes{
-            background:#eef1f5;
-            border-left:1px solid #d5dbe3;
-            border-right:1px solid #d5dbe3;
-            border-bottom:1px solid #d5dbe3;
-            text-align:center;
-            padding:6px;
-            font-size:9px;
-            color:#17365d;
-          }
-
-          #areaImpressaoRelatorio .resumo{
-            display:grid;
-            grid-template-columns:repeat(4,1fr);
-            gap:5px;
-            margin-top:8px;
-            margin-bottom:9px;
-          }
-
-          #areaImpressaoRelatorio .resumo-item{
-            border:1px solid #d7dde5;
-            background:#f8f9fb;
-            text-align:center;
-            padding:6px 4px;
-          }
-
-          #areaImpressaoRelatorio .rotulo{
-            font-size:7px;
-            font-weight:900;
-            color:#596579;
-            margin-bottom:3px;
-          }
-
-          #areaImpressaoRelatorio .numero{
-            font-size:15px;
-            font-weight:900;
-            color:#17365d;
-          }
-
-          #areaImpressaoRelatorio .secao{
-            margin-top:9px;
-          }
-
-          #areaImpressaoRelatorio .secao-titulo{
-            background:#17365d;
-            color:#fff;
-            padding:5px 8px;
-            font-size:10px;
-            font-weight:900;
-            border-left:5px solid #f4c542;
-          }
-
-          #areaImpressaoRelatorio table{
-            width:100%;
-            border-collapse:collapse;
-            table-layout:fixed;
-            font-size:7px;
-          }
-
-          #areaImpressaoRelatorio th{
-            background:#dfe7f2;
-            color:#17365d;
-            font-weight:900;
-            padding:3px 5px;
-            border:1px solid #cbd4df;
-            text-align:left;
-          }
-
-          #areaImpressaoRelatorio td{
-            padding:2px 5px;
-            border:1px solid #d9dee6;
-            color:#243b5a;
-          }
-
-          #areaImpressaoRelatorio th:not(:first-child),
-          #areaImpressaoRelatorio td:not(:first-child){
-            text-align:center;
-          }
-
-          #areaImpressaoRelatorio tr{
-            page-break-inside:avoid;
-          }
-
-          #areaImpressaoRelatorio .rodape{
-            margin-top:15px;
-            padding-top:8px;
-            border-top:1px solid #d5dbe3;
-            text-align:center;
-            font-size:7.5px;
-            font-weight:700;
-            color:#666;
-          }
-
-          @media screen{
-
-            #areaImpressaoRelatorio{
-              display:none !important;
-            }
-
-          }
-
-          @media print{
-
-            body > *:not(#areaImpressaoRelatorio){
-              display:none !important;
-            }
-
-            #areaImpressaoRelatorio{
-              display:block !important;
-            }
-
-            body{
-              margin:0 !important;
-              padding:0 !important;
-              background:#fff !important;
-            }
-
-            *{
-              -webkit-print-color-adjust:exact !important;
-              print-color-adjust:exact !important;
-            }
-
-          }
-
-        </style>
-
-        <div class="cabecalho">
-
-          <img
-            src="logo.png"
-            class="logo"
-            alt="Logo"
-          >
-
-          <div class="cabecalho-texto">
-
-            <div class="linha1">
-              IGREJA EVANGÉLICA ASSEMBLEIA DE DEUS EM SÃO PAULO
-            </div>
-
-            <div class="linha2">
-              MINISTÉRIO DO BELÉM
-            </div>
-
-            <div class="setor">
-              SETOR 49 — JARDIM DOS PIMENTAS
-            </div>
-
-            <div class="pastor">
-              PASTOR SETORIAL: SAMUEL GARCIA
-            </div>
-
-            <div class="endereco">
-              RUA ANTONIO BITTENCOURT, 684 —
-              CEP 07260-040 — JARDIM DOS PIMENTAS —
-              GUARULHOS (SP)
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="linhas">
-
-          <div class="linha-azul"></div>
-
-          <div class="linha-amarela"></div>
-
-        </div>
-
-        <div class="titulo-relatorio">
-
-          <div class="titulo">
-            RELATÓRIO DE PRESENÇA
-          </div>
-
-          <div class="titulo-setor">
-            SETOR 49
-          </div>
-
-        </div>
-
-        <div class="informacoes">
-
-          <strong>REUNIÃO / EVENTO:</strong>
-          ${nomeReuniao}
-
-          &nbsp;&nbsp; | &nbsp;&nbsp;
-
-          <strong>DATA:</strong>
-          ${dataFormatada}
-
-          &nbsp;&nbsp; | &nbsp;&nbsp;
-
-          <strong>HORÁRIO:</strong>
-          ${horarioRelatorio}
-
-        </div>
-
-        <div class="resumo">
-
-          <div class="resumo-item">
-            <div class="rotulo">
-              TOTAL DE PARTICIPANTES
-            </div>
-            <div class="numero">
-              ${document.getElementById("total")?.textContent || "0"}
-            </div>
-          </div>
-
-          <div class="resumo-item">
-            <div class="rotulo">
-              PRESENTES
-            </div>
-            <div class="numero">
-              ${document.getElementById("presentes")?.textContent || "0"}
-            </div>
-          </div>
-
-          <div class="resumo-item">
-            <div class="rotulo">
-              JUSTIFICADOS
-            </div>
-            <div class="numero">
-              ${document.getElementById("justificados")?.textContent || "0"}
-            </div>
-          </div>
-
-          <div class="resumo-item">
-            <div class="rotulo">
-              NÃO REGISTRADOS
-            </div>
-            <div class="numero">
-              ${document.getElementById("pendentes")?.textContent || "0"}
-            </div>
-          </div>
-
-        </div>
-
-        <div class="secao">
-
-          <div class="secao-titulo">
-            PRESENÇA POR CARGO
-          </div>
-
-          <table>
-
-            <thead>
-              <tr>
-                <th style="width:55%;">CARGO</th>
-                <th style="width:15%;">PRESENTES</th>
-                <th style="width:15%;">JUSTIFICADOS</th>
-                <th style="width:15%;">PENDENTES</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              ${cargo.innerHTML}
-            </tbody>
-
-          </table>
-
-        </div>
-
-        <div class="secao">
-
-          <div class="secao-titulo">
-            PRESENÇA POR CONGREGAÇÃO
-          </div>
-
-          <table>
-
-            <thead>
-              <tr>
-                <th style="width:55%;">CONGREGAÇÃO</th>
-                <th style="width:15%;">PRESENTES</th>
-                <th style="width:15%;">JUSTIFICADOS</th>
-                <th style="width:15%;">PENDENTES</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              ${congregacao.innerHTML}
-            </tbody>
-
-          </table>
-
-        </div>
-
-        <div class="rodape">
-          SECRETARIA SETORIAL — SETOR 49
-        </div>
-
-      `;
-
-      document.body.appendChild(
-        area
-      );
-
-      window.print();
-
-      window.onafterprint =
-        function(){
-
-          const elemento =
-            document.getElementById(
-              "areaImpressaoRelatorio"
-            );
-
-          if(elemento){
-            elemento.remove();
-          }
-
-        };
-
-    });
-
-
-  /* =========================
-     GERAR PDF AUTOMATICAMENTE
-     MESMO MODELO DA IMPRESSÃO
-  ========================= */
-
-  document
-    .getElementById("btnGerarPDF")
-    .addEventListener("click", function(){
-
-      if(!data.value){
-        alert("Informe a data antes de gerar o PDF.");
-        data.focus();
-        return;
-      }
-
-      if(!reuniao.value.trim()){
-        alert("Informe o nome da reunião antes de gerar o PDF.");
-        reuniao.focus();
-        return;
-      }
-
-      if(
-        typeof window.jspdf === "undefined" ||
-        typeof window.jspdf.jsPDF === "undefined"
-      ){
-        alert(
-          "Não foi possível carregar o gerador de PDF. Atualize a página e tente novamente."
-        );
-        return;
-      }
-
-      const { jsPDF } =
-        window.jspdf;
-
-      const pdf =
-        new jsPDF({
-          orientation:"portrait",
-          unit:"mm",
-          format:"a4"
-        });
-
-      if(
-        typeof pdf.autoTable !==
-        "function"
-      ){
-        alert(
-          "Não foi possível carregar o módulo de tabelas do PDF. Atualize a página e tente novamente."
-        );
-        return;
-      }
-
-      const azulEscuro = [
-        23,54,93
-      ];
-
-      const azul = [
-        31,95,189
-      ];
-
-      const amarelo = [
-        244,197,66
-      ];
-
-      const azulClaro = [
-        223,231,242
-      ];
-
-      const cinza = [
-        238,241,245
-      ];
-
-      const cinzaBorda = [
-        213,219,227
-      ];
-
-      const verde = [
-        7,148,71
-      ];
-
-      const vermelho = [
-        181,30,42
-      ];
-
-      const dourado = [
-        162,107,0
-      ];
-
-      const margem = 7;
-
-      const larguraConteudo =
-        196;
-
-      const centro =
-        105;
-
-      const alturaPagina =
-        297;
-
-      const nomeReuniao =
-        reuniao.value.trim();
-
-      const dataFormatada =
-        new Date(
-          data.value +
-          "T00:00:00"
-        ).toLocaleDateString(
+        return a.localeCompare(
+          b,
           "pt-BR"
         );
 
-      const horarioRelatorio =
-        horario.value ||
-        "Não informado";
+      });
 
-      const total =
-        document.getElementById(
-          "total"
-        )?.textContent || "0";
 
-      const presentes =
-        document.getElementById(
-          "presentes"
-        )?.textContent || "0";
+  let htmlCongregacao = "";
 
-      const justificados =
-        document.getElementById(
-          "justificados"
-        )?.textContent || "0";
 
-      const pendentes =
-        document.getElementById(
-          "pendentes"
-        )?.textContent || "0";
+  nomesCongregacoes.forEach(
+    function(congregacao){
 
-      function extrairLinhas(id){
+      const participantes =
+        congregacoes[congregacao];
 
-        const corpo =
-          document.getElementById(
-            id
-          );
 
-        if(!corpo){
-          return [];
-        }
+      let presentes = 0;
+      let justificados = 0;
+      let pendentes = 0;
 
-        const trs =
-          corpo.querySelectorAll(
-            "tr"
-          );
 
-        const linhas = [];
+      participantes.forEach(
+        function(p){
 
-        trs.forEach(
-          function(tr){
+          const situacao =
+            obterSituacao(p);
 
-            const celulas =
-              tr.querySelectorAll(
-                "td"
-              );
 
-            if(!celulas.length){
-              return;
-            }
-
-            const linha = [];
-
-            celulas.forEach(
-              function(td){
-
-                linha.push(
-                  td.textContent
-                    .replace(
-                      /\s+/g,
-                      " "
-                    )
-                    .trim()
-                );
-
-              }
-            );
-
-            linhas.push(
-              linha
-            );
-
+          if(situacao === "PRESENTE"){
+            presentes++;
           }
-        );
 
-        return linhas;
-
-      }
-
-      function desenharCabecalho(){
-
-        pdf.setDrawColor(
-          ...azulEscuro
-        );
-
-        pdf.setLineWidth(
-          0.6
-        );
-
-        pdf.roundedRect(
-          margem,
-          7,
-          larguraConteudo,
-          28,
-          1.5,
-          1.5
-        );
-
-        const logo =
-          new Image();
-
-        logo.onload =
-          function(){
-
-            try{
-
-              pdf.addImage(
-                logo,
-                "PNG",
-                11,
-                10,
-                22,
-                22
-              );
-
-            }catch(e){}
-
-            finalizarCabecalho();
-
-          };
-
-        logo.onerror =
-          function(){
-
-            finalizarCabecalho();
-
-          };
-
-        logo.src =
-          "logo.png";
-
-      }
-
-      function finalizarCabecalho(){
-
-        pdf.setTextColor(
-          17,17,17
-        );
-
-        pdf.setFont(
-          "helvetica",
-          "bold"
-        );
-
-        pdf.setFontSize(
-          10
-        );
-
-        pdf.text(
-          "IGREJA EVANGÉLICA ASSEMBLEIA DE DEUS EM SÃO PAULO",
-          115,
-          14,
-          {
-            align:"center"
+          else if(
+            situacao === "JUSTIFICADO"
+          ){
+            justificados++;
           }
-        );
 
-        pdf.setFont(
-          "helvetica",
-          "normal"
-        );
-
-        pdf.setFontSize(
-          8.5
-        );
-
-        pdf.setTextColor(
-          51,51,51
-        );
-
-        pdf.text(
-          "MINISTÉRIO DO BELÉM",
-          115,
-          18.5,
-          {
-            align:"center"
+          else{
+            pendentes++;
           }
-        );
-
-        pdf.setFont(
-          "helvetica",
-          "bold"
-        );
-
-        pdf.setFontSize(
-          10
-        );
-
-        pdf.setTextColor(
-          ...azul
-        );
-
-        pdf.text(
-          "SETOR 49 — JARDIM DOS PIMENTAS",
-          115,
-          23,
-          {
-            align:"center"
-          }
-        );
-
-        pdf.setFontSize(
-          7
-        );
-
-        pdf.setTextColor(
-          85,85,85
-        );
-
-        pdf.text(
-          "PASTOR SETORIAL: SAMUEL GARCIA",
-          115,
-          27,
-          {
-            align:"center"
-          }
-        );
-
-        pdf.setFont(
-          "helvetica",
-          "normal"
-        );
-
-        pdf.setFontSize(
-          5.5
-        );
-
-        pdf.setTextColor(
-          102,102,102
-        );
-
-        pdf.text(
-          "RUA ANTONIO BITTENCOURT, 684 — CEP 07260-040 — JARDIM DOS PIMENTAS — GUARULHOS (SP)",
-          115,
-          31,
-          {
-            align:"center"
-          }
-        );
-
-        pdf.setFillColor(
-          ...azul
-        );
-
-        pdf.rect(
-          margem,
-          37,
-          larguraConteudo,
-          1.2,
-          "F"
-        );
-
-        pdf.setFillColor(
-          ...amarelo
-        );
-
-        pdf.rect(
-          margem,
-          39,
-          larguraConteudo,
-          1.2,
-          "F"
-        );
-
-        pdf.setFillColor(
-          ...azulEscuro
-        );
-
-        pdf.rect(
-          margem,
-          42,
-          155,
-          10,
-          "F"
-        );
-
-        pdf.setFillColor(
-          ...amarelo
-        );
-
-        pdf.rect(
-          162,
-          42,
-          41,
-          10,
-          "F"
-        );
-
-        pdf.setTextColor(
-          255,255,255
-        );
-
-        pdf.setFont(
-          "helvetica",
-          "bold"
-        );
-
-        pdf.setFontSize(
-          11
-        );
-
-        pdf.text(
-          "RELATÓRIO DE PRESENÇA",
-          14,
-          48.5
-        );
-
-        pdf.setTextColor(
-          ...azulEscuro
-        );
-
-        pdf.setFontSize(
-          9
-        );
-
-        pdf.text(
-          "SETOR 49",
-          182.5,
-          48.5,
-          {
-            align:"center"
-          }
-        );
-
-        pdf.setFillColor(
-          ...cinza
-        );
-
-        pdf.setDrawColor(
-          ...cinzaBorda
-        );
-
-        pdf.setLineWidth(
-          0.2
-        );
-
-        pdf.rect(
-          margem,
-          55,
-          larguraConteudo,
-          8,
-          "FD"
-        );
-
-        pdf.setTextColor(
-          ...azulEscuro
-        );
-
-        pdf.setFont(
-          "helvetica",
-          "bold"
-        );
-
-        pdf.setFontSize(
-          6.8
-        );
-
-        pdf.text(
-          "REUNIÃO / EVENTO:",
-          11,
-          60
-        );
-
-        pdf.setFont(
-          "helvetica",
-          "normal"
-        );
-
-        pdf.text(
-          nomeReuniao,
-          42,
-          60
-        );
-
-        pdf.setFont(
-          "helvetica",
-          "bold"
-        );
-
-        pdf.text(
-          "DATA:",
-          110,
-          60
-        );
-
-        pdf.setFont(
-          "helvetica",
-          "normal"
-        );
-
-        pdf.text(
-          dataFormatada,
-          123,
-          60
-        );
-
-        pdf.setFont(
-          "helvetica",
-          "bold"
-        );
-
-        pdf.text(
-          "HORÁRIO:",
-          153,
-          60
-        );
-
-        pdf.setFont(
-          "helvetica",
-          "normal"
-        );
-
-        pdf.text(
-          horarioRelatorio,
-          171,
-          60
-        );
-
-        const resumoY =
-          66;
-
-        const espaco =
-          4;
-
-        const larguraBox =
-          (
-            larguraConteudo -
-            espaco * 3
-          ) / 4;
-
-        const resumo = [
-
-          [
-            "TOTAL DE PARTICIPANTES",
-            total,
-            azulEscuro
-          ],
-
-          [
-            "PRESENTES",
-            presentes,
-            verde
-          ],
-
-          [
-            "JUSTIFICADOS",
-            justificados,
-            dourado
-          ],
-
-          [
-            "NÃO REGISTRADOS",
-            pendentes,
-            vermelho
-          ]
-
-        ];
-
-        resumo.forEach(
-          function(item,index){
-
-            const x =
-              margem +
-              index *
-              (
-                larguraBox +
-                espaco
-              );
-
-            pdf.setFillColor(
-              248,249,251
-            );
-
-            pdf.setDrawColor(
-              ...cinzaBorda
-            );
-
-            pdf.roundedRect(
-              x,
-              resumoY,
-              larguraBox,
-              18,
-              1,
-              1,
-              "FD"
-            );
-
-            pdf.setFont(
-              "helvetica",
-              "bold"
-            );
-
-            pdf.setFontSize(
-              5.5
-            );
-
-            pdf.setTextColor(
-              52,64,84
-            );
-
-            pdf.text(
-              item[0],
-              x +
-              larguraBox / 2,
-              resumoY + 5,
-              {
-                align:"center"
-              }
-            );
-
-            pdf.setFontSize(
-              14
-            );
-
-            pdf.setTextColor(
-              ...item[2]
-            );
-
-            pdf.text(
-              item[1],
-              x +
-              larguraBox / 2,
-              resumoY + 14,
-              {
-                align:"center"
-              }
-            );
-
-          }
-        );
-
-        function desenharSecao(
-          titulo,
-          y
-        ){
-
-          pdf.setFillColor(
-            ...azulEscuro
-          );
-
-          pdf.rect(
-            margem,
-            y,
-            larguraConteudo,
-            9,
-            "F"
-          );
-
-          pdf.setFillColor(
-            ...amarelo
-          );
-
-          pdf.rect(
-            margem,
-            y,
-            4,
-            9,
-            "F"
-          );
-
-          pdf.setTextColor(
-            255,255,255
-          );
-
-          pdf.setFont(
-            "helvetica",
-            "bold"
-          );
-
-          pdf.setFontSize(
-            8
-          );
-
-          pdf.text(
-            titulo,
-            margem + 8,
-            y + 6
-          );
 
         }
-
-        const linhasCargo =
-          extrairLinhas(
-            "relatorioCargo"
-          );
-
-        let yCargo =
-          90;
-
-        desenharSecao(
-          "PRESENÇA POR CARGO",
-          yCargo
-        );
-
-        if(
-          linhasCargo.length
-        ){
-
-          pdf.autoTable({
-
-            startY:
-              yCargo + 11,
-
-            margin:{
-              left:margem,
-              right:margem
-            },
-
-            head:[[
-              "CARGO",
-              "PRESENTES",
-              "JUSTIFICADOS",
-              "PENDENTES"
-            ]],
-
-            body:
-              linhasCargo,
-
-            theme:
-              "grid",
-
-            tableWidth:
-              larguraConteudo,
-
-            styles:{
-              font:
-                "helvetica",
-
-              fontSize:
-                6.5,
-
-              cellPadding:
-                1.7,
-
-              textColor:[
-                23,60,102
-              ],
-
-              lineColor:
-                cinzaBorda,
-
-              lineWidth:
-                0.2,
-
-              valign:
-                "middle"
-            },
-
-            headStyles:{
-              fillColor:
-                azulClaro,
-
-              textColor:
-                azulEscuro,
-
-              fontStyle:
-                "bold",
-
-              fontSize:
-                6.5,
-
-              halign:
-                "left"
-            },
-
-            alternateRowStyles:{
-              fillColor:[
-                248,249,251
-              ]
-            },
-
-            columnStyles:{
-
-              0:{
-                cellWidth:
-                  107.8
-              },
-
-              1:{
-                cellWidth:
-                  29.4,
-
-                halign:
-                  "center",
-
-                textColor:
-                  verde,
-
-                fontStyle:
-                  "bold"
-              },
-
-              2:{
-                cellWidth:
-                  29.4,
-
-                halign:
-                  "center",
-
-                textColor:
-                  dourado,
-
-                fontStyle:
-                  "bold"
-              },
-
-              3:{
-                cellWidth:
-                  29.4,
-
-                halign:
-                  "center",
-
-                textColor:
-                  vermelho,
-
-                fontStyle:
-                  "bold"
-              }
-
-            }
-
-          });
-
-        }
-
-        let yCong =
-          pdf.lastAutoTable
-            ? pdf.lastAutoTable.finalY + 8
-            : 118;
-
-        if(
-          yCong > 260
-        ){
-
-          pdf.addPage();
-
-          yCong =
-            12;
-
-        }
-
-        desenharSecao(
-          "PRESENÇA POR CONGREGAÇÃO",
-          yCong
-        );
-
-        const linhasCongregacao =
-          extrairLinhas(
-            "relatorioCongregacao"
-          );
-
-        if(
-          linhasCongregacao.length
-        ){
-
-          pdf.autoTable({
-
-            startY:
-              yCong + 11,
-
-            margin:{
-              left:margem,
-              right:margem
-            },
-
-            head:[[
-              "CONGREGAÇÃO",
-              "PRESENTES",
-              "JUSTIFICADOS",
-              "PENDENTES"
-            ]],
-
-            body:
-              linhasCongregacao,
-
-            theme:
-              "grid",
-
-            tableWidth:
-              larguraConteudo,
-
-            styles:{
-              font:
-                "helvetica",
-
-              fontSize:
-                6.1,
-
-              cellPadding:
-                1.45,
-
-              textColor:[
-                23,60,102
-              ],
-
-              lineColor:
-                cinzaBorda,
-
-              lineWidth:
-                0.2,
-
-              valign:
-                "middle"
-            },
-
-            headStyles:{
-              fillColor:
-                azulClaro,
-
-              textColor:
-                azulEscuro,
-
-              fontStyle:
-                "bold",
-
-              fontSize:
-                6.1,
-
-              halign:
-                "left"
-            },
-
-            alternateRowStyles:{
-              fillColor:[
-                248,249,251
-              ]
-            },
-
-            columnStyles:{
-
-              0:{
-                cellWidth:
-                  107.8
-              },
-
-              1:{
-                cellWidth:
-                  29.4,
-
-                halign:
-                  "center",
-
-                textColor:
-                  verde,
-
-                fontStyle:
-                  "bold"
-              },
-
-              2:{
-                cellWidth:
-                  29.4,
-
-                halign:
-                  "center",
-
-                textColor:
-                  dourado,
-
-                fontStyle:
-                  "bold"
-              },
-
-              3:{
-                cellWidth:
-                  29.4,
-
-                halign:
-                  "center",
-
-                textColor:
-                  vermelho,
-
-                fontStyle:
-                  "bold"
-              }
-
-            }
-
-          });
-
-        }
-
-        pdf.setDrawColor(
-          ...cinzaBorda
-        );
-
-        pdf.setLineWidth(
-          0.3
-        );
-
-        pdf.line(
-          margem,
-          alturaPagina - 13,
-          210 - margem,
-          alturaPagina - 13
-        );
-
-        pdf.setTextColor(
-          100,116,139
-        );
-
-        pdf.setFont(
-          "helvetica",
-          "normal"
-        );
-
-        pdf.setFontSize(
-          6.5
-        );
-
-        pdf.text(
-          "SECRETARIA SETORIAL — SETOR 49",
-          centro,
-          alturaPagina - 8,
-          {
-            align:"center"
-          }
-        );
-
-        const nomeArquivo =
-          "Relatorio-Presenca-" +
-          data.value +
-          "-" +
-          nomeReuniao
-            .replace(
-              /[\\/:*?"<>|]/g,
-              "-"
-            )
-            .replace(
-              /\s+/g,
-              "-"
-            );
-
-        pdf.save(
-          nomeArquivo +
-          ".pdf"
-        );
-
-      }
-
-      desenharCabecalho();
-
-    });
-  <!-- =========================
-       BIBLIOTECAS DO PDF
-  ========================= -->
-
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
-  ></script>
-
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"
-  ></script>
+      );
+
+
+      htmlCongregacao += `
+        <tr>
+
+          <td>${congregacao}</td>
+
+          <td class="numero-presente">
+            ${presentes}
+          </td>
+
+          <td class="numero-justificado">
+            ${justificados}
+          </td>
+
+          <td class="numero-pendente">
+            ${pendentes}
+          </td>
+
+        </tr>
+      `;
+
+    }
+  );
+
+
+  congregacaoBody.innerHTML =
+    htmlCongregacao ||
+    `
+      <tr>
+        <td
+          colspan="4"
+          class="relatorio-vazio"
+        >
+          Nenhuma congregação encontrada.
+        </td>
+      </tr>
+    `;
+
+}
+
+function alternarRelatorio(tipo, cabecalho){
+
+  let conteudo;
+
+  if(tipo === "cargo"){
+    conteudo =
+      document.getElementById(
+        "relatorioConteudoCargo"
+      );
+  }
+
+  if(tipo === "congregacao"){
+    conteudo =
+      document.getElementById(
+        "relatorioConteudoCongregacao"
+      );
+  }
+
+  if(!conteudo){
+    return;
+  }
+
+  const aberto =
+    conteudo.classList.toggle("aberto");
+
+  cabecalho.classList.toggle(
+    "aberto",
+    aberto
+  );
+}
+  
+</script>
 
 </body>
 
 </html>
-      
