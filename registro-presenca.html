@@ -3642,7 +3642,7 @@ function alternarRelatorio(tipo, cabecalho){
 
 /* =========================
    IMPRESSÃO DO RELATÓRIO
-   PADRÃO OFICIAL DO SETOR
+   MESMO PADRÃO VISUAL DO PDF
 ========================= */
 
 document
@@ -3692,24 +3692,32 @@ document
     area.innerHTML = `
       <style>
         #areaImpressaoRelatorio{
-          width:100%;
+          display:block;
+          width:196mm;
+          box-sizing:border-box;
           font-family:Arial,Helvetica,sans-serif;
           color:#172b4d;
           background:#fff;
         }
 
+        #areaImpressaoRelatorio *{
+          box-sizing:border-box;
+        }
+
         #areaImpressaoRelatorio .cabecalho-oficial{
+          width:196mm;
+          height:28mm;
           border:2px solid #17365d;
-          border-radius:5px;
-          min-height:92px;
+          border-radius:1.5mm;
           display:flex;
           align-items:center;
-          padding:8px 12px;
+          padding:2.2mm 3mm;
+          overflow:hidden;
         }
 
         #areaImpressaoRelatorio .logo-oficial{
-          width:78px;
-          height:78px;
+          width:22mm;
+          height:22mm;
           object-fit:contain;
           flex-shrink:0;
         }
@@ -3717,71 +3725,85 @@ document
         #areaImpressaoRelatorio .cabecalho-texto{
           flex:1;
           text-align:center;
-          padding-right:78px;
+          padding-right:22mm;
         }
 
         #areaImpressaoRelatorio .linha1{
-          font-size:13px;
+          font-size:10pt;
+          line-height:1.05;
           font-weight:bold;
           color:#111;
         }
 
         #areaImpressaoRelatorio .linha2{
-          font-size:11px;
-          margin-top:2px;
+          font-size:8.5pt;
+          line-height:1.05;
+          margin-top:1mm;
+          color:#333;
         }
 
         #areaImpressaoRelatorio .setor{
-          font-size:13px;
+          font-size:10pt;
+          line-height:1.05;
           font-weight:bold;
           color:#1f5fbd;
-          margin-top:2px;
+          margin-top:1mm;
         }
 
         #areaImpressaoRelatorio .pastor{
-          font-size:8.5px;
-          margin-top:3px;
+          font-size:7pt;
+          line-height:1.05;
+          margin-top:1mm;
+          color:#555;
         }
 
         #areaImpressaoRelatorio .endereco{
-          font-size:7.5px;
-          margin-top:2px;
+          font-size:5.5pt;
+          line-height:1.05;
+          margin-top:0.7mm;
+          color:#666;
+          white-space:nowrap;
         }
 
         #areaImpressaoRelatorio .linha-azul{
-          height:3px;
+          width:196mm;
+          height:1.2mm;
           background:#1f5fbd;
-          margin-top:6px;
+          margin-top:2mm;
         }
 
         #areaImpressaoRelatorio .linha-amarela{
-          height:3px;
+          width:196mm;
+          height:1.2mm;
           background:#f4c542;
-          margin-top:2px;
+          margin-top:0.8mm;
         }
 
         #areaImpressaoRelatorio .titulo-relatorio{
-          height:34px;
+          width:196mm;
+          height:10mm;
           display:flex;
-          margin-top:6px;
+          margin-top:2mm;
+          page-break-inside:avoid;
+          break-inside:avoid;
         }
 
         #areaImpressaoRelatorio .titulo-principal{
           flex:1;
           background:#17365d;
           color:#fff;
-          font-size:14px;
+          font-size:11pt;
           font-weight:bold;
           display:flex;
           align-items:center;
-          padding-left:14px;
+          padding-left:7mm;
         }
 
         #areaImpressaoRelatorio .titulo-setor{
-          width:105px;
+          width:41mm;
           background:#f4c542;
           color:#17365d;
-          font-size:11px;
+          font-size:9pt;
           font-weight:bold;
           display:flex;
           align-items:center;
@@ -3789,85 +3811,123 @@ document
         }
 
         #areaImpressaoRelatorio .informacoes{
-          margin-top:5px;
+          width:196mm;
+          height:8mm;
+          margin-top:3mm;
           background:#eef1f5;
-          border:1px solid #d7dde5;
-          padding:7px 9px;
-          font-size:9px;
+          border:1px solid #d5dbe3;
+          padding:2mm 2.2mm;
+          font-size:6.8pt;
+          line-height:1;
+          white-space:nowrap;
+          overflow:hidden;
         }
 
         #areaImpressaoRelatorio .resumo{
+          width:196mm;
           display:grid;
           grid-template-columns:repeat(4,1fr);
-          gap:5px;
-          margin-top:7px;
+          gap:4mm;
+          margin-top:3mm;
+          page-break-inside:avoid;
+          break-inside:avoid;
         }
 
         #areaImpressaoRelatorio .resumo-item{
-          border:1px solid #d7dde5;
+          height:18mm;
+          border:1px solid #d5dbe3;
           background:#f8f9fb;
-          padding:5px;
+          border-radius:1mm;
+          padding:2mm;
           text-align:center;
-          min-height:38px;
         }
 
         #areaImpressaoRelatorio .resumo-item strong{
           display:block;
-          font-size:7px;
+          font-size:5.5pt;
+          line-height:1.1;
           color:#344054;
         }
 
         #areaImpressaoRelatorio .resumo-item span{
           display:block;
-          font-size:13px;
+          font-size:14pt;
+          line-height:1;
           font-weight:bold;
-          margin-top:4px;
+          margin-top:3mm;
         }
 
         #areaImpressaoRelatorio .secao{
-          margin-top:8px;
+          width:196mm;
+          height:9mm;
+          margin-top:4mm;
           background:#17365d;
           color:#fff;
-          border-left:4px solid #f4c542;
-          padding:6px 8px;
-          font-size:9px;
+          border-left:4mm solid #f4c542;
+          padding:2mm 2mm 2mm 4mm;
+          font-size:8pt;
+          line-height:1;
           font-weight:bold;
+          display:flex;
+          align-items:center;
+          page-break-after:avoid;
+          break-after:avoid;
         }
 
         #areaImpressaoRelatorio table{
-          width:100%;
+          width:196mm !important;
           border-collapse:collapse;
-          margin-top:3px;
-          font-size:7px;
+          margin-top:2mm;
+          font-size:6.5pt;
+          table-layout:fixed;
+          page-break-inside:auto;
+        }
+
+        #areaImpressaoRelatorio thead{
+          display:table-header-group;
+        }
+
+        #areaImpressaoRelatorio tr{
+          page-break-inside:avoid;
+          break-inside:avoid;
         }
 
         #areaImpressaoRelatorio th{
-          background:#dfe7f2;
-          color:#17365d;
+          background:#dfe7f2 !important;
+          color:#17365d !important;
           font-weight:bold;
           border:1px solid #d5dbe3;
-          padding:4px;
+          padding:1.7mm;
           text-align:left;
         }
 
         #areaImpressaoRelatorio td{
           border:1px solid #d5dbe3;
-          padding:4px;
+          padding:1.7mm;
           color:#17365d;
+        }
+
+        #areaImpressaoRelatorio th:first-child,
+        #areaImpressaoRelatorio td:first-child{
+          width:55%;
         }
 
         #areaImpressaoRelatorio th:not(:first-child),
         #areaImpressaoRelatorio td:not(:first-child){
+          width:15%;
           text-align:center;
         }
 
         #areaImpressaoRelatorio .rodape{
-          margin-top:10px;
-          padding-top:6px;
+          width:196mm;
+          margin-top:4mm;
+          padding-top:2mm;
           border-top:1px solid #d5dbe3;
           text-align:center;
-          font-size:7px;
+          font-size:6.5pt;
           color:#64748b;
+          page-break-inside:avoid;
+          break-inside:avoid;
         }
       </style>
 
@@ -3939,22 +3999,14 @@ document
 
     document.body.appendChild(area);
 
-    const limpar =
-      function(){
-        if(area.parentNode){
-          area.remove();
-        }
-        window.removeEventListener(
-          "afterprint",
-          limpar
-        );
-      };
+    const limpar = function(){
+      if(area.parentNode){
+        area.remove();
+      }
+      window.removeEventListener("afterprint", limpar);
+    };
 
-    window.addEventListener(
-      "afterprint",
-      limpar
-    );
-
+    window.addEventListener("afterprint", limpar);
     window.print();
   });
 
