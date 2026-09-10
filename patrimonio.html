@@ -2139,7 +2139,7 @@ footer{
 
 const API_PATRIMONIO="https://script.google.com/macros/s/AKfycbyCQ0z28gAZKqLoRh1FFkoVpiMsRZ7gEwUhDQPdZdFdz_6fgo1kGSz3-Yr4oPI4zoraNw/exec";
 
-document.addEventListener("DOMContentLoaded",function(){
+// Função global para os botões do acordeão
 function alternarRelatorioPatrimonio(id){
   const bloco=document.getElementById(id);
   if(!bloco){return;}
@@ -2153,7 +2153,7 @@ function alternarRelatorioPatrimonio(id){
   bloco.classList.toggle("fechado",!aberto);
 }
 
-
+document.addEventListener("DOMContentLoaded",function(){
 if(sessionStorage.getItem("acessoSecretaria")!=="true" && sessionStorage.getItem("acessoSecretaria")!=="autorizado"){
 window.location.href="area-restrita.html";
 return;
