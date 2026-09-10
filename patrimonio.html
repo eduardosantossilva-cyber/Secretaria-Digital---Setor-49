@@ -1824,8 +1824,8 @@ footer{
 }
 .btn-imprimir-relatorio{background:#17365d;}
 .btn-imprimir-relatorio:hover{background:#159dd1;transform:translateY(-1px);}
-.btn-pdf-relatorio{background:#079447;}
-.btn-pdf-relatorio:hover{background:#05763a;transform:translateY(-1px);}
+.btn-pdf-relatorio{background:#17365d;}
+.btn-pdf-relatorio:hover{background:#159dd1;transform:translateY(-1px);}
 
 #areaImpressaoPatrimonio{display:none;}
 
@@ -2169,8 +2169,8 @@ footer{
     </div>
 
     <div class="acoes-exportacao-relatorio">
-      <button type="button" class="btn-exportar-relatorio btn-imprimir-relatorio" id="btnImprimirPatrimonio">🖨️ Imprimir relatório</button>
-      <button type="button" class="btn-exportar-relatorio btn-pdf-relatorio" id="btnPDFPatrimonio">📄 Baixar PDF</button>
+      <button type="button" class="btn-exportar-relatorio btn-imprimir-relatorio" id="btnImprimirPatrimonio" onclick="imprimirRelatorioPatrimonio()">🖨️ Imprimir relatório</button>
+      <button type="button" class="btn-exportar-relatorio btn-pdf-relatorio" id="btnPDFPatrimonio" onclick="gerarPDFPatrimonio()">📄 Baixar PDF</button>
     </div>
 
     <div class="relatorio-duas-colunas">
@@ -2219,7 +2219,34 @@ footer{
     <strong>💡 Módulo de Patrimônio</strong>
     <p>O cadastro será registrado diretamente na base de dados do Setor 49. O número de tombo é gerado automaticamente.</p>
   </section>
-\n\n  <section id="areaImpressaoPatrimonio">\n    <div class="cabecalho-pdf-patrimonio">\n      <img src="assets/Logo-Belem.png" class="logo-pdf-patrimonio" alt="AD Belém">\n      <div class="texto-pdf-patrimonio">\n        <div class="linha1">IGREJA EVANGÉLICA ASSEMBLEIA DE DEUS EM SÃO PAULO</div>\n        <div class="linha2">MINISTÉRIO DO BELÉM</div>\n        <div class="setor-pdf">SETOR 49 — JARDIM DOS PIMENTAS</div>\n        <div class="pastor-pdf">PASTOR SETORIAL: SAMUEL GARCIA</div>\n        <div class="endereco-pdf">RUA ANTONIO BITTENCOURT, 684 — CEP 07260-040 — JARDIM DOS PIMENTAS — GUARULHOS (SP)</div>\n      </div>\n    </div>\n    <div class="linha-azul-pdf"></div>\n    <div class="linha-amarela-pdf"></div>\n    <div class="titulo-pdf-patrimonio">\n      <div class="titulo-principal-pdf">RELATÓRIO DE PATRIMÔNIO</div>\n      <div class="titulo-setor-pdf">SETOR 49</div>\n    </div>\n    <div class="subtitulo-pdf-patrimonio">VISÃO CONSOLIDADA DOS BENS CADASTRADOS NO PATRIMÔNIO DO SETOR 49</div>\n    <div class="resumo-pdf-patrimonio" id="resumoPDFPatrimonio"></div>\n    <div class="secao-pdf-patrimonio"><div class="titulo-secao-pdf">PATRIMÔNIOS POR CATEGORIA</div><div id="pdfCategoria"></div></div>\n    <div class="secao-pdf-patrimonio"><div class="titulo-secao-pdf">PATRIMÔNIOS POR SITUAÇÃO</div><div id="pdfSituacao"></div></div>\n    <div class="secao-pdf-patrimonio"><div class="titulo-secao-pdf">PATRIMÔNIOS POR CONGREGAÇÃO</div><div id="pdfCongregacao"></div></div>\n    <div class="secao-pdf-patrimonio"><div class="titulo-secao-pdf">MOVIMENTAÇÕES REGISTRADAS</div><div id="pdfMovimentacoes"></div></div>\n    <div class="rodape-pdf-patrimonio">SECRETARIA SETORIAL — SETOR 49</div>\n  </section>\n
+
+
+  <section id="areaImpressaoPatrimonio">
+    <div class="cabecalho-pdf-patrimonio">
+      <img src="assets/Logo-Belem.png" class="logo-pdf-patrimonio" alt="AD Belém">
+      <div class="texto-pdf-patrimonio">
+        <div class="linha1">IGREJA EVANGÉLICA ASSEMBLEIA DE DEUS EM SÃO PAULO</div>
+        <div class="linha2">MINISTÉRIO DO BELÉM</div>
+        <div class="setor-pdf">SETOR 49 — JARDIM DOS PIMENTAS</div>
+        <div class="pastor-pdf">PASTOR SETORIAL: SAMUEL GARCIA</div>
+        <div class="endereco-pdf">RUA ANTONIO BITTENCOURT, 684 — CEP 07260-040 — JARDIM DOS PIMENTAS — GUARULHOS (SP)</div>
+      </div>
+    </div>
+    <div class="linha-azul-pdf"></div>
+    <div class="linha-amarela-pdf"></div>
+    <div class="titulo-pdf-patrimonio">
+      <div class="titulo-principal-pdf">RELATÓRIO DE PATRIMÔNIO</div>
+      <div class="titulo-setor-pdf">SETOR 49</div>
+    </div>
+    <div class="subtitulo-pdf-patrimonio">VISÃO CONSOLIDADA DOS BENS CADASTRADOS NO PATRIMÔNIO DO SETOR 49</div>
+    <div class="resumo-pdf-patrimonio" id="resumoPDFPatrimonio"></div>
+    <div class="secao-pdf-patrimonio"><div class="titulo-secao-pdf">PATRIMÔNIOS POR CATEGORIA</div><div id="pdfCategoria"></div></div>
+    <div class="secao-pdf-patrimonio"><div class="titulo-secao-pdf">PATRIMÔNIOS POR SITUAÇÃO</div><div id="pdfSituacao"></div></div>
+    <div class="secao-pdf-patrimonio"><div class="titulo-secao-pdf">PATRIMÔNIOS POR CONGREGAÇÃO</div><div id="pdfCongregacao"></div></div>
+    <div class="secao-pdf-patrimonio"><div class="titulo-secao-pdf">MOVIMENTAÇÕES REGISTRADAS</div><div id="pdfMovimentacoes"></div></div>
+    <div class="rodape-pdf-patrimonio">SECRETARIA SETORIAL — SETOR 49</div>
+  </section>
+
 </main>
 
 <footer>
@@ -2962,8 +2989,6 @@ function gerarPDFPatrimonio(){
   doc.save('relatorio-patrimonio-setor-49.pdf');
 }
 
-document.getElementById('btnImprimirPatrimonio').addEventListener('click',imprimirRelatorioPatrimonio);
-document.getElementById('btnPDFPatrimonio').addEventListener('click',gerarPDFPatrimonio);
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
