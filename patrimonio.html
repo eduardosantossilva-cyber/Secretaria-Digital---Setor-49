@@ -2867,6 +2867,14 @@ atualizarRelatorio.addEventListener("click",carregarRelatorio);
 // =========================
 // IMPRESSÃO E PDF — PATRIMÔNIO
 // =========================
+function escapeHTMLExportPatrimonio(valor){
+  return String(valor==null?"":valor)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
 function linhasTabelaPatrimonio(id){
   const tbody=document.querySelector('#'+id+' tbody');
   if(!tbody) return [];
@@ -2879,10 +2887,10 @@ function montarTabelaImpressaoPatrimonio(id, cabecalho){
   const linhas=linhasTabelaPatrimonio(id);
   if(!linhas.length) return '<div style="padding:6px;font-size:7px;color:#667085;">Nenhum registro encontrado.</div>';
   let html='<table class="tabela-pdf-patrimonio"><thead><tr>';
-  cabecalho.forEach(h=>html+='<th>'+escapeHTML(h)+'</th>');
+  cabecalho.forEach(h=>html+='<th>'+escapeHTMLExportPatrimonio(h)+'</th>');
   html+='</tr></thead><tbody>';
   linhas.forEach(linha=>{
-    html+='<tr>'+linha.map(c=>'<td>'+escapeHTML(c)+'</td>').join('')+'</tr>';
+    html+='<tr>'+linha.map(c=>'<td>'+escapeHTMLExportPatrimonio(c)+'</td>').join('')+'</tr>';
   });
   html+='</tbody></table>';
   return html;
@@ -2898,7 +2906,7 @@ function prepararAreaImpressaoPatrimonio(){
     ['VALOR TOTAL',document.getElementById('rValor').textContent]
   ];
   document.getElementById('resumoPDFPatrimonio').innerHTML=resumo.map(item=>
-    '<div class="item-resumo-pdf"><span>'+escapeHTML(item[0])+'</span><strong>'+escapeHTML(item[1])+'</strong></div>'
+    '<div class="item-resumo-pdf"><span>'+escapeHTMLExportPatrimonio(item[0])+'</span><strong>'+escapeHTMLExportPatrimonio(item[1])+'</strong></div>'
   ).join('');
   document.getElementById('pdfCategoria').innerHTML=montarTabelaImpressaoPatrimonio('relatorioCategoria',['CATEGORIA','QUANTIDADE','VALOR']);
   document.getElementById('pdfSituacao').innerHTML=montarTabelaImpressaoPatrimonio('relatorioSituacao',['SITUAÇÃO','QUANTIDADE','VALOR']);
