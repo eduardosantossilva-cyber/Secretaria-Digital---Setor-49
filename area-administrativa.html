@@ -36,11 +36,6 @@
       color:#344054;
     }
 
-
-    /* =============================
-       CABEÇALHO
-    ============================= */
-
     header{
       background:#fff;
       border-bottom:1px solid #e4e9ee;
@@ -83,11 +78,6 @@
       font-weight:800;
     }
 
-
-    /* =============================
-       MENU
-    ============================= */
-
     nav{
       display:flex;
       align-items:center;
@@ -117,11 +107,6 @@
     .sair-topo{
       color:var(--red) !important;
     }
-
-
-    /* =============================
-       CONTEÚDO
-    ============================= */
 
     main{
       max-width:1200px;
@@ -154,22 +139,12 @@
       max-width:800px;
     }
 
-
-    /* =============================
-       TÍTULO
-    ============================= */
-
     .titulo{
       margin:0 0 18px;
       color:var(--navy);
       font-size:24px;
       font-weight:900;
     }
-
-
-    /* =============================
-       CARDS
-    ============================= */
 
     .ferramentas{
       display:grid;
@@ -243,9 +218,6 @@
       font-weight:900;
     }
 
-
-    /* SECRETARIA */
-
     .secretaria::before{
       background:var(--blue);
     }
@@ -253,9 +225,6 @@
     .secretaria .icone{
       background:#eef8fc;
     }
-
-
-    /* PRESENÇA */
 
     .presenca::before{
       background:var(--green);
@@ -265,10 +234,14 @@
       background:#eefaf3;
     }
 
+    /* PATRIMÔNIO */
+    .patrimonio::before{
+      background:var(--yellow);
+    }
 
-    /* =============================
-       SAIR
-    ============================= */
+    .patrimonio .icone{
+      background:#fff9df;
+    }
 
     .acoes{
       margin-top:30px;
@@ -294,23 +267,13 @@
       border-color:#e8b5ba;
     }
 
-
-    /* =============================
-       RODAPÉ
-    ============================= */
-
- footer{
-  background:#20262b;
-  color:#d0d5dd;
-  padding:30px 22px;
-  text-align:center;
-  font-size:13px
-}
-
-
-    /* =============================
-       RESPONSIVO
-    ============================= */
+    footer{
+      background:#20262b;
+      color:#d0d5dd;
+      padding:30px 22px;
+      text-align:center;
+      font-size:13px
+    }
 
     @media(max-width:700px){
 
@@ -357,11 +320,6 @@
 
 <body>
 
-
-  <!-- =============================
-       CABEÇALHO
-  ============================= -->
-
   <header>
 
     <div class="topo">
@@ -404,10 +362,6 @@
 
   </header>
 
-
-  <!-- =============================
-       CONTEÚDO
-  ============================= -->
 
   <main>
 
@@ -492,15 +446,38 @@
       </a>
 
 
+      <!-- PATRIMÔNIO -->
+
+      <a
+        href="patrimonio.html"
+        class="ferramenta patrimonio"
+      >
+
+        <div class="icone">
+          🏛️
+        </div>
+
+        <h3>
+          Gestão de Patrimônio
+        </h3>
+
+        <p>
+          Cadastre, consulte e acompanhe os bens,
+          equipamentos e patrimônios do Setor 49.
+        </p>
+
+        <span class="acessar">
+          ACESSAR PATRIMÔNIO →
+        </span>
+
+      </a>
+
+
     </section>
 
 
   </main>
 
-
-  <!-- =============================
-       RODAPÉ
-  ============================= -->
 
   <footer>
 
