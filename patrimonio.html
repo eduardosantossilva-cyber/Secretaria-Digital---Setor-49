@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestão de Patrimônio - Setor 49</title>
+<style>
+:root{--blue:#159dd1;--green:#079447;--yellow:#f9c414;--orange:#f47a20;--red:#b51e2a;--navy:#073c66;--bg:#f6f8fa;--muted:#667085}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:#344054;min-height:100vh;display:flex;flex-direction:column}
+header{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:20}.header-inner{max-width:1180px;margin:auto;padding:13px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.marca{display:flex;align-items:center;gap:12px;text-decoration:none}.marca img{width:48px;height:48px;object-fit:contain}.marca strong{display:block;color:var(--navy);font-size:15px}.marca span{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+nav{display:flex;align-items:center;gap:8px}nav a{height:38px;display:inline-flex;align-items:center;justify-content:center;padding:0 12px;border-radius:9px;text-decoration:none;color:var(--navy);font-size:12px;font-weight:800}nav a:hover{background:#eef8fc;color:var(--blue)}
+.menu-toggle{display:none;border:0;background:var(--navy);color:#fff;border-radius:9px;width:40px;height:38px;font-size:20px;cursor:pointer}.mobile-menu{display:none;max-width:1180px;margin:auto;padding:0 20px 15px}.mobile-menu.open{display:grid;gap:7px}.mobile-menu a{display:block;padding:11px 12px;background:#f8fafc;border-radius:9px;color:var(--navy);text-decoration:none;font-size:12px;font-weight:800}
+main{width:100%;max-width:1180px;margin:0 auto;padding:42px 20px 60px;flex:1}
+.cabecalho-pagina{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;border-radius:20px;padding:30px;margin-bottom:24px;position:relative;overflow:hidden}.cabecalho-pagina::after{content:"";position:absolute;width:190px;height:190px;border-radius:50%;right:-55px;top:-70px;background:rgba(249,196,20,.18)}.cabecalho-pagina h1{margin:0 0 7px;font-size:28px;position:relative;z-index:1}.cabecalho-pagina p{margin:0;font-size:13px;opacity:.9;position:relative;z-index:1}
+.acoes-topo{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:24px}.btn-voltar,.btn-sair{border:0;border-radius:9px;padding:10px 14px;font-family:inherit;font-size:12px;font-weight:900;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.btn-voltar{background:#eef8fc;color:var(--navy)}.btn-voltar:hover{background:#dff3fa;color:var(--blue)}.btn-sair{background:#fff0f1;color:var(--red)}.btn-sair:hover{background:var(--red);color:#fff}
+.grid-opcoes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.card-opcao{background:#fff;border:1px solid #e4e9ee;border-radius:18px;padding:26px;text-decoration:none;color:inherit;box-shadow:0 8px 24px rgba(16,24,40,.045);transition:.2s;min-height:175px;display:flex;flex-direction:column;justify-content:space-between}.card-opcao:hover{transform:translateY(-3px);border-color:#cfe7f0;box-shadow:0 14px 30px rgba(16,24,40,.08)}
+.icone{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:25px;margin-bottom:18px}.azul{background:#eef8fc}.verde{background:#edf9f2}.amarelo{background:#fff9df}.laranja{background:#fff3e9}
+.card-opcao h2{margin:0 0 7px;color:var(--navy);font-size:18px}.card-opcao p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}.card-opcao .abrir{margin-top:20px;color:var(--blue);font-size:11px;font-weight:900}
+.info{margin-top:24px;background:#fff;border:1px solid #e4e9ee;border-left:4px solid var(--yellow);border-radius:13px;padding:17px 18px}.info strong{display:block;color:var(--navy);font-size:12px;margin-bottom:5px}.info p{margin:0;color:var(--muted);font-size:11px;line-height:1.5}
+footer{background:#20272d;color:#fff;text-align:center;padding:22px 20px;font-size:12px;margin-top:40px}
+@media(max-width:700px){.header-inner{padding:11px 15px}nav{display:none}.menu-toggle{display:block}main{padding:28px 15px 45px}.cabecalho-pagina{padding:23px;border-radius:16px}.cabecalho-pagina h1{font-size:23px}.acoes-topo{align-items:stretch}.grid-opcoes{grid-template-columns:1fr}.card-opcao{min-height:155px;padding:21px}}
+</style>
+</head>
+<body>
+<header>
+<div class="header-inner">
+<a class="marca" href="index.html"><img src="logo.png" alt="Logo AD Belém Setor 49"><div><strong>Portal AD Belém — Setor 49</strong><span>Jardim dos Pimentas</span></div></a>
+<nav><a href="index.html">Início</a><a href="area-administrativa.html">Área Administrativa</a></nav>
+<button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false">☰</button>
+</div>
+<div class="mobile-menu" id="mobileMenu"><a href="index.html">Início</a><a href="area-administrativa.html">Área Administrativa</a></div>
+</header>
+<main>
+<div class="acoes-topo"><a class="btn-voltar" href="area-administrativa.html">← Área Administrativa</a><button class="btn-sair" id="btnSair" type="button">Sair</button></div>
+<section class="cabecalho-pagina"><h1>🏛️ Gestão de Patrimônio</h1><p>Controle de bens, equipamentos e patrimônios do Setor 49.</p></section>
+<section class="grid-opcoes">
+<a class="card-opcao" href="#"><div><div class="icone azul">➕</div><h2>Cadastrar patrimônio</h2><p>Registre novos bens, equipamentos e demais patrimônios, com seus dados e localização.</p></div><div class="abrir">ACESSAR →</div></a>
+<a class="card-opcao" href="#"><div><div class="icone verde">🔎</div><h2>Consultar patrimônios</h2><p>Pesquise patrimônios por tombo, descrição, categoria, congregação ou situação.</p></div><div class="abrir">ACESSAR →</div></a>
+<a class="card-opcao" href="#"><div><div class="icone amarelo">🔄</div><h2>Movimentações</h2><p>Registre transferências, mudanças de responsável e movimentações dos patrimônios.</p></div><div class="abrir">ACESSAR →</div></a>
+<a class="card-opcao" href="#"><div><div class="icone laranja">📊</div><h2>Relatórios</h2><p>Consulte informações consolidadas sobre patrimônios, congregações, categorias e situações.</p></div><div class="abrir">ACESSAR →</div></a>
+</section>
+<section class="info"><strong>💡 Módulo de Patrimônio</strong><p>Esta área será utilizada para organizar e acompanhar os bens patrimoniais do Setor 49. Os módulos serão conectados à base de dados nas próximas etapas.</p></section>
+</main>
+<footer>SECRETARIA SETORIAL — SETOR 49</footer>
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+if(sessionStorage.getItem("acessoSecretaria")!=="true"){window.location.href="area-restrita.html";return;}
+const btnSair=document.getElementById("btnSair");if(btnSair){btnSair.addEventListener("click",function(){sessionStorage.removeItem("acessoSecretaria");window.location.href="area-restrita.html";});}
+const menuToggle=document.getElementById("menuToggle"),mobileMenu=document.getElementById("mobileMenu");
+if(menuToggle&&mobileMenu){menuToggle.addEventListener("click",function(){const aberto=mobileMenu.classList.toggle("open");menuToggle.setAttribute("aria-expanded",aberto?"true":"false");menuToggle.textContent=aberto?"✕":"☰";});mobileMenu.querySelectorAll("a").forEach(function(link){link.addEventListener("click",function(){mobileMenu.classList.remove("open");menuToggle.setAttribute("aria-expanded","false");menuToggle.textContent="☰";});});}
+});
+</script>
+</body>
+</html>
