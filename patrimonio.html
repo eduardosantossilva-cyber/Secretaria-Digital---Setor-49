@@ -2990,20 +2990,44 @@ function gerarPDFPatrimonio(){
 }
 
 /* =========================
-   BOTÕES — MESMA ESTRUTURA
-   DA REGISTRO DE PRESENÇA
+   BOTÕES DE IMPRESSÃO E PDF
+   REGISTRADOS APÓS O DOM
 ========================= */
-document
-  .getElementById("btnImprimirRelatorio")
-  .addEventListener("click", function(){
-    imprimirRelatorioPatrimonio();
-  });
+function ligarBotoesExportacaoPatrimonio(){
+  const btnImprimir = document.getElementById("btnImprimirRelatorio");
+  const btnPDF = document.getElementById("btnGerarPDF");
 
-document
-  .getElementById("btnGerarPDF")
-  .addEventListener("click", function(){
-    gerarPDFPatrimonio();
-  });
+  if(!btnImprimir || !btnPDF){
+    console.error("Botões de relatório não encontrados.");
+    return;
+  }
+
+  btnImprimir.onclick = function(e){
+    e.preventDefault();
+    try{
+      imprimirRelatorioPatrimonio();
+    }catch(erro){
+      console.error(erro);
+      alert("Não foi possível abrir a impressão do relatório. Atualize a página e tente novamente.");
+    }
+  };
+
+  btnPDF.onclick = function(e){
+    e.preventDefault();
+    try{
+      gerarPDFPatrimonio();
+    }catch(erro){
+      console.error(erro);
+      alert("Não foi possível gerar o PDF. Atualize a página e tente novamente.");
+    }
+  };
+}
+
+if(document.readyState === "loading"){
+  document.addEventListener("DOMContentLoaded", ligarBotoesExportacaoPatrimonio, {once:true});
+}else{
+  ligarBotoesExportacaoPatrimonio();
+}
 
 </script>
 
