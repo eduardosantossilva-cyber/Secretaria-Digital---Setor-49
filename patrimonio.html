@@ -1752,6 +1752,46 @@ footer{
 @media(max-width:700px){.relatorio-duas-colunas{grid-template-columns:1fr;}.relatorio-topo{flex-direction:column;align-items:stretch;}.relatorio-acoes{flex-direction:column;}.relatorio-resumo{grid-template-columns:repeat(2,1fr);}.tela-relatorio{padding:16px;}}
 @media(max-width:450px){.relatorio-resumo{grid-template-columns:1fr;}}
 
+
+/* ACORDEÃO DOS RELATÓRIOS */
+.relatorio-cabecalho{
+  width:100%;
+  border:0;
+  background:#073c66;
+  color:#fff;
+  min-height:56px;
+  padding:0 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-family:inherit;
+  font-size:16px;
+  font-weight:900;
+  text-align:left;
+  cursor:pointer;
+  border-left:7px solid #f9c414;
+}
+.relatorio-cabecalho:hover{background:#0b4b7d;}
+.relatorio-seta{
+  font-size:18px;
+  line-height:1;
+  transition:transform .2s;
+}
+.relatorio-bloco.fechado .relatorio-seta{transform:rotate(-90deg);}
+.relatorio-conteudo{
+  overflow:hidden;
+  transition:max-height .25s ease, padding .25s ease;
+  max-height:5000px;
+}
+.relatorio-bloco.fechado .relatorio-conteudo{
+  max-height:0;
+}
+.relatorio-duas-colunas .relatorio-bloco{
+  overflow:hidden;
+}
+@media(max-width:700px){
+  .relatorio-cabecalho{font-size:14px;padding:0 14px;}
+}
 </style>
 </head>
 <body>
@@ -2041,24 +2081,44 @@ footer{
     </div>
 
     <div class="relatorio-duas-colunas">
-      <div class="relatorio-bloco">
-        <h3>📂 Patrimônios por categoria</h3>
-        <div id="relatorioCategoria"></div>
+      <div class="relatorio-bloco" id="blocoCategoria">
+        <button type="button" class="relatorio-cabecalho" onclick="alternarRelatorioPatrimonio('blocoCategoria')">
+          <span>📂 Patrimônios por categoria</span>
+          <span class="relatorio-seta">▼</span>
+        </button>
+        <div class="relatorio-conteudo">
+          <div id="relatorioCategoria"></div>
+        </div>
       </div>
-      <div class="relatorio-bloco">
-        <h3>📍 Patrimônios por situação</h3>
-        <div id="relatorioSituacao"></div>
+      <div class="relatorio-bloco" id="blocoSituacao">
+        <button type="button" class="relatorio-cabecalho" onclick="alternarRelatorioPatrimonio('blocoSituacao')">
+          <span>📍 Patrimônios por situação</span>
+          <span class="relatorio-seta">▼</span>
+        </button>
+        <div class="relatorio-conteudo">
+          <div id="relatorioSituacao"></div>
+        </div>
       </div>
     </div>
 
-    <div class="relatorio-bloco">
-      <h3>⛪ Patrimônios por congregação</h3>
-      <div id="relatorioCongregacao"></div>
+    <div class="relatorio-bloco" id="blocoCongregacao">
+      <button type="button" class="relatorio-cabecalho" onclick="alternarRelatorioPatrimonio('blocoCongregacao')">
+        <span>⛪ Patrimônios por congregação</span>
+        <span class="relatorio-seta">▼</span>
+      </button>
+      <div class="relatorio-conteudo">
+        <div id="relatorioCongregacao"></div>
+      </div>
     </div>
 
-    <div class="relatorio-bloco">
-      <h3>🔄 Movimentações registradas</h3>
-      <div id="relatorioMovimentacoes"></div>
+    <div class="relatorio-bloco" id="blocoMovimentacoes">
+      <button type="button" class="relatorio-cabecalho" onclick="alternarRelatorioPatrimonio('blocoMovimentacoes')">
+        <span>🔄 Movimentações registradas</span>
+        <span class="relatorio-seta">▼</span>
+      </button>
+      <div class="relatorio-conteudo">
+        <div id="relatorioMovimentacoes"></div>
+      </div>
     </div>
   </section>
 
@@ -2080,6 +2140,12 @@ footer{
 const API_PATRIMONIO="https://script.google.com/macros/s/AKfycbyCQ0z28gAZKqLoRh1FFkoVpiMsRZ7gEwUhDQPdZdFdz_6fgo1kGSz3-Yr4oPI4zoraNw/exec";
 
 document.addEventListener("DOMContentLoaded",function(){
+function alternarRelatorioPatrimonio(id){
+  const bloco=document.getElementById(id);
+  if(!bloco){return;}
+  bloco.classList.toggle("fechado");
+}
+
 
 if(sessionStorage.getItem("acessoSecretaria")!=="true" && sessionStorage.getItem("acessoSecretaria")!=="autorizado"){
 window.location.href="area-restrita.html";
