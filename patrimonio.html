@@ -1442,6 +1442,279 @@ footer{
   .btn-cancelar,.btn-cadastrar{width:100%}
 }
 
+
+/* =========================
+   MOVIMENTAÇÃO DE PATRIMÔNIO
+========================= */
+
+.tela-movimentacao{
+  display:none;
+  background:#fff;
+  border-radius:15px;
+  padding:22px;
+  border-top:4px solid var(--yellow);
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+.tela-movimentacao.aberto{
+  display:block;
+}
+
+.movimentacao-topo{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:15px;
+  border-bottom:1px solid #e4e9ee;
+  padding-bottom:16px;
+  margin-bottom:20px;
+}
+
+.movimentacao-topo h2{
+  margin:0;
+  color:var(--navy);
+  font-size:20px;
+}
+
+.movimentacao-topo p{
+  margin:5px 0 0;
+  color:var(--muted);
+  font-size:11px;
+}
+
+.btn-voltar-movimentacao{
+  border:0;
+  background:#eef8fc;
+  color:var(--navy);
+  border-radius:8px;
+  padding:9px 12px;
+  font-size:11px;
+  font-weight:900;
+  cursor:pointer;
+  white-space:nowrap;
+}
+
+.movimentacao-busca{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.movimentacao-busca input{
+  width:100%;
+  padding:11px 12px;
+  border:1px solid #d9dfe3;
+  border-radius:8px;
+  font-family:inherit;
+  font-size:13px;
+  outline:none;
+}
+
+.movimentacao-busca input:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(21,157,209,.10);
+}
+
+.btn-buscar-movimentacao{
+  border:0;
+  border-radius:8px;
+  background:var(--blue);
+  color:#fff;
+  font-size:11px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.patrimonio-selecionado{
+  display:none;
+  background:#eef8fc;
+  border:1px solid #cfe7f0;
+  border-radius:10px;
+  padding:14px;
+  margin-bottom:18px;
+}
+
+.patrimonio-selecionado.aberto{
+  display:block;
+}
+
+.patrimonio-selecionado strong{
+  color:var(--navy);
+  font-size:14px;
+}
+
+.patrimonio-selecionado p{
+  margin:5px 0 0;
+  color:#667085;
+  font-size:11px;
+  line-height:1.5;
+}
+
+.movimentacao-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+
+.movimentacao-grid .campo{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.movimentacao-grid .campo label{
+  display:block;
+  font-size:12px;
+  font-weight:900;
+  color:#344054;
+}
+
+.movimentacao-grid .campo input,
+.movimentacao-grid .campo select,
+.movimentacao-grid .campo textarea{
+  width:100%;
+  padding:11px 12px;
+  border:1px solid #d9dfe3;
+  border-radius:8px;
+  background:#fff;
+  font-family:inherit;
+  font-size:13px;
+  outline:none;
+}
+
+.movimentacao-grid .campo input:focus,
+.movimentacao-grid .campo select:focus,
+.movimentacao-grid .campo textarea:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(21,157,209,.10);
+}
+
+.movimentacao-grid .campo textarea{
+  min-height:85px;
+  resize:vertical;
+}
+
+.movimentacao-full{
+  grid-column:1/-1;
+}
+
+.movimentacao-origem{
+  background:#f8fafc;
+  border:1px solid #e1e7eb;
+  border-radius:10px;
+  padding:13px;
+}
+
+.movimentacao-origem strong{
+  display:block;
+  color:var(--navy);
+  font-size:11px;
+  margin-bottom:6px;
+}
+
+.movimentacao-origem p{
+  margin:0;
+  color:#667085;
+  font-size:11px;
+  line-height:1.5;
+}
+
+.movimentacao-acoes{
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+  margin-top:20px;
+  padding-top:16px;
+  border-top:1px solid #edf0f2;
+}
+
+.btn-registrar-movimentacao{
+  border:0;
+  border-radius:8px;
+  padding:11px 15px;
+  background:var(--green);
+  color:#fff;
+  font-size:11px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.btn-registrar-movimentacao:hover{
+  background:var(--blue);
+}
+
+.btn-registrar-movimentacao:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+.historico-movimentacao{
+  margin-top:25px;
+  padding-top:20px;
+  border-top:1px solid #edf0f2;
+}
+
+.historico-movimentacao h3{
+  margin:0 0 12px;
+  color:var(--navy);
+  font-size:15px;
+}
+
+.movimentacao-historico-item{
+  border:1px solid #e1e6ea;
+  border-radius:10px;
+  padding:12px;
+  margin-bottom:8px;
+  background:#fff;
+}
+
+.movimentacao-historico-item strong{
+  color:var(--navy);
+  font-size:12px;
+}
+
+.movimentacao-historico-item p{
+  margin:5px 0 0;
+  color:#667085;
+  font-size:10px;
+  line-height:1.5;
+}
+
+@media(max-width:650px){
+  .movimentacao-topo{
+    flex-direction:column;
+  }
+
+  .btn-voltar-movimentacao{
+    width:100%;
+  }
+
+  .movimentacao-busca{
+    grid-template-columns:1fr;
+  }
+
+  .btn-buscar-movimentacao{
+    min-height:40px;
+  }
+
+  .movimentacao-grid{
+    grid-template-columns:1fr;
+  }
+
+  .movimentacao-full{
+    grid-column:auto;
+  }
+
+  .movimentacao-acoes{
+    flex-direction:column;
+  }
+
+  .btn-registrar-movimentacao{
+    width:100%;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1481,13 +1754,13 @@ footer{
       <div class="abrir">ACESSAR →</div>
     </div>
 
-    <div class="card-opcao">
+    <div class="card-opcao" id="abrirMovimentacao" role="button" tabindex="0">
       <div>
         <div class="icone amarelo">🔄</div>
         <h2>Movimentações</h2>
         <p>Registre transferências, mudanças de responsável e movimentações dos patrimônios.</p>
       </div>
-      <div class="abrir">EM BREVE →</div>
+      <div class="abrir">ACESSAR →</div>
     </div>
 
     <div class="card-opcao">
@@ -1514,6 +1787,95 @@ footer{
 </div>
 <div class="consulta-contador" id="contadorPatrimonios">Carregando patrimônios...</div>
 <div class="lista-patrimonios" id="listaPatrimonios"><div class="mensagem">Carregando patrimônios...</div></div>
+</section>
+
+
+<section class="tela-movimentacao" id="telaMovimentacao">
+
+  <div class="movimentacao-topo">
+    <div>
+      <h2>🔄 Movimentar Patrimônio</h2>
+      <p>Registre transferências, mudanças de localização e demais movimentações.</p>
+    </div>
+    <button class="btn-voltar-movimentacao" id="voltarMovimentacao" type="button">← Voltar</button>
+  </div>
+
+  <div class="movimentacao-busca">
+    <input id="tomboMovimentacao" type="text" placeholder="Digite o TOMBO — Ex.: PAT-49-000001">
+    <button class="btn-buscar-movimentacao" id="buscarMovimentacao" type="button">🔎 BUSCAR PATRIMÔNIO</button>
+  </div>
+
+  <div class="patrimonio-selecionado" id="patrimonioSelecionado">
+    <strong id="movimentacaoDescricao">Patrimônio</strong>
+    <p id="movimentacaoDados">Carregando dados...</p>
+  </div>
+
+  <div class="movimentacao-grid">
+
+    <div class="campo">
+      <label for="tipoMovimentacao">Tipo de movimentação *</label>
+      <select id="tipoMovimentacao" required>
+        <option value="">Selecione</option>
+        <option>Transferência</option>
+        <option>Mudança de localização</option>
+        <option>Envio para manutenção</option>
+        <option>Retorno da manutenção</option>
+        <option>Empréstimo</option>
+        <option>Devolução</option>
+      </select>
+    </div>
+
+    <div class="campo">
+      <label for="dataMovimentacao">Data *</label>
+      <input id="dataMovimentacao" type="date" required>
+    </div>
+
+    <div class="campo movimentacao-full">
+      <div class="movimentacao-origem">
+        <strong>📍 LOCALIZAÇÃO ATUAL</strong>
+        <p id="origemMovimentacao">Selecione um patrimônio para visualizar a origem.</p>
+      </div>
+    </div>
+
+    <div class="campo">
+      <label for="congregacaoDestino">Congregação de destino</label>
+      <input id="congregacaoDestino" placeholder="Nome da congregação de destino">
+    </div>
+
+    <div class="campo">
+      <label for="localizacaoDestino">Localização de destino</label>
+      <input id="localizacaoDestino" placeholder="Ex.: Secretaria, salão, depósito">
+    </div>
+
+    <div class="campo">
+      <label for="responsavelMovimentacao">Responsável</label>
+      <input id="responsavelMovimentacao" placeholder="Nome do responsável">
+    </div>
+
+    <div class="campo">
+      <label for="motivoMovimentacao">Motivo</label>
+      <input id="motivoMovimentacao" placeholder="Motivo da movimentação">
+    </div>
+
+    <div class="campo movimentacao-full">
+      <label for="observacoesMovimentacao">Observações</label>
+      <textarea id="observacoesMovimentacao" placeholder="Informações adicionais sobre a movimentação..."></textarea>
+    </div>
+
+  </div>
+
+  <div class="movimentacao-acoes">
+    <button class="btn-cancelar" type="button" id="cancelarMovimentacao">CANCELAR</button>
+    <button class="btn-registrar-movimentacao" type="button" id="registrarMovimentacao">🔄 REGISTRAR MOVIMENTAÇÃO</button>
+  </div>
+
+  <div class="mensagem" id="mensagemMovimentacao"></div>
+
+  <div class="historico-movimentacao" id="historicoMovimentacao" style="display:none;">
+    <h3>📋 Histórico do patrimônio</h3>
+    <div id="listaHistoricoMovimentacao"></div>
+  </div>
+
 </section>
 
 <section class="tela-formulario" id="telaCadastro">
@@ -1653,6 +2015,21 @@ menuToggle.addEventListener("click",function(){const aberto=mobileMenu.classList
 mobileMenu.querySelectorAll("a").forEach(function(link){link.addEventListener("click",function(){mobileMenu.classList.remove("open");menuToggle.setAttribute("aria-expanded","false");menuToggle.textContent="☰";});});
 }
 
+const telaMovimentacao=document.getElementById("telaMovimentacao");
+const abrirMovimentacao=document.getElementById("abrirMovimentacao");
+const voltarMovimentacao=document.getElementById("voltarMovimentacao");
+const cancelarMovimentacao=document.getElementById("cancelarMovimentacao");
+const tomboMovimentacao=document.getElementById("tomboMovimentacao");
+const buscarMovimentacao=document.getElementById("buscarMovimentacao");
+const patrimonioSelecionado=document.getElementById("patrimonioSelecionado");
+const movimentacaoDescricao=document.getElementById("movimentacaoDescricao");
+const movimentacaoDados=document.getElementById("movimentacaoDados");
+const origemMovimentacao=document.getElementById("origemMovimentacao");
+const mensagemMovimentacao=document.getElementById("mensagemMovimentacao");
+const historicoMovimentacao=document.getElementById("historicoMovimentacao");
+const listaHistoricoMovimentacao=document.getElementById("listaHistoricoMovimentacao");
+const dataMovimentacao=document.getElementById("dataMovimentacao");
+
 const telaConsulta=document.getElementById("telaConsulta");
 const abrirConsulta=document.getElementById("abrirConsulta");
 const voltarConsulta=document.getElementById("voltarConsulta");
@@ -1663,6 +2040,210 @@ const filtroCategoriaPatrimonio=document.getElementById("filtroCategoriaPatrimon
 const filtroCongregacaoPatrimonio=document.getElementById("filtroCongregacaoPatrimonio");
 const filtroSituacaoPatrimonio=document.getElementById("filtroSituacaoPatrimonio");
 let patrimoniosConsulta=[];
+
+
+function mostrarMovimentacao(){
+  menu.style.display="none";
+  info.style.display="none";
+  tela.classList.remove("aberto");
+  telaConsulta.classList.remove("aberto");
+  telaMovimentacao.classList.add("aberto");
+  mensagemMovimentacao.className="mensagem";
+  mensagemMovimentacao.textContent="";
+  patrimonioSelecionado.classList.remove("aberto");
+  historicoMovimentacao.style.display="none";
+  tomboMovimentacao.value="";
+  document.getElementById("tipoMovimentacao").value="";
+  dataMovimentacao.value=new Date().toISOString().slice(0,10);
+  document.getElementById("congregacaoDestino").value="";
+  document.getElementById("localizacaoDestino").value="";
+  document.getElementById("responsavelMovimentacao").value="";
+  document.getElementById("motivoMovimentacao").value="";
+  document.getElementById("observacoesMovimentacao").value="";
+  origemMovimentacao.textContent="Selecione um patrimônio para visualizar a origem.";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function mostrarMenuPatrimonioCompleto(){
+  telaConsulta.classList.remove("aberto");
+  telaMovimentacao.classList.remove("aberto");
+  tela.classList.remove("aberto");
+  menu.style.display="";
+  info.style.display="";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function buscarPatrimonioParaMovimentacao(){
+  const tombo=tomboMovimentacao.value.trim().toUpperCase();
+
+  if(!tombo){
+    mensagemMovimentacao.className="mensagem erro";
+    mensagemMovimentacao.textContent="❌ Informe o TOMBO do patrimônio.";
+    return;
+  }
+
+  buscarMovimentacao.disabled=true;
+  buscarMovimentacao.textContent="BUSCANDO...";
+  mensagemMovimentacao.className="mensagem";
+  mensagemMovimentacao.textContent="";
+  patrimonioSelecionado.classList.remove("aberto");
+
+  fetch(API_PATRIMONIO+"?acao=buscar&tombo="+encodeURIComponent(tombo)+"&cache="+Date.now(),{
+    method:"GET",
+    cache:"no-store"
+  })
+  .then(r=>r.text())
+  .then(texto=>{
+    let d;
+    try{
+      d=JSON.parse(texto);
+    }catch(e){
+      throw new Error("A API não retornou um JSON válido.");
+    }
+
+    if(!d.sucesso){
+      throw new Error(d.erro||"Não foi possível consultar o patrimônio.");
+    }
+
+    if(!d.patrimonio){
+      throw new Error("Patrimônio "+tombo+" não encontrado.");
+    }
+
+    const p=d.patrimonio;
+
+    movimentacaoDescricao.textContent=(p["TOMBO"]||tombo)+" — "+(p["DESCRIÇÃO"]||"Patrimônio");
+    movimentacaoDados.textContent=
+      "⛪ "+(p["CONGREGAÇÃO"]||"Não informada")+
+      " · 📂 "+(p["CATEGORIA"]||"Não informada")+
+      " · 📍 "+(p["LOCALIZAÇÃO"]||"Não informada")+
+      (p["RESPONSÁVEL"]?" · 👤 "+p["RESPONSÁVEL"]:"");
+
+    origemMovimentacao.textContent=
+      "⛪ Congregação: "+(p["CONGREGAÇÃO"]||"Não informada")+
+      " · 📍 Localização: "+(p["LOCALIZAÇÃO"]||"Não informada")+
+      " · 👤 Responsável: "+(p["RESPONSÁVEL"]||"Não informado");
+
+    patrimonioSelecionado.classList.add("aberto");
+
+    document.getElementById("congregacaoDestino").value=p["CONGREGAÇÃO"]||"";
+    document.getElementById("responsavelMovimentacao").value=p["RESPONSÁVEL"]||"";
+
+    carregarHistoricoMovimentacao(tombo);
+  })
+  .catch(e=>{
+    console.error(e);
+    mensagemMovimentacao.className="mensagem erro";
+    mensagemMovimentacao.textContent="❌ "+e.message;
+  })
+  .finally(()=>{
+    buscarMovimentacao.disabled=false;
+    buscarMovimentacao.textContent="🔎 BUSCAR PATRIMÔNIO";
+  });
+}
+
+function carregarHistoricoMovimentacao(tombo){
+  fetch(API_PATRIMONIO+"?acao=historico&tombo="+encodeURIComponent(tombo)+"&cache="+Date.now(),{
+    method:"GET",
+    cache:"no-store"
+  })
+  .then(r=>r.text())
+  .then(texto=>{
+    let d;
+    try{
+      d=JSON.parse(texto);
+    }catch(e){
+      return;
+    }
+
+    if(!d.sucesso || !Array.isArray(d.movimentacoes) || !d.movimentacoes.length){
+      historicoMovimentacao.style.display="none";
+      return;
+    }
+
+    listaHistoricoMovimentacao.innerHTML=d.movimentacoes.map(m=>{
+      return '<div class="movimentacao-historico-item">'+
+        '<strong>🔄 '+escapeHTML(m["TIPO DE MOVIMENTAÇÃO"]||"Movimentação")+'</strong>'+
+        '<p>📅 '+escapeHTML(m["DATA"]||"-")+
+        ' · ⛪ '+escapeHTML(m["CONGREGAÇÃO ORIGEM"]||"-")+
+        ' → '+escapeHTML(m["CONGREGAÇÃO DESTINO"]||"-")+
+        ' · 📍 '+escapeHTML(m["LOCALIZAÇÃO DESTINO"]||"-")+
+        '</p>'+
+        '<p>👤 '+escapeHTML(m["RESPONSÁVEL"]||"-")+
+        ' · Operador: '+escapeHTML(m["OPERADOR"]||"-")+
+        (m["MOTIVO"]?' · Motivo: '+escapeHTML(m["MOTIVO"]):"")+
+        '</p></div>';
+    }).join("");
+
+    historicoMovimentacao.style.display="block";
+  })
+  .catch(e=>{
+    console.error("Erro ao carregar histórico:",e);
+  });
+}
+
+function registrarMovimentacaoPatrimonio(){
+  const tombo=tomboMovimentacao.value.trim().toUpperCase();
+  const tipo=document.getElementById("tipoMovimentacao").value;
+
+  if(!tombo){
+    mensagemMovimentacao.className="mensagem erro";
+    mensagemMovimentacao.textContent="❌ Informe o TOMBO do patrimônio.";
+    return;
+  }
+
+  if(!tipo){
+    mensagemMovimentacao.className="mensagem erro";
+    mensagemMovimentacao.textContent="❌ Selecione o tipo de movimentação.";
+    return;
+  }
+
+  const btn=document.getElementById("registrarMovimentacao");
+  btn.disabled=true;
+  btn.textContent="REGISTRANDO...";
+
+  const dados={
+    acao:"registrarMovimentacao",
+    tombo:tombo,
+    tipoMovimentacao:tipo,
+    data:dataMovimentacao.value,
+    congregacaoDestino:document.getElementById("congregacaoDestino").value.trim(),
+    localizacaoDestino:document.getElementById("localizacaoDestino").value.trim(),
+    responsavel:document.getElementById("responsavelMovimentacao").value.trim(),
+    motivo:document.getElementById("motivoMovimentacao").value.trim(),
+    observacoes:document.getElementById("observacoesMovimentacao").value.trim(),
+    operador:"Administrador"
+  };
+
+  fetch(API_PATRIMONIO,{
+    method:"POST",
+    headers:{"Content-Type":"text/plain;charset=utf-8"},
+    body:JSON.stringify(dados)
+  })
+  .then(r=>r.json())
+  .then(d=>{
+    if(!d.sucesso){
+      throw new Error(d.erro||"Não foi possível registrar a movimentação.");
+    }
+
+    mensagemMovimentacao.className="mensagem sucesso";
+    mensagemMovimentacao.textContent="✅ Movimentação do "+d.tombo+" registrada com sucesso!";
+
+    carregarHistoricoMovimentacao(d.tombo);
+
+    setTimeout(()=>{
+      buscarPatrimonioParaMovimentacao();
+    },300);
+  })
+  .catch(e=>{
+    console.error(e);
+    mensagemMovimentacao.className="mensagem erro";
+    mensagemMovimentacao.textContent="❌ "+e.message;
+  })
+  .finally(()=>{
+    btn.disabled=false;
+    btn.textContent="🔄 REGISTRAR MOVIMENTAÇÃO";
+  });
+}
 
 function mostrarConsulta(){
 menu.style.display="none";
@@ -1675,10 +2256,20 @@ window.scrollTo({top:0,behavior:"smooth"});
 
 function mostrarMenuPatrimonio(){
 telaConsulta.classList.remove("aberto");
+telaMovimentacao.classList.remove("aberto");
+tela.classList.remove("aberto");
 menu.style.display="";
 info.style.display="";
 window.scrollTo({top:0,behavior:"smooth"});
 }
+
+abrirMovimentacao.addEventListener("click",mostrarMovimentacao);
+abrirMovimentacao.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();mostrarMovimentacao();}});
+voltarMovimentacao.addEventListener("click",mostrarMenuPatrimonioCompleto);
+cancelarMovimentacao.addEventListener("click",mostrarMenuPatrimonioCompleto);
+buscarMovimentacao.addEventListener("click",buscarPatrimonioParaMovimentacao);
+tomboMovimentacao.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();buscarPatrimonioParaMovimentacao();}});
+document.getElementById("registrarMovimentacao").addEventListener("click",registrarMovimentacaoPatrimonio);
 
 abrirConsulta.addEventListener("click",mostrarConsulta);
 abrirConsulta.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();mostrarConsulta();}});
@@ -1802,6 +2393,8 @@ const mensagem=document.getElementById("mensagemCadastro");
 function mostrarCadastro(){
 menu.style.display="none";
 info.style.display="none";
+telaConsulta.classList.remove("aberto");
+telaMovimentacao.classList.remove("aberto");
 tela.classList.add("aberto");
 mensagem.className="mensagem";
 mensagem.textContent="";
@@ -1812,6 +2405,7 @@ window.scrollTo({top:0,behavior:"smooth"});
 function mostrarMenu(){
 tela.classList.remove("aberto");
 telaConsulta.classList.remove("aberto");
+telaMovimentacao.classList.remove("aberto");
 menu.style.display="";
 info.style.display="";
 form.reset();
