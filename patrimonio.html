@@ -1357,6 +1357,34 @@ footer{
 .info strong{display:block;color:var(--navy);font-size:12px;margin-bottom:5px}
 .info p{margin:0;color:var(--muted);font-size:11px;line-height:1.5}
 
+/* CONSULTA DE PATRIMÔNIOS */
+.tela-consulta{display:none;background:#fff;border-radius:15px;padding:22px;border-top:4px solid var(--green);box-shadow:0 3px 12px rgba(0,0,0,.08)}
+.tela-consulta.aberto{display:block}
+.consulta-topo{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;border-bottom:1px solid #e4e9ee;padding-bottom:16px;margin-bottom:20px}
+.consulta-topo h2{margin:0;color:var(--navy);font-size:20px}
+.consulta-topo p{margin:5px 0 0;color:var(--muted);font-size:11px}
+.btn-voltar-consulta{border:0;background:#eef8fc;color:var(--navy);border-radius:8px;padding:9px 12px;font-size:11px;font-weight:900;cursor:pointer;white-space:nowrap}
+.consulta-filtros{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;margin-bottom:18px}
+.consulta-filtros input,.consulta-filtros select{width:100%;padding:11px 12px;border:1px solid #d9dfe3;border-radius:8px;background:#fff;font-family:inherit;font-size:12px;outline:none}
+.consulta-filtros input:focus,.consulta-filtros select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(21,157,209,.10)}
+.consulta-contador{margin-bottom:12px;color:#667085;font-size:11px;font-weight:800}
+.lista-patrimonios{display:flex;flex-direction:column;gap:10px}
+.patrimonio-item{border:1px solid #e1e6ea;border-radius:11px;padding:15px;display:flex;align-items:center;gap:15px;background:#fff}
+.patrimonio-item:hover{box-shadow:0 3px 12px rgba(0,0,0,.07)}
+.patrimonio-foto{width:68px;height:68px;border-radius:10px;object-fit:cover;background:#f2f4f7;border:1px solid #e1e6ea;flex-shrink:0}
+.patrimonio-info{flex:1;min-width:0}
+.patrimonio-tombo{display:inline-flex;padding:5px 9px;border-radius:20px;background:#eef8fc;color:var(--blue);font-size:10px;font-weight:900;margin-bottom:6px}
+.patrimonio-nome{color:var(--navy);font-size:14px;font-weight:900;margin-bottom:5px}
+.patrimonio-detalhes{color:#667085;font-size:11px;line-height:1.5}
+.patrimonio-status{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}
+.badge-patrimonio{display:inline-flex;padding:7px 10px;border-radius:20px;background:#eaf8f0;color:var(--green);font-size:10px;font-weight:900}
+.badge-manutencao{background:#fff8dc;color:#8a6800}
+.badge-baixado{background:#fff0f1;color:var(--red)}
+.badge-transferido{background:#eef8fc;color:var(--navy)}
+.valor-patrimonio{color:#344054;font-size:11px;font-weight:900}
+@media(max-width:900px){.consulta-filtros{grid-template-columns:1fr 1fr}.consulta-filtros input{grid-column:1/-1}}
+@media(max-width:650px){.consulta-topo{flex-direction:column}.btn-voltar-consulta{width:100%}.consulta-filtros{grid-template-columns:1fr}.consulta-filtros input{grid-column:auto}.patrimonio-item{align-items:flex-start}.patrimonio-status{align-items:flex-start}.patrimonio-foto{width:58px;height:58px}}
+
 .tela-formulario{
   display:none;background:#fff;border-radius:15px;padding:22px;
   border-top:4px solid var(--yellow);box-shadow:0 3px 12px rgba(0,0,0,.08);
@@ -1444,13 +1472,13 @@ footer{
       <div class="abrir">ACESSAR →</div>
     </div>
 
-    <div class="card-opcao">
+    <div class="card-opcao" id="abrirConsulta" role="button" tabindex="0">
       <div>
         <div class="icone verde">🔎</div>
         <h2>Consultar patrimônios</h2>
         <p>Pesquise patrimônios por tombo, descrição, categoria, congregação ou situação.</p>
       </div>
-      <div class="abrir">EM BREVE →</div>
+      <div class="abrir">ACESSAR →</div>
     </div>
 
     <div class="card-opcao">
@@ -1473,7 +1501,22 @@ footer{
 
   </section>
 
-  <section class="tela-formulario" id="telaCadastro">
+  <section class="tela-consulta" id="telaConsulta">
+<div class="consulta-topo">
+<div><h2>🔎 Consultar Patrimônios</h2><p>Pesquise e filtre os patrimônios cadastrados no Setor 49.</p></div>
+<button class="btn-voltar-consulta" id="voltarConsulta" type="button">← Voltar</button>
+</div>
+<div class="consulta-filtros">
+<input id="buscaPatrimonio" type="text" placeholder="🔎 Tombo ou descrição...">
+<select id="filtroCategoriaPatrimonio"><option value="">📂 Todas as categorias</option></select>
+<select id="filtroCongregacaoPatrimonio"><option value="">⛪ Todas as congregações</option></select>
+<select id="filtroSituacaoPatrimonio"><option value="">📌 Todas as situações</option><option>Em uso</option><option>Em manutenção</option><option>Armazenado</option><option>Baixado</option><option>Transferido</option></select>
+</div>
+<div class="consulta-contador" id="contadorPatrimonios">Carregando patrimônios...</div>
+<div class="lista-patrimonios" id="listaPatrimonios"><div class="mensagem">Carregando patrimônios...</div></div>
+</section>
+
+<section class="tela-formulario" id="telaCadastro">
     <div class="form-topo">
       <div>
         <h2>➕ Cadastrar Patrimônio</h2>
@@ -1610,6 +1653,113 @@ menuToggle.addEventListener("click",function(){const aberto=mobileMenu.classList
 mobileMenu.querySelectorAll("a").forEach(function(link){link.addEventListener("click",function(){mobileMenu.classList.remove("open");menuToggle.setAttribute("aria-expanded","false");menuToggle.textContent="☰";});});
 }
 
+const telaConsulta=document.getElementById("telaConsulta");
+const abrirConsulta=document.getElementById("abrirConsulta");
+const voltarConsulta=document.getElementById("voltarConsulta");
+const listaPatrimonios=document.getElementById("listaPatrimonios");
+const contadorPatrimonios=document.getElementById("contadorPatrimonios");
+const buscaPatrimonio=document.getElementById("buscaPatrimonio");
+const filtroCategoriaPatrimonio=document.getElementById("filtroCategoriaPatrimonio");
+const filtroCongregacaoPatrimonio=document.getElementById("filtroCongregacaoPatrimonio");
+const filtroSituacaoPatrimonio=document.getElementById("filtroSituacaoPatrimonio");
+let patrimoniosConsulta=[];
+
+function mostrarConsulta(){
+menu.style.display="none";
+info.style.display="none";
+tela.classList.remove("aberto");
+telaConsulta.classList.add("aberto");
+carregarPatrimonios();
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function mostrarMenuPatrimonio(){
+telaConsulta.classList.remove("aberto");
+menu.style.display="";
+info.style.display="";
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+abrirConsulta.addEventListener("click",mostrarConsulta);
+abrirConsulta.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();mostrarConsulta();}});
+voltarConsulta.addEventListener("click",mostrarMenuPatrimonio);
+
+function carregarPatrimonios(){
+listaPatrimonios.innerHTML='<div class="mensagem">Carregando patrimônios...</div>';
+contadorPatrimonios.textContent="Consultando base de dados...";
+fetch(API_PATRIMONIO+"?acao=listar")
+.then(r=>r.json())
+.then(d=>{
+if(!d.sucesso) throw new Error(d.erro||"Não foi possível carregar os patrimônios.");
+patrimoniosConsulta=d.patrimonios||[];
+montarFiltrosPatrimonio();
+renderizarPatrimonios();
+})
+.catch(e=>{
+console.error(e);
+contadorPatrimonios.textContent="Erro ao consultar.";
+listaPatrimonios.innerHTML='<div class="mensagem">❌ Não foi possível carregar os patrimônios.<br><br>'+escapeHTML(e.message)+'</div>';
+});
+}
+
+function montarFiltrosPatrimonio(){
+const categorias=[...new Set(patrimoniosConsulta.map(p=>String(p["CATEGORIA"]||"").trim()).filter(Boolean))].sort();
+const congregacoes=[...new Set(patrimoniosConsulta.map(p=>String(p["CONGREGAÇÃO"]||"").trim()).filter(Boolean))].sort();
+filtroCategoriaPatrimonio.innerHTML='<option value="">📂 Todas as categorias</option>';
+categorias.forEach(v=>filtroCategoriaPatrimonio.innerHTML+='<option value="'+escapeHTML(v)+'">'+escapeHTML(v)+'</option>');
+filtroCongregacaoPatrimonio.innerHTML='<option value="">⛪ Todas as congregações</option>';
+congregacoes.forEach(v=>filtroCongregacaoPatrimonio.innerHTML+='<option value="'+escapeHTML(v)+'">'+escapeHTML(v)+'</option>');
+}
+
+function renderizarPatrimonios(){
+const termo=normalizarPatrimonio(buscaPatrimonio.value);
+const categoria=filtroCategoriaPatrimonio.value;
+const congregacao=filtroCongregacaoPatrimonio.value;
+const situacao=filtroSituacaoPatrimonio.value;
+const filtrados=patrimoniosConsulta.filter(p=>{
+const tombo=normalizarPatrimonio(p["TOMBO"]);
+const descricao=normalizarPatrimonio(p["DESCRIÇÃO"]);
+return (!termo||tombo.includes(termo)||descricao.includes(termo))
+&&(!categoria||String(p["CATEGORIA"]||"")===categoria)
+&&(!congregacao||String(p["CONGREGAÇÃO"]||"")===congregacao)
+&&(!situacao||String(p["SITUAÇÃO"]||"")===situacao);
+});
+contadorPatrimonios.textContent=filtrados.length+" patrimônio(s) encontrado(s).";
+if(!filtrados.length){listaPatrimonios.innerHTML='<div class="mensagem">🔎 Nenhum patrimônio encontrado.</div>';return;}
+listaPatrimonios.innerHTML=filtrados.map(criarItemPatrimonio).join("");
+}
+
+function criarItemPatrimonio(p){
+const situacao=String(p["SITUAÇÃO"]||"Não informada");
+let classe="";
+if(situacao==="Em manutenção") classe="badge-manutencao";
+if(situacao==="Baixado") classe="badge-baixado";
+if(situacao==="Transferido") classe="badge-transferido";
+const valor=Number(String(p["VALOR"]||"").replace(",","."));
+const valorTexto=Number.isFinite(valor)&&valor>0?valor.toLocaleString("pt-BR",{style:"currency",currency:"BRL"}):"";
+const foto=String(p["FOTO"]||"").trim();
+const fotoHtml=foto?'<img class="patrimonio-foto" src="'+escapeHTML(foto)+'" alt="Foto do patrimônio" onerror="this.style.display=\'none\'">':"";
+return '<div class="patrimonio-item">'+fotoHtml+
+'<div class="patrimonio-info"><div class="patrimonio-tombo">'+escapeHTML(p["TOMBO"]||"-")+'</div>'+
+'<div class="patrimonio-nome">'+escapeHTML(p["DESCRIÇÃO"]||"-")+'</div>'+
+'<div class="patrimonio-detalhes">⛪ '+escapeHTML(p["CONGREGAÇÃO"]||"-")+
+' · 📂 '+escapeHTML(p["CATEGORIA"]||"-")+
+' · 📍 '+escapeHTML(p["LOCALIZAÇÃO"]||"-")+
+(p["RESPONSÁVEL"]?' · 👤 '+escapeHTML(p["RESPONSÁVEL"]):"")+
+'</div></div><div class="patrimonio-status"><span class="badge-patrimonio '+classe+'">'+escapeHTML(situacao)+'</span>'+
+(valorTexto?'<span class="valor-patrimonio">'+valorTexto+'</span>':"")+
+'</div></div>';
+}
+
+function normalizarPatrimonio(valor){
+return String(valor||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim();
+}
+
+[buscaPatrimonio,filtroCategoriaPatrimonio,filtroCongregacaoPatrimonio,filtroSituacaoPatrimonio].forEach(el=>{
+el.addEventListener("input",renderizarPatrimonios);
+el.addEventListener("change",renderizarPatrimonios);
+});
+
 const menu=document.getElementById("menuPatrimonio");
 const tela=document.getElementById("telaCadastro");
 const info=document.getElementById("infoInicial");
@@ -1632,6 +1782,7 @@ window.scrollTo({top:0,behavior:"smooth"});
 
 function mostrarMenu(){
 tela.classList.remove("aberto");
+telaConsulta.classList.remove("aberto");
 menu.style.display="";
 info.style.display="";
 form.reset();
