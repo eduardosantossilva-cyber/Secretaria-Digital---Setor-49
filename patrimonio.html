@@ -1687,18 +1687,38 @@ voltarConsulta.addEventListener("click",mostrarMenuPatrimonio);
 function carregarPatrimonios(){
 listaPatrimonios.innerHTML='<div class="mensagem">Carregando patrimônios...</div>';
 contadorPatrimonios.textContent="Consultando base de dados...";
-fetch(API_PATRIMONIO+"?acao=listar")
-.then(r=>r.json())
-.then(d=>{
-if(!d.sucesso) throw new Error(d.erro||"Não foi possível carregar os patrimônios.");
-patrimoniosConsulta=d.patrimonios||[];
+
+fetch(API_PATRIMONIO+"?acao=listar&cache="+Date.now(),{
+method:"GET",
+cache:"no-store"
+})
+.then(function(resposta){
+if(!resposta.ok){
+throw new Error("A API retornou o erro HTTP "+resposta.status+".");
+}
+return resposta.text();
+})
+.then(function(texto){
+let d;
+try{
+d=JSON.parse(texto);
+}catch(erro){
+console.error("Resposta recebida da API:",texto);
+throw new Error("A API não retornou um JSON válido.");
+}
+
+if(!d.sucesso){
+throw new Error(d.erro||"A API não conseguiu consultar os patrimônios.");
+}
+
+patrimoniosConsulta=Array.isArray(d.patrimonios)?d.patrimonios:[];
 montarFiltrosPatrimonio();
 renderizarPatrimonios();
 })
-.catch(e=>{
-console.error(e);
+.catch(function(e){
+console.error("Erro na consulta de patrimônios:",e);
 contadorPatrimonios.textContent="Erro ao consultar.";
-listaPatrimonios.innerHTML='<div class="mensagem">❌ Não foi possível carregar os patrimônios.<br><br>'+escapeHTML(e.message)+'</div>';
+listaPatrimonios.innerHTML='<div class="mensagem erro" style="display:block">❌ Não foi possível carregar os patrimônios.<br><br>'+escapeHTML(e.message)+'</div>';
 });
 }
 
@@ -1749,6 +1769,15 @@ return '<div class="patrimonio-item">'+fotoHtml+
 '</div></div><div class="patrimonio-status"><span class="badge-patrimonio '+classe+'">'+escapeHTML(situacao)+'</span>'+
 (valorTexto?'<span class="valor-patrimonio">'+valorTexto+'</span>':"")+
 '</div></div>';
+}
+
+function escapeHTML(valor){
+return String(valor==null?"":valor)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 }
 
 function normalizarPatrimonio(valor){
