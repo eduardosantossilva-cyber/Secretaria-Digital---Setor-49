@@ -1715,6 +1715,43 @@ footer{
   }
 }
 
+
+
+/* =========================
+   RELATÓRIOS
+========================= */
+.tela-relatorio{display:none;background:#fff;border-radius:16px;padding:24px;box-shadow:0 8px 25px rgba(16,24,40,.08);}
+.tela-relatorio.aberto{display:block;}
+.relatorio-topo{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:22px;}
+.relatorio-topo h2{color:var(--navy);font-size:20px;margin-bottom:5px;}
+.relatorio-topo p{color:var(--muted);font-size:12px;}
+.btn-voltar-relatorio{border:0;border-radius:9px;padding:10px 14px;background:#eef1f5;color:var(--navy);font-weight:900;cursor:pointer;}
+.btn-voltar-relatorio:hover{background:var(--blue);color:#fff;}
+.btn-atualizar-relatorio{border:0;border-radius:9px;padding:10px 14px;background:var(--green);color:#fff;font-weight:900;cursor:pointer;}
+.btn-atualizar-relatorio:hover{background:var(--blue);}
+.relatorio-acoes{display:flex;gap:8px;}
+.relatorio-resumo{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:25px;}
+.relatorio-resumo-item{border:1px solid #dfe5ea;border-top:4px solid var(--blue);border-radius:10px;padding:14px;background:#f8fafc;}
+.relatorio-resumo-item:nth-child(2){border-top-color:var(--green);}
+.relatorio-resumo-item:nth-child(3){border-top-color:var(--yellow);}
+.relatorio-resumo-item:nth-child(4){border-top-color:var(--orange);}
+.relatorio-resumo-item:nth-child(5){border-top-color:var(--red);}
+.relatorio-resumo-item:nth-child(6){border-top-color:var(--navy);}
+.relatorio-resumo-item span{display:block;color:var(--muted);font-size:10px;font-weight:900;text-transform:uppercase;margin-bottom:7px;}
+.relatorio-resumo-item strong{display:block;color:var(--navy);font-size:21px;}
+.relatorio-bloco{margin-top:20px;}
+.relatorio-bloco h3{background:var(--navy);color:#fff;border-left:5px solid var(--yellow);padding:10px 12px;font-size:13px;border-radius:7px 7px 0 0;}
+.relatorio-tabela{width:100%;border-collapse:collapse;font-size:11px;}
+.relatorio-tabela th{background:#dfe7f2;color:var(--navy);padding:9px;text-align:left;border:1px solid #d3dae2;font-size:10px;}
+.relatorio-tabela td{padding:8px 9px;border:1px solid #e1e6ea;color:#344054;}
+.relatorio-tabela tbody tr:nth-child(even){background:#f8f9fb;}
+.relatorio-tabela td:not(:first-child),.relatorio-tabela th:not(:first-child){text-align:center;}
+.relatorio-duas-colunas{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.relatorio-vazio{padding:18px;text-align:center;color:var(--muted);border:1px solid #e1e6ea;border-top:0;}
+@media(max-width:1000px){.relatorio-resumo{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:700px){.relatorio-duas-colunas{grid-template-columns:1fr;}.relatorio-topo{flex-direction:column;align-items:stretch;}.relatorio-acoes{flex-direction:column;}.relatorio-resumo{grid-template-columns:repeat(2,1fr);}.tela-relatorio{padding:16px;}}
+@media(max-width:450px){.relatorio-resumo{grid-template-columns:1fr;}}
+
 </style>
 </head>
 <body>
@@ -1763,13 +1800,13 @@ footer{
       <div class="abrir">ACESSAR →</div>
     </div>
 
-    <div class="card-opcao">
+    <div class="card-opcao" id="abrirRelatorio" role="button" tabindex="0">
       <div>
         <div class="icone laranja">📊</div>
         <h2>Relatórios</h2>
         <p>Consulte informações consolidadas sobre patrimônios, congregações, categorias e situações.</p>
       </div>
-      <div class="abrir">EM BREVE →</div>
+      <div class="abrir">ACESSAR →</div>
     </div>
 
   </section>
@@ -1982,6 +2019,49 @@ footer{
     </form>
   </section>
 
+  <section class="tela-relatorio" id="telaRelatorio">
+    <div class="relatorio-topo">
+      <div>
+        <h2>📊 Relatórios de Patrimônio</h2>
+        <p>Visão consolidada dos bens cadastrados no patrimônio do Setor 49.</p>
+      </div>
+      <div class="relatorio-acoes">
+        <button class="btn-atualizar-relatorio" id="atualizarRelatorio" type="button">🔄 Atualizar</button>
+        <button class="btn-voltar-relatorio" id="voltarRelatorio" type="button">← Voltar</button>
+      </div>
+    </div>
+
+    <div class="relatorio-resumo" id="relatorioResumo">
+      <div class="relatorio-resumo-item"><span>Total de patrimônios</span><strong id="rTotal">0</strong></div>
+      <div class="relatorio-resumo-item"><span>Em uso</span><strong id="rUso">0</strong></div>
+      <div class="relatorio-resumo-item"><span>Em manutenção</span><strong id="rManutencao">0</strong></div>
+      <div class="relatorio-resumo-item"><span>Armazenados</span><strong id="rArmazenado">0</strong></div>
+      <div class="relatorio-resumo-item"><span>Baixados</span><strong id="rBaixado">0</strong></div>
+      <div class="relatorio-resumo-item"><span>Valor total</span><strong id="rValor">R$ 0,00</strong></div>
+    </div>
+
+    <div class="relatorio-duas-colunas">
+      <div class="relatorio-bloco">
+        <h3>📂 Patrimônios por categoria</h3>
+        <div id="relatorioCategoria"></div>
+      </div>
+      <div class="relatorio-bloco">
+        <h3>📍 Patrimônios por situação</h3>
+        <div id="relatorioSituacao"></div>
+      </div>
+    </div>
+
+    <div class="relatorio-bloco">
+      <h3>⛪ Patrimônios por congregação</h3>
+      <div id="relatorioCongregacao"></div>
+    </div>
+
+    <div class="relatorio-bloco">
+      <h3>🔄 Movimentações registradas</h3>
+      <div id="relatorioMovimentacoes"></div>
+    </div>
+  </section>
+
   <section class="info" id="infoInicial">
     <strong>💡 Módulo de Patrimônio</strong>
     <p>O cadastro será registrado diretamente na base de dados do Setor 49. O número de tombo é gerado automaticamente.</p>
@@ -2017,6 +2097,10 @@ mobileMenu.querySelectorAll("a").forEach(function(link){link.addEventListener("c
 
 const telaMovimentacao=document.getElementById("telaMovimentacao");
 const abrirMovimentacao=document.getElementById("abrirMovimentacao");
+const telaRelatorio=document.getElementById("telaRelatorio");
+const abrirRelatorio=document.getElementById("abrirRelatorio");
+const voltarRelatorio=document.getElementById("voltarRelatorio");
+const atualizarRelatorio=document.getElementById("atualizarRelatorio");
 const voltarMovimentacao=document.getElementById("voltarMovimentacao");
 const cancelarMovimentacao=document.getElementById("cancelarMovimentacao");
 const tomboMovimentacao=document.getElementById("tomboMovimentacao");
@@ -2067,6 +2151,7 @@ function mostrarMovimentacao(){
 function mostrarMenuPatrimonioCompleto(){
   telaConsulta.classList.remove("aberto");
   telaMovimentacao.classList.remove("aberto");
+  telaRelatorio.classList.remove("aberto");
   tela.classList.remove("aberto");
   menu.style.display="";
   info.style.display="";
@@ -2485,6 +2570,97 @@ btn.disabled=false;
 btn.textContent="💾 CADASTRAR PATRIMÔNIO";
 });
 });
+
+
+function formatarMoedaRelatorio(valor){
+  const n=Number(String(valor??"0").replace(/[^0-9,.-]/g,"").replace(/\.(?=.*\.)/g,"").replace(",","."));
+  return Number.isFinite(n) ? n.toLocaleString("pt-BR",{style:"currency",currency:"BRL"}) : "R$ 0,00";
+}
+
+function valorNumericoRelatorio(valor){
+  if(typeof valor==="number") return valor;
+  let texto=String(valor??"").trim().replace(/R\$/g,"").replace(/\s/g,"");
+  if(texto.includes(",")) texto=texto.replace(/\./g,"").replace(",",".");
+  return Number(texto.replace(/[^0-9.-]/g,""))||0;
+}
+
+function montarTabelaRelatorio(cabecalho,linhas){
+  if(!linhas.length) return '<div class="relatorio-vazio">Nenhum registro encontrado.</div>';
+  return '<table class="relatorio-tabela"><thead><tr>'+cabecalho.map(h=>'<th>'+escapeHTML(h)+'</th>').join('')+'</tr></thead><tbody>'+linhas.map(l=>'<tr>'+l.map(c=>'<td>'+escapeHTML(String(c))+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
+}
+
+function gerarRelatorioPatrimonio(){
+  const resumo={total:patrimonios.length,uso:0,manutencao:0,armazenado:0,baixado:0,valor:0};
+  const categorias={}, congregacoes={}, situacoes={};
+  patrimonios.forEach(p=>{
+    const situacao=String(p["SITUAÇÃO"]||"Não informado").trim()||"Não informado";
+    const categoria=String(p["CATEGORIA"]||"Não informado").trim()||"Não informado";
+    const congregacao=String(p["CONGREGAÇÃO"]||"Não informado").trim()||"Não informado";
+    const valor=valorNumericoRelatorio(p["VALOR"]);
+    resumo.valor+=valor;
+    if(situacao.toLowerCase()==="em uso") resumo.uso++;
+    if(situacao.toLowerCase()==="em manutenção") resumo.manutencao++;
+    if(situacao.toLowerCase()==="armazenado") resumo.armazenado++;
+    if(situacao.toLowerCase()==="baixado") resumo.baixado++;
+    if(!categorias[categoria]) categorias[categoria]={qtd:0,valor:0};
+    categorias[categoria].qtd++; categorias[categoria].valor+=valor;
+    if(!congregacoes[congregacao]) congregacoes[congregacao]={qtd:0,uso:0,manutencao:0,valor:0};
+    congregacoes[congregacao].qtd++; congregacoes[congregacao].valor+=valor;
+    if(situacao.toLowerCase()==="em uso") congregacoes[congregacao].uso++;
+    if(situacao.toLowerCase()==="em manutenção") congregacoes[congregacao].manutencao++;
+    if(!situacoes[situacao]) situacoes[situacao]={qtd:0,valor:0};
+    situacoes[situacao].qtd++; situacoes[situacao].valor+=valor;
+  });
+  document.getElementById("rTotal").textContent=resumo.total;
+  document.getElementById("rUso").textContent=resumo.uso;
+  document.getElementById("rManutencao").textContent=resumo.manutencao;
+  document.getElementById("rArmazenado").textContent=resumo.armazenado;
+  document.getElementById("rBaixado").textContent=resumo.baixado;
+  document.getElementById("rValor").textContent=resumo.valor.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+  document.getElementById("relatorioCategoria").innerHTML=montarTabelaRelatorio(["CATEGORIA","QUANTIDADE","VALOR"],Object.entries(categorias).sort((a,b)=>b[1].qtd-a[1].qtd).map(([k,v])=>[k,v.qtd,formatarMoedaRelatorio(v.valor)]));
+  document.getElementById("relatorioSituacao").innerHTML=montarTabelaRelatorio(["SITUAÇÃO","QUANTIDADE","VALOR"],Object.entries(situacoes).sort((a,b)=>b[1].qtd-a[1].qtd).map(([k,v])=>[k,v.qtd,formatarMoedaRelatorio(v.valor)]));
+  document.getElementById("relatorioCongregacao").innerHTML=montarTabelaRelatorio(["CONGREGAÇÃO","TOTAL","EM USO","MANUTENÇÃO","VALOR"],Object.entries(congregacoes).sort((a,b)=>b[1].qtd-a[1].qtd).map(([k,v])=>[k,v.qtd,v.uso,v.manutencao,formatarMoedaRelatorio(v.valor)]));
+}
+
+function carregarRelatorio(){
+  document.getElementById("relatorioCategoria").innerHTML='<div class="relatorio-vazio">Carregando...</div>';
+  fetch(API_PATRIMONIO+"?acao=listar&cache="+Date.now(),{method:"GET",cache:"no-store"})
+    .then(r=>r.json())
+    .then(d=>{
+      if(!d.sucesso) throw new Error(d.erro||"Não foi possível carregar o relatório.");
+      patrimonios=d.patrimonios||[];
+      gerarRelatorioPatrimonio();
+      return fetch(API_PATRIMONIO+"?acao=listarMovimentacoes&cache="+Date.now(),{method:"GET",cache:"no-store"});
+    })
+    .then(r=>r.json())
+    .then(d=>{
+      const movs=d&&d.sucesso&&Array.isArray(d.movimentacoes)?d.movimentacoes:[];
+      const tipos={};
+      movs.forEach(m=>{const tipo=String(m["TIPO DE MOVIMENTAÇÃO"]||"Não informado");tipos[tipo]=(tipos[tipo]||0)+1;});
+      const linhas=Object.entries(tipos).sort((a,b)=>b[1]-a[1]).map(([k,v])=>[k,v]);
+      document.getElementById("relatorioMovimentacoes").innerHTML=montarTabelaRelatorio(["TIPO DE MOVIMENTAÇÃO","QUANTIDADE"],linhas);
+    })
+    .catch(e=>{
+      console.error(e);
+      document.getElementById("relatorioCategoria").innerHTML='<div class="relatorio-vazio">❌ '+escapeHTML(e.message)+'</div>';
+    });
+}
+
+function mostrarRelatorio(){
+  menu.style.display="none";
+  info.style.display="none";
+  tela.classList.remove("aberto");
+  telaConsulta.classList.remove("aberto");
+  telaMovimentacao.classList.remove("aberto");
+  telaRelatorio.classList.add("aberto");
+  carregarRelatorio();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+abrirRelatorio.addEventListener("click",mostrarRelatorio);
+abrirRelatorio.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();mostrarRelatorio();}});
+voltarRelatorio.addEventListener("click",mostrarMenuPatrimonioCompleto);
+atualizarRelatorio.addEventListener("click",carregarRelatorio);
 
 });
 
