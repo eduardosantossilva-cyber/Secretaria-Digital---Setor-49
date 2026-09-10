@@ -2143,7 +2143,14 @@ document.addEventListener("DOMContentLoaded",function(){
 function alternarRelatorioPatrimonio(id){
   const bloco=document.getElementById(id);
   if(!bloco){return;}
-  bloco.classList.toggle("fechado");
+
+  const cabecalho=bloco.querySelector(".relatorio-cabecalho");
+  const conteudo=bloco.querySelector(".relatorio-conteudo");
+  if(!cabecalho || !conteudo){return;}
+
+  const aberto=conteudo.classList.toggle("aberto");
+  cabecalho.classList.toggle("aberto",aberto);
+  bloco.classList.toggle("fechado",!aberto);
 }
 
 
