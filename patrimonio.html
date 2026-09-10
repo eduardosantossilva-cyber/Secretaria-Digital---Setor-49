@@ -1793,6 +1793,16 @@ footer{
   .relatorio-cabecalho{font-size:14px;padding:0 14px;}
 }
 </style>
+
+<style>
+/* Correção das setas do acordeão: o estado é controlado pelo símbolo. */
+.relatorio-seta,
+.relatorio-cabecalho.aberto .relatorio-seta,
+.relatorio-bloco.fechado .relatorio-seta,
+.relatorio-titulo.aberto .relatorio-seta{
+  transform:none !important;
+}
+</style>
 </head>
 <body>
 
@@ -2151,6 +2161,11 @@ function alternarRelatorioPatrimonio(id){
   const aberto=conteudo.classList.toggle("aberto");
   cabecalho.classList.toggle("aberto",aberto);
   bloco.classList.toggle("fechado",!aberto);
+
+  const seta=cabecalho.querySelector(".relatorio-seta");
+  if(seta){
+    seta.textContent=aberto ? "▲" : "▼";
+  }
 }
 
 document.addEventListener("DOMContentLoaded",function(){
