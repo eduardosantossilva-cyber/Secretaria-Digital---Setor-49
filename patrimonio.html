@@ -2169,8 +2169,8 @@ footer{
     </div>
 
     <div class="acoes-exportacao-relatorio">
-      <button type="button" class="btn-exportar-relatorio btn-imprimir-relatorio" id="btnImprimirPatrimonio" onclick="imprimirRelatorioPatrimonio()">🖨️ Imprimir relatório</button>
-      <button type="button" class="btn-exportar-relatorio btn-pdf-relatorio" id="btnPDFPatrimonio" onclick="gerarPDFPatrimonio()">📄 Baixar PDF</button>
+      <button type="button" class="btn-exportar-relatorio btn-imprimir-relatorio" id="btnImprimirRelatorio">🖨️ Imprimir relatório</button>
+      <button type="button" class="btn-exportar-relatorio btn-pdf-relatorio" id="btnGerarPDF">📄 Baixar PDF</button>
     </div>
 
     <div class="relatorio-duas-colunas">
@@ -2988,6 +2988,22 @@ function gerarPDFPatrimonio(){
   doc.setTextColor(102,112,133);doc.setFont('helvetica','bold');doc.setFontSize(5.5);doc.text('SECRETARIA SETORIAL — SETOR 49',margem+largura/2,y+4,{align:'center'});
   doc.save('relatorio-patrimonio-setor-49.pdf');
 }
+
+/* =========================
+   BOTÕES — MESMA ESTRUTURA
+   DA REGISTRO DE PRESENÇA
+========================= */
+document
+  .getElementById("btnImprimirRelatorio")
+  .addEventListener("click", function(){
+    imprimirRelatorioPatrimonio();
+  });
+
+document
+  .getElementById("btnGerarPDF")
+  .addEventListener("click", function(){
+    gerarPDFPatrimonio();
+  });
 
 </script>
 
