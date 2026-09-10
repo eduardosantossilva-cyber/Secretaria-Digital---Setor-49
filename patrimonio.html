@@ -1802,6 +1802,84 @@ footer{
 .relatorio-titulo.aberto .relatorio-seta{
   transform:none !important;
 }
+
+
+/* AÇÕES DE IMPRESSÃO E PDF */
+.acoes-exportacao-relatorio{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin:22px 0 24px;
+}
+.btn-exportar-relatorio{
+  border:0;
+  border-radius:10px;
+  padding:11px 16px;
+  color:#fff;
+  font-family:inherit;
+  font-size:12px;
+  font-weight:900;
+  cursor:pointer;
+  transition:.2s;
+}
+.btn-imprimir-relatorio{background:#17365d;}
+.btn-imprimir-relatorio:hover{background:#159dd1;transform:translateY(-1px);}
+.btn-pdf-relatorio{background:#079447;}
+.btn-pdf-relatorio:hover{background:#05763a;transform:translateY(-1px);}
+
+#areaImpressaoPatrimonio{display:none;}
+
+@media(max-width:600px){
+  .acoes-exportacao-relatorio{flex-direction:column;}
+  .btn-exportar-relatorio{width:100%;}
+}
+
+@media print{
+  *{
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+  }
+  body > *:not(#areaImpressaoPatrimonio){display:none !important;}
+  #areaImpressaoPatrimonio{
+    display:block !important;
+    width:100%;
+    font-family:Arial,Helvetica,sans-serif;
+    color:#172b4d;
+    background:#fff;
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+  }
+  @page{size:A4 portrait;margin:7mm;}
+}
+</style>
+
+<style>
+/* PADRÃO OFICIAL — IMPRESSÃO/PDF DO PATRIMÔNIO */
+.cabecalho-pdf-patrimonio{border:2px solid #17365d;border-radius:5px;min-height:92px;display:flex;align-items:center;padding:8px 12px;box-sizing:border-box;}
+.logo-pdf-patrimonio{width:78px;height:78px;object-fit:contain;flex-shrink:0;}
+.texto-pdf-patrimonio{flex:1;text-align:center;padding-right:78px;}
+.texto-pdf-patrimonio .linha1{font-size:13px;font-weight:900;color:#000;}
+.texto-pdf-patrimonio .linha2{font-size:11px;font-weight:800;color:#000;margin-top:2px;}
+.texto-pdf-patrimonio .setor-pdf{font-size:13px;font-weight:900;color:#159dd1;margin-top:3px;}
+.texto-pdf-patrimonio .pastor-pdf{font-size:8.5px;font-weight:800;color:#344054;margin-top:3px;}
+.texto-pdf-patrimonio .endereco-pdf{font-size:7.5px;color:#344054;margin-top:2px;}
+.linha-azul-pdf{height:3px;background:#159dd1;margin-top:4px;}
+.linha-amarela-pdf{height:3px;background:#f9c414;margin-top:2px;}
+.titulo-pdf-patrimonio{display:flex;height:34px;margin-top:8px;}
+.titulo-principal-pdf{flex:1;background:#17365d;color:#fff;font-size:15px;font-weight:900;display:flex;align-items:center;padding:0 14px;}
+.titulo-setor-pdf{width:105px;background:#f4c542;color:#17365d;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;}
+.subtitulo-pdf-patrimonio{background:#eef1f5;color:#344054;font-size:9px;padding:7px 9px;font-weight:700;}
+.resumo-pdf-patrimonio{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:8px;}
+.item-resumo-pdf{border:1px solid #d7dde5;background:#f8f9fb;padding:7px 6px;min-height:42px;box-sizing:border-box;}
+.item-resumo-pdf span{display:block;font-size:6.5px;font-weight:900;color:#667085;text-transform:uppercase;}
+.item-resumo-pdf strong{display:block;font-size:10px;color:#073c66;margin-top:4px;}
+.secao-pdf-patrimonio{margin-top:10px;page-break-inside:avoid;}
+.titulo-secao-pdf{background:#17365d;color:#fff;border-left:5px solid #f9c414;padding:7px 9px;font-size:9px;font-weight:900;}
+.tabela-pdf-patrimonio{width:100%;border-collapse:collapse;margin-top:0;font-size:7px;}
+.tabela-pdf-patrimonio th{background:#dfe7f2;color:#073c66;border:1px solid #c7d0dc;padding:5px;text-align:left;font-weight:900;}
+.tabela-pdf-patrimonio td{border:1px solid #d7dde5;padding:5px;color:#172b4d;}
+.tabela-pdf-patrimonio th:not(:first-child),.tabela-pdf-patrimonio td:not(:first-child){text-align:center;}
+.rodape-pdf-patrimonio{margin-top:12px;padding-top:6px;border-top:1px solid #c7d0dc;text-align:center;font-size:7px;font-weight:800;color:#667085;}
 </style>
 </head>
 <body>
@@ -2090,6 +2168,11 @@ footer{
       <div class="relatorio-resumo-item"><span>Valor total</span><strong id="rValor">R$ 0,00</strong></div>
     </div>
 
+    <div class="acoes-exportacao-relatorio">
+      <button type="button" class="btn-exportar-relatorio btn-imprimir-relatorio" id="btnImprimirPatrimonio">🖨️ Imprimir relatório</button>
+      <button type="button" class="btn-exportar-relatorio btn-pdf-relatorio" id="btnPDFPatrimonio">📄 Baixar PDF</button>
+    </div>
+
     <div class="relatorio-duas-colunas">
       <div class="relatorio-bloco" id="blocoCategoria">
         <button type="button" class="relatorio-cabecalho" onclick="alternarRelatorioPatrimonio('blocoCategoria')">
@@ -2136,7 +2219,7 @@ footer{
     <strong>💡 Módulo de Patrimônio</strong>
     <p>O cadastro será registrado diretamente na base de dados do Setor 49. O número de tombo é gerado automaticamente.</p>
   </section>
-
+\n\n  <section id="areaImpressaoPatrimonio">\n    <div class="cabecalho-pdf-patrimonio">\n      <img src="assets/Logo-Belem.png" class="logo-pdf-patrimonio" alt="AD Belém">\n      <div class="texto-pdf-patrimonio">\n        <div class="linha1">IGREJA EVANGÉLICA ASSEMBLEIA DE DEUS EM SÃO PAULO</div>\n        <div class="linha2">MINISTÉRIO DO BELÉM</div>\n        <div class="setor-pdf">SETOR 49 — JARDIM DOS PIMENTAS</div>\n        <div class="pastor-pdf">PASTOR SETORIAL: SAMUEL GARCIA</div>\n        <div class="endereco-pdf">RUA ANTONIO BITTENCOURT, 684 — CEP 07260-040 — JARDIM DOS PIMENTAS — GUARULHOS (SP)</div>\n      </div>\n    </div>\n    <div class="linha-azul-pdf"></div>\n    <div class="linha-amarela-pdf"></div>\n    <div class="titulo-pdf-patrimonio">\n      <div class="titulo-principal-pdf">RELATÓRIO DE PATRIMÔNIO</div>\n      <div class="titulo-setor-pdf">SETOR 49</div>\n    </div>\n    <div class="subtitulo-pdf-patrimonio">VISÃO CONSOLIDADA DOS BENS CADASTRADOS NO PATRIMÔNIO DO SETOR 49</div>\n    <div class="resumo-pdf-patrimonio" id="resumoPDFPatrimonio"></div>\n    <div class="secao-pdf-patrimonio"><div class="titulo-secao-pdf">PATRIMÔNIOS POR CATEGORIA</div><div id="pdfCategoria"></div></div>\n    <div class="secao-pdf-patrimonio"><div class="titulo-secao-pdf">PATRIMÔNIOS POR SITUAÇÃO</div><div id="pdfSituacao"></div></div>\n    <div class="secao-pdf-patrimonio"><div class="titulo-secao-pdf">PATRIMÔNIOS POR CONGREGAÇÃO</div><div id="pdfCongregacao"></div></div>\n    <div class="secao-pdf-patrimonio"><div class="titulo-secao-pdf">MOVIMENTAÇÕES REGISTRADAS</div><div id="pdfMovimentacoes"></div></div>\n    <div class="rodape-pdf-patrimonio">SECRETARIA SETORIAL — SETOR 49</div>\n  </section>\n
 </main>
 
 <footer>
@@ -2752,6 +2835,138 @@ atualizarRelatorio.addEventListener("click",carregarRelatorio);
 
 });
 
+
+
+// =========================
+// IMPRESSÃO E PDF — PATRIMÔNIO
+// =========================
+function linhasTabelaPatrimonio(id){
+  const tbody=document.querySelector('#'+id+' tbody');
+  if(!tbody) return [];
+  return Array.from(tbody.querySelectorAll('tr')).map(tr=>
+    Array.from(tr.querySelectorAll('td')).map(td=>td.textContent.trim())
+  );
+}
+
+function montarTabelaImpressaoPatrimonio(id, cabecalho){
+  const linhas=linhasTabelaPatrimonio(id);
+  if(!linhas.length) return '<div style="padding:6px;font-size:7px;color:#667085;">Nenhum registro encontrado.</div>';
+  let html='<table class="tabela-pdf-patrimonio"><thead><tr>';
+  cabecalho.forEach(h=>html+='<th>'+escapeHTML(h)+'</th>');
+  html+='</tr></thead><tbody>';
+  linhas.forEach(linha=>{
+    html+='<tr>'+linha.map(c=>'<td>'+escapeHTML(c)+'</td>').join('')+'</tr>';
+  });
+  html+='</tbody></table>';
+  return html;
+}
+
+function prepararAreaImpressaoPatrimonio(){
+  const resumo=[
+    ['TOTAL DE PATRIMÔNIOS',document.getElementById('rTotal').textContent],
+    ['EM USO',document.getElementById('rUso').textContent],
+    ['EM MANUTENÇÃO',document.getElementById('rManutencao').textContent],
+    ['ARMAZENADOS',document.getElementById('rArmazenado').textContent],
+    ['BAIXADOS',document.getElementById('rBaixado').textContent],
+    ['VALOR TOTAL',document.getElementById('rValor').textContent]
+  ];
+  document.getElementById('resumoPDFPatrimonio').innerHTML=resumo.map(item=>
+    '<div class="item-resumo-pdf"><span>'+escapeHTML(item[0])+'</span><strong>'+escapeHTML(item[1])+'</strong></div>'
+  ).join('');
+  document.getElementById('pdfCategoria').innerHTML=montarTabelaImpressaoPatrimonio('relatorioCategoria',['CATEGORIA','QUANTIDADE','VALOR']);
+  document.getElementById('pdfSituacao').innerHTML=montarTabelaImpressaoPatrimonio('relatorioSituacao',['SITUAÇÃO','QUANTIDADE','VALOR']);
+  document.getElementById('pdfCongregacao').innerHTML=montarTabelaImpressaoPatrimonio('relatorioCongregacao',['CONGREGAÇÃO','TOTAL','EM USO','MANUTENÇÃO','VALOR']);
+  document.getElementById('pdfMovimentacoes').innerHTML=montarTabelaImpressaoPatrimonio('relatorioMovimentacoes',['TIPO DE MOVIMENTAÇÃO','QUANTIDADE']);
+}
+
+function imprimirRelatorioPatrimonio(){
+  prepararAreaImpressaoPatrimonio();
+  window.print();
+}
+
+function gerarPDFPatrimonio(){
+  prepararAreaImpressaoPatrimonio();
+  if(!window.jspdf || !window.jspdf.jsPDF){
+    alert('Não foi possível carregar o gerador de PDF. Verifique sua conexão com a internet e tente novamente.');
+    return;
+  }
+  const {jsPDF}=window.jspdf;
+  const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+  const margem=7;
+  const largura=196;
+  let y=7;
+
+  // Cabeçalho oficial
+  doc.setDrawColor(23,54,93);
+  doc.setLineWidth(0.7);
+  doc.roundedRect(margem,y,largura,31,1.5,1.5,'S');
+  try{doc.addImage('assets/Logo-Belem.png','PNG',margem+4,y+4,24,24);}catch(e){}
+  doc.setTextColor(0,0,0);
+  doc.setFont('helvetica','bold');
+  doc.setFontSize(9);
+  doc.text('IGREJA EVANGÉLICA ASSEMBLEIA DE DEUS EM SÃO PAULO',margem+largura/2+12,y+7,{align:'center'});
+  doc.setFontSize(8);
+  doc.text('MINISTÉRIO DO BELÉM',margem+largura/2+12,y+11.5,{align:'center'});
+  doc.setTextColor(21,157,209);
+  doc.setFontSize(9);
+  doc.text('SETOR 49 — JARDIM DOS PIMENTAS',margem+largura/2+12,y+16,{align:'center'});
+  doc.setTextColor(52,64,84);
+  doc.setFontSize(6);
+  doc.text('PASTOR SETORIAL: SAMUEL GARCIA',margem+largura/2+12,y+20,{align:'center'});
+  doc.setFontSize(5.2);
+  doc.text('RUA ANTONIO BITTENCOURT, 684 — CEP 07260-040 — JARDIM DOS PIMENTAS — GUARULHOS (SP)',margem+largura/2+12,y+24.5,{align:'center'});
+  y+=32;
+  doc.setFillColor(21,157,209);doc.rect(margem,y,largura,1,'F');y+=1.5;
+  doc.setFillColor(249,196,20);doc.rect(margem,y,largura,1,'F');y+=3.5;
+
+  doc.setFillColor(23,54,93);doc.rect(margem,y,largura-27,12,'F');
+  doc.setFillColor(244,197,66);doc.rect(margem+largura-27,y,27,12,'F');
+  doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');doc.setFontSize(11);
+  doc.text('RELATÓRIO DE PATRIMÔNIO',margem+5,y+7.7);
+  doc.setTextColor(23,54,93);doc.setFontSize(8);doc.text('SETOR 49',margem+largura-13.5,y+7.7,{align:'center'});
+  y+=15;
+
+  doc.setFillColor(238,241,245);doc.rect(margem,y,largura,7,'F');
+  doc.setTextColor(52,64,84);doc.setFontSize(6.5);
+  doc.text('VISÃO CONSOLIDADA DOS BENS CADASTRADOS NO PATRIMÔNIO DO SETOR 49',margem+3,y+4.6);
+  y+=10;
+
+  const resumoPDF=[['TOTAL DE PATRIMÔNIOS',document.getElementById('rTotal').textContent],['EM USO',document.getElementById('rUso').textContent],['EM MANUTENÇÃO',document.getElementById('rManutencao').textContent],['ARMAZENADOS',document.getElementById('rArmazenado').textContent],['BAIXADOS',document.getElementById('rBaixado').textContent],['VALOR TOTAL',document.getElementById('rValor').textContent]];
+  const rw=(largura-25)/6;
+  resumoPDF.forEach((item,i)=>{
+    const x=margem+i*(rw+5);
+    doc.setFillColor(248,249,251);doc.setDrawColor(215,221,229);doc.roundedRect(x,y,rw,16,1,1,'FD');
+    doc.setTextColor(102,112,133);doc.setFontSize(4.5);doc.text(item[0],x+2,y+5);
+    doc.setTextColor(7,60,102);doc.setFontSize(8);doc.text(item[1],x+2,y+11);
+  });
+  y+=21;
+
+  function secao(titulo,head,body,colWidths){
+    if(y>270){doc.addPage();y=10;}
+    doc.setFillColor(23,54,93);doc.rect(margem,y,largura,8,'F');
+    doc.setFillColor(249,196,20);doc.rect(margem,y,1.5,8,'F');
+    doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');doc.setFontSize(7.5);doc.text(titulo,margem+4,y+5.2);
+    y+=8;
+    doc.autoTable({startY:y,head:[head],body:body,margin:{left:margem,right:margem},tableWidth:largura,theme:'grid',styles:{font:'helvetica',fontSize:6,cellPadding:2,textColor:[23,43,77],lineColor:[215,221,229],lineWidth:0.2},headStyles:{fillColor:[223,231,242],textColor:[7,60,102],fontStyle:'bold',halign:'center'},columnStyles:colWidths||{},alternateRowStyles:{fillColor:[250,251,252]},didDrawPage:function(data){}});
+    y=doc.lastAutoTable.finalY+7;
+  }
+
+  secao('PATRIMÔNIOS POR CATEGORIA',['CATEGORIA','QUANTIDADE','VALOR'],linhasTabelaPatrimonio('relatorioCategoria'),{0:{cellWidth:108},1:{cellWidth:44,halign:'center'},2:{cellWidth:44,halign:'center'}});
+  secao('PATRIMÔNIOS POR SITUAÇÃO',['SITUAÇÃO','QUANTIDADE','VALOR'],linhasTabelaPatrimonio('relatorioSituacao'),{0:{cellWidth:108},1:{cellWidth:44,halign:'center'},2:{cellWidth:44,halign:'center'}});
+  secao('PATRIMÔNIOS POR CONGREGAÇÃO',['CONGREGAÇÃO','TOTAL','EM USO','MANUTENÇÃO','VALOR'],linhasTabelaPatrimonio('relatorioCongregacao'),{0:{cellWidth:78},1:{cellWidth:29,halign:'center'},2:{cellWidth:29,halign:'center'},3:{cellWidth:29,halign:'center'},4:{cellWidth:31,halign:'center'}});
+  secao('MOVIMENTAÇÕES REGISTRADAS',['TIPO DE MOVIMENTAÇÃO','QUANTIDADE'],linhasTabelaPatrimonio('relatorioMovimentacoes'),{0:{cellWidth:145},1:{cellWidth:51,halign:'center'}});
+
+  if(y>282){doc.addPage();y=10;}
+  doc.setDrawColor(199,208,220);doc.line(margem,y,margem+largura,y);
+  doc.setTextColor(102,112,133);doc.setFont('helvetica','bold');doc.setFontSize(5.5);doc.text('SECRETARIA SETORIAL — SETOR 49',margem+largura/2,y+4,{align:'center'});
+  doc.save('relatorio-patrimonio-setor-49.pdf');
+}
+
+document.getElementById('btnImprimirPatrimonio').addEventListener('click',imprimirRelatorioPatrimonio);
+document.getElementById('btnPDFPatrimonio').addEventListener('click',gerarPDFPatrimonio);
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
 </body>
 </html>
