@@ -117,8 +117,8 @@ function filtrar(){
   const termo=document.getElementById("busca").value.trim().toUpperCase();
   const lista=dados.filter(x=>{
     const okTipo=tipoAtual==="TODAS"||x.tipo===tipoAtual;
-    const nome = obterCampo(x.dados, ["Nome Completo:", "Nome Completo", "Nome da Criança", "Nome"]);
-    const contato = obterCampo(x.dados, ["Celular / WhatsApp:", "Celular / WhatsApp", "Celular", "WhatsApp", "Telefone"]);
+    const nome = obterCampo(x.dados, ["Nome Completo:", "Nome Completo", "Nome da Criança", "Nome"]) || x.nome || "";
+    const contato = obterCampo(x.dados, ["Celular / WhatsApp:", "Celular / WhatsApp", "Celular", "WhatsApp", "Telefone"]) || x.contato || "";
     const texto=(nome+" "+x.protocolo+" "+contato).toUpperCase();
     return okTipo&&(!termo||texto.includes(termo));
   });
@@ -143,20 +143,18 @@ function criarCard(x){
 
   // O Google Forms pode devolver cabeçalhos com ":" no final.
   // Localizamos os campos de forma tolerante, sem depender do nome exato.
-  const nomePainel = obterCampo(d, [
-    "Nome Completo:",
-    "Nome Completo",
-    "Nome da Criança",
-    "Nome"
-  ]) || x.nome || "-";
+  const nomePainel =
+    obterCampo(d, ["Nome Completo:", "Nome Completo"]) ||
+    obterCampo(d, ["Nome da Criança"]) ||
+    x.nome ||
+    "-";
 
-  const contatoPainel = obterCampo(d, [
-    "Celular / WhatsApp:",
-    "Celular / WhatsApp",
-    "Celular",
-    "WhatsApp",
-    "Telefone"
-  ]) || x.contato || "-";
+  const contatoPainel =
+    obterCampo(d, ["Celular / WhatsApp:", "Celular / WhatsApp"]) ||
+    obterCampo(d, ["Celular", "WhatsApp"]) ||
+    obterCampo(d, ["Telefone"]) ||
+    x.contato ||
+    "-";
 
   const extras=Object.entries(d).filter(([k,v])=>{
     if(!v)return false;
@@ -209,39 +207,36 @@ function salvar(protocolo,b){
   s.onerror=()=>{alert("Não foi possível conectar com a Secretaria para salvar.");delete window[cb];s.remove();b.disabled=false;b.textContent=original;};
   document.body.appendChild(s);
 }
-function normalizarChave(v){
-  return String(v||"")
-    .trim()
-    .toUpperCase()
-    .normalize("NFD")
-    .replace(/[\\u0300-\\u036f]/g,"")
-    .replace(/[\\s:._\\-\\/()]+/g,"");
-}
-
 function obterCampo(obj, aliases){
   if(!obj || typeof obj!=="object") return "";
 
-  const mapa={};
-
-  Object.keys(obj).forEach(function(chave){
-    const valor=obj[chave];
-    if(valor===null || valor===undefined || String(valor).trim()==="") return;
-    mapa[normalizarChave(chave)] = valor;
-  });
-
+  // Tenta primeiro os cabeçalhos exatamente como vêm do Google Forms.
   for(const alias of aliases){
-    const chave=normalizarChave(alias);
-    if(Object.prototype.hasOwnProperty.call(mapa,chave)){
-      return String(mapa[chave]);
+    if(Object.prototype.hasOwnProperty.call(obj, alias)){
+      const valor = obj[alias];
+      if(valor !== null && valor !== undefined && String(valor).trim() !== ""){
+        return String(valor);
+      }
     }
   }
 
-  // Busca tolerante: aceita pequenas diferenças no texto do cabeçalho.
-  for(const chave in mapa){
-    if(chave.includes("NOMECOMPLETO") || chave.includes("NOMEDACRIANCA")){
-      if(aliases.some(a=>normalizarChave(a).includes("NOMECOMPLETO") || normalizarChave(a).includes("NOMEDACRIANCA"))){
-        return String(mapa[chave]);
-      }
+  // Segunda tentativa: ignora apenas espaços e ":" no final do cabeçalho.
+  const normalizar = function(v){
+    return String(v||"")
+      .trim()
+      .toUpperCase()
+      .replace(/\s*:\s*$/,"")
+      .replace(/\s+/g," ");
+  };
+
+  const procurados = aliases.map(normalizar);
+
+  for(const chave of Object.keys(obj)){
+    if(!procurados.includes(normalizar(chave))) continue;
+
+    const valor = obj[chave];
+    if(valor !== null && valor !== undefined && String(valor).trim() !== ""){
+      return String(valor);
     }
   }
 
