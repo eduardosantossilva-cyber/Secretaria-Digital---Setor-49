@@ -4,436 +4,196 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Painel de Solicitações | AD Belém 49</title>
-
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f6f8fa;
-  color:#073c66;
-}
-header{
-  background:linear-gradient(135deg,#073c66,#159dd1);
-  color:#fff;
-  padding:22px 20px;
-  box-shadow:0 3px 10px rgba(0,0,0,.15);
-}
-.cabecalho{
-  max-width:1200px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:30px;
-}
-.titulo{flex:1}
-.titulo h1{font-size:30px;margin-bottom:6px;line-height:1.2}
-.titulo p{font-size:16px;opacity:.92}
+body{font-family:Arial,Helvetica,sans-serif;background:#f6f8fa;color:#073c66}
+header{background:linear-gradient(135deg,#073c66,#159dd1);color:#fff;padding:22px 20px;box-shadow:0 3px 10px rgba(0,0,0,.15)}
+.cabecalho{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:30px}
+.titulo{flex:1}.titulo h1{font-size:30px;margin-bottom:6px;line-height:1.2}.titulo p{font-size:16px;opacity:.92}
 .acoes-cabecalho{display:flex;align-items:center;gap:18px}
-.btn-sair{
-  display:inline-flex;align-items:center;justify-content:center;
-  height:42px;padding:0 18px;background:#fff;color:#073c66;
-  text-decoration:none;font-size:15px;font-weight:900;border-radius:9px;
-  transition:.2s;white-space:nowrap
-}
-.btn-sair:hover{background:#eef8fc;color:#079447}
-.logo{
-  width:70px;height:70px;object-fit:contain;background:#fff;
-  border-radius:14px;padding:5px
-}
+.btn-sair{display:inline-flex;align-items:center;justify-content:center;height:42px;padding:0 18px;background:#fff;color:#073c66;text-decoration:none;font-size:15px;font-weight:900;border-radius:9px;white-space:nowrap}
+.logo{width:70px;height:70px;object-fit:contain;background:#fff;border-radius:14px;padding:5px}
 main{max-width:1200px;margin:26px auto;padding:0 20px}
-
-.resumo{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:24px
-}
-.card{
-  background:#fff;border-radius:14px;padding:22px;min-height:112px;
-  display:flex;flex-direction:column;justify-content:center;
-  box-shadow:0 3px 12px rgba(0,0,0,.08);border-left:5px solid #159dd1
-}
-.card h3{font-size:14px;color:#666;margin-bottom:10px}
-.numero{font-size:32px;font-weight:bold;color:#073c66}
-.pendente{border-left-color:#f47a20}
-.analise{border-left-color:#159dd1}
-.finalizado{border-left-color:#079447}
-
-.secao{
-  background:#fff;border-radius:15px;padding:25px;
-  border-top:4px solid #159dd1;box-shadow:0 3px 12px rgba(0,0,0,.08)
-}
-.secao-titulo{
-  display:flex;justify-content:space-between;align-items:center;
-  gap:15px;margin-bottom:20px
-}
-.secao-titulo h2{font-size:21px;color:#073c66}
-
-.abas{
-  display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px
-}
-.aba{
-  border:1px solid #d9dfe3;background:#f6f8fa;color:#073c66;
-  border-radius:9px;padding:11px 16px;font-size:14px;font-weight:900;
-  cursor:pointer;transition:.2s
-}
-.aba:hover{border-color:#159dd1}
+.resumo{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:24px}
+.card{background:#fff;border-radius:14px;padding:22px;min-height:112px;display:flex;flex-direction:column;justify-content:center;box-shadow:0 3px 12px rgba(0,0,0,.08);border-left:5px solid #159dd1}
+.card h3{font-size:14px;color:#666;margin-bottom:10px}.numero{font-size:32px;font-weight:bold;color:#073c66}
+.pendente{border-left-color:#f47a20}.analise{border-left-color:#159dd1}.finalizado{border-left-color:#079447}
+.secao{background:#fff;border-radius:15px;padding:25px;border-top:4px solid #159dd1;box-shadow:0 3px 12px rgba(0,0,0,.08)}
+.secao-titulo{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:20px}.secao-titulo h2{font-size:21px}
+.abas{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.aba{border:1px solid #d9dfe3;background:#f6f8fa;color:#073c66;border-radius:9px;padding:11px 16px;font-size:14px;font-weight:900;cursor:pointer}
 .aba.ativa{background:#159dd1;color:#fff;border-color:#159dd1}
-
-.busca{
-  display:flex;gap:10px;margin-bottom:22px;background:#f6f8fa;
-  padding:12px;border-radius:10px
-}
-.busca input{
-  flex:1;padding:13px 15px;border:1px solid #ddd;border-radius:8px;
-  background:#fff;font-size:15px;outline:none
-}
-.busca input:focus{border-color:#159dd1}
-button{
-  border:none;border-radius:8px;padding:12px 20px;background:#159dd1;
-  color:#fff;font-size:14px;font-weight:bold;cursor:pointer
-}
-button:hover{opacity:.9}
+.busca{display:flex;gap:10px;margin-bottom:22px;background:#f6f8fa;padding:12px;border-radius:10px}
+.busca input{flex:1;padding:13px 15px;border:1px solid #ddd;border-radius:8px;background:#fff;font-size:15px;outline:none}
+button{border:none;border-radius:8px;padding:12px 20px;background:#159dd1;color:#fff;font-size:14px;font-weight:bold;cursor:pointer}
 button:disabled{opacity:.6;cursor:not-allowed}
-
 .lista{display:flex;flex-direction:column;gap:15px}
-.solicitacao{
-  background:#fff;border:1px solid #e4e4e4;border-left:4px solid #159dd1;
-  border-radius:12px;padding:18px;transition:.2s
-}
-.solicitacao:hover{box-shadow:0 3px 12px rgba(0,0,0,.08)}
-.topo{
-  display:flex;justify-content:space-between;align-items:center;
-  gap:15px;margin-bottom:12px
-}
-.protocolo{font-weight:bold;color:#073c66;font-size:15px;letter-spacing:.2px}
-.tipo{
-  display:inline-flex;padding:5px 10px;border-radius:20px;
-  background:#eef8fc;color:#159dd1;font-size:11px;font-weight:900
-}
-.status{
-  display:inline-flex;padding:6px 11px;border-radius:20px;
-  font-size:12px;font-weight:bold
-}
-.status-pendente{background:#fff3e8;color:#f47a20}
-.status-analise{background:#e9f7fd;color:#159dd1}
-.status-finalizado{background:#eefaf3;color:#079447}
-.status-encerrado{background:#eee;color:#555}
-
-.dados{
-  display:grid;grid-template-columns:repeat(2,1fr);
-  gap:10px;margin-bottom:15px
-}
-.campo strong{
-  display:block;font-size:12px;color:#777;margin-bottom:3px
-}
-.campo span{font-size:14px;color:#333;word-break:break-word}
-
-.area-secretaria{
-  margin-top:20px;padding:18px;border:1px solid #e5e5e5;
-  border-radius:10px;background:#fafcfd
-}
-.area-secretaria label{
-  display:block;margin-bottom:8px;font-size:13px;
-  font-weight:bold;color:#073c66
-}
-.area-secretaria select,.area-secretaria textarea{
-  width:100%;border:1px solid #d9dfe3;border-radius:8px;
-  background:#fff;font-family:Arial,Helvetica,sans-serif;font-size:14px;outline:none
-}
-.area-secretaria select{padding:11px;margin-bottom:16px}
-.area-secretaria textarea{min-height:100px;padding:12px;resize:vertical}
-.area-secretaria select:focus,.area-secretaria textarea:focus{
-  border-color:#159dd1;box-shadow:0 0 0 2px rgba(21,157,209,.10)
-}
+.solicitacao{background:#fff;border:1px solid #e4e4e4;border-left:4px solid #159dd1;border-radius:12px;padding:18px}
+.topo{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:12px}
+.protocolo{font-weight:bold;color:#073c66;font-size:15px}.tipo{display:inline-flex;margin-top:6px;padding:5px 10px;border-radius:20px;background:#eef8fc;color:#159dd1;font-size:11px;font-weight:900}
+.status{display:inline-flex;padding:6px 11px;border-radius:20px;font-size:12px;font-weight:bold}
+.status-pendente{background:#fff3e8;color:#f47a20}.status-analise{background:#e9f7fd;color:#159dd1}.status-finalizado{background:#eefaf3;color:#079447}.status-encerrado{background:#eee;color:#555}
+.dados{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:15px}.campo strong{display:block;font-size:12px;color:#777;margin-bottom:3px}.campo span{font-size:14px;color:#333;word-break:break-word}
+.detalhes{margin-top:12px;background:#f6f8fa;border-radius:8px;padding:13px}
+.area-secretaria{margin-top:20px;padding:18px;border:1px solid #e5e5e5;border-radius:10px;background:#fafcfd}
+.area-secretaria label{display:block;margin-bottom:8px;font-size:13px;font-weight:bold}
+.area-secretaria select,.area-secretaria textarea{width:100%;border:1px solid #d9dfe3;border-radius:8px;background:#fff;font-family:Arial,Helvetica,sans-serif;font-size:14px;outline:none}
+.area-secretaria select{padding:11px;margin-bottom:16px}.area-secretaria textarea{min-height:100px;padding:12px;resize:vertical}
 .btn-salvar{width:100%;margin-top:12px;background:#079447}
-.btn-salvar:hover{background:#067b3b;opacity:1}
-
-.vazio{
-  text-align:center;padding:45px 20px;color:#777
-}
-.vazio .icone{font-size:42px;margin-bottom:12px}
-.vazio strong{display:block;color:#555;margin-bottom:6px}
-.vazio p{font-size:14px}
-
-footer{
-  background:#20262b;color:#d0d5dd;padding:30px 22px;
-  text-align:center;font-size:13px;margin-top:26px
-}
-
-@media(max-width:800px){
-  header{padding:18px 16px}
-  .cabecalho{align-items:flex-start}
-  .titulo h1{font-size:22px}
-  main{padding:0 14px;margin-top:18px}
-  .resumo{grid-template-columns:repeat(2,1fr)}
-  .secao{padding:18px}
-  .dados{grid-template-columns:1fr}
-}
-@media(max-width:500px){
-  .cabecalho{gap:12px}
-  .logo{width:58px;height:58px}
-  .titulo h1{font-size:20px}
-  .titulo p{font-size:13px}
-  .resumo{grid-template-columns:1fr}
-  .secao-titulo{align-items:stretch;flex-direction:column}
-  .secao-titulo button{width:100%}
-  .busca{flex-direction:column;padding:10px}
-  .busca button{width:100%}
-  .topo{align-items:flex-start;flex-direction:column}
-}
+.vazio{text-align:center;padding:45px 20px;color:#777}.vazio .icone{font-size:42px;margin-bottom:12px}
+.carregando{text-align:center;padding:35px;color:#777}
+footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font-size:13px;margin-top:26px}
+@media(max-width:800px){.cabecalho{align-items:flex-start}.titulo h1{font-size:22px}main{padding:0 14px}.resumo{grid-template-columns:repeat(2,1fr)}.secao{padding:18px}.dados{grid-template-columns:1fr}}
+@media(max-width:500px){.logo{width:58px;height:58px}.titulo h1{font-size:20px}.titulo p{font-size:13px}.resumo{grid-template-columns:1fr}.secao-titulo{align-items:stretch;flex-direction:column}.secao-titulo button,.busca button{width:100%}.busca{flex-direction:column;padding:10px}.topo{align-items:flex-start;flex-direction:column}}
 </style>
 </head>
-
 <body>
-
-<header>
-  <div class="cabecalho">
-    <div class="titulo">
-      <h1>📋 Painel de Solicitações</h1>
-      <p>Secretaria + Digital — AD Belém 49</p>
-    </div>
-    <div class="acoes-cabecalho">
-      <a href="area-administrativa.html" class="btn-sair">← Sair</a>
-      <img src="assets/Logo-Belem.png" class="logo" alt="AD Belém">
-    </div>
-  </div>
-</header>
+<header><div class="cabecalho">
+  <div class="titulo"><h1>📋 Painel de Solicitações</h1><p>Secretaria + Digital — AD Belém 49</p></div>
+  <div class="acoes-cabecalho"><a href="area-administrativa.html" class="btn-sair">← Sair</a><img src="assets/Logo-Belem.png" class="logo" alt="AD Belém"></div>
+</div></header>
 
 <main>
-
 <section class="resumo">
-  <div class="card">
-    <h3>Total de solicitações</h3>
-    <div class="numero" id="totalSolicitacoes">0</div>
-  </div>
-  <div class="card pendente">
-    <h3>Pendentes</h3>
-    <div class="numero" id="totalPendentes">0</div>
-  </div>
-  <div class="card analise">
-    <h3>Em análise</h3>
-    <div class="numero" id="totalAnalise">0</div>
-  </div>
-  <div class="card finalizado">
-    <h3>Finalizadas</h3>
-    <div class="numero" id="totalFinalizadas">0</div>
-  </div>
+  <div class="card"><h3>Total de solicitações</h3><div class="numero" id="totalSolicitacoes">0</div></div>
+  <div class="card pendente"><h3>Pendentes</h3><div class="numero" id="totalPendentes">0</div></div>
+  <div class="card analise"><h3>Em análise</h3><div class="numero" id="totalAnalise">0</div></div>
+  <div class="card finalizado"><h3>Finalizadas</h3><div class="numero" id="totalFinalizadas">0</div></div>
 </section>
 
 <section class="secao">
-  <div class="secao-titulo">
-    <h2>Solicitações recebidas</h2>
-    <button type="button" onclick="atualizar()">↻ Atualizar</button>
-  </div>
-
+  <div class="secao-titulo"><h2>Solicitações recebidas</h2><button type="button" onclick="carregar()">↻ Atualizar</button></div>
   <div class="abas">
-    <button class="aba ativa" data-tipo="TODAS" onclick="selecionarAba('TODAS',this)">Todas</button>
-    <button class="aba" data-tipo="CARTEIRINHA" onclick="selecionarAba('CARTEIRINHA',this)">🪪 Carteirinhas</button>
-    <button class="aba" data-tipo="BATISMO" onclick="selecionarAba('BATISMO',this)">💧 Batismos</button>
-    <button class="aba" data-tipo="APRESENTAÇÃO" onclick="selecionarAba('APRESENTAÇÃO',this)">👶 Apresentações</button>
+    <button class="aba ativa" onclick="selecionar('TODAS',this)">Todas</button>
+    <button class="aba" onclick="selecionar('CARTEIRINHA',this)">🪪 Carteirinhas</button>
+    <button class="aba" onclick="selecionar('BATISMO',this)">💧 Batismos</button>
+    <button class="aba" onclick="selecionar('APRESENTACAO',this)">👶 Apresentações</button>
   </div>
-
-  <div class="busca">
-    <input id="busca" type="text" placeholder="Digite nome ou protocolo...">
-    <button type="button" onclick="filtrar()">🔎 Buscar</button>
-  </div>
-
-  <div class="lista" id="lista">
-    <div class="vazio">
-      <div class="icone">📭</div>
-      <strong>Painel preparado</strong>
-      <p>A integração com as planilhas das solicitações será conectada nesta mesma estrutura.</p>
-    </div>
-  </div>
+  <div class="busca"><input id="busca" placeholder="Digite nome ou protocolo..."><button onclick="filtrar()">🔎 Buscar</button></div>
+  <div class="lista" id="lista"><div class="carregando">Carregando solicitações...</div></div>
 </section>
-
 </main>
 
-<footer>
-  ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM · SETOR 49 - JARDIM DOS PIMENTAS
-  <br><small>PORTAL AD BELÉM - SETOR 49</small>
-</footer>
+<footer>ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM · SETOR 49 - JARDIM DOS PIMENTAS<br><small>PORTAL AD BELÉM - SETOR 49</small></footer>
 
 <script>
-/*
-  PAINEL DE SOLICITAÇÕES
-  ---------------------------------------------
-  A interface já está pronta.
-  Nesta primeira versão os dados abaixo são de teste,
-  apenas para validar o layout antes da integração
-  definitiva com as planilhas.
-*/
+const API="https://script.google.com/macros/s/AKfycbzsJKoegOsOvPo3PhfHoZUd3A9Mfk4MrFO6DFe9t48VjDjo_2jt9xK-mw5sQRsnGR1Q/exec";
+let dados=[],tipoAtual="TODAS";
 
-let tipoAtual = "TODAS";
-
-const solicitacoesDemo = [
-  {
-    protocolo:"CAR-2026-000001",
-    tipo:"CARTEIRINHA",
-    nome:"Exemplo de solicitação",
-    contato:"(11) 99999-9999",
-    data:"11/09/2026",
-    status:"PENDENTE",
-    detalhe:"Esta é uma solicitação de exemplo para conferirmos o painel."
-  },
-  {
-    protocolo:"BAT-2026-000001",
-    tipo:"BATISMO",
-    nome:"Exemplo de candidato",
-    contato:"(11) 98888-8888",
-    data:"11/09/2026",
-    status:"EM ANÁLISE",
-    detalhe:"Exemplo de cadastro de candidato ao batismo."
-  },
-  {
-    protocolo:"APR-2026-000001",
-    tipo:"APRESENTAÇÃO",
-    nome:"Exemplo de criança",
-    contato:"(11) 97777-7777",
-    data:"11/09/2026",
-    status:"FINALIZADO",
-    detalhe:"Exemplo de agendamento de apresentação."
-  }
-];
-
-function normalizarStatus(status){
-  return String(status || "PENDENTE").toUpperCase();
-}
-
-function classeStatus(status){
-  const s = normalizarStatus(status);
-  if(s === "EM ANÁLISE" || s === "EM ANALISE") return "status-analise";
-  if(s === "FINALIZADO" || s === "CONCLUÍDO" || s === "CONCLUIDO") return "status-finalizado";
-  if(s === "ENCERRADO") return "status-encerrado";
-  return "status-pendente";
+function carregar(){
+  const lista=document.getElementById("lista");
+  lista.innerHTML='<div class="carregando">Carregando solicitações...</div>';
+  const cb="receberSolicitacoes_"+Date.now();
+  window[cb]=function(r){
+    try{
+      if(!r||!r.sucesso) throw new Error(r?.erro||"Não foi possível carregar as solicitações.");
+      dados=r.solicitacoes||[];
+      atualizarResumo();
+      filtrar();
+    }catch(e){
+      lista.innerHTML='<div class="vazio"><div class="icone">⚠️</div><strong>Erro ao carregar as solicitações</strong><p>'+esc(e.message)+'</p></div>';
+    }finally{
+      delete window[cb];
+      document.getElementById(cb)?.remove();
+    }
+  };
+  const s=document.createElement("script");
+  s.id=cb;s.src=API+"?acao=listar&callback="+encodeURIComponent(cb);
+  s.onerror=()=>{lista.innerHTML='<div class="vazio"><div class="icone">⚠️</div><strong>Erro de conexão</strong><p>Não foi possível consultar a Secretaria.</p></div>';delete window[cb];s.remove();};
+  document.body.appendChild(s);
 }
 
 function atualizarResumo(){
-  const total = solicitacoesDemo.length;
-  const pendentes = solicitacoesDemo.filter(x => normalizarStatus(x.status)==="PENDENTE").length;
-  const analise = solicitacoesDemo.filter(x => {
-    const s=normalizarStatus(x.status);
-    return s==="EM ANÁLISE" || s==="EM ANALISE";
-  }).length;
-  const finalizadas = solicitacoesDemo.filter(x => {
-    const s=normalizarStatus(x.status);
-    return s==="FINALIZADO" || s==="CONCLUÍDO" || s==="CONCLUIDO";
-  }).length;
-
-  document.getElementById("totalSolicitacoes").textContent=total;
-  document.getElementById("totalPendentes").textContent=pendentes;
-  document.getElementById("totalAnalise").textContent=analise;
-  document.getElementById("totalFinalizadas").textContent=finalizadas;
+  const p=dados.filter(x=>String(x.status).toUpperCase()==="PENDENTE").length;
+  const a=dados.filter(x=>["EM ANÁLISE","EM ANALISE"].includes(String(x.status).toUpperCase())).length;
+  const f=dados.filter(x=>["FINALIZADO","CONCLUÍDO","CONCLUIDO"].includes(String(x.status).toUpperCase())).length;
+  document.getElementById("totalSolicitacoes").textContent=dados.length;
+  document.getElementById("totalPendentes").textContent=p;
+  document.getElementById("totalAnalise").textContent=a;
+  document.getElementById("totalFinalizadas").textContent=f;
 }
-
-function selecionarAba(tipo,botao){
-  tipoAtual=tipo;
-  document.querySelectorAll(".aba").forEach(b=>b.classList.remove("ativa"));
-  botao.classList.add("ativa");
-  filtrar();
-}
-
+function selecionar(tipo,b){tipoAtual=tipo;document.querySelectorAll(".aba").forEach(x=>x.classList.remove("ativa"));b.classList.add("ativa");filtrar();}
 function filtrar(){
   const termo=document.getElementById("busca").value.trim().toUpperCase();
-
-  let lista=solicitacoesDemo.filter(item=>{
-    const correspondeTipo=tipoAtual==="TODAS" || item.tipo===tipoAtual;
-    const texto=(item.nome+" "+item.protocolo+" "+item.contato).toUpperCase();
-    return correspondeTipo && (!termo || texto.includes(termo));
+  const lista=dados.filter(x=>{
+    const okTipo=tipoAtual==="TODAS"||x.tipo===tipoAtual;
+    const texto=(x.nome+" "+x.protocolo+" "+x.contato).toUpperCase();
+    return okTipo&&(!termo||texto.includes(termo));
   });
-
   renderizar(lista);
 }
-
 function renderizar(lista){
-  const container=document.getElementById("lista");
-
-  if(!lista.length){
-    container.innerHTML=`
-      <div class="vazio">
-        <div class="icone">📭</div>
-        <strong>Nenhuma solicitação encontrada</strong>
-        <p>Não há registros para os filtros selecionados.</p>
-      </div>`;
-    return;
-  }
-
-  container.innerHTML=lista.slice().reverse().map(criarCard).join("");
+  const el=document.getElementById("lista");
+  if(!lista.length){el.innerHTML='<div class="vazio"><div class="icone">📭</div><strong>Nenhuma solicitação encontrada</strong><p>Não há registros para os filtros selecionados.</p></div>';return;}
+  el.innerHTML=lista.map(criarCard).join("");
 }
-
-function criarCard(item){
-  const status=normalizarStatus(item.status);
-  return `
-    <div class="solicitacao">
-      <div class="topo">
-        <div>
-          <div class="protocolo">${item.protocolo}</div>
-          <span class="tipo">${item.tipo}</span>
-        </div>
-        <span class="status ${classeStatus(status)}">${status}</span>
-      </div>
-
-      <div class="dados">
-        <div class="campo">
-          <strong>Nome</strong>
-          <span>${item.nome}</span>
-        </div>
-        <div class="campo">
-          <strong>Contato</strong>
-          <span>${item.contato}</span>
-        </div>
-        <div class="campo">
-          <strong>Data da solicitação</strong>
-          <span>${item.data}</span>
-        </div>
-        <div class="campo">
-          <strong>Tipo de solicitação</strong>
-          <span>${item.tipo}</span>
-        </div>
-      </div>
-
-      <div class="campo">
-        <strong>Informações</strong>
-        <span>${item.detalhe}</span>
-      </div>
-
-      <div class="area-secretaria">
-        <label>Status da solicitação</label>
-        <select>
-          <option ${status==="PENDENTE"?"selected":""}>PENDENTE</option>
-          <option ${status==="EM ANÁLISE"||status==="EM ANALISE"?"selected":""}>EM ANÁLISE</option>
-          <option ${status==="FINALIZADO"?"selected":""}>FINALIZADO</option>
-          <option ${status==="ENCERRADO"?"selected":""}>ENCERRADO</option>
-        </select>
-
-        <label>Resposta da Secretaria</label>
-        <textarea placeholder="Digite aqui a resposta para o solicitante..."></textarea>
-
-        <button type="button" class="btn-salvar" onclick="salvarDemo(this)">
-          💾 Salvar solicitação
-        </button>
-      </div>
-    </div>`;
+function classeStatus(s){
+  s=String(s||"PENDENTE").toUpperCase();
+  if(s==="EM ANÁLISE"||s==="EM ANALISE")return"status-analise";
+  if(s==="FINALIZADO"||s==="CONCLUÍDO"||s==="CONCLUIDO")return"status-finalizado";
+  if(s==="ENCERRADO")return"status-encerrado";
+  return"status-pendente";
 }
-
-function salvarDemo(botao){
-  botao.disabled=true;
-  botao.textContent="⏳ Salvando...";
-  setTimeout(()=>{
-    botao.disabled=false;
-    botao.textContent="💾 Salvar solicitação";
-    alert("A estrutura do painel está pronta. A gravação será conectada à planilha na próxima etapa.");
-  },500);
+function criarCard(x){
+  const status=String(x.status||"PENDENTE").toUpperCase();
+  const resposta=x.resposta||"";
+  const d=x.dados||{};
+  const extras=Object.entries(d).filter(([k,v])=>{
+    if(!v)return false;
+    return !["Carimbo de data/hora","Protocolo","Status","Resposta da Secretaria","LGPD"].includes(k);
+  }).slice(0,30);
+  return `<div class="solicitacao">
+    <div class="topo">
+      <div><div class="protocolo">${esc(x.protocolo)}</div><span class="tipo">${esc(x.tipo)}</span></div>
+      <span class="status ${classeStatus(status)}">${esc(status)}</span>
+    </div>
+    <div class="dados">
+      <div class="campo"><strong>Nome</strong><span>${esc(x.nome)}</span></div>
+      <div class="campo"><strong>Contato</strong><span>${esc(x.contato)}</span></div>
+      <div class="campo"><strong>Data da solicitação</strong><span>${esc(x.data)}</span></div>
+      <div class="campo"><strong>Informações principais</strong><span>${esc(x.detalhe)}</span></div>
+    </div>
+    <details class="detalhes"><summary><strong>📋 Ver todos os dados da solicitação</strong></summary>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px">
+        ${extras.map(([k,v])=>`<div class="campo"><strong>${esc(k)}</strong><span>${esc(String(v))}</span></div>`).join("")}
+      </div>
+    </details>
+    <div class="area-secretaria">
+      <label>Status da solicitação</label>
+      <select id="status-${escId(x.protocolo)}">
+        ${["PENDENTE","EM ANÁLISE","FINALIZADO","ENCERRADO"].map(s=>`<option ${status===s?"selected":""}>${s}</option>`).join("")}
+      </select>
+      <label>Resposta da Secretaria</label>
+      <textarea id="resposta-${escId(x.protocolo)}" placeholder="Digite aqui a resposta para o solicitante...">${esc(resposta)}</textarea>
+      <button type="button" class="btn-salvar" onclick="salvar('${escAttr(x.protocolo)}',this)">💾 Salvar solicitação</button>
+    </div>
+  </div>`;
 }
-
-function atualizar(){
-  filtrar();
+function salvar(protocolo,b){
+  const id=escId(protocolo);
+  const status=document.getElementById("status-"+id).value;
+  const resposta=document.getElementById("resposta-"+id).value.trim();
+  const original=b.textContent;b.disabled=true;b.textContent="⏳ Salvando...";
+  const cb="salvar_"+Date.now();
+  window[cb]=function(r){
+    try{
+      if(!r||!r.sucesso)throw new Error(r?.erro||"Não foi possível salvar.");
+      alert("Solicitação atualizada com sucesso!");
+      carregar();
+    }catch(e){alert("Erro ao salvar:\n\n"+e.message);}
+    finally{delete window[cb];document.getElementById(cb)?.remove();b.disabled=false;b.textContent=original;}
+  };
+  const s=document.createElement("script");
+  s.id=cb;
+  s.src=API+"?acao=atualizar&protocolo="+encodeURIComponent(protocolo)+"&status="+encodeURIComponent(status)+"&resposta="+encodeURIComponent(resposta)+"&callback="+encodeURIComponent(cb);
+  s.onerror=()=>{alert("Não foi possível conectar com a Secretaria para salvar.");delete window[cb];s.remove();b.disabled=false;b.textContent=original;};
+  document.body.appendChild(s);
 }
-
-document.addEventListener("DOMContentLoaded",()=>{
-  atualizarResumo();
-  renderizar(solicitacoesDemo);
-});
+function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));}
+function escAttr(v){return String(v??"").replace(/\\/g,"\\\\").replace(/'/g,"\\'").replace(/\n/g," ");}
+function escId(v){return String(v??"").replace(/[^a-zA-Z0-9_-]/g,"_");}
+document.getElementById("busca").addEventListener("keydown",e=>{if(e.key==="Enter")filtrar();});
+document.addEventListener("DOMContentLoaded",carregar);
 </script>
-
 </body>
 </html>
