@@ -173,7 +173,7 @@ function criarCard(x){
     </div>
     <details class="detalhes"><summary><strong>📋 Ver todos os dados da solicitação</strong></summary>
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px">
-        ${extras.map(([k,v])=>`<div class="campo"><strong>${esc(k)}</strong><span>${esc(String(v))}</span></div>`).join("")}
+        ${extras.map(([k,v])=>`<div class="campo"><strong>${esc(k)}</strong><span>${esc(formatarValorCampo(k,v))}</span></div>`).join("")}
       </div>
     </details>
     <div class="area-secretaria">
@@ -241,6 +241,44 @@ function obterCampo(obj, aliases){
   }
 
   return "";
+}
+
+function formatarValorCampo(chave, valor){
+  if(valor === null || valor === undefined || valor === "") return "";
+
+  const texto = String(valor).trim();
+  const chaveNormalizada = String(chave || "").toUpperCase();
+
+  // Datas vindas do Google Sheets podem chegar ao navegador como ISO,
+  // por exemplo: 2000-01-01T02:00:00.000Z.
+  const pareceData =
+    chaveNormalizada.includes("DATA") ||
+    chaveNormalizada.includes("NASCIMENTO") ||
+    chaveNormalizada.includes("BATISMO") ||
+    chaveNormalizada.includes("CONSAGR") ||
+    chaveNormalizada.includes("ADMITIDO");
+
+  if(!pareceData) return texto;
+
+  // ISO completo com data e hora.
+  let m = texto.match(/^(\d{4})-(\d{2})-(\d{2})T/);
+  if(m){
+    return m[3]+"/"+m[2]+"/"+m[1];
+  }
+
+  // ISO apenas com a data.
+  m = texto.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if(m){
+    return m[3]+"/"+m[2]+"/"+m[1];
+  }
+
+  // Data no formato yyyy/mm/dd.
+  m = texto.match(/^(\d{4})\/(\d{2})\/(\d{2})$/);
+  if(m){
+    return m[3]+"/"+m[2]+"/"+m[1];
+  }
+
+  return texto;
 }
 
 function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));}
