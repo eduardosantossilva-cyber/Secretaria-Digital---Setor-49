@@ -243,6 +243,15 @@
       background:#fff9df;
     }
 
+    /* SOLICITAÇÕES */
+    .solicitacoes::before{
+      background:var(--orange);
+    }
+
+    .solicitacoes .icone{
+      background:#fff3ea;
+    }
+
     .acoes{
       margin-top:30px;
       display:flex;
@@ -473,6 +482,34 @@
       </a>
 
 
+      <!-- PAINEL DE SOLICITAÇÕES -->
+
+      <a
+        href="painel-solicitacoes-integrado-completo.html"
+        class="ferramenta solicitacoes"
+      >
+
+        <div class="icone">
+          📬
+        </div>
+
+        <h3>
+          Painel de Solicitações
+        </h3>
+
+        <p>
+          Gerencie as solicitações de Carteirinha,
+          Batismo e Apresentação de Criança,
+          acompanhe os protocolos, status e respostas.
+        </p>
+
+        <span class="acessar">
+          ACESSAR SOLICITAÇÕES →
+        </span>
+
+      </a>
+
+
     </section>
 
 
@@ -481,16 +518,16 @@
 
   <footer>
 
-ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM
-· SETOR 49 - JARDIM DOS PIMENTAS
+    ASSEMBLEIA DE DEUS - MINISTERIO DO BELÉM
+    · SETOR 49 - JARDIM DOS PIMENTAS
 
-<br>
+    <br>
 
-<small>
-PORTAL AD BELÉM - SETOR 49
-</small>
+    <small>
+      PORTAL AD BELÉM - SETOR 49
+    </small>
 
-</footer>
+  </footer>
 
 
   <script>
@@ -505,41 +542,6 @@ PORTAL AD BELÉM - SETOR 49
         "index.html";
 
     }
-
-
-   function sair(){
-
-  sessionStorage.removeItem(
-    "acessoSecretaria"
-  );
-
-  window.location.href =
-    "index.html";
-
-}
-
-
-document
-  .getElementById("sairTopo")
-  .addEventListener(
-    "click",
-    function(event){
-
-      event.preventDefault();
-
-      sair();
-
-    }
-  );
-
-
-/* =============================
-   PROTEÇÃO DA PÁGINA
-============================= */
-
-if(sessionStorage.getItem("acessoSecretaria") !== "autorizado"){
-  window.location.href = "area-restrita.html";
-}
 
 
     document
@@ -560,9 +562,9 @@ if(sessionStorage.getItem("acessoSecretaria") !== "autorizado"){
        PROTEÇÃO DA PÁGINA
     ============================= */
 
-  if(sessionStorage.getItem("acessoSecretaria") !== "autorizado"){
-  window.location.href = "area-restrita.html";
-}
+    if(sessionStorage.getItem("acessoSecretaria") !== "autorizado"){
+      window.location.href = "area-restrita.html";
+    }
 
   </script>
 
