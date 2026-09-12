@@ -117,7 +117,9 @@ function filtrar(){
   const termo=document.getElementById("busca").value.trim().toUpperCase();
   const lista=dados.filter(x=>{
     const okTipo=tipoAtual==="TODAS"||x.tipo===tipoAtual;
-    const texto=(x.nome+" "+x.protocolo+" "+x.contato).toUpperCase();
+    const nome = obterCampo(x.dados, ["Nome Completo:", "Nome Completo", "Nome da Criança", "Nome"]);
+    const contato = obterCampo(x.dados, ["Celular / WhatsApp:", "Celular / WhatsApp", "Celular", "WhatsApp", "Telefone"]);
+    const texto=(nome+" "+x.protocolo+" "+contato).toUpperCase();
     return okTipo&&(!termo||texto.includes(termo));
   });
   renderizar(lista);
@@ -138,6 +140,24 @@ function criarCard(x){
   const status=String(x.status||"PENDENTE").toUpperCase();
   const resposta=x.resposta||"";
   const d=x.dados||{};
+
+  // O Google Forms pode devolver cabeçalhos com ":" no final.
+  // Localizamos os campos de forma tolerante, sem depender do nome exato.
+  const nomePainel = obterCampo(d, [
+    "Nome Completo:",
+    "Nome Completo",
+    "Nome da Criança",
+    "Nome"
+  ]) || x.nome || "-";
+
+  const contatoPainel = obterCampo(d, [
+    "Celular / WhatsApp:",
+    "Celular / WhatsApp",
+    "Celular",
+    "WhatsApp",
+    "Telefone"
+  ]) || x.contato || "-";
+
   const extras=Object.entries(d).filter(([k,v])=>{
     if(!v)return false;
     return !["Carimbo de data/hora","Protocolo","Status","Resposta da Secretaria","LGPD"].includes(k);
@@ -148,8 +168,8 @@ function criarCard(x){
       <span class="status ${classeStatus(status)}">${esc(status)}</span>
     </div>
     <div class="dados">
-      <div class="campo"><strong>Nome</strong><span>${esc(x.nome)}</span></div>
-      <div class="campo"><strong>Contato</strong><span>${esc(x.contato)}</span></div>
+      <div class="campo"><strong>Nome</strong><span>${esc(nomePainel)}</span></div>
+      <div class="campo"><strong>Contato</strong><span>${esc(contatoPainel)}</span></div>
       <div class="campo"><strong>Data da solicitação</strong><span>${esc(x.data)}</span></div>
       <div class="campo"><strong>Informações principais</strong><span>${esc(x.detalhe)}</span></div>
     </div>
@@ -189,6 +209,45 @@ function salvar(protocolo,b){
   s.onerror=()=>{alert("Não foi possível conectar com a Secretaria para salvar.");delete window[cb];s.remove();b.disabled=false;b.textContent=original;};
   document.body.appendChild(s);
 }
+function normalizarChave(v){
+  return String(v||"")
+    .trim()
+    .toUpperCase()
+    .normalize("NFD")
+    .replace(/[\\u0300-\\u036f]/g,"")
+    .replace(/[\\s:._\\-\\/()]+/g,"");
+}
+
+function obterCampo(obj, aliases){
+  if(!obj || typeof obj!=="object") return "";
+
+  const mapa={};
+
+  Object.keys(obj).forEach(function(chave){
+    const valor=obj[chave];
+    if(valor===null || valor===undefined || String(valor).trim()==="") return;
+    mapa[normalizarChave(chave)] = valor;
+  });
+
+  for(const alias of aliases){
+    const chave=normalizarChave(alias);
+    if(Object.prototype.hasOwnProperty.call(mapa,chave)){
+      return String(mapa[chave]);
+    }
+  }
+
+  // Busca tolerante: aceita pequenas diferenças no texto do cabeçalho.
+  for(const chave in mapa){
+    if(chave.includes("NOMECOMPLETO") || chave.includes("NOMEDACRIANCA")){
+      if(aliases.some(a=>normalizarChave(a).includes("NOMECOMPLETO") || normalizarChave(a).includes("NOMEDACRIANCA"))){
+        return String(mapa[chave]);
+      }
+    }
+  }
+
+  return "";
+}
+
 function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));}
 function escAttr(v){return String(v??"").replace(/\\/g,"\\\\").replace(/'/g,"\\'").replace(/\n/g," ");}
 function escId(v){return String(v??"").replace(/[^a-zA-Z0-9_-]/g,"_");}
