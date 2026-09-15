@@ -176,6 +176,176 @@ footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font
   display:block;
 }
 
+
+/* =====================================================
+   RESPONSIVIDADE — CELULAR E TABLET
+   ===================================================== */
+*{box-sizing:border-box}
+html,body{max-width:100%;overflow-x:hidden}
+
+@media(max-width:900px){
+  body{padding:14px}
+
+  .config-grid{
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+
+  .btn-atualizar{
+    grid-column:1 / -1;
+    width:100%;
+  }
+
+  .resumo{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .ranking-cargo-unico{
+    grid-column:auto;
+  }
+
+  .grafico-congregacoes-box{
+    width:100%;
+  }
+
+  .congregacoes-grafico{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .tabela-wrap{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+}
+
+@media(max-width:600px){
+  body{padding:8px}
+
+  .topo,
+  .box{
+    border-radius:14px;
+  }
+
+  .topo{
+    padding:18px 14px;
+  }
+
+  .box{
+    padding:16px 12px;
+  }
+
+  h1{font-size:24px}
+  h2{font-size:20px}
+
+  .sub{
+    font-size:12px;
+    line-height:1.45;
+  }
+
+  .config-grid{
+    grid-template-columns:1fr;
+  }
+
+  .btn-atualizar{
+    grid-column:auto;
+  }
+
+  .resumo{
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+
+  .resumo-card{
+    min-width:0;
+    padding:12px 10px;
+  }
+
+  .resumo-card h3{
+    font-size:11px;
+    line-height:1.25;
+  }
+
+  .resumo-numero{
+    font-size:25px;
+  }
+
+  .congregacoes-grafico{
+    grid-template-columns:1fr;
+    gap:9px;
+  }
+
+  .congregacao-item{
+    padding:11px;
+  }
+
+  .congregacao-nome{
+    font-size:11px;
+  }
+
+  .congregacao-pct{
+    font-size:12px;
+  }
+
+  .ranking-cabecalho{
+    gap:8px;
+  }
+
+  .ranking-cabecalho .textos{
+    min-width:0;
+  }
+
+  .ranking-seta{
+    flex:0 0 auto;
+  }
+
+  /* Gráficos SVG passam a respeitar a largura do aparelho. */
+  .chart-area{
+    width:100%;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .chart-area svg{
+    min-width:0;
+    width:100%;
+    height:auto;
+  }
+
+  /* Tabela permanece legível sem estourar a tela. */
+  .tabela-wrap table{
+    min-width:720px;
+  }
+}
+
+@media(max-width:380px){
+  .resumo{
+    grid-template-columns:1fr;
+  }
+
+  .resumo-card h3{
+    font-size:12px;
+  }
+
+  .resumo-numero{
+    font-size:27px;
+  }
+
+  .campo label{
+    font-size:12px;
+  }
+
+  .campo input,
+  .campo select,
+  .btn-atualizar{
+    min-height:46px;
+  }
+}
+
 </style>
 </head>
 <body>
