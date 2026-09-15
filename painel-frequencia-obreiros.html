@@ -233,29 +233,12 @@ footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font
 
   <section class="box grafico-congregacoes-box">
     <h2>📊 Frequência por congregação</h2>
-    <div class="sub">Comparativo da frequência média das congregações no período selecionado.</div>
+    <div class="sub" id="subtituloGraficoCongregacoes">Comparativo da frequência média das congregações no período selecionado.</div>
     <div class="chart-area" id="graficoCongregacoes"><div class="loading">Carregando dados...</div></div>
   </section>
 
   <div class="grid">
-    <section class="box">
-      <div class="ranking-cabecalho aberto" onclick="alternarRanking('congregacoes', this)">
-        <div class="textos">
-          <h2>🏆 Frequência por congregação</h2>
-          <div class="sub">Ranking da maior para a menor frequência.</div>
-        </div>
-        <button
-          type="button"
-          class="ranking-seta"
-          aria-label="Abrir ou fechar frequência por congregação"
-        >▼</button>
-      </div>
-      <div class="ranking-conteudo aberto" id="rankingConteudoCongregacoes">
-        <div class="lista" id="rankingCongregacoes"><div class="loading">Carregando dados...</div></div>
-      </div>
-    </section>
-
-    <section class="box">
+    <section class="box ranking-cargo-unico">
       <div class="ranking-cabecalho aberto" onclick="alternarRanking('cargos', this)">
         <div class="textos">
           <h2>👔 Frequência por cargo</h2>
@@ -368,6 +351,48 @@ function desenharSituacao(resumo){
   }).join("")}<div style="font-size:10px;color:#8a94a3;text-align:center;margin-top:5px">Total de ocorrências consideradas: ${total}</div></div>`;
 }
 
+function desenharEvolucaoCongregacao(evolucao,nomeCongregacao){
+  const box=document.getElementById("graficoCongregacoes");
+
+  if(!evolucao||!evolucao.length){
+    box.innerHTML='<div class="empty">Não há reuniões para esta congregação no período selecionado.</div>';
+    return;
+  }
+
+  const w=1100,h=360,p=55;
+  const max=100,min=0;
+
+  const x=i=>p+(i*(w-p*2)/Math.max(1,evolucao.length-1));
+  const y=v=>h-p-((v-min)/(max-min))*(h-p*2);
+
+  let grid="";
+
+  [0,25,50,75,100].forEach(v=>{
+    const yy=y(v);
+    grid+=`<line x1="${p}" y1="${yy}" x2="${w-p}" y2="${yy}" stroke="#e8edf1" stroke-width="1"/>`;
+    grid+=`<text x="10" y="${yy+4}" font-size="11" fill="#8a94a3">${v}%</text>`;
+  });
+
+  const pontos=evolucao.map((r,i)=>`${x(i)},${y(r.percentual)}`).join(" ");
+
+  const circulos=evolucao.map((r,i)=>`
+    <circle cx="${x(i)}" cy="${y(r.percentual)}" r="5" fill="#159dd1"/>
+    <text x="${x(i)}" y="${y(r.percentual)-12}" text-anchor="middle" font-size="11" fill="#073c66" font-weight="900">${Number(r.percentual).toFixed(1)}%</text>
+  `).join("");
+
+  const labels=evolucao.map((r,i)=>`
+    <text x="${x(i)}" y="${h-22}" text-anchor="middle" font-size="10" fill="#667085">${esc(formatarData(r.data))}</text>
+  `).join("");
+
+  box.innerHTML=`
+    <svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
+      ${grid}
+      <polyline points="${pontos}" fill="none" stroke="#159dd1" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      ${circulos}
+      ${labels}
+    </svg>`;
+}
+
 function desenharPorCongregacao(itens){
   const box=document.getElementById("graficoCongregacoes");
 
@@ -477,7 +502,6 @@ function carregarPainel(){
   document.getElementById("graficoEvolucao").innerHTML='<div class="loading">Carregando dados...</div>';
   document.getElementById("graficoSituacao").innerHTML='<div class="loading">Carregando dados...</div>';
   document.getElementById("graficoCongregacoes").innerHTML='<div class="loading">Carregando dados...</div>';
-  document.getElementById("rankingCongregacoes").innerHTML='<div class="loading">Carregando dados...</div>';
   document.getElementById("rankingCargos").innerHTML='<div class="loading">Carregando dados...</div>';
 
   const inicio=document.getElementById("dataInicio").value;
@@ -524,8 +548,15 @@ function carregarPainel(){
 
     desenharEvolucao(dados.evolucao||[]);
     desenharSituacao(r);
-    desenharPorCongregacao(dados.porCongregacao||[]);
-    renderRanking("rankingCongregacoes",dados.porCongregacao||[],"congregacao");
+    const subtituloGrafico=document.getElementById("subtituloGraficoCongregacoes");
+
+    if(congregacao){
+      subtituloGrafico.textContent=`Evolução da frequência de ${congregacao} nas reuniões do período selecionado.`;
+      desenharEvolucaoCongregacao(dados.evolucao||[],congregacao);
+    }else{
+      subtituloGrafico.textContent="Comparativo da frequência média das congregações no período selecionado.";
+      desenharPorCongregacao(dados.porCongregacao||[]);
+    }
     renderRanking("rankingCargos",dados.porCargo||[],"grupo");
 
     const tbody=document.getElementById("tabelaReunioes");
