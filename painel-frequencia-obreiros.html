@@ -65,6 +65,56 @@ td{font-weight:700}
 footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font-size:13px;margin-top:35px}
 @media(max-width:1000px){.resumo{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:1fr}.config-grid{grid-template-columns:1fr 1fr}.btn-atualizar{width:100%}}
 @media(max-width:650px){header{padding:16px}.cabecalho{flex-direction:column;text-align:center;gap:15px}.titulo h1{font-size:22px}.titulo p{font-size:12px}.acoes-cabecalho{width:100%}.btn-voltar{flex:1}.logo{width:55px;height:55px}main{padding:0 14px}.config-grid{grid-template-columns:1fr}.resumo{grid-template-columns:1fr 1fr;gap:10px}.resumo-card{padding:14px}.resumo-numero{font-size:23px}.chart-area{height:255px}}
+
+.ranking-cabecalho{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  cursor:pointer;
+  user-select:none;
+  margin-bottom:5px;
+}
+
+.ranking-cabecalho .textos{
+  min-width:0;
+}
+
+.ranking-seta{
+  flex:0 0 auto;
+  width:36px;
+  height:36px;
+  border:1px solid #dce3e8;
+  border-radius:10px;
+  background:#fff;
+  color:var(--navy);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:17px;
+  font-weight:900;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.ranking-seta:hover{
+  background:#eef8fc;
+  border-color:var(--blue);
+}
+
+.ranking-cabecalho.aberto .ranking-seta{
+  transform:rotate(180deg);
+}
+
+.ranking-conteudo{
+  display:none;
+  margin-top:18px;
+}
+
+.ranking-conteudo.aberto{
+  display:block;
+}
+
 </style>
 </head>
 <body>
@@ -123,15 +173,37 @@ footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font
 
   <div class="grid">
     <section class="box">
-      <h2>🏆 Frequência por congregação</h2>
-      <div class="sub">Ranking da maior para a menor frequência.</div>
-      <div class="lista" id="rankingCongregacoes"><div class="loading">Carregando dados...</div></div>
+      <div class="ranking-cabecalho aberto" onclick="alternarRanking('congregacoes', this)">
+        <div class="textos">
+          <h2>🏆 Frequência por congregação</h2>
+          <div class="sub">Ranking da maior para a menor frequência.</div>
+        </div>
+        <button
+          type="button"
+          class="ranking-seta"
+          aria-label="Abrir ou fechar frequência por congregação"
+        >▼</button>
+      </div>
+      <div class="ranking-conteudo aberto" id="rankingConteudoCongregacoes">
+        <div class="lista" id="rankingCongregacoes"><div class="loading">Carregando dados...</div></div>
+      </div>
     </section>
 
     <section class="box">
-      <h2>👔 Frequência por cargo</h2>
-      <div class="sub">Comparativo entre os grupos cadastrados.</div>
-      <div class="lista" id="rankingCargos"><div class="loading">Carregando dados...</div></div>
+      <div class="ranking-cabecalho aberto" onclick="alternarRanking('cargos', this)">
+        <div class="textos">
+          <h2>👔 Frequência por cargo</h2>
+          <div class="sub">Comparativo entre os grupos cadastrados.</div>
+        </div>
+        <button
+          type="button"
+          class="ranking-seta"
+          aria-label="Abrir ou fechar frequência por cargo"
+        >▼</button>
+      </div>
+      <div class="ranking-conteudo aberto" id="rankingConteudoCargos">
+        <div class="lista" id="rankingCargos"><div class="loading">Carregando dados...</div></div>
+      </div>
     </section>
   </div>
 
@@ -252,6 +324,27 @@ function gerarLeitura(dados){
   if(g) texto+=`O grupo com maior frequência média foi <b>${esc(g.grupo)}</b>, com <b>${pct(g.percentual)}</b>. `;
   if(c) texto+=`A congregação com maior frequência média foi <b>${esc(c.congregacao)}</b>, com <b>${pct(c.percentual)}</b>.`;
   document.getElementById("leituraResultados").innerHTML=texto;
+}
+
+
+function alternarRanking(tipo, cabecalho){
+
+  const alvo =
+    tipo === "congregacoes"
+      ? document.getElementById("rankingConteudoCongregacoes")
+      : document.getElementById("rankingConteudoCargos");
+
+  if(!alvo || !cabecalho){
+    return;
+  }
+
+  const aberto =
+    alvo.classList.toggle("aberto");
+
+  cabecalho.classList.toggle(
+    "aberto",
+    aberto
+  );
 }
 
 function carregarPainel(){
