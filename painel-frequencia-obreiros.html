@@ -34,14 +34,14 @@ main{max-width:1200px;margin:25px auto;padding:0 20px}
 .resumo-card.reunioes{border-left-color:var(--yellow)}
 .resumo-card.tendencia{border-left-color:var(--orange)}
 .resumo-card.melhor{border-left-color:var(--blue)}
-.grid{display:grid;grid-template-columns:1.35fr .95fr;gap:18px;margin-bottom:18px}.grafico-congregacoes-box{margin-bottom:18px}
+.grid{display:grid;grid-template-columns:1.35fr .95fr;gap:18px;margin-bottom:18px}.grafico-congregacoes-box{margin-bottom:22px}
 .congregacoes-grafico{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
   gap:12px;
   padding:4px;
-  overflow:auto;
-  max-height:520px;
+  overflow:visible;
+  max-height:none;
 }
 .congregacao-item{
   border:1px solid #e3e9ed;
@@ -99,7 +99,7 @@ main{max-width:1200px;margin:25px auto;padding:0 20px}
 .box{background:#fff;border-radius:15px;padding:20px;box-shadow:0 3px 12px rgba(0,0,0,.08)}
 .box h2{color:var(--navy);font-size:18px;margin-bottom:5px}
 .box .sub{font-size:11px;color:#667085;margin-bottom:18px}
-.chart-area{height:300px;border:1px solid #edf0f2;border-radius:12px;padding:10px;overflow:hidden;background:#fcfdfe}
+.chart-area{border:1px solid #edf0f2;border-radius:12px;padding:10px;overflow:hidden;background:#fcfdfe}
 svg{width:100%;height:100%}
 .empty{height:100%;display:flex;align-items:center;justify-content:center;text-align:center;color:#777;font-size:13px;padding:25px}
 .lista{display:flex;flex-direction:column;gap:10px}
