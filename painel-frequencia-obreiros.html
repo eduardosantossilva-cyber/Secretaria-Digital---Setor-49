@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel de Frequência | AD Belém 49</title>
+<style>
+:root{--blue:#159dd1;--green:#079447;--yellow:#f9c414;--orange:#f47a20;--red:#b51e2a;--navy:#073c66;--muted:#667085;--bg:#f6f8fa;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:#344054;min-height:100vh}
+header{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;padding:20px;box-shadow:0 3px 10px rgba(0,0,0,.15)}
+.cabecalho{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:25px}
+.titulo{flex:1}
+.titulo h1{font-size:28px;line-height:1.2;margin-bottom:6px}
+.titulo p{font-size:14px;opacity:.9}
+.acoes-cabecalho{display:flex;align-items:center;gap:12px}
+.btn-voltar{height:42px;padding:0 16px;display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--navy);border-radius:9px;text-decoration:none;font-size:13px;font-weight:900;transition:.2s}
+.btn-voltar:hover{background:#eef8fc;color:var(--green)}
+.logo{width:65px;height:65px;object-fit:contain;background:#fff;border-radius:13px;padding:5px}
+main{max-width:1200px;margin:25px auto;padding:0 20px}
+.configuracao{background:#fff;border-radius:15px;padding:22px;border-top:4px solid var(--blue);box-shadow:0 3px 12px rgba(0,0,0,.08);margin-bottom:20px}
+.configuracao h2{color:var(--navy);font-size:20px;margin-bottom:18px}
+.config-grid{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:14px;align-items:end}
+.campo label{display:block;font-size:12px;font-weight:900;color:#344054;margin-bottom:6px}
+.campo input,.campo select{width:100%;padding:11px 12px;border:1px solid #d9dfe3;border-radius:8px;background:#fff;font-family:inherit;font-size:13px;outline:none}
+.campo input:focus,.campo select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(21,157,209,.1)}
+.btn-atualizar{height:41px;padding:0 17px;border:0;border-radius:9px;background:var(--blue);color:#fff;font-size:12px;font-weight:900;cursor:pointer;transition:.2s}
+.btn-atualizar:hover{background:var(--green);transform:translateY(-1px)}
+.resumo{display:grid;grid-template-columns:repeat(5,1fr);gap:15px;margin-bottom:20px}
+.resumo-card{background:#fff;border-radius:13px;padding:18px;box-shadow:0 3px 12px rgba(0,0,0,.07);border-left:5px solid var(--blue)}
+.resumo-card h3{font-size:12px;color:#667085;margin-bottom:8px}
+.resumo-numero{font-size:27px;font-weight:900;color:var(--navy)}
+.resumo-card.presente{border-left-color:var(--green)}
+.resumo-card.reunioes{border-left-color:var(--yellow)}
+.resumo-card.tendencia{border-left-color:var(--orange)}
+.resumo-card.melhor{border-left-color:var(--blue)}
+.grid{display:grid;grid-template-columns:1.35fr .95fr;gap:18px;margin-bottom:18px}
+.box{background:#fff;border-radius:15px;padding:20px;box-shadow:0 3px 12px rgba(0,0,0,.08)}
+.box h2{color:var(--navy);font-size:18px;margin-bottom:5px}
+.box .sub{font-size:11px;color:#667085;margin-bottom:18px}
+.chart-area{height:300px;border:1px solid #edf0f2;border-radius:12px;padding:10px;overflow:hidden;background:#fcfdfe}
+svg{width:100%;height:100%}
+.empty{height:100%;display:flex;align-items:center;justify-content:center;text-align:center;color:#777;font-size:13px;padding:25px}
+.lista{display:flex;flex-direction:column;gap:10px}
+.item-ranking{border:1px solid #e1e6ea;border-radius:11px;padding:12px 13px;background:#fff}
+.ranking-topo{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:8px}
+.ranking-nome{font-size:13px;font-weight:900;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ranking-pct{font-size:13px;font-weight:900;color:var(--green)}
+.barra{height:8px;background:#edf1f3;border-radius:20px;overflow:hidden}
+.barra span{display:block;height:100%;background:var(--blue);border-radius:20px}
+.detalhe{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:9px;font-size:10px;color:#667085}
+.tabela-wrap{overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{padding:11px 10px;border-bottom:1px solid #edf0f2;text-align:left}
+th{font-size:11px;color:#667085;font-weight:900;background:#f8fafc}
+td{font-weight:700}
+.percentual{font-weight:900;color:var(--green)}
+.status-chip{display:inline-flex;align-items:center;padding:6px 10px;border-radius:20px;font-size:10px;font-weight:900}
+.status-melhorando{background:#eaf8f0;color:var(--green)}
+.status-caindo{background:#fff0f0;color:var(--red)}
+.status-estavel{background:#fff8dc;color:#8a6800}
+.nota{font-size:10px;color:#8a94a3;line-height:1.5;margin-top:10px}
+.loading{padding:35px;text-align:center;color:#667085;font-size:13px}
+.erro{padding:16px;border-radius:10px;background:#fff5f5;border-left:4px solid var(--red);color:#667085;font-size:12px;line-height:1.5}
+footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font-size:13px;margin-top:35px}
+@media(max-width:1000px){.resumo{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:1fr}.config-grid{grid-template-columns:1fr 1fr}.btn-atualizar{width:100%}}
+@media(max-width:650px){header{padding:16px}.cabecalho{flex-direction:column;text-align:center;gap:15px}.titulo h1{font-size:22px}.titulo p{font-size:12px}.acoes-cabecalho{width:100%}.btn-voltar{flex:1}.logo{width:55px;height:55px}main{padding:0 14px}.config-grid{grid-template-columns:1fr}.resumo{grid-template-columns:1fr 1fr;gap:10px}.resumo-card{padding:14px}.resumo-numero{font-size:23px}.chart-area{height:255px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="cabecalho">
+    <div class="titulo">
+      <h1>📊 Painel de Frequência</h1>
+      <p>Reuniões de Obreiros — AD Belém 49</p>
+    </div>
+    <div class="acoes-cabecalho">
+      <a href="area-administrativa.html" class="btn-voltar">← Área Administrativa</a>
+      <img src="assets/Logo-Belem.png" class="logo" alt="AD Belém">
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="configuracao">
+    <h2>📅 Período de análise</h2>
+    <div class="config-grid">
+      <div class="campo"><label for="dataInicio">Data inicial</label><input type="date" id="dataInicio"></div>
+      <div class="campo"><label for="dataFim">Data final</label><input type="date" id="dataFim"></div>
+      <div class="campo"><label for="visao">Visualização</label>
+        <select id="visao">
+          <option value="todos">Visão geral</option>
+          <option value="congregacoes">Por congregação</option>
+          <option value="cargos">Por cargo</option>
+        </select>
+      </div>
+      <button class="btn-atualizar" id="btnAtualizar">🔄 Atualizar painel</button>
+    </div>
+    <div class="nota">A frequência geral considera o cadastro oficial de obreiros e os lançamentos existentes na aba de registros. O painel não altera o registro de presença.</div>
+  </section>
+
+  <section class="resumo">
+    <div class="resumo-card"><h3>👥 Obreiros cadastrados</h3><div class="resumo-numero" id="totalObreiros">—</div></div>
+    <div class="resumo-card presente"><h3>🟢 Frequência geral</h3><div class="resumo-numero" id="frequenciaGeral">—</div></div>
+    <div class="resumo-card reunioes"><h3>📅 Reuniões analisadas</h3><div class="resumo-numero" id="totalReunioes">—</div></div>
+    <div class="resumo-card tendencia"><h3>📈 Tendência</h3><div class="resumo-numero" id="tendencia">—</div></div>
+    <div class="resumo-card melhor"><h3>🏆 Melhor congregação</h3><div class="resumo-numero" id="melhorCongregacao">—</div></div>
+  </section>
+
+  <div class="grid">
+    <section class="box">
+      <h2>📈 Evolução da frequência</h2>
+      <div class="sub">Percentual de presença em cada reunião do período.</div>
+      <div class="chart-area" id="graficoEvolucao"><div class="loading">Carregando dados...</div></div>
+    </section>
+
+    <section class="box">
+      <h2>🟢 Situação acumulada</h2>
+      <div class="sub">Distribuição dos registros no período.</div>
+      <div class="chart-area" id="graficoSituacao"><div class="loading">Carregando dados...</div></div>
+    </section>
+  </div>
+
+  <div class="grid">
+    <section class="box">
+      <h2>🏆 Frequência por congregação</h2>
+      <div class="sub">Ranking da maior para a menor frequência.</div>
+      <div class="lista" id="rankingCongregacoes"><div class="loading">Carregando dados...</div></div>
+    </section>
+
+    <section class="box">
+      <h2>👔 Frequência por cargo</h2>
+      <div class="sub">Comparativo entre os grupos cadastrados.</div>
+      <div class="lista" id="rankingCargos"><div class="loading">Carregando dados...</div></div>
+    </section>
+  </div>
+
+  <section class="box" style="margin-bottom:18px">
+    <h2>📋 Evolução das reuniões</h2>
+    <div class="sub">Resumo de cada reunião analisada.</div>
+    <div class="tabela-wrap">
+      <table>
+        <thead><tr><th>Data</th><th>Reunião</th><th>Esperados</th><th>Presentes</th><th>Justificados</th><th>Ausentes</th><th>Frequência</th></tr></thead>
+        <tbody id="tabelaReunioes"><tr><td colspan="7" style="text-align:center;color:#777">Carregando...</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>💡 Leitura dos resultados</h2>
+    <div class="sub">Síntese automática do período selecionado.</div>
+    <div id="leituraResultados" class="nota">Aguardando dados...</div>
+  </section>
+</main>
+
+<footer>
+  ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM · SETOR 49 - JARDIM DOS PIMENTAS
+  <br><small>PORTAL AD BELÉM - SETOR 49</small>
+</footer>
+
+<script>
+const API_URL='https://script.google.com/macros/s/AKfycbxAx9Hu8eTMGGGSIZqNLXfmSVopSYz8Gd5hWENdq8jM3WBBkITLh-yxANER0awn4UOD/exec';
+
+function chamarAPI(parametros, callback){
+  const cb="painelFrequencia_"+Date.now()+"_"+Math.floor(Math.random()*9999);
+  window[cb]=function(dados){
+    try{callback(dados)}finally{
+      delete window[cb];
+      const s=document.getElementById(cb); if(s)s.remove();
+    }
+  };
+  const q=Object.keys(parametros).map(k=>encodeURIComponent(k)+"="+encodeURIComponent(parametros[k])).join("&");
+  const script=document.createElement("script");
+  script.id=cb;
+  script.src=API_URL+"?"+q+"&callback="+encodeURIComponent(cb);
+  script.onerror=function(){
+    delete window[cb]; script.remove();
+    callback({sucesso:false,erro:"Não foi possível conectar com a API."});
+  };
+  document.body.appendChild(script);
+}
+
+function formatarData(data){
+  if(!data)return "-";
+  const p=String(data).split("-");
+  return p.length===3 ? p[2]+"/"+p[1]+"/"+p[0] : data;
+}
+function pct(v){return (Number(v)||0).toFixed(1)+"%";}
+function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));}
+
+function setDatasPadrao(){
+  const fim=new Date();
+  const inicio=new Date();
+  inicio.setMonth(inicio.getMonth()-11);
+  document.getElementById("dataInicio").value=inicio.toISOString().slice(0,10);
+  document.getElementById("dataFim").value=fim.toISOString().slice(0,10);
+}
+
+function desenharEvolucao(evolucao){
+  const box=document.getElementById("graficoEvolucao");
+  if(!evolucao||!evolucao.length){box.innerHTML='<div class="empty">Não há reuniões no período selecionado.</div>';return;}
+  const w=760,h=260,p=34;
+  const max=100,min=0;
+  const x=i=>p+(i*(w-p*2)/Math.max(1,evolucao.length-1));
+  const y=v=>h-p-((v-min)/(max-min))*(h-p*2);
+  let grid="";
+  [0,25,50,75,100].forEach(v=>{
+    const yy=y(v);
+    grid+=`<line x1="${p}" y1="${yy}" x2="${w-p}" y2="${yy}" stroke="#e8edf1" stroke-width="1"/>
+      <text x="6" y="${yy+4}" font-size="10" fill="#8a94a3">${v}%</text>`;
+  });
+  let pontos=evolucao.map((r,i)=>`${x(i)},${y(r.percentual)}`).join(" ");
+  let circles=evolucao.map((r,i)=>`<circle cx="${x(i)}" cy="${y(r.percentual)}" r="4" fill="#159dd1"/><text x="${x(i)}" y="${y(r.percentual)-9}" text-anchor="middle" font-size="9" fill="#073c66" font-weight="700">${Number(r.percentual).toFixed(0)}%</text>`).join("");
+  let labels=evolucao.map((r,i)=>`<text x="${x(i)}" y="${h-8}" text-anchor="middle" font-size="9" fill="#667085">${esc(formatarData(r.data))}</text>`).join("");
+  box.innerHTML=`<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">${grid}<polyline points="${pontos}" fill="none" stroke="#159dd1" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>${circles}${labels}</svg>`;
+}
+
+function desenharSituacao(resumo){
+  const box=document.getElementById("graficoSituacao");
+  const total=(Number(resumo.totalPresentes)||0)+(Number(resumo.totalJustificados)||0)+(Number(resumo.totalAusentes)||0);
+  if(!total){box.innerHTML='<div class="empty">Sem dados suficientes.</div>';return;}
+  const itens=[
+    {nome:"Presentes",valor:Number(resumo.totalPresentes)||0,cor:"#079447"},
+    {nome:"Justificados",valor:Number(resumo.totalJustificados)||0,cor:"#f9c414"},
+    {nome:"Ausentes",valor:Number(resumo.totalAusentes)||0,cor:"#b51e2a"}
+  ];
+  box.innerHTML=`<div style="display:flex;flex-direction:column;justify-content:center;height:100%;gap:18px;padding:5px 12px">${itens.map(it=>{
+    const p=(it.valor/total)*100;
+    return `<div><div style="display:flex;justify-content:space-between;gap:10px;font-size:11px;font-weight:900;margin-bottom:7px"><span>${it.nome}</span><span>${it.valor} · ${p.toFixed(1)}%</span></div><div style="height:18px;background:#edf1f3;border-radius:20px;overflow:hidden"><div style="height:100%;width:${p}%;background:${it.cor};border-radius:20px"></div></div></div>`;
+  }).join("")}<div style="font-size:10px;color:#8a94a3;text-align:center;margin-top:5px">Total de ocorrências consideradas: ${total}</div></div>`;
+}
+
+function renderRanking(containerId,itens,chaveNome){
+  const el=document.getElementById(containerId);
+  if(!itens||!itens.length){el.innerHTML='<div class="empty">Sem dados para exibir.</div>';return;}
+  el.innerHTML=itens.map((it,i)=>{
+    const nome=it[chaveNome]||"Não informado";
+    const p=Math.max(0,Math.min(100,Number(it.percentual)||0));
+    return `<div class="item-ranking"><div class="ranking-topo"><div class="ranking-nome">${i+1}º · ${esc(nome)}</div><div class="ranking-pct">${p.toFixed(1)}%</div></div><div class="barra"><span style="width:${p}%"></span></div><div class="detalhe"><span>Esperados: <b>${it.esperado||0}</b></span><span>Presentes: <b>${it.presentes||0}</b></span><span>Ausentes: <b>${it.ausentes||0}</b></span></div></div>`;
+  }).join("");
+}
+
+function gerarLeitura(dados){
+  const r=dados.resumo||{};
+  const t=dados.tendencia||{tipo:"ESTÁVEL",variacaoPontos:0};
+  const g=dados.melhorGrupo;
+  const c=dados.melhorCongregacao;
+  let texto=`No período analisado, a frequência geral foi de <b>${pct(r.frequenciaGeral)}</b>, considerando <b>${r.totalReunioes||0}</b> reunião(ões) e <b>${r.totalObreiros||0}</b> obreiro(s) cadastrado(s). `;
+  if(t.tipo==="MELHORANDO") texto+=`A frequência apresenta <b style="color:var(--green)">tendência de melhora</b>, com variação de <b>+${Number(t.variacaoPontos).toFixed(1)} pontos percentuais</b> entre a primeira e a última reunião do período. `;
+  else if(t.tipo==="CAINDO") texto+=`A frequência apresenta <b style="color:var(--red)">tendência de queda</b>, com variação de <b>${Number(t.variacaoPontos).toFixed(1)} pontos percentuais</b> entre a primeira e a última reunião do período. `;
+  else texto+=`A frequência apresenta comportamento <b style="color:#8a6800">estável</b>, com variação de <b>${Number(t.variacaoPontos).toFixed(1)} pontos percentuais</b>. `;
+  if(g) texto+=`O grupo com maior frequência média foi <b>${esc(g.grupo)}</b>, com <b>${pct(g.percentual)}</b>. `;
+  if(c) texto+=`A congregação com maior frequência média foi <b>${esc(c.congregacao)}</b>, com <b>${pct(c.percentual)}</b>.`;
+  document.getElementById("leituraResultados").innerHTML=texto;
+}
+
+function carregarPainel(){
+  document.querySelectorAll(".resumo-numero").forEach(e=>{if(e.id!=="tendencia"&&e.id!=="melhorCongregacao")e.textContent="..."});
+  document.getElementById("graficoEvolucao").innerHTML='<div class="loading">Carregando dados...</div>';
+  document.getElementById("graficoSituacao").innerHTML='<div class="loading">Carregando dados...</div>';
+  document.getElementById("rankingCongregacoes").innerHTML='<div class="loading">Carregando dados...</div>';
+  document.getElementById("rankingCargos").innerHTML='<div class="loading">Carregando dados...</div>';
+  const inicio=document.getElementById("dataInicio").value;
+  const fim=document.getElementById("dataFim").value;
+  chamarAPI({acao:"painel",dataInicio:inicio,dataFim:fim},function(dados){
+    if(!dados||!dados.sucesso){
+      document.getElementById("leituraResultados").innerHTML=`<div class="erro"><b>Não foi possível carregar o painel.</b><br><br>${esc(dados?.erro||"Erro desconhecido.")}</div>`;
+      return;
+    }
+    const r=dados.resumo||{};
+    document.getElementById("totalObreiros").textContent=r.totalObreiros??0;
+    document.getElementById("frequenciaGeral").textContent=pct(r.frequenciaGeral);
+    document.getElementById("totalReunioes").textContent=r.totalReunioes??0;
+    const t=dados.tendencia||{tipo:"ESTÁVEL",variacaoPontos:0};
+    const simbolo=t.tipo==="MELHORANDO"?"📈 ":t.tipo==="CAINDO"?"📉 ":"➡️ ";
+    document.getElementById("tendencia").textContent=simbolo+t.tipo;
+    document.getElementById("melhorCongregacao").textContent=dados.melhorCongregacao?`${Number(dados.melhorCongregacao.percentual).toFixed(1)}%`:"—";
+    desenharEvolucao(dados.evolucao||[]);
+    desenharSituacao(r);
+    renderRanking("rankingCongregacoes",dados.porCongregacao||[],"congregacao");
+    renderRanking("rankingCargos",dados.porCargo||[],"grupo");
+    const tbody=document.getElementById("tabelaReunioes");
+    if(!dados.reunioes||!dados.reunioes.length){
+      tbody.innerHTML='<tr><td colspan="7" style="text-align:center;color:#777">Nenhuma reunião encontrada no período.</td></tr>';
+    }else{
+      tbody.innerHTML=dados.reunioes.slice().reverse().map(x=>`<tr><td>${formatarData(x.data)}</td><td>${esc(x.reuniao||"-")}</td><td>${x.esperado||0}</td><td>${x.presentes||0}</td><td>${x.justificados||0}</td><td>${x.ausentes||0}</td><td class="percentual">${pct(x.percentual)}</td></tr>`).join("");
+    }
+    gerarLeitura(dados);
+  });
+}
+
+document.getElementById("btnAtualizar").addEventListener("click",carregarPainel);
+setDatasPadrao();
+carregarPainel();
+</script>
+</body>
+</html>
