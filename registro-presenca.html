@@ -1259,6 +1259,22 @@ footer{
   margin-bottom:0;
 }
 
+.avulso-topo{
+  width:100%;
+}
+
+.avulso-topo .form-avulso{
+  margin-top:12px;
+}
+
+.btn-relatorio.btn-participante{
+  background:#159dd1;
+}
+
+.btn-relatorio.btn-participante:hover{
+  background:#079447;
+}
+
 .btn-relatorio{
   border:0;
   border-radius:10px;
@@ -1459,6 +1475,73 @@ footer{
     >
       📄 Gerar PDF
     </button>
+
+    <button
+      type="button"
+      class="btn-relatorio btn-participante"
+      onclick="abrirAvulso()"
+    >
+      ➕ Cadastrar participante
+    </button>
+  </div>
+
+
+  <div class="avulso-topo">
+
+    <div
+      class="form-avulso"
+      id="formAvulso"
+    >
+
+      <div class="form-avulso-grid">
+
+        <div class="campo">
+          <label for="avulsoNome">Nome completo</label>
+          <input
+            type="text"
+            id="avulsoNome"
+            placeholder="Nome do participante"
+          >
+        </div>
+
+        <div class="campo">
+          <label for="avulsoCongregacao">Congregação</label>
+          <select id="avulsoCongregacao">
+            <option value="">Selecione</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="avulsoCargo">Cargo</label>
+          <select id="avulsoCargo">
+            <option value="">Selecione</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="acoes-avulso">
+
+        <button
+          type="button"
+          class="btn btn-cancelar"
+          onclick="fecharAvulso()"
+        >
+          Cancelar
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-cadastrar"
+          onclick="cadastrarAvulso()"
+        >
+          ➕ Cadastrar e registrar
+        </button>
+
+      </div>
+
+    </div>
+
   </div>
 
 
@@ -1726,102 +1809,7 @@ footer{
     </div>
 
 
-    <!-- AVULSO -->
 
-    <div class="avulso">
-
-      <button
-        type="button"
-        class="btn-avulso"
-        onclick="abrirAvulso()"
-      >
-        ➕ Cadastrar participante avulso
-      </button>
-
-
-      <div
-        class="form-avulso"
-        id="formAvulso"
-      >
-
-        <div class="form-avulso-grid">
-
-
-          <div class="campo">
-
-            <label for="avulsoNome">
-              Nome completo
-            </label>
-
-            <input
-              type="text"
-              id="avulsoNome"
-              placeholder="Nome do participante"
-            >
-
-          </div>
-
-
-          <div class="campo">
-
-            <label for="avulsoCongregacao">
-              Congregação
-            </label>
-
-            <select id="avulsoCongregacao">
-
-              <option value="">
-                Selecione
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <div class="campo">
-
-            <label for="avulsoCargo">
-              Cargo
-            </label>
-
-            <select id="avulsoCargo">
-
-              <option value="">
-                Selecione
-              </option>
-
-            </select>
-
-          </div>
-
-
-        </div>
-
-
-        <div class="acoes-avulso">
-
-          <button
-            type="button"
-            class="btn btn-cancelar"
-            onclick="fecharAvulso()"
-          >
-            Cancelar
-          </button>
-
-          <button
-            type="button"
-            class="btn btn-cadastrar"
-            onclick="cadastrarAvulso()"
-          >
-            ➕ Cadastrar e registrar
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
 
 
   </section>
