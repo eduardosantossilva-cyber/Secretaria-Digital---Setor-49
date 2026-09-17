@@ -218,6 +218,10 @@
       font-weight:900;
     }
 
+    /* =========================
+       SECRETARIA
+    ========================= */
+
     .secretaria::before{
       background:var(--blue);
     }
@@ -225,6 +229,10 @@
     .secretaria .icone{
       background:#eef8fc;
     }
+
+    /* =========================
+       PRESENÇA
+    ========================= */
 
     .presenca::before{
       background:var(--green);
@@ -234,6 +242,22 @@
       background:#eefaf3;
     }
 
+    /* =========================
+       PRESENÇA EM EVENTOS
+    ========================= */
+
+    .eventos::before{
+      background:var(--orange);
+    }
+
+    .eventos .icone{
+      background:#fff3ea;
+    }
+
+    /* =========================
+       PATRIMÔNIO
+    ========================= */
+
     .patrimonio::before{
       background:var(--yellow);
     }
@@ -241,6 +265,10 @@
     .patrimonio .icone{
       background:#fff9df;
     }
+
+    /* =========================
+       SOLICITAÇÕES
+    ========================= */
 
     .solicitacoes::before{
       background:var(--orange);
@@ -250,7 +278,9 @@
       background:#fff3ea;
     }
 
-    /* PAINEL DE FREQUÊNCIA */
+    /* =========================
+       PAINEL DE FREQUÊNCIA
+    ========================= */
 
     .frequencia::before{
       background:var(--blue);
@@ -407,7 +437,9 @@
     <section class="ferramentas">
 
 
-      <!-- SECRETARIA -->
+      <!-- =========================
+           SECRETARIA
+      ========================= -->
 
       <a
         href="painel-secretaria.html"
@@ -435,7 +467,9 @@
       </a>
 
 
-      <!-- PRESENÇA -->
+      <!-- =========================
+           REGISTRO DE PRESENÇA
+      ========================= -->
 
       <a
         href="registro-presenca.html"
@@ -463,7 +497,39 @@
       </a>
 
 
-      <!-- PATRIMÔNIO -->
+      <!-- =========================
+           PRESENÇA EM EVENTOS
+      ========================= -->
+
+      <a
+        href="presenca-eventos.html"
+        class="ferramenta eventos"
+      >
+
+        <div class="icone">
+          🎉
+        </div>
+
+        <h3>
+          Presença em Eventos
+        </h3>
+
+        <p>
+          Registre e acompanhe a presença dos
+          Pastores Setoriais e da Diretoria
+          do Ministério do Belém em eventos.
+        </p>
+
+        <span class="acessar">
+          ACESSAR EVENTOS →
+        </span>
+
+      </a>
+
+
+      <!-- =========================
+           PATRIMÔNIO
+      ========================= -->
 
       <a
         href="patrimonio.html"
@@ -490,7 +556,9 @@
       </a>
 
 
-      <!-- PAINEL DE SOLICITAÇÕES -->
+      <!-- =========================
+           PAINEL DE SOLICITAÇÕES
+      ========================= -->
 
       <a
         href="painel-solicitacoes.html"
@@ -518,7 +586,9 @@
       </a>
 
 
-      <!-- PAINEL DE FREQUÊNCIA -->
+      <!-- =========================
+           PAINEL DE FREQUÊNCIA
+      ========================= -->
 
       <a
         href="painel-frequencia-obreiros.html"
@@ -598,8 +668,15 @@
        PROTEÇÃO DA PÁGINA
     ============================= */
 
-    if(sessionStorage.getItem("acessoSecretaria") !== "autorizado"){
-      window.location.href = "area-restrita.html";
+    if(
+      sessionStorage.getItem("acessoSecretaria")
+      !==
+      "autorizado"
+    ){
+
+      window.location.href =
+        "area-restrita.html";
+
     }
 
   </script>
