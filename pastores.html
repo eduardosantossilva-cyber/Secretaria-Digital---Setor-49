@@ -257,7 +257,8 @@ main{
 .foto{
   width:120px;
   height:120px;
-  flex:none;
+  min-width:120px;
+  flex:0 0 120px;
   border-radius:15px;
   background:#eef8fc;
   border:1px solid #d9eef5;
@@ -272,8 +273,13 @@ main{
 .foto img{
   width:100%;
   height:100%;
+  min-width:100%;
+  min-height:100%;
   object-fit:cover;
-  display:block
+  object-position:center;
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
 }
 
 .info{
@@ -667,12 +673,22 @@ footer small{
 
   .pastor{
     padding:15px;
-    gap:12px
+    gap:12px;
+    align-items:center;
   }
 
   .foto{
     width:100px;
-    height:100px
+    height:100px;
+    min-width:100px;
+    flex:0 0 100px;
+  }
+
+  .foto img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block !important;
   }
 
 }
@@ -1183,13 +1199,21 @@ function renderizarPastores(regional){
 function converterLinkDrive(link) {
   if (!link) return "";
 
-  const match = link.match(/\/d\/([a-zA-Z0-9_-]+)/);
+  const valor = String(link).trim();
 
+  // Google Drive: https://drive.google.com/file/d/ID/view
+  let match = valor.match(/\/d\/([a-zA-Z0-9_-]+)/);
   if (match) {
-    return "https://drive.google.com/thumbnail?id=" + match[1] + "&sz=w600";
+    return "https://drive.google.com/thumbnail?id=" + match[1] + "&sz=w1000";
   }
 
-  return link;
+  // Google Drive: https://drive.google.com/open?id=ID
+  match = valor.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+  if (match) {
+    return "https://drive.google.com/thumbnail?id=" + match[1] + "&sz=w1000";
+  }
+
+  return valor;
 }
       const foto=
         pastor.FOTO &&
@@ -1199,7 +1223,12 @@ function converterLinkDrive(link) {
           <img
             src="${converterLinkDrive(pastor.FOTO)}"
             alt="${nome}"
+            loading="lazy"
+            decoding="async"
+            referrerpolicy="no-referrer"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
           >
+          <span style="display:none;align-items:center;justify-content:center;width:100%;height:100%;font-size:42px;color:#073c66;">👤</span>
         `
 
         : `
