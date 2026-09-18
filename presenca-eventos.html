@@ -695,27 +695,50 @@
     function criarParticipante(pessoa){
       const registro = encontrarRegistro(pessoa.id);
 
-      if(registro){
-        const classe = registro.situacao === "PRESENTE" ? "badge-presente" : "badge-justificado";
-        const icone = registro.situacao === "PRESENTE" ? "🟢" : "🟡";
-
-        return `
-          <div class="participante" id="participante-${escapeHTML(pessoa.id)}">
-            <div class="participante-info">
-              <div class="participante-nome">${escapeHTML(pessoa.nome)}</div>
-              <div class="participante-detalhes">
-                ${escapeHTML(pessoa.tipo || "-")} · ${escapeHTML(pessoa.cargo || "-")} · Setor ${escapeHTML(pessoa.setor || "-")} · ${escapeHTML(pessoa.localidade || "-")}
-              </div>
-              ${registro.situacao === "JUSTIFICADO" ? `<div class="participante-status">Motivo: ${escapeHTML(registro.justificativa || "-")}</div>` : ""}
-            </div>
-            <div class="registrado">
-              <span class="badge ${classe}">${icone} ${escapeHTML(registro.situacao)}</span>
-              <span class="registrado-por">Registrado por: ${escapeHTML(registro.operador || "-")}</span>
-            </div>
-          </div>
-        `;
+      /*
+       * Sem registro ainda: mostra os dois botões.
+       */
+      if(!registro){
+        return criarParticipantePendente(pessoa);
       }
 
+      /*
+       * PENDENTE agora existe na planilha para garantir
+       * que o evento tenha todos os participantes.
+       * Continua mostrando os botões de lançamento.
+       */
+      if(registro.situacao === "PENDENTE") {
+        return criarParticipantePendente(pessoa,registro);
+      }
+
+      const classe = registro.situacao === "PRESENTE"
+        ? "badge-presente"
+        : "badge-justificado";
+
+      const icone = registro.situacao === "PRESENTE"
+        ? "🟢"
+        : "🟡";
+
+      return `
+        <div class="participante" id="participante-${escapeHTML(pessoa.id)}">
+          <div class="participante-info">
+            <div class="participante-nome">${escapeHTML(pessoa.nome)}</div>
+            <div class="participante-detalhes">
+              ${escapeHTML(pessoa.tipo || "-")} · ${escapeHTML(pessoa.cargo || "-")} · Setor ${escapeHTML(pessoa.setor || "-")} · ${escapeHTML(pessoa.localidade || "-")}
+            </div>
+            ${registro.situacao === "JUSTIFICADO"
+              ? `<div class="participante-status">Motivo: ${escapeHTML(registro.justificativa || "-")}</div>`
+              : ""}
+          </div>
+          <div class="registrado">
+            <span class="badge ${classe}">${icone} ${escapeHTML(registro.situacao)}</span>
+            <span class="registrado-por">Registrado por: ${escapeHTML(registro.operador || "-")}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    function criarParticipantePendente(pessoa,registro=null){
       return `
         <div class="participante" id="participante-${escapeHTML(pessoa.id)}">
           <div class="participante-info">
@@ -897,13 +920,31 @@
       const total = participantes.length;
       let presentes = 0;
       let justificados = 0;
+      let pendentes = 0;
+
+      /*
+       * O banco agora pode conter todos os participantes
+       * do evento com situação PENDENTE.
+       */
+      const idsParticipantes = new Set(
+        participantes.map(p => String(p.id))
+      );
 
       registros.forEach(registro => {
+        if(!idsParticipantes.has(String(registro.idPessoa))) return;
         if(registro.situacao === "PRESENTE") presentes++;
-        if(registro.situacao === "JUSTIFICADO") justificados++;
+        else if(registro.situacao === "JUSTIFICADO") justificados++;
+        else pendentes++;
       });
 
-      const pendentes = Math.max(0,total-presentes-justificados);
+      /*
+       * Compatibilidade com eventos antigos que ainda não
+       * possuem as linhas PENDENTE na planilha.
+       */
+      const calculados = presentes + justificados + pendentes;
+      if(calculados < total){
+        pendentes += total - calculados;
+      }
 
       document.getElementById("total").textContent = total;
       document.getElementById("presentes").textContent = presentes;
