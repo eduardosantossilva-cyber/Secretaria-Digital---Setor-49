@@ -1604,87 +1604,230 @@ Ex.: Esposa Maria; filho João; Pb. Carlos..."></textarea>
     });
 
     /* =====================================================
-       PDF
+       PDF — FICHA DE APRESENTAÇÃO
+       Mesmo modelo visual da impressão.
     ===================================================== */
-    document.getElementById("btnGerarPDF").addEventListener("click",function(){
-      if(!data.value){ alert("Informe a data antes de gerar o PDF."); data.focus(); return; }
-      if(!evento.value.trim()){ alert("Informe o nome do evento antes de gerar o PDF."); evento.focus(); return; }
+    document.getElementById("btnGerarPDF").addEventListener("click",async function(){
+      if(!data.value){
+        alert("Informe a data antes de gerar o PDF.");
+        data.focus();
+        return;
+      }
+
+      if(!evento.value.trim()){
+        alert("Informe o nome do evento antes de gerar o PDF.");
+        evento.focus();
+        return;
+      }
 
       if(typeof window.jspdf === "undefined" || typeof window.jspdf.jsPDF === "undefined"){
         alert("Não foi possível carregar o gerador de PDF. Atualize a página e tente novamente.");
         return;
       }
 
-      const pdf = new window.jspdf.jsPDF({orientation:"portrait",unit:"mm",format:"a4"});
-      if(typeof pdf.autoTable !== "function"){
-        alert("Não foi possível carregar o módulo de tabelas do PDF. Atualize a página e tente novamente.");
+      const presentes = participantes
+        .map(function(p){
+          const r = encontrarRegistro(p.id);
+          if(!r || r.situacao !== "PRESENTE") return null;
+          return {pessoa:p, registro:r};
+        })
+        .filter(Boolean);
+
+      if(!presentes.length){
+        alert("Nenhuma presença foi registrada para este evento ainda.");
         return;
       }
 
-      const margem = 7;
-      pdf.setFillColor(7,60,102);
-      pdf.roundedRect(margem,margem,196,25,3,3,"F");
-      pdf.setTextColor(255,255,255);
-      pdf.setFontSize(9);
-      pdf.text("ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM",margem+5,margem+7);
-      pdf.setFontSize(16);
-      pdf.setFont(undefined,"bold");
-      pdf.text("PRESENÇA EM EVENTOS",margem+5,margem+15);
-      pdf.setFontSize(9);
-      pdf.setFont(undefined,"normal");
-      pdf.text(evento.value.trim(),margem+5,margem+21);
-
-      pdf.setTextColor(52,64,84);
-      pdf.setFontSize(9);
-      pdf.text("Data: " + formatarData(data.value),margem,margem+32);
-      pdf.text("Horário: " + (horario.value || "Não informado"),margem+55,margem+32);
-      pdf.text("Operador: " + operador.value.trim(),margem+112,margem+32);
-
-      pdf.autoTable({
-        startY:margem+38,
-        theme:"grid",
-        head:[["TOTAL","PRESENTES","JUSTIFICADOS","PENDENTES"]],
-        body:[[
-          document.getElementById("total").textContent,
-          document.getElementById("presentes").textContent,
-          document.getElementById("justificados").textContent,
-          document.getElementById("pendentes").textContent
-        ]],
-        styles:{fontSize:9,halign:"center",cellPadding:3},
-        headStyles:{fillColor:[7,60,102],textColor:[255,255,255],fontStyle:"bold"}
+      const pdf = new window.jspdf.jsPDF({
+        orientation:"portrait",
+        unit:"mm",
+        format:"a4"
       });
 
-      let y = pdf.lastAutoTable.finalY + 7;
+      /* =========================
+         PALETA DO MODELO
+      ========================= */
+      const azul = [23,60,102];
+      const verde = [12,139,114];
+      const preto = [20,20,20];
+      const cinza = [90,90,90];
 
-      const linhasTipo = extrairDadosRelatorio("relatorioTipo");
-      pdf.autoTable({
-        startY:y,
-        theme:"grid",
-        head:[["TIPO","PRESENTES","JUSTIFICADOS","PENDENTES"]],
-        body:linhasTipo,
-        styles:{fontSize:8,cellPadding:2.5},
-        headStyles:{fillColor:[244,122,32],textColor:[255,255,255]},
-        columnStyles:{0:{halign:"left"},1:{halign:"center"},2:{halign:"center"},3:{halign:"center"}}
-      });
+      const pageW = 210;
+      const pageH = 297;
+      const margem = 8;
+      const centro = pageW / 2;
 
-      y = pdf.lastAutoTable.finalY + 7;
+      /* =========================
+         CONVERSÃO DA LOGO PARA DATA URL
+      ========================= */
+      async function obterLogoDataURL(){
+        const img = document.querySelector('img[src*="Logo-Belem.png"]');
+        if(!img) return null;
 
-      const linhasSetor = extrairDadosRelatorio("relatorioSetor");
-      pdf.autoTable({
-        startY:y,
-        theme:"grid",
-        head:[["SETOR","PRESENTES","JUSTIFICADOS","PENDENTES"]],
-        body:linhasSetor,
-        styles:{fontSize:7.5,cellPadding:2.3},
-        headStyles:{fillColor:[21,157,209],textColor:[255,255,255]},
-        columnStyles:{0:{halign:"left"},1:{halign:"center"},2:{halign:"center"},3:{halign:"center"}}
-      });
+        try{
+          if(!img.complete){
+            await new Promise(function(resolve){
+              img.addEventListener("load",resolve,{once:true});
+              img.addEventListener("error",resolve,{once:true});
+            });
+          }
 
-      pdf.setFontSize(8);
-      pdf.setTextColor(120,120,120);
-      pdf.text("SECRETARIA SETORIAL — SETOR 49",105,289,{align:"center"});
+          const canvas = document.createElement("canvas");
+          canvas.width = img.naturalWidth || 300;
+          canvas.height = img.naturalHeight || 300;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img,0,0,canvas.width,canvas.height);
+          return canvas.toDataURL("image/png");
+        }catch(e){
+          return null;
+        }
+      }
 
-      const nomeArquivo = "presenca-evento-" + normalizar(evento.value).replace(/[^A-Z0-9]+/g,"-").replace(/^-|-$/g,"").toLowerCase() + ".pdf";
+      let logoData = null;
+      try{
+        logoData = await obterLogoDataURL();
+      }catch(e){
+        logoData = null;
+      }
+
+      /* =========================
+         DESENHO DA PÁGINA
+      ========================= */
+      function desenharCabecalhoPagina(){
+        let y = 9;
+
+        if(logoData){
+          try{
+            pdf.addImage(logoData,"PNG",15,10,22,22);
+          }catch(e){
+            // Segue sem logo se o navegador bloquear a conversão.
+          }
+        }
+
+        pdf.setTextColor(preto[0],preto[1],preto[2]);
+        pdf.setFont("times","bold");
+        pdf.setFontSize(14);
+        pdf.text("IGREJA EVANGÉLICA ASSEMBLEIA DE DEUS",centro,y+2,{align:"center"});
+
+        pdf.setFont("times","normal");
+        pdf.setFontSize(12);
+        pdf.text("MINISTERIO DO BELÉM – SÃO PAULO",centro,y+8,{align:"center"});
+        pdf.text("SETOR 49 – JARDIM DOS PIMENTAS",centro,y+14,{align:"center"});
+        pdf.text("Rua Antônio Bittencourt, 684 – Pq. São Miguel",centro,y+20,{align:"center"});
+        pdf.text("Guarulhos – São Paulo - CEP: 07260-040",centro,y+26,{align:"center"});
+
+        pdf.setFont("times","bold");
+        pdf.setFontSize(10.5);
+        pdf.text("SECRETARIA SETORIAL – SETOR 49 – JD. DOS PIMENTAS",centro,43,{align:"center"});
+
+        /* Faixa do modelo */
+        const faixaX = 23;
+        const faixaY = 47;
+        const faixaW = 164;
+        const faixaH = 11;
+        const esquerdaW = 78;
+        const direitaW = faixaW - esquerdaW;
+
+        pdf.setFillColor(azul[0],azul[1],azul[2]);
+        pdf.rect(faixaX,faixaY,esquerdaW,faixaH,"F");
+
+        pdf.setFillColor(verde[0],verde[1],verde[2]);
+        pdf.rect(faixaX+esquerdaW,faixaY,direitaW,faixaH,"F");
+
+        pdf.setTextColor(255,255,255);
+        pdf.setFont("times","bold");
+        pdf.setFontSize(13);
+        pdf.text("APRESENTAÇÃO",faixaX+esquerdaW/2,faixaY+7.5,{align:"center"});
+        pdf.text("DIRETORIA E PASTOR",faixaX+esquerdaW+direitaW/2,faixaY+7.5,{align:"center"});
+
+        /* Dados do evento */
+        pdf.setTextColor(preto[0],preto[1],preto[2]);
+        pdf.setFont("helvetica","bold");
+        pdf.setFontSize(9.5);
+        pdf.text(evento.value.trim(),centro,63,{align:"center"});
+
+        pdf.setFont("helvetica","normal");
+        pdf.setFontSize(8.5);
+        const linhaEvento =
+          "Data: " + formatarData(data.value) +
+          (horario.value ? "   •   Horário: " + horario.value : "");
+        pdf.text(linhaEvento,centro,68,{align:"center"});
+      }
+
+      function desenharFicha(item,index){
+        const p = item.pessoa;
+        const r = item.registro;
+
+        const yBase = 77 + (index * 34.7);
+        const x = 12;
+        const w = 186;
+
+        pdf.setTextColor(preto[0],preto[1],preto[2]);
+        pdf.setFont("helvetica","normal");
+        pdf.setFontSize(9.4);
+
+        const nome = String(p.nome || "").trim();
+        const acompanhando = String(r.acompanhando || "").trim();
+        const igrejaSetor = String(r.nomeIgrejaSetor || montarIgrejaSetor(p) || "").trim();
+        const representando = String(r.representando || "").trim();
+
+        /* Função que escreve um campo e permite quebra de linha. */
+        function campo(rotulo,valor,y){
+          pdf.setFont("helvetica","normal");
+          pdf.setFontSize(9.2);
+          pdf.text(rotulo,x,y);
+
+          const texto = valor || "";
+          const linhas = pdf.splitTextToSize(texto,w-40);
+
+          if(linhas.length){
+            pdf.text(linhas, x+31, y);
+          }
+
+          return Math.max(5.5, Math.min(9.5, linhas.length*4.2));
+        }
+
+        let y = yBase;
+        campo("Nome:",nome,y);
+        y += 7;
+        campo("Acompanhando:",acompanhando,y);
+        y += 7;
+        campo("Nome da igreja/setor:",igrejaSetor,y);
+        y += 7;
+        campo("Representado:",representando,y);
+
+        /* Linha inferior, como na ficha original. */
+        pdf.setDrawColor(20,20,20);
+        pdf.setLineWidth(0.35);
+        pdf.line(x+31,y+2,w+x,y+2);
+      }
+
+      const porPagina = 6;
+
+      for(let inicio=0; inicio<presentes.length; inicio+=porPagina){
+        if(inicio>0) pdf.addPage();
+
+        desenharCabecalhoPagina();
+
+        const bloco = presentes.slice(inicio,inicio+porPagina);
+        bloco.forEach(function(item,index){
+          desenharFicha(item,index);
+        });
+
+        pdf.setTextColor(cinza[0],cinza[1],cinza[2]);
+        pdf.setFont("times","bold");
+        pdf.setFontSize(8.5);
+        pdf.text("SECRETARIA SETORIAL – SETOR 49 – JD. DOS PIMENTAS",centro,288,{align:"center"});
+      }
+
+      const nomeArquivo =
+        "apresentacao-" +
+        normalizar(evento.value)
+          .replace(/[^A-Z0-9]+/g,"-")
+          .replace(/^-|-$/g,"")
+          .toLowerCase() +
+        ".pdf";
+
       pdf.save(nomeArquivo);
     });
 
