@@ -329,6 +329,164 @@
     .relatorio-total{background:#f8fafc;font-weight:900}
     .relatorio-vazio{text-align:center!important;color:#777!important;padding:20px!important}
 
+    /* =========================
+       MODAL — DADOS DA PRESENÇA
+    ========================= */
+
+    .modal-presenca{
+      position:fixed;
+      inset:0;
+      background:rgba(7,60,102,.58);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index:9999;
+      backdrop-filter:blur(3px);
+    }
+
+    .modal-presenca.aberto{
+      display:flex;
+    }
+
+    .modal-presenca-card{
+      width:min(680px,100%);
+      max-height:92vh;
+      overflow:auto;
+      background:#fff;
+      border-radius:18px;
+      box-shadow:0 24px 70px rgba(0,0,0,.24);
+    }
+
+    .modal-presenca-cabecalho{
+      padding:20px 22px;
+      background:linear-gradient(135deg,var(--navy),var(--blue));
+      color:#fff;
+    }
+
+    .modal-presenca-cabecalho h3{
+      margin:0;
+      font-size:20px;
+      line-height:1.25;
+    }
+
+    .modal-presenca-cabecalho p{
+      margin:6px 0 0;
+      font-size:12px;
+      opacity:.92;
+    }
+
+    .modal-presenca-corpo{
+      padding:22px;
+    }
+
+    .modal-presenca-info{
+      padding:12px 14px;
+      background:#f7fafc;
+      border:1px solid #e4e9ee;
+      border-radius:10px;
+      margin-bottom:18px;
+      line-height:1.6;
+    }
+
+    .modal-presenca-info strong{
+      color:var(--navy);
+      font-size:14px;
+    }
+
+    .modal-presenca-info span{
+      display:block;
+      margin-top:3px;
+      color:var(--muted);
+      font-size:11px;
+    }
+
+    .modal-campo{
+      margin-bottom:15px;
+    }
+
+    .modal-campo label{
+      display:block;
+      margin-bottom:6px;
+      color:#344054;
+      font-size:12px;
+      font-weight:900;
+    }
+
+    .modal-campo textarea,
+    .modal-campo input{
+      width:100%;
+      border:1px solid #d9dfe3;
+      border-radius:9px;
+      padding:11px 12px;
+      font:13px Arial,Helvetica,sans-serif;
+      outline:none;
+    }
+
+    .modal-campo textarea{
+      min-height:90px;
+      resize:vertical;
+    }
+
+    .modal-campo textarea:focus,
+    .modal-campo input:focus{
+      border-color:var(--blue);
+      box-shadow:0 0 0 3px rgba(21,157,209,.10);
+    }
+
+    .modal-ajuda{
+      margin-top:5px;
+      color:#7b8794;
+      font-size:10px;
+      line-height:1.4;
+    }
+
+    .modal-presenca-acoes{
+      display:flex;
+      justify-content:flex-end;
+      gap:8px;
+      margin-top:18px;
+      padding-top:15px;
+      border-top:1px solid #edf0f2;
+    }
+
+    .modal-btn{
+      border:0;
+      border-radius:9px;
+      padding:11px 15px;
+      font-size:12px;
+      font-weight:900;
+      cursor:pointer;
+    }
+
+    .modal-btn-cancelar{
+      background:#eef1f3;
+      color:#344054;
+    }
+
+    .modal-btn-confirmar{
+      background:var(--green);
+      color:#fff;
+    }
+
+    .modal-btn-confirmar:hover{
+      background:#056f36;
+    }
+
+    .presenca-extra{
+      margin-top:8px;
+      padding:9px 11px;
+      border-radius:8px;
+      background:#f8fafc;
+      color:#667085;
+      font-size:10px;
+      line-height:1.55;
+    }
+
+    .presenca-extra b{
+      color:#344054;
+    }
+
     footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font-size:13px;margin-top:35px}
 
     #areaImpressaoRelatorio{display:none}
@@ -365,6 +523,140 @@
       .relatorio-tabela{font-size:11px}
       .relatorio-tabela th,.relatorio-tabela td{padding:9px 5px}
       .relatorio-tabela th:first-child,.relatorio-tabela td:first-child{padding-left:10px}
+      .modal-presenca{padding:10px}
+      .modal-presenca-card{max-height:95vh;border-radius:15px}
+      .modal-presenca-cabecalho{padding:17px 18px}
+      .modal-presenca-cabecalho h3{font-size:18px}
+      .modal-presenca-corpo{padding:18px}
+      .modal-presenca-acoes{flex-direction:column-reverse}
+      .modal-btn{width:100%}
+    }
+
+    .pagina-apresentacao{
+      width:100%;
+      min-height:277mm;
+      padding:4mm 2mm 2mm;
+      font-family:Arial,Helvetica,sans-serif;
+      color:#111827;
+      page-break-after:always;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .pagina-apresentacao:last-child{
+      page-break-after:auto;
+    }
+
+    .cabecalho-apresentacao{
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      gap:12mm;
+      padding-top:1mm;
+    }
+
+    .cabecalho-apresentacao img{
+      width:28mm;
+      height:28mm;
+      object-fit:contain;
+    }
+
+    .dados-igreja{
+      flex:1;
+      text-align:center;
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:12pt;
+      line-height:1.28;
+    }
+
+    .dados-igreja .igreja-principal{
+      font-weight:700;
+      font-size:14pt;
+    }
+
+    .subtitulo-secretaria{
+      margin-top:4mm;
+      text-align:center;
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:11pt;
+      font-weight:700;
+    }
+
+    .titulo-apresentacao{
+      display:grid;
+      grid-template-columns:1fr 1.25fr;
+      margin:5mm 14mm 2mm;
+      color:#fff;
+      font-family:Georgia,"Times New Roman",serif;
+      font-weight:700;
+      font-size:14pt;
+      letter-spacing:.2px;
+    }
+
+    .titulo-apresentacao div:first-child{
+      background:#073c66;
+      text-align:center;
+      padding:2.5mm 2mm;
+    }
+
+    .titulo-apresentacao div:last-child{
+      background:#0c8b72;
+      text-align:center;
+      padding:2.5mm 2mm;
+    }
+
+    .evento-apresentacao{
+      margin:2mm 14mm 3mm;
+      text-align:center;
+      font-size:9.5pt;
+      line-height:1.4;
+    }
+
+    .evento-apresentacao strong{
+      display:block;
+      font-size:10.5pt;
+    }
+
+    .evento-apresentacao span{
+      display:block;
+      color:#555;
+      margin-top:1mm;
+    }
+
+    .fichas-apresentacao{
+      margin:0 7mm;
+      flex:1;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .ficha-apresentacao{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      min-height:34mm;
+      border-bottom:0.45mm solid #111;
+      padding:1.8mm 0 1.2mm;
+      font-family:Arial,Helvetica,sans-serif;
+      font-size:10.5pt;
+      line-height:1.55;
+    }
+
+    .linha-campo span{
+      font-weight:400;
+    }
+
+    .linha-campo{
+      min-height:6mm;
+    }
+
+    .rodape-apresentacao{
+      margin-top:4mm;
+      text-align:center;
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:9.5pt;
+      font-weight:700;
     }
 
     @media print{
@@ -372,6 +664,7 @@
       body > *:not(#areaImpressaoRelatorio){display:none!important}
       #areaImpressaoRelatorio{display:block!important}
       @page{size:A4 portrait;margin:7mm}
+      .pagina-apresentacao{min-height:283mm}
     }
   </style>
 </head>
@@ -529,6 +822,55 @@
 
   </main>
 
+  <!-- =========================
+       MODAL DE PRESENÇA
+  ========================= -->
+
+  <div class="modal-presenca" id="modalPresenca" role="dialog" aria-modal="true" aria-labelledby="tituloModalPresenca">
+    <div class="modal-presenca-card">
+
+      <div class="modal-presenca-cabecalho">
+        <h3 id="tituloModalPresenca">🟢 Confirmar presença</h3>
+        <p>Preencha as informações adicionais para a apresentação na igreja.</p>
+      </div>
+
+      <div class="modal-presenca-corpo">
+
+        <div class="modal-presenca-info">
+          <strong id="modalNomePessoa">-</strong>
+          <span id="modalDetalhesPessoa">-</span>
+        </div>
+
+        <div class="modal-campo">
+          <label for="modalAcompanhando">Acompanhando</label>
+          <textarea id="modalAcompanhando" placeholder="Digite os nomes das pessoas que vieram com este pastor/diretor.
+Ex.: Esposa Maria; filho João; Pb. Carlos..."></textarea>
+          <div class="modal-ajuda">Pode informar mais de uma pessoa no mesmo campo.</div>
+        </div>
+
+        <div class="modal-campo">
+          <label for="modalIgrejaSetor">Nome da igreja/setor</label>
+          <input type="text" id="modalIgrejaSetor" readonly>
+          <div class="modal-ajuda" id="modalIgrejaSetorAjuda">
+            Preenchido automaticamente a partir do cadastro do participante.
+          </div>
+        </div>
+
+        <div class="modal-campo">
+          <label for="modalRepresentando">Representando</label>
+          <input type="text" id="modalRepresentando" placeholder="Informe quem ele está representando, se houver.">
+          <div class="modal-ajuda">Deixe em branco quando não estiver representando ninguém.</div>
+        </div>
+
+        <div class="modal-presenca-acoes">
+          <button type="button" class="modal-btn modal-btn-cancelar" onclick="fecharPresencaModal()">Cancelar</button>
+          <button type="button" class="modal-btn modal-btn-confirmar" onclick="confirmarPresencaModal()">🟢 Confirmar presença</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <footer>
     ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM · SETOR 49 - JARDIM DOS PIMENTAS
     <br><small>PORTAL AD BELÉM - SETOR 49</small>
@@ -556,6 +898,7 @@
     let registros = [];
     let callbackContador = 0;
     let justificativaAberta = false;
+    let presencaModalId = null;
 
     const lista = document.getElementById("lista");
     const busca = document.getElementById("busca");
@@ -729,6 +1072,14 @@
             ${registro.situacao === "JUSTIFICADO"
               ? `<div class="participante-status">Motivo: ${escapeHTML(registro.justificativa || "-")}</div>`
               : ""}
+
+            ${registro.situacao === "PRESENTE" && (registro.acompanhando || registro.nomeIgrejaSetor || registro.representando)
+              ? `<div class="presenca-extra">
+                   ${registro.acompanhando ? `<div><b>Acompanhando:</b> ${escapeHTML(registro.acompanhando)}</div>` : ""}
+                   ${registro.nomeIgrejaSetor ? `<div><b>Igreja/setor:</b> ${escapeHTML(registro.nomeIgrejaSetor)}</div>` : ""}
+                   ${registro.representando ? `<div><b>Representando:</b> ${escapeHTML(registro.representando)}</div>` : ""}
+                 </div>`
+              : ""}
           </div>
           <div class="registrado">
             <span class="badge ${classe}">${icone} ${escapeHTML(registro.situacao)}</span>
@@ -758,7 +1109,7 @@
           </div>
 
           <div class="acoes">
-            <button type="button" class="btn btn-presente" onclick="registrar('${escapeJS(pessoa.id)}','PRESENTE')">🟢 Presente</button>
+            <button type="button" class="btn btn-presente" onclick="abrirPresencaModal('${escapeJS(pessoa.id)}')">🟢 Presente</button>
             <button type="button" class="btn btn-justificar" onclick="abrirJustificativa('${escapeJS(pessoa.id)}')">🟡 Justificar</button>
           </div>
         </div>
@@ -801,9 +1152,9 @@
     }
 
     /* =====================================================
-       REGISTRAR
+       MODAL DE PRESENÇA
     ===================================================== */
-    function registrar(id,situacao,justificativa=""){
+    function abrirPresencaModal(id){
       if(!evento.value.trim()){
         alert("Informe o nome do evento.");
         evento.focus();
@@ -828,6 +1179,118 @@
         return;
       }
 
+      presencaModalId = String(id);
+
+      document.getElementById("modalNomePessoa").textContent = pessoa.nome || "-";
+      document.getElementById("modalDetalhesPessoa").textContent =
+        [pessoa.tipo, pessoa.cargo, pessoa.setor ? "Setor " + pessoa.setor : "", pessoa.localidade]
+          .filter(Boolean)
+          .join(" · ") || "";
+
+      document.getElementById("modalAcompanhando").value = "";
+      document.getElementById("modalIgrejaSetor").value = montarIgrejaSetor(pessoa);
+      document.getElementById("modalRepresentando").value = "";
+
+      document.getElementById("modalPresenca").classList.add("aberto");
+
+      setTimeout(function(){
+        document.getElementById("modalAcompanhando").focus();
+      },100);
+    }
+
+    function montarIgrejaSetor(pessoa){
+      /*
+       * Regra da ficha:
+       * - Pastor Setorial: usar o SETOR cadastrado.
+       * - Diretoria: usar o CARGO / FUNÇÃO da Diretoria.
+       *
+       * Se o participante tiver mais de um tipo, a presença de
+       * "Diretoria" prevalece para o campo da ficha.
+       */
+      const tipo = String(pessoa?.tipo || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g,"")
+        .toUpperCase();
+
+      const cargo = String(pessoa?.cargo || "").trim();
+      const setor = String(pessoa?.setor || "").trim();
+
+      if(tipo.includes("DIRETORIA")){
+        return cargo;
+      }
+
+      if(setor){
+        return setor.toUpperCase().startsWith("SETOR ")
+          ? setor
+          : "Setor " + setor;
+      }
+
+      return cargo;
+    }
+
+    function fecharPresencaModal(){
+      document.getElementById("modalPresenca").classList.remove("aberto");
+      presencaModalId = null;
+    }
+
+    function confirmarPresencaModal(){
+      if(!presencaModalId){
+        fecharPresencaModal();
+        return;
+      }
+      const acompanhando = document.getElementById("modalAcompanhando").value.trim();
+      const nomeIgrejaSetor = document.getElementById("modalIgrejaSetor").value.trim();
+      const representando = document.getElementById("modalRepresentando").value.trim();
+
+      const id = presencaModalId;
+      fecharPresencaModal();
+
+      registrar(id,"PRESENTE","",{
+        acompanhando: acompanhando,
+        nomeIgrejaSetor: nomeIgrejaSetor,
+        representando: representando
+      });
+    }
+
+    /* Fecha o modal ao clicar fora. */
+    document.getElementById("modalPresenca").addEventListener("click",function(event){
+      if(event.target === this){
+        fecharPresencaModal();
+      }
+    });
+
+    /* =====================================================
+       REGISTRAR
+    ===================================================== */
+    function registrar(id,situacao,justificativa="",extras={}){
+      if(!evento.value.trim()){
+        alert("Informe o nome do evento.");
+        evento.focus();
+        return;
+      }
+
+      if(!data.value){
+        alert("Informe a data.");
+        data.focus();
+        return;
+      }
+
+      if(!operador.value.trim()){
+        alert("Informe o nome do operador.");
+        operador.focus();
+        return;
+      }
+
+      const pessoa = participantes.find(item => String(item.id) === String(id));
+      if(!pessoa){
+        alert("Participante não encontrado.");
+        return;
+      }
+
+      const acompanhando = situacao === "PRESENTE" ? String(extras.acompanhando || "").trim() : "";
+      const nomeIgrejaSetor = situacao === "PRESENTE" ? montarIgrejaSetor(pessoa) : "";
+      const representando = situacao === "PRESENTE" ? String(extras.representando || "").trim() : "";
+
       chamarAPI({
         acao:"registrar",
         idPessoa:pessoa.id,
@@ -839,10 +1302,14 @@
         cargo:pessoa.cargo,
         setor:pessoa.setor,
         localidade:pessoa.localidade,
+        acompanhando:acompanhando,
+        nomeIgrejaSetor:nomeIgrejaSetor,
+        representando:representando,
         situacao:situacao,
         justificativa:justificativa,
         operador:operador.value.trim()
       }, function(resultado){
+
         if(!resultado || !resultado.sucesso){
           if(resultado && resultado.duplicado){
             alert("⚠️ Este participante já foi registrado neste evento.");
@@ -852,6 +1319,8 @@
           atualizarRegistros();
           return;
         }
+
+        const registroServidor = resultado.registro || {};
 
         const registroLocal = {
           idPessoa:String(pessoa.id),
@@ -866,7 +1335,10 @@
           situacao:situacao,
           justificativa:justificativa,
           operador:operador.value.trim(),
-          dataHora:new Date().toISOString()
+          dataHora:registroServidor.dataHora || new Date().toISOString(),
+          acompanhando:registroServidor.acompanhando || acompanhando,
+          nomeIgrejaSetor:registroServidor.nomeIgrejaSetor || nomeIgrejaSetor,
+          representando:registroServidor.representando || representando
         };
 
         const indice = registros.findIndex(r =>
@@ -1030,49 +1502,99 @@
     }
 
     /* =====================================================
-       IMPRESSÃO
+       IMPRESSÃO — FICHA DE APRESENTAÇÃO
+       Modelo baseado na ficha enviada.
     ===================================================== */
     document.getElementById("btnImprimirRelatorio").addEventListener("click",function(){
-      if(!data.value){ alert("Informe a data antes de imprimir."); data.focus(); return; }
-      if(!evento.value.trim()){ alert("Informe o nome do evento antes de imprimir."); evento.focus(); return; }
+      if(!data.value){
+        alert("Informe a data antes de imprimir.");
+        data.focus();
+        return;
+      }
+
+      if(!evento.value.trim()){
+        alert("Informe o nome do evento antes de imprimir.");
+        evento.focus();
+        return;
+      }
+
+      const presentes = participantes
+        .map(function(p){
+          const r = encontrarRegistro(p.id);
+          if(!r || r.situacao !== "PRESENTE") return null;
+          return {
+            pessoa:p,
+            registro:r
+          };
+        })
+        .filter(Boolean);
+
+      if(!presentes.length){
+        alert("Nenhuma presença foi registrada para este evento ainda.");
+        return;
+      }
 
       const area = document.createElement("div");
       area.id = "areaImpressaoRelatorio";
 
-      const tipo = document.getElementById("relatorioTipo").innerHTML;
-      const setor = document.getElementById("relatorioSetor").innerHTML;
+      const paginas = [];
 
-      area.innerHTML = `
-        <div style="font-family:Arial,Helvetica,sans-serif;color:#344054;">
-          <div style="background:#073c66;color:#fff;padding:18px;border-radius:8px;margin-bottom:15px;">
-            <div style="font-size:10px;letter-spacing:.5px;opacity:.85;">ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM</div>
-            <h1 style="margin:5px 0;font-size:20px;">🎉 PRESENÇA EM EVENTOS</h1>
-            <div style="font-size:12px;">${escapeHTML(evento.value.trim())}</div>
-            <div style="font-size:11px;margin-top:4px;">Data: ${formatarData(data.value)} · Horário: ${escapeHTML(horario.value || "Não informado")}</div>
-          </div>
+      for(let i=0;i<presentes.length;i+=6){
+        const bloco = presentes.slice(i,i+6);
 
-          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:15px;">
-            <div style="border:1px solid #dce3e8;padding:10px;border-radius:7px;"><b style="font-size:9px;color:#667085;">TOTAL</b><div style="font-size:20px;font-weight:900;">${document.getElementById("total").textContent}</div></div>
-            <div style="border:1px solid #b9e4ca;padding:10px;border-radius:7px;"><b style="font-size:9px;color:#079447;">PRESENTES</b><div style="font-size:20px;font-weight:900;color:#079447;">${document.getElementById("presentes").textContent}</div></div>
-            <div style="border:1px solid #ead37b;padding:10px;border-radius:7px;"><b style="font-size:9px;color:#8a6800;">JUSTIFICADOS</b><div style="font-size:20px;font-weight:900;color:#8a6800;">${document.getElementById("justificados").textContent}</div></div>
-            <div style="border:1px solid #e8b5ba;padding:10px;border-radius:7px;"><b style="font-size:9px;color:#b51e2a;">PENDENTES</b><div style="font-size:20px;font-weight:900;color:#b51e2a;">${document.getElementById("pendentes").textContent}</div></div>
-          </div>
+        let fichas = "";
 
-          <div style="margin-bottom:14px;">
-            <div style="font-size:11px;font-weight:900;color:#073c66;padding:8px 10px;background:#f3f6f8;border:1px solid #e4e9ee;">PRESENÇA POR TIPO</div>
-            <table style="width:100%;border-collapse:collapse;font-size:9px;">${tipo}</table>
-          </div>
+        bloco.forEach(function(item){
+          const p = item.pessoa;
+          const r = item.registro;
 
-          <div>
-            <div style="font-size:11px;font-weight:900;color:#073c66;padding:8px 10px;background:#f3f6f8;border:1px solid #e4e9ee;">PRESENÇA POR SETOR</div>
-            <table style="width:100%;border-collapse:collapse;font-size:9px;">${setor}</table>
-          </div>
+          fichas += `
+            <div class="ficha-apresentacao">
+              <div class="linha-campo"><span>Nome:</span> ${escapeHTML(p.nome || "")}</div>
+              <div class="linha-campo"><span>Acompanhando:</span> ${escapeHTML(r.acompanhando || "")}</div>
+              <div class="linha-campo"><span>Nome da igreja/setor:</span> ${escapeHTML(r.nomeIgrejaSetor || "")}</div>
+              <div class="linha-campo"><span>Representado:</span> ${escapeHTML(r.representando || "")}</div>
+            </div>
+          `;
+        });
 
-          <div style="margin-top:18px;text-align:center;font-size:8px;color:#777;">SECRETARIA SETORIAL — SETOR 49</div>
-        </div>
-      `;
+        paginas.push(`
+          <section class="pagina-apresentacao">
+            <div class="cabecalho-apresentacao">
+              <img src="assets/Logo-Belem.png" alt="AD Belém">
+              <div class="dados-igreja">
+                <div class="igreja-principal">IGREJA EVANGÉLICA ASSEMBLEIA DE DEUS</div>
+                <div>MINISTERIO DO BELÉM – SÃO PAULO</div>
+                <div>SETOR 49 – JARDIM DOS PIMENTAS</div>
+                <div>Rua Antônio Bittencourt, 684 – Pq. São Miguel</div>
+                <div>Guarulhos – São Paulo - CEP: 07260-040</div>
+              </div>
+            </div>
 
+            <div class="subtitulo-secretaria">SECRETARIA SETORIAL – SETOR 49 – JD. DOS PIMENTAS</div>
+
+            <div class="titulo-apresentacao">
+              <div>APRESENTAÇÃO</div>
+              <div>DIRETORIA E PASTOR</div>
+            </div>
+
+            <div class="evento-apresentacao">
+              <strong>${escapeHTML(evento.value.trim())}</strong>
+              <span>${formatarData(data.value)}${horario.value ? " · " + escapeHTML(horario.value) : ""}</span>
+            </div>
+
+            <div class="fichas-apresentacao">
+              ${fichas}
+            </div>
+
+            <div class="rodape-apresentacao">SECRETARIA SETORIAL – SETOR 49 – JD. DOS PIMENTAS</div>
+          </section>
+        `);
+      }
+
+      area.innerHTML = paginas.join("");
       document.body.appendChild(area);
+
       window.print();
 
       window.onafterprint = function(){
