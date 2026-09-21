@@ -4,9 +4,13 @@
 <head>
 
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Área Restrita | AD Belém 49</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Área Administrativa — Setor 49</title>
 
   <style>
 
@@ -17,88 +21,37 @@
       --orange:#f47a20;
       --red:#b51e2a;
       --navy:#073c66;
-      --muted:#667085;
       --bg:#f6f8fa;
+      --muted:#667085;
     }
 
     *{
       box-sizing:border-box;
-      margin:0;
-      padding:0;
     }
 
     body{
-      font-family:Arial, Helvetica, sans-serif;
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
       background:var(--bg);
       color:#344054;
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
     }
-body{
-  font-family:Arial, Helvetica, sans-serif;
-  background:var(--bg);
-  color:#344054;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-}
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background-image:url("assets/fundo-area-restrita.jpg");
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
-  filter:blur(2px);
-  opacity:.42;
-  transform:scale(1.03);
-  z-index:-2;
-}
-
-body::after{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:rgba(255,255,255,.25);
-  z-index:-1;
-  pointer-events:none;
-}
-
-header,
-main,
-footer{
-  position:relative;
-  z-index:1;
-}
-
-    /* =========================
-       CABEÇALHO
-    ========================= */
 
     header{
       background:#fff;
-      border-bottom:1px solid #e8edf2;
-      box-shadow:0 2px 10px rgba(16,24,40,.06);
-      position:sticky;
-      top:0;
-      z-index:100;
+      border-bottom:1px solid #e4e9ee;
     }
 
-    .header-content{
+    .topo{
       max-width:1180px;
       margin:auto;
       padding:12px 22px;
-
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:20px;
     }
 
-    .brand{
+    .marca{
       display:flex;
       align-items:center;
       gap:12px;
@@ -106,350 +59,534 @@ footer{
       color:var(--navy);
     }
 
-    .brand img{
+    .marca img{
       width:52px;
       height:52px;
       object-fit:contain;
       flex:none;
     }
 
-    .brand-text h1{
+    .marca-texto strong{
+      display:block;
+      color:var(--navy);
       font-size:13px;
       line-height:1.25;
       font-weight:900;
     }
 
-    .brand-text p{
+    .marca-texto span{
+      display:block;
       margin-top:4px;
-      color:var(--muted);
+      color:#667085;
       font-size:10px;
       font-weight:700;
       letter-spacing:.4px;
     }
 
+    nav{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:10px;
+    }
 
-    /* =========================
-       BOTÃO VOLTAR
-    ========================= */
-
-    .voltar{
+    nav a{
+      color:#344054;
+      text-decoration:none;
+      font-size:13px;
+      font-weight:800;
+      padding:9px 10px;
+      border-radius:9px;
+      height:38px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-
-      height:38px;
-      padding:9px 12px;
-
-      background:#eef8fc;
-      border:1px solid #cfe7f0;
-      border-radius:9px;
-
-      color:var(--navy);
-      text-decoration:none;
-
-      font-size:13px;
-      font-weight:900;
-
       transition:.2s;
+    }
+
+    nav a:hover{
+      color:var(--green);
+    }
+
+    .sair-topo{
+      color:var(--red) !important;
+    }
+
+    main{
+      max-width:1200px;
+      margin:auto;
+      padding:55px 22px 80px;
+    }
+
+    .hero{
+      background:#fff;
+      border:1px solid #dce3e8;
+      border-left:6px solid var(--blue);
+      border-radius:18px;
+      padding:24px 26px;
+      margin-bottom:24px;
+      box-shadow:0 8px 24px rgba(16,24,40,.05);
+    }
+
+    .hero h1{
+      margin:0;
+      color:var(--navy);
+      font-size:27px;
+      font-weight:900;
+    }
+
+    .hero p{
+      margin:8px 0 0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.55;
+      max-width:800px;
+    }
+
+    .titulo{
+      margin:0 0 18px;
+      color:var(--navy);
+      font-size:24px;
+      font-weight:900;
+    }
+
+    .ferramentas{
+      display:grid;
+      grid-template-columns:
+        repeat(2,minmax(0,1fr));
+      gap:16px;
+    }
+
+    .ferramenta{
+      background:#fff;
+      border:1px solid #dce3e8;
+      border-radius:16px;
+      padding:20px;
+      text-decoration:none;
+      color:inherit;
+      display:flex;
+      flex-direction:column;
+      min-height:175px;
+      box-shadow:0 7px 22px rgba(16,24,40,.05);
+      transition:.2s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .ferramenta::before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:5px;
+      background:var(--blue);
+    }
+
+    .ferramenta:hover{
+      transform:translateY(-5px);
+      box-shadow:0 16px 35px rgba(16,24,40,.10);
+      border-color:#c9dbe5;
+    }
+
+    .icone{
+      width:46px;
+      height:46px;
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:23px;
+      background:#eef8fc;
+      margin-bottom:12px;
+    }
+
+    .ferramenta h3{
+      margin:0;
+      color:var(--navy);
+      font-size:17px;
+      font-weight:900;
+    }
+
+    .ferramenta p{
+      margin:7px 0 13px;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.5;
+      flex:1;
+    }
+
+    .acessar{
+      color:var(--green);
+      font-size:12px;
+      font-weight:900;
+    }
+
+    /* =========================
+       SECRETARIA
+    ========================= */
+
+    .secretaria::before{
+      background:var(--blue);
+    }
+
+    .secretaria .icone{
+      background:#eef8fc;
+    }
+
+    /* =========================
+       PRESENÇA
+    ========================= */
+
+    .presenca::before{
+      background:var(--green);
+    }
+
+    .presenca .icone{
+      background:#eefaf3;
+    }
+
+    /* =========================
+       PRESENÇA EM EVENTOS
+    ========================= */
+
+    .eventos::before{
+      background:var(--orange);
+    }
+
+    .eventos .icone{
+      background:#fff3ea;
+    }
+
+    /* =========================
+       PATRIMÔNIO
+    ========================= */
+
+    .patrimonio::before{
+      background:var(--yellow);
+    }
+
+    .patrimonio .icone{
+      background:#fff9df;
+    }
+
+    /* =========================
+       SOLICITAÇÕES
+    ========================= */
+
+    .solicitacoes::before{
+      background:var(--orange);
+    }
+
+    .solicitacoes .icone{
+      background:#fff3ea;
+    }
+
+    /* =========================
+       PAINEL DE FREQUÊNCIA
+    ========================= */
+
+    .frequencia::before{
+      background:var(--blue);
+    }
+
+    .frequencia .icone{
+      background:#eef8fc;
+    }
+
+    /* =========================
+       GESTÃO DE CONGREGAÇÕES
+    ========================= */
+
+    .congregacoes::before{
+      background:var(--green);
+    }
+
+    .congregacoes .icone{
+      background:#eefaf3;
+    }
+
+    /* =========================
+       PAINEL GERAL
+    ========================= */
+
+    .painel-geral{
+      background:#fff;
+      border-radius:16px;
+      padding:18px;
+      border-top:4px solid var(--blue);
+      box-shadow:0 7px 22px rgba(16,24,40,.06);
+      margin-bottom:24px;
+    }
+
+    .painel-cabecalho{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:15px;
+      margin-bottom:14px;
+    }
+
+    .painel-cabecalho h2{
+      margin:0;
+      color:var(--navy);
+      font-size:20px;
+      font-weight:900;
+    }
+
+    .painel-cabecalho p{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:11px;
+    }
+
+    .btn-painel-atualizar{
+      border:1px solid #d9e1e7;
+      border-radius:9px;
+      padding:9px 12px;
+      background:#fff;
+      color:var(--navy);
+      font-size:11px;
+      font-weight:900;
+      cursor:pointer;
       white-space:nowrap;
     }
 
-    .voltar:hover{
-      background:var(--green);
-      border-color:var(--green);
-      color:#fff;
-    }
-
-
-    /* =========================
-       ÁREA PRINCIPAL
-    ========================= */
-
-    main{
-      flex:1;
-
-      display:flex;
-      align-items:center;
-      justify-content:center;
-
-      padding:55px 20px;
-    }
-
-
-    /* =========================
-       CARD DE LOGIN
-    ========================= */
-
-    .login-card{
-      width:100%;
-      max-width:450px;
-
-      background:#fff;
-
-      border:1px solid #e4e9ee;
-      border-top:5px solid var(--green);
-
-      border-radius:18px;
-
-      padding:38px;
-
-      box-shadow:0 12px 35px rgba(7,60,102,.10);
-
-      text-align:center;
-    }
-
-
-    /* =========================
-       ÍCONE
-    ========================= */
-
-    .cadeado{
-      width:72px;
-      height:72px;
-
-      margin:0 auto 20px;
-
-      display:flex;
-      align-items:center;
-      justify-content:center;
-
+    .btn-painel-atualizar:hover{
       background:#eef8fc;
-
-      border:1px solid #cfe7f0;
-
-      border-radius:50%;
-
-      font-size:32px;
-    }
-
-
-    .login-card h2{
-      color:var(--navy);
-
-      font-size:27px;
-      font-weight:900;
-
-      margin-bottom:9px;
-    }
-
-
-    .subtitulo{
-      color:var(--muted);
-
-      font-size:13px;
-      line-height:1.5;
-
-      margin-bottom:28px;
-    }
-
-
-    /* =========================
-       CAMPO
-    ========================= */
-
-    .campo{
-      text-align:left;
-      margin-bottom:17px;
-    }
-
-    .campo label{
-      display:block;
-
-      color:#344054;
-
-      font-size:12px;
-      font-weight:900;
-
-      margin-bottom:7px;
-    }
-
-    .campo input{
-      width:100%;
-
-      height:45px;
-
-      padding:10px 13px;
-
-      border:1px solid #dce3e8;
-      border-radius:9px;
-
-      background:#fff;
-
-      color:#344054;
-
-      font-family:inherit;
-      font-size:14px;
-
-      outline:none;
-
-      transition:.2s;
-    }
-
-    .campo input:focus{
       border-color:var(--blue);
-
-      box-shadow:
-        0 0 0 3px rgba(21,157,209,.10);
     }
 
+    .indicadores{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:12px;
+      margin-bottom:16px;
+    }
 
-    /* =========================
-       BOTÃO ENTRAR
-    ========================= */
-
-    .btn-entrar{
-      width:100%;
-
-      height:45px;
-
-      border:0;
-      border-radius:9px;
-
-      background:var(--green);
-      color:#fff;
-
-      font-size:13px;
-      font-weight:900;
-
-      cursor:pointer;
-
+    .indicador{
+      text-decoration:none;
+      color:inherit;
+      background:#f8fafc;
+      border:1px solid #e4e9ee;
+      border-left:4px solid var(--blue);
+      border-radius:11px;
+      padding:12px 13px;
+      display:flex;
+      align-items:center;
+      gap:11px;
+      min-height:72px;
       transition:.2s;
     }
 
-    .btn-entrar:hover{
-      background:var(--blue);
-
-      transform:translateY(-1px);
+    .indicador:hover{
+      transform:translateY(-2px);
+      box-shadow:0 5px 16px rgba(16,24,40,.08);
     }
 
+    .indicador.orange{border-left-color:var(--orange)}
+    .indicador.green{border-left-color:var(--green)}
+    .indicador.yellow{border-left-color:var(--yellow)}
 
-    /* =========================
-       ERRO
-    ========================= */
+    .icone-painel{
+      width:38px;
+      height:38px;
+      flex:0 0 38px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:10px;
+      background:#eef8fc;
+      font-size:19px;
+    }
 
-    .erro{
-      display:none;
+    .indicador.orange .icone-painel{background:#fff3e8}
+    .indicador.green .icone-painel{background:#eefaf3}
+    .indicador.yellow .icone-painel{background:#fff9df}
 
-      margin-top:16px;
+    .indicador-texto{
+      min-width:0;
+    }
 
-      padding:12px;
-
-      background:#fff5f5;
-
-      border:1px solid #f2bcbc;
-      border-left:4px solid var(--red);
-
-      border-radius:9px;
-
-      color:var(--red);
-
+    .indicador-texto strong{
+      display:block;
+      color:var(--navy);
       font-size:12px;
-      font-weight:800;
-
-      line-height:1.4;
+      line-height:1.2;
     }
 
+    .indicador-numero{
+      display:block;
+      margin-top:4px;
+      color:var(--navy);
+      font-size:25px;
+      line-height:1;
+      font-weight:900;
+    }
 
-    /* =========================
-       AVISO
-    ========================= */
+    .indicador-status{
+      margin-top:3px;
+      color:var(--muted);
+      font-size:10px;
+    }
+
+    .avisos{
+      border-top:1px solid #edf0f2;
+      padding-top:14px;
+    }
+
+    .avisos-titulo{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:10px;
+    }
+
+    .avisos-titulo h3{
+      margin:0;
+      color:var(--navy);
+      font-size:15px;
+      font-weight:900;
+    }
+
+    .avisos-lista{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px;
+    }
 
     .aviso{
-      margin-top:24px;
-      padding-top:18px;
-
-      border-top:1px solid #edf0f2;
-
-      color:#8a94a3;
-
-      font-size:11px;
-      line-height:1.5;
+      border:1px solid #e4e9ee;
+      border-radius:10px;
+      padding:11px 12px;
+      background:#fff;
     }
 
+    .aviso a{
+      color:inherit;
+      text-decoration:none;
+    }
 
-    /* =========================
-       RODAPÉ
-    ========================= */
+    .aviso-cabecalho{
+      display:flex;
+      align-items:center;
+      gap:7px;
+      margin-bottom:5px;
+    }
 
-   footer{
-  background:#20262b;
-  color:#d0d5dd;
-  padding:30px 22px;
-  text-align:center;
-  font-size:13px
-}
+    .aviso-cabecalho strong{
+      color:var(--navy);
+      font-size:11px;
+    }
 
+    .aviso p{
+      margin:0;
+      color:#667085;
+      font-size:10px;
+      line-height:1.45;
+    }
 
+    .aviso.evento{
+      border-left:4px solid var(--orange);
+      background:#fffaf6;
+    }
 
-    /* =========================
-       CELULAR
-    ========================= */
+    .aviso.pendencia{
+      border-left:4px solid var(--blue);
+      background:#f8fcfe;
+    }
 
-    @media(max-width:650px){
+    .aviso.vazio{
+      grid-column:1/-1;
+      text-align:center;
+      color:var(--muted);
+      padding:14px;
+      font-size:11px;
+    }
 
-      header{
-        position:relative;
-      }
+    @media(max-width:1000px){
+      .indicadores{grid-template-columns:repeat(2,minmax(0,1fr));}
+      .avisos-lista{grid-template-columns:1fr;}
+    }
 
-      .header-content{
-        padding:11px 15px;
+    @media(max-width:700px){
+      .painel-cabecalho{align-items:flex-start;flex-direction:column;}
+      .btn-painel-atualizar{width:100%;}
+      .indicadores{grid-template-columns:1fr 1fr;}
+    }
 
+    @media(max-width:500px){
+      .indicadores{grid-template-columns:1fr;}
+    }
+
+    .acoes{
+      margin-top:30px;
+      display:flex;
+      justify-content:flex-start;
+    }
+
+    .botao-sair{
+      border:0;
+      border-radius:10px;
+      padding:12px 20px;
+      background:#fff;
+      border:1px solid #e1e5ea;
+      color:var(--red);
+      font-size:13px;
+      font-weight:900;
+      cursor:pointer;
+      transition:.2s;
+    }
+
+    .botao-sair:hover{
+      background:#fff5f5;
+      border-color:#e8b5ba;
+    }
+
+    footer{
+      background:#20262b;
+      color:#d0d5dd;
+      padding:30px 22px;
+      text-align:center;
+      font-size:13px;
+    }
+
+    @media(max-width:700px){
+
+      .topo{
         flex-direction:column;
-
-        gap:10px;
-
-        text-align:center;
+        align-items:flex-start;
       }
 
-      .brand{
-        justify-content:center;
+      nav{
+        width:100%;
+        justify-content:flex-start;
       }
 
-      .brand img{
-        width:48px;
-        height:48px;
-      }
-
-      .brand-text h1{
+      .marca-texto strong{
         font-size:11px;
       }
 
-      .brand-text p{
+      .marca-texto span{
         font-size:9px;
       }
 
-      .voltar{
-        width:100%;
-        height:38px;
-      }
-
       main{
-        padding:30px 15px;
+        padding:35px 15px 60px;
       }
 
-      .login-card{
-        padding:30px 22px;
-
-        border-radius:16px;
+      .hero{
+        padding:22px;
       }
 
-      .cadeado{
-        width:65px;
-        height:65px;
-
-        font-size:29px;
+      .hero h1{
+        font-size:25px;
       }
 
-      .login-card h2{
-        font-size:24px;
-      }
-
-      .subtitulo{
-        font-size:12px;
-      }
-
-      footer{
-        padding:25px 15px;
+      .ferramentas{
+        grid-template-columns:1fr;
       }
 
     }
@@ -461,193 +598,577 @@ footer{
 
 <body>
 
-
-  <!-- =========================
-       CABEÇALHO
-  ========================= -->
-
   <header>
 
-    <div class="header-content">
+    <div class="topo">
 
-      <a href="index.html" class="brand">
+      <div class="marca">
 
         <img
           src="logo.png"
-          alt="Logo AD Belém"
+          alt="Assembleia de Deus — Ministério do Belém"
         >
 
-        <div class="brand-text">
+        <div class="marca-texto">
 
-          <h1>
+          <strong>
             ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM
-          </h1>
+          </strong>
 
-          <p>
+          <span>
             SETOR 49 - JARDIM DOS PIMENTAS
-          </p>
+          </span>
 
         </div>
 
-      </a>
+      </div>
 
 
-      <a
-        href="index.html"
-        class="voltar"
-      >
-        ← Voltar ao Portal
-      </a>
+      <nav>
+
+        <a
+          href="#"
+          class="sair-topo"
+          id="sairTopo"
+        >
+          🚪 Sair
+        </a>
+
+      </nav>
 
     </div>
 
   </header>
 
 
-  <!-- =========================
-       LOGIN
-  ========================= -->
-
   <main>
 
-    <div class="login-card">
 
+    <section class="hero">
 
-      <div class="cadeado">
-        🔒
-      </div>
+      <h1>
+        🔐 Área Administrativa
+      </h1>
 
-
-      <h2>
-        Área Restrita
-      </h2>
-
-
-      <p class="subtitulo">
-        Acesso exclusivo à Secretaria do Setor 49.
+      <p>
+        Acesso aos recursos administrativos
+        da Secretaria Digital do Setor 49.
+        Selecione uma das opções abaixo
+        para continuar.
       </p>
 
+    </section>
 
-      <form id="loginForm">
 
+    <!-- =========================
+         PAINEL GERAL
+    ========================= -->
 
-        <div class="campo">
+    <section class="painel-geral">
 
-          <label for="senha">
-            Senha de acesso
-          </label>
-
-          <input
-            type="password"
-            id="senha"
-            placeholder="Digite a senha"
-            autocomplete="current-password"
-            required
-          >
-
+      <div class="painel-cabecalho">
+        <div>
+          <h2>📊 Pendências da Secretaria</h2>
+          <p>Visão rápida do que precisa de atenção.</p>
         </div>
 
-
         <button
-          type="submit"
-          class="btn-entrar"
+          type="button"
+          class="btn-painel-atualizar"
+          id="btnAtualizarPainel"
         >
-          ENTRAR NO PAINEL →
+          ↻ Atualizar
         </button>
+      </div>
+
+      <div class="indicadores">
+
+        <a href="painel-solicitacoes.html" class="indicador orange">
+          <div class="icone-painel">📬</div>
+          <div class="indicador-texto">
+            <strong>Solicitações pendentes</strong>
+            <span class="indicador-numero" id="dashSolicitacoesPendentes">—</span>
+            <span class="indicador-status">aguardando atendimento</span>
+          </div>
+        </a>
+
+        <a href="painel-solicitacoes.html" class="indicador">
+          <div class="icone-painel">🔎</div>
+          <div class="indicador-texto">
+            <strong>Solicitações em análise</strong>
+            <span class="indicador-numero" id="dashSolicitacoesAnalise">—</span>
+            <span class="indicador-status">em acompanhamento</span>
+          </div>
+        </a>
+
+        <a href="painel-secretaria.html" class="indicador green">
+          <div class="icone-painel">💬</div>
+          <div class="indicador-texto">
+            <strong>Atendimentos pendentes</strong>
+            <span class="indicador-numero" id="dashAtendimentosPendentes">—</span>
+            <span class="indicador-status">aguardando resposta</span>
+          </div>
+        </a>
+
+        <a href="painel-secretaria.html" class="indicador yellow">
+          <div class="icone-painel">🕵️</div>
+          <div class="indicador-texto">
+            <strong>Atendimentos em análise</strong>
+            <span class="indicador-numero" id="dashAtendimentosAnalise">—</span>
+            <span class="indicador-status">em acompanhamento</span>
+          </div>
+        </a>
+
+      </div>
+
+      <div class="avisos">
+        <div class="avisos-titulo">
+          <h3>🔔 Avisos</h3>
+          <span id="statusPainel" style="font-size:10px;color:var(--muted)">Atualizando...</span>
+        </div>
+        <div class="avisos-lista" id="avisosLista">
+          <div class="aviso vazio">Carregando avisos...</div>
+        </div>
+      </div>
+
+    </section>
+
+    <h2 class="titulo">
+      Ferramentas Administrativas
+    </h2>
 
 
-      </form>
+    <section class="ferramentas">
 
 
-      <div
-        class="erro"
-        id="erro"
+      <!-- =========================
+           SECRETARIA
+      ========================= -->
+
+      <a
+        href="painel-secretaria.html"
+        class="ferramenta secretaria"
       >
-        ❌ Senha incorreta. Verifique a senha e tente novamente.
-      </div>
+
+        <div class="icone">
+          📋
+        </div>
+
+        <h3>
+          Painel de Atendimentos
+        </h3>
+
+        <p>
+          Gerencie as solicitações de atendimento,
+          consulte protocolos, acompanhe os status
+          e registre as respostas da Secretaria.
+        </p>
+
+        <span class="acessar">
+          ACESSAR PAINEL →
+        </span>
+
+      </a>
 
 
-      <div class="aviso">
+      <!-- =========================
+           REGISTRO DE PRESENÇA
+      ========================= -->
 
-        Área destinada exclusivamente aos responsáveis pela
-        Secretaria Digital do Setor 49.
+      <a
+        href="registro-presenca.html"
+        class="ferramenta presenca"
+      >
 
-      </div>
+        <div class="icone">
+          👥
+        </div>
+
+        <h3>
+          Registro de Presença
+        </h3>
+
+        <p>
+          Registre e acompanhe a presença dos
+          participantes em reuniões e atividades
+          do Setor 49.
+        </p>
+
+        <span class="acessar">
+          ACESSAR REGISTRO →
+        </span>
+
+      </a>
 
 
-    </div>
+      <!-- =========================
+           PRESENÇA EM EVENTOS
+      ========================= -->
+
+      <a
+        href="presenca-eventos.html"
+        class="ferramenta eventos"
+      >
+
+        <div class="icone">
+          🎉
+        </div>
+
+        <h3>
+          Presença em Eventos
+        </h3>
+
+        <p>
+          Registre e acompanhe a presença dos
+          Pastores Setoriais e da Diretoria
+          do Ministério do Belém em eventos.
+        </p>
+
+        <span class="acessar">
+          ACESSAR EVENTOS →
+        </span>
+
+      </a>
+
+
+      <!-- =========================
+           PATRIMÔNIO
+      ========================= -->
+
+      <a
+        href="patrimonio.html"
+        class="ferramenta patrimonio"
+      >
+
+        <div class="icone">
+          🏛️
+        </div>
+
+        <h3>
+          Gestão de Patrimônio
+        </h3>
+
+        <p>
+          Cadastre, consulte e acompanhe os bens,
+          equipamentos e patrimônios do Setor 49.
+        </p>
+
+        <span class="acessar">
+          ACESSAR PATRIMÔNIO →
+        </span>
+
+      </a>
+
+
+      <!-- =========================
+           PAINEL DE SOLICITAÇÕES
+      ========================= -->
+
+      <a
+        href="painel-solicitacoes.html"
+        class="ferramenta solicitacoes"
+      >
+
+        <div class="icone">
+          📬
+        </div>
+
+        <h3>
+          Painel de Solicitações
+        </h3>
+
+        <p>
+          Gerencie as solicitações de Carteirinha,
+          Batismo e Apresentação de Criança,
+          acompanhe os protocolos, status e respostas.
+        </p>
+
+        <span class="acessar">
+          ACESSAR SOLICITAÇÕES →
+        </span>
+
+      </a>
+
+
+      <!-- =========================
+           GESTÃO DE CONGREGAÇÕES
+      ========================= -->
+
+      <a
+        href="gestao-congregacoes.html"
+        class="ferramenta congregacoes"
+      >
+
+        <div class="icone">
+          ⛪
+        </div>
+
+        <h3>
+          Gestão de Congregações
+        </h3>
+
+        <p>
+          Cadastre, consulte e atualize as congregações
+          do Setor 49, incluindo endereços, regionais,
+          status e informações para o Google Maps.
+        </p>
+
+        <span class="acessar">
+          ACESSAR CONGREGAÇÕES →
+        </span>
+
+      </a>
+
+
+      <!-- =========================
+           PAINEL DE FREQUÊNCIA
+      ========================= -->
+
+      <a
+        href="painel-frequencia-obreiros.html"
+        class="ferramenta frequencia"
+      >
+
+        <div class="icone">
+          📊
+        </div>
+
+        <h3>
+          Painel de Frequência
+        </h3>
+
+        <p>
+          Analise a frequência dos obreiros nas reuniões,
+          acompanhe a evolução, compare cargos e
+          identifique as congregações com melhor participação.
+        </p>
+
+        <span class="acessar">
+          ACESSAR PAINEL →
+        </span>
+
+      </a>
+
+
+    </section>
+
 
   </main>
 
 
-  <!-- =========================
-       RODAPÉ
-  ========================= -->
-
   <footer>
 
-ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM
-· SETOR 49 - JARDIM DOS PIMENTAS
+    ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM
+    · SETOR 49 - JARDIM DOS PIMENTAS
 
-<br>
+    <br>
 
-<small>
-PORTAL AD BELÉM - SETOR 49
-</small>
+    <small>
+      PORTAL AD BELÉM - SETOR 49
+    </small>
 
-</footer>
+  </footer>
 
-
-  <!-- =========================
-       LOGIN
-  ========================= -->
 
   <script>
 
-    const senhaCorreta = "Belem49@2026";
+    /* =====================================================
+       PAINEL GERAL — SOLICITAÇÕES, ATENDIMENTOS E AVISOS
+    ===================================================== */
+
+    const DASH_API_SOLICITACOES =
+      "https://script.google.com/macros/s/AKfycbzsJKoegOsOvPo3PhfHoZUd3A9Mfk4MrFO6DFe9t48VjDjo_2jt9xK-mw5sQRsnGR1Q/exec";
+
+    const DASH_API_ATENDIMENTOS =
+      "https://script.google.com/macros/s/AKfycbwJzijPbbP3PSZuTh2rpTpwmYIcBj44pZR2BaXOJwhZOZLGOQkDDPywJTMxy_90LbYb/exec";
+
+      "https://script.google.com/macros/s/AKfycby2OZkRWCCT4mGoD-jTBx6kJeKDP224MrbrWnsy9sV-_QutUqrUem16LMIX9e-uIeooPQ/exec";
+
+    function dashEsc(v){
+      return String(v ?? "").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+    }
+
+    function dashJsonp(url,parametros,timeoutMs=12000){
+      return new Promise((resolve,reject)=>{
+        const cb="dashCallback_"+Date.now()+"_"+Math.floor(Math.random()*10000);
+        let timer=null;
+        const script=document.createElement("script");
+
+        const limpar=()=>{
+          if(timer) clearTimeout(timer);
+          delete window[cb];
+          script.remove();
+        };
+
+        window[cb]=(dados)=>{
+          limpar();
+          resolve(dados);
+        };
+
+        const q=Object.keys(parametros||{})
+          .map(k=>encodeURIComponent(k)+"="+encodeURIComponent(parametros[k]))
+          .join("&");
+
+        script.src=url+"?"+(q?q+"&":"")+"callback="+encodeURIComponent(cb);
+        script.onerror=()=>{limpar();reject(new Error("Erro de conexão"));};
+        timer=setTimeout(()=>{limpar();reject(new Error("Tempo esgotado"));},timeoutMs);
+        document.body.appendChild(script);
+      });
+    }
+
+    function dashDataHoje(){
+      const d=new Date();
+      return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+    }
+
+    function dashFormatarData(data){
+      const p=String(data||"").split("-");
+      return p.length===3 ? p[2]+"/"+p[1]+"/"+p[0] : String(data||"");
+    }
+
+    function dashAtualizarAvisos(pendSolic,analiseSolic,pendAtend,analiseAtend,eventos){
+      const lista=document.getElementById("avisosLista");
+      const avisos=[];
+
+      if(pendSolic>0){
+        avisos.push(`
+          <div class="aviso pendencia">
+            <a href="painel-solicitacoes.html">
+              <div class="aviso-cabecalho"><span>📬</span><strong>Solicitações pendentes</strong></div>
+              <p>${pendSolic} solicitação(ões) aguardando atendimento.</p>
+            </a>
+          </div>`);
+      }
+
+      if(pendAtend>0 || analiseAtend>0){
+        avisos.push(`
+          <div class="aviso pendencia">
+            <a href="painel-secretaria.html">
+              <div class="aviso-cabecalho"><span>💬</span><strong>Atendimentos da Secretaria</strong></div>
+              <p>${pendAtend} pendente(s)${analiseAtend?" e "+analiseAtend+" em análise":""}.</p>
+            </a>
+          </div>`);
+      }
+
+      (eventos||[]).slice(0,2).forEach(ev=>{
+        const textoData=dashFormatarData(ev.data)+(ev.horario?" às "+dashEsc(ev.horario):"");
+        avisos.push(`
+          <div class="aviso evento">
+            <a href="presenca-eventos.html">
+              <p>${dashEsc(ev.evento||"Evento")} — ${textoData}</p>
+            </a>
+          </div>`);
+      });
+
+      if(!avisos.length){
+        lista.innerHTML='<div class="aviso vazio">✅ Nenhum aviso importante no momento.</div>';
+      }else{
+        lista.innerHTML=avisos.join("");
+      }
+    }
+
+    async function carregarPainelGeral(){
+      const status=document.getElementById("statusPainel");
+      const btn=document.getElementById("btnAtualizarPainel");
+      if(btn){btn.disabled=true;btn.textContent="⏳ Atualizando...";}
+      if(status) status.textContent="Atualizando...";
+
+      const hoje=dashDataHoje();
+
+      const resultados=await Promise.allSettled([
+        dashJsonp(DASH_API_SOLICITACOES,{acao:"listar"}),
+        dashJsonp(DASH_API_ATENDIMENTOS,{}),
+      ]);
+
+      let pendSolic=0,analiseSolic=0,pendAtend=0,analiseAtend=0,eventos=[];
+      let erros=0;
+
+      const rs=resultados[0];
+      if(rs.status==="fulfilled" && rs.value?.sucesso){
+        const arr=rs.value.solicitacoes||[];
+        pendSolic=arr.filter(x=>String(x.status||"").toUpperCase()==="PENDENTE").length;
+        analiseSolic=arr.filter(x=>["EM ANÁLISE","EM ANALISE"].includes(String(x.status||"").toUpperCase())).length;
+      }else erros++;
+
+      const ra=resultados[1];
+      if(ra.status==="fulfilled" && ra.value?.sucesso){
+        const arr=ra.value.atendimentos||[];
+        pendAtend=arr.filter(x=>String(x.status||"").toUpperCase()==="PENDENTE").length;
+        analiseAtend=arr.filter(x=>["EM ANÁLISE","EM ANALISE"].includes(String(x.status||"").toUpperCase())).length;
+      }else erros++;
+
+      const re=resultados[2];
+      if(re.status==="fulfilled" && re.value?.sucesso){
+        eventos=(re.value.eventos||[])
+          .filter(x=>String(x.data||"")>=hoje)
+          .sort((a,b)=>String(a.data||"").localeCompare(String(b.data||"")) || String(a.horario||"").localeCompare(String(b.horario||"")));
+      }else erros++;
+
+      document.getElementById("dashSolicitacoesPendentes").textContent=pendSolic;
+      document.getElementById("dashSolicitacoesAnalise").textContent=analiseSolic;
+      document.getElementById("dashAtendimentosPendentes").textContent=pendAtend;
+      document.getElementById("dashAtendimentosAnalise").textContent=analiseAtend;
+
+      dashAtualizarAvisos(pendSolic,analiseSolic,pendAtend,analiseAtend,eventos);
+
+      if(status){
+        status.textContent=erros===0 ? "Atualizado agora" : "Alguns dados não puderam ser carregados";
+        status.style.color=erros===0 ? "var(--green)" : "var(--orange)";
+      }
+
+      if(btn){btn.disabled=false;btn.textContent="↻ Atualizar";}
+    }
+
+    /* =====================================================
+       SAÍDA DA ÁREA ADMINISTRATIVA
+    ===================================================== */
+
+    function sair(){
+
+      sessionStorage.removeItem(
+        "acessoSecretaria"
+      );
+
+      window.location.href =
+        "index.html";
+
+    }
 
 
     document
-      .getElementById("loginForm")
-      .addEventListener("submit", function(event){
+      .getElementById("sairTopo")
+      .addEventListener(
+        "click",
+        function(event){
 
-        event.preventDefault();
+          event.preventDefault();
 
-
-        const senha =
-          document.getElementById("senha").value;
-
-
-        const erro =
-          document.getElementById("erro");
-
-
-        if(senha === senhaCorreta){
-
-          sessionStorage.setItem(
-            "acessoSecretaria",
-            "autorizado"
-          );
-
-
-         window.location.href = "area-administrativa.html";
-
-
-        }else{
-
-          erro.style.display = "block";
-
-
-          document.getElementById("senha").value = "";
-
-
-          document
-            .getElementById("senha")
-            .focus();
+          sair();
 
         }
+      );
 
-      });
+
+    /* =============================
+       PROTEÇÃO DA PÁGINA
+    ============================= */
+
+    if(
+      sessionStorage.getItem("acessoSecretaria")
+      !==
+      "autorizado"
+    ){
+
+      window.location.href =
+        "area-restrita.html";
+
+    }
+
+    document
+      .getElementById("btnAtualizarPainel")
+      .addEventListener("click", carregarPainelGeral);
+
+    document.addEventListener("DOMContentLoaded", carregarPainelGeral);
 
   </script>
 
