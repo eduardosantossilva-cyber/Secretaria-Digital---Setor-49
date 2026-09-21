@@ -803,6 +803,18 @@ footer{
 
 }
 
+
+  .ordem-coluna{
+    width:78px;
+    min-width:78px;
+  }
+
+  .btn-ordem{
+    width:26px;
+    height:26px;
+    font-size:13px;
+  }
+
 @media(max-width:650px){
   .visitantes-tabela{
     min-width:860px;
@@ -813,19 +825,27 @@ footer{
   }
 
   .visitantes-tabela td{
-    padding:15px 10px;
+    padding:12px 10px;
     font-size:12px;
-    line-height:1.5;
   }
 
   .visitantes-tabela td strong{
     font-size:13px;
   }
 
+  .acoes-linha{
+    flex-wrap:wrap;
+  }
+
   .acoes-linha button{
     min-height:36px;
     padding:8px 9px;
     font-size:10px;
+  }
+
+  .visitantes-tabela th:last-child,
+  .visitantes-tabela td:last-child{
+    min-width:0;
   }
 
 
@@ -1521,9 +1541,9 @@ footer{
 
 .visitantes-tabela{
   width:100%;
-  min-width:1180px;
+  min-width:900px;
   border-collapse:separate;
-  border-spacing:0 16px;
+  border-spacing:0 8px;
   table-layout:fixed;
 }
 
@@ -1534,7 +1554,7 @@ footer{
 }
 
 .visitantes-tabela th{
-  padding:4px 14px 10px;
+  padding:4px 12px 8px;
   color:#667085;
   font-size:11px;
   font-weight:900;
@@ -1544,12 +1564,12 @@ footer{
 }
 
 .visitantes-tabela td{
-  padding:18px 14px;
+  padding:13px 12px;
   background:#fff;
   color:#344054;
   font-size:13px;
   font-weight:600;
-  line-height:1.55;
+  line-height:1.4;
   overflow-wrap:anywhere;
 }
 
@@ -1560,16 +1580,12 @@ footer{
 
 .visitantes-tabela tbody tr td:first-child{
   border-left:1px solid #e8edf1;
-  border-radius:11px 0 0 11px;
-  padding-left:16px;
-  padding-right:10px;
+  border-radius:10px 0 0 10px;
 }
 
 .visitantes-tabela tbody tr td:last-child{
   border-right:1px solid #e8edf1;
-  border-radius:0 11px 11px 0;
-  white-space:nowrap;
-  min-width:330px;
+  border-radius:0 10px 10px 0;
 }
 
 .visitantes-tabela tbody tr:hover td{
@@ -1586,23 +1602,73 @@ footer{
   color:var(--navy);
   font-size:14px;
   font-weight:900;
-  line-height:1.5;
 }
 
 .visitantes-tabela th:nth-child(1),
-.visitantes-tabela td:nth-child(1){width:5%}
+.visitantes-tabela td:nth-child(1){width:4%}
 
 .visitantes-tabela th:nth-child(2),
-.visitantes-tabela td:nth-child(2){width:25%}
+.visitantes-tabela td:nth-child(2){width:24%}
 
 .visitantes-tabela th:nth-child(3),
-.visitantes-tabela td:nth-child(3){width:22%}
+.visitantes-tabela td:nth-child(3){width:21%}
 
 .visitantes-tabela th:nth-child(4),
-.visitantes-tabela td:nth-child(4){width:20%}
+.visitantes-tabela td:nth-child(4){width:19%}
 
 .visitantes-tabela th:nth-child(5),
-.visitantes-tabela td:nth-child(5){width:28%}
+.visitantes-tabela td:nth-child(5){width:9%}
+
+.visitantes-tabela th:nth-child(6),
+.visitantes-tabela td:nth-child(6){width:23%}
+
+
+/* CONTROLE DA ORDEM DE APRESENTAÇÃO */
+.ordem-coluna{
+  width:88px;
+  min-width:88px;
+  text-align:center !important;
+}
+
+.ordem-controle{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  white-space:nowrap;
+}
+
+.ordem-controle span{
+  min-width:22px;
+  text-align:center;
+  color:var(--navy);
+  font-size:11px;
+  font-weight:900;
+}
+
+.btn-ordem{
+  width:28px;
+  height:28px;
+  padding:0;
+  border:1px solid #d7e0e7;
+  border-radius:7px;
+  background:#f8fafc;
+  color:var(--navy);
+  font-size:14px;
+  font-weight:900;
+  line-height:1;
+  cursor:pointer;
+}
+
+.btn-ordem:hover:not(:disabled){
+  background:#eef8fc;
+  border-color:var(--blue);
+}
+
+.btn-ordem:disabled{
+  opacity:.30;
+  cursor:not-allowed;
+}
 
 .acoes-linha{
   display:flex;
@@ -1614,7 +1680,7 @@ footer{
 }
 
 .acoes-linha button{
-  min-height:40px;
+  min-height:38px;
   border-radius:8px;
   padding:8px 10px;
   font-size:11px;
@@ -1622,6 +1688,12 @@ footer{
   cursor:pointer;
   white-space:nowrap;
   flex:0 0 auto;
+}
+
+.visitantes-tabela th:last-child,
+.visitantes-tabela td:last-child{
+  white-space:nowrap;
+  min-width:330px;
 }
 
 .btn-editar{
@@ -2174,6 +2246,7 @@ footer{
                 <th>Nome</th>
                 <th>Congregação / cidade</th>
                 <th>Observação</th>
+                <th class="ordem-coluna">Ordem</th>
                 <th>Ações</th>
               </tr>
             </thead>
@@ -2187,6 +2260,30 @@ footer{
             <td><strong>${escaparHTML(item.nome)}</strong></td>
             <td>${escaparHTML(item.local || '-')}</td>
             <td>${escaparHTML(item.observacao || '-')}</td>
+            <td class="ordem-coluna">
+              <div class="ordem-controle">
+                <button
+                  type="button"
+                  class="btn-ordem"
+                  title="Subir na ordem da apresentação"
+                  aria-label="Subir visitante"
+                  onclick="moverVisitante(${index},-1)"
+                  ${index === 0 ? 'disabled' : ''}
+                >↑</button>
+
+                <span>${index+1}</span>
+
+                <button
+                  type="button"
+                  class="btn-ordem"
+                  title="Descer na ordem da apresentação"
+                  aria-label="Descer visitante"
+                  onclick="moverVisitante(${index},1)"
+                  ${index === visitantes.length-1 ? 'disabled' : ''}
+                >↓</button>
+              </div>
+            </td>
+
             <td>
               <div class="acoes-linha">
                 <button type="button" class="btn-editar" onclick="editarVisitante(${index})">✏️ Editar</button>
@@ -2271,6 +2368,35 @@ footer{
         botao.disabled = false;
       }
     });
+
+
+    function moverVisitante(indice, deslocamento){
+
+      const novoIndice =
+        indice + deslocamento;
+
+      if(
+        indice < 0 ||
+        indice >= visitantes.length ||
+        novoIndice < 0 ||
+        novoIndice >= visitantes.length
+      ){
+        return;
+      }
+
+      const atual =
+        visitantes[indice];
+
+      visitantes[indice] =
+        visitantes[novoIndice];
+
+      visitantes[novoIndice] =
+        atual;
+
+      renderizarLista();
+    }
+
+    window.moverVisitante = moverVisitante;
 
     async function editarVisitante(indice){
 
