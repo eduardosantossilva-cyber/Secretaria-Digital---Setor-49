@@ -346,6 +346,237 @@ html,body{max-width:100%;overflow-x:hidden}
   }
 }
 
+
+/* =====================================================
+   ANÁLISE INDIVIDUAL DE FREQUÊNCIA
+   ===================================================== */
+
+.frequencia-individual{
+  margin-bottom:18px;
+}
+
+.individual-filtro{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:10px;
+  align-items:end;
+  margin-top:14px;
+}
+
+.individual-filtro .campo input{
+  width:100%;
+  padding:11px 12px;
+  border:1px solid #d9dfe3;
+  border-radius:8px;
+  background:#fff;
+  font-family:inherit;
+  font-size:13px;
+  outline:none;
+}
+
+.individual-filtro .campo input:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(21,157,209,.10);
+}
+
+.btn-pesquisar-individual,
+.btn-limpar-individual{
+  height:41px;
+  padding:0 16px;
+  border:0;
+  border-radius:9px;
+  font-size:12px;
+  font-weight:900;
+  cursor:pointer;
+  transition:.2s;
+  white-space:nowrap;
+}
+
+.btn-pesquisar-individual{
+  background:var(--blue);
+  color:#fff;
+}
+
+.btn-pesquisar-individual:hover{
+  background:var(--green);
+  transform:translateY(-1px);
+}
+
+.btn-limpar-individual{
+  background:#eef1f3;
+  color:#344054;
+}
+
+.btn-limpar-individual:hover{
+  background:#e2e7ea;
+}
+
+.individual-acoes{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.individual-status{
+  min-height:18px;
+  margin-top:9px;
+  color:var(--muted);
+  font-size:11px;
+}
+
+.individual-resultado{
+  margin-top:16px;
+}
+
+.individual-card{
+  border:1px solid #e1e6ea;
+  border-radius:13px;
+  background:#fff;
+  overflow:hidden;
+}
+
+.individual-identificacao{
+  padding:16px;
+  border-left:5px solid var(--blue);
+  background:#f8fafc;
+}
+
+.individual-identificacao h3{
+  color:var(--navy);
+  font-size:18px;
+  font-weight:900;
+  margin:0 0 5px;
+}
+
+.individual-identificacao p{
+  color:#667085;
+  font-size:11px;
+  margin:0;
+  line-height:1.5;
+}
+
+.individual-resumo{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+  padding:14px 16px;
+}
+
+.individual-resumo-item{
+  border:1px solid #e8edf1;
+  border-radius:10px;
+  padding:11px;
+  background:#fff;
+}
+
+.individual-resumo-item span{
+  display:block;
+  color:#667085;
+  font-size:10px;
+  font-weight:800;
+  margin-bottom:4px;
+}
+
+.individual-resumo-item strong{
+  color:var(--navy);
+  font-size:20px;
+  font-weight:900;
+}
+
+.individual-tabela-wrap{
+  overflow-x:auto;
+  padding:0 16px 16px;
+}
+
+.individual-tabela{
+  width:100%;
+  min-width:650px;
+  border-collapse:collapse;
+  font-size:12px;
+}
+
+.individual-tabela th,
+.individual-tabela td{
+  padding:10px 9px;
+  border-bottom:1px solid #edf0f2;
+  text-align:left;
+  vertical-align:middle;
+}
+
+.individual-tabela th{
+  color:#667085;
+  font-size:10px;
+  font-weight:900;
+  text-transform:uppercase;
+  background:#f8fafc;
+}
+
+.individual-tabela td{
+  color:#344054;
+  font-weight:700;
+}
+
+.individual-tabela td:first-child{
+  white-space:nowrap;
+}
+
+.individual-vazio{
+  text-align:center;
+  padding:20px;
+  color:#777;
+  font-size:12px;
+}
+
+.individual-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:10px;
+  font-weight:900;
+}
+
+.individual-presente{
+  background:#eaf8f0;
+  color:var(--green);
+}
+
+.individual-justificado{
+  background:#fff8dc;
+  color:#8a6800;
+}
+
+.individual-ausente{
+  background:#fff0f0;
+  color:var(--red);
+}
+
+@media(max-width:900px){
+  .individual-resumo{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media(max-width:600px){
+  .individual-filtro{
+    grid-template-columns:1fr;
+  }
+
+  .individual-acoes{
+    width:100%;
+  }
+
+  .btn-pesquisar-individual,
+  .btn-limpar-individual{
+    flex:1;
+  }
+
+  .individual-resumo{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -377,6 +608,44 @@ html,body{max-width:100%;overflow-x:hidden}
       <button class="btn-atualizar" id="btnAtualizar">🔄 Atualizar painel</button>
     </div>
     <div class="nota">A frequência geral considera o cadastro oficial de obreiros e os lançamentos existentes na aba de registros. O painel não altera o registro de presença.</div>
+  </section>
+
+  <section class="box frequencia-individual">
+    <h2>🔎 Análise individual de frequência</h2>
+    <div class="sub">Pesquise um obreiro pelo nome para consultar quantas reuniões ele participou no período selecionado.</div>
+
+    <div class="individual-filtro">
+      <div class="campo">
+        <label for="buscaObreiro">Nome do obreiro</label>
+        <input
+          type="text"
+          id="buscaObreiro"
+          placeholder="Digite o nome completo ou parte do nome..."
+          autocomplete="off"
+        >
+      </div>
+
+      <div class="individual-acoes">
+        <button
+          type="button"
+          class="btn-pesquisar-individual"
+          id="btnPesquisarIndividual"
+        >
+          🔎 Pesquisar
+        </button>
+
+        <button
+          type="button"
+          class="btn-limpar-individual"
+          id="btnLimparIndividual"
+        >
+          Limpar
+        </button>
+      </div>
+    </div>
+
+    <div class="individual-status" id="statusIndividual"></div>
+    <div class="individual-resultado" id="resultadoIndividual"></div>
   </section>
 
   <section class="resumo">
@@ -673,6 +942,247 @@ function preencherFiltroCongregacoes(lista){
   }
 }
 
+
+function pesquisarFrequenciaIndividual(){
+
+  const busca =
+    document.getElementById("buscaObreiro").value.trim();
+
+  const status =
+    document.getElementById("statusIndividual");
+
+  const resultado =
+    document.getElementById("resultadoIndividual");
+
+  if(!busca){
+
+    status.textContent =
+      "Digite o nome do obreiro para pesquisar.";
+
+    resultado.innerHTML =
+      "";
+
+    return;
+
+  }
+
+  status.textContent =
+    "Pesquisando...";
+
+  resultado.innerHTML =
+    '<div class="loading">Consultando os registros...</div>';
+
+  const inicio =
+    document.getElementById("dataInicio").value;
+
+  const fim =
+    document.getElementById("dataFim").value;
+
+  const congregacao =
+    document.getElementById("congregacaoFiltro").value;
+
+  chamarAPI({
+
+    acao:"individual",
+
+    nome:
+      busca,
+
+    dataInicio:
+      inicio,
+
+    dataFim:
+      fim,
+
+    congregacao:
+      congregacao
+
+  },function(dados){
+
+    if(
+      !dados ||
+      !dados.sucesso
+    ){
+
+      status.textContent =
+        "";
+
+      resultado.innerHTML =
+        `<div class="erro">
+          <b>Não foi possível realizar a pesquisa.</b>
+          <br><br>
+          ${esc(dados?.erro || "Erro desconhecido.")}
+        </div>`;
+
+      return;
+
+    }
+
+    if(
+      !dados.encontrado ||
+      !dados.pessoas ||
+      !dados.pessoas.length
+    ){
+
+      status.textContent =
+        "Nenhum obreiro encontrado.";
+
+      resultado.innerHTML =
+        `<div class="individual-vazio">
+          Nenhum obreiro foi encontrado para a pesquisa <b>${esc(busca)}</b>.
+        </div>`;
+
+      return;
+
+    }
+
+    status.textContent =
+      dados.pessoas.length === 1
+        ? "1 obreiro encontrado."
+        : `${dados.pessoas.length} obreiros encontrados.`;
+
+    resultado.innerHTML =
+      dados.pessoas
+        .map(function(pessoa){
+
+          const frequencia =
+            Number(pessoa.frequencia || 0);
+
+          const linhas =
+            (pessoa.registros || []).map(function(registro){
+
+              let classe =
+                "individual-ausente";
+
+              let icone =
+                "🔴";
+
+              if(
+                registro.situacao === "PRESENTE"
+              ){
+
+                classe =
+                  "individual-presente";
+
+                icone =
+                  "🟢";
+
+              }
+              else if(
+                registro.situacao === "JUSTIFICADO"
+              ){
+
+                classe =
+                  "individual-justificado";
+
+                icone =
+                  "🟡";
+
+              }
+
+              return `
+                <tr>
+                  <td>${esc(formatarData(registro.data))}</td>
+                  <td>${esc(registro.reuniao || "-")}</td>
+                  <td>${esc(registro.horario || "-")}</td>
+                  <td>
+                    <span class="individual-badge ${classe}">
+                      ${icone} ${esc(registro.situacao || "AUSENTE")}
+                    </span>
+                  </td>
+                </tr>
+              `;
+
+            }).join("");
+
+          return `
+            <div class="individual-card">
+              <div class="individual-identificacao">
+                <h3>${esc(pessoa.nome)}</h3>
+                <p>
+                  ${esc(pessoa.cargo || "Cargo não informado")}
+                  ·
+                  ${esc(pessoa.congregacao || "Congregação não informada")}
+                </p>
+              </div>
+
+              <div class="individual-resumo">
+
+                <div class="individual-resumo-item">
+                  <span>Reuniões</span>
+                  <strong>${pessoa.totalReunioes || 0}</strong>
+                </div>
+
+                <div class="individual-resumo-item">
+                  <span>Presenças</span>
+                  <strong>${pessoa.presentes || 0}</strong>
+                </div>
+
+                <div class="individual-resumo-item">
+                  <span>Justificados</span>
+                  <strong>${pessoa.justificados || 0}</strong>
+                </div>
+
+                <div class="individual-resumo-item">
+                  <span>Ausências</span>
+                  <strong>${pessoa.ausentes || 0}</strong>
+                </div>
+
+                <div class="individual-resumo-item">
+                  <span>Frequência</span>
+                  <strong>${frequencia.toFixed(1)}%</strong>
+                </div>
+
+              </div>
+
+              <div class="individual-tabela-wrap">
+                <table class="individual-tabela">
+                  <thead>
+                    <tr>
+                      <th>Data</th>
+                      <th>Reunião</th>
+                      <th>Horário</th>
+                      <th>Situação</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    ${
+                      linhas ||
+                      `<tr>
+                        <td colspan="4" class="individual-vazio">
+                          Não há reuniões registradas no período.
+                        </td>
+                      </tr>`
+                    }
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          `;
+
+        })
+        .join("");
+
+  });
+
+}
+
+
+function limparFrequenciaIndividual(){
+
+  document.getElementById("buscaObreiro").value =
+    "";
+
+  document.getElementById("statusIndividual").textContent =
+    "";
+
+  document.getElementById("resultadoIndividual").innerHTML =
+    "";
+
+}
+
+
 function carregarPainel(){
   document.querySelectorAll(".resumo-numero").forEach(e=>{
     if(e.id!=="tendencia"&&e.id!=="melhorCongregacao")e.textContent="..."
@@ -750,7 +1260,39 @@ function carregarPainel(){
 }
 
 
-document.getElementById("btnAtualizar").addEventListener("click",carregarPainel);
+document.getElementById("btnAtualizar").addEventListener("click",function(){
+
+  carregarPainel();
+
+  const buscaIndividual =
+    document.getElementById("buscaObreiro").value.trim();
+
+  if(buscaIndividual){
+    pesquisarFrequenciaIndividual();
+  }
+
+});
+
+document.getElementById("btnPesquisarIndividual").addEventListener(
+  "click",
+  pesquisarFrequenciaIndividual
+);
+
+document.getElementById("btnLimparIndividual").addEventListener(
+  "click",
+  limparFrequenciaIndividual
+);
+
+document.getElementById("buscaObreiro").addEventListener(
+  "keydown",
+  function(event){
+    if(event.key === "Enter"){
+      event.preventDefault();
+      pesquisarFrequenciaIndividual();
+    }
+  }
+);
+
 setDatasPadrao();
 carregarPainel();
 </script>
