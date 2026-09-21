@@ -38,7 +38,7 @@ footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font
 <footer>ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM · SETOR 49 - JARDIM DOS PIMENTAS<br><small>PORTAL AD BELÉM - SETOR 49</small></footer>
 <div class="modal" id="modal"><div class="modal-card"><div class="modal-top"><h3>Editar congregação</h3><button class="fechar" id="fecharModal">×</button></div><div id="modalConteudo"></div></div></div>
 <script>
-const API_URL = "COLE_AQUI_A_URL_DA_API";
+const API_URL = "https://script.google.com/macros/s/AKfycbyXcmVW-dEGXuRLh2g9gzcQIXACQHPaqsw-Prwvwuyi2y3DPkcdQXzkg7v4ftPDLtW-cw/exec";
 let dados=[];
 const $=id=>document.getElementById(id);
 function autorizado(){if(sessionStorage.getItem("acessoSecretaria")!=="autorizado"){window.location.href="area-restrita.html";return false}return true}
