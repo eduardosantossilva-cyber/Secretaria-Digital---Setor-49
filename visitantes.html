@@ -36,40 +36,40 @@
     }
 
     .topo{
-      max-width:1180px;
+      max-width:1200px;
       margin:auto;
-      padding:11px 22px;
+      padding:18px 22px;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:18px;
+      gap:20px;
     }
 
     .marca{
       display:flex;
       align-items:center;
-      gap:12px;
+      gap:14px;
     }
 
     .marca img{
-      width:50px;
-      height:50px;
+      width:58px;
+      height:58px;
       object-fit:contain;
     }
 
     .marca strong{
       display:block;
       color:var(--navy);
-      font-size:17px;
+      font-size:20px;
       font-weight:900;
     }
 
     .marca small{
       display:block;
-      margin-top:4px;
+      margin-top:5px;
       color:var(--muted);
-      font-weight:650;
-      font-size:11px;
+      font-size:13px;
+      font-weight:800;
     }
 
     nav{
@@ -79,61 +79,69 @@
     }
 
     nav a{
+      color:#344054;
       text-decoration:none;
-      color:var(--navy);
-      font-size:12px;
-      font-weight:900;
-      padding:9px 12px;
-      border:1px solid #dce3e8;
+      font-size:13px;
+      font-weight:800;
+      padding:9px 10px;
       border-radius:9px;
-      background:#fff;
+      height:38px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      transition:.2s;
     }
 
     nav a:hover{
-      background:#eef8fc;
-      border-color:var(--blue);
+      color:var(--green);
+    }
+
+    .sair-topo{
+      color:var(--red) !important;
     }
 
     main{
-      max-width:1180px;
+      max-width:1200px;
       margin:auto;
-      padding:34px 22px 70px;
+      padding:55px 22px 80px;
     }
 
     .hero{
       background:#fff;
-      border:1px solid var(--line);
-      border-left:6px solid var(--green);
+      border:1px solid #dce3e8;
+      border-left:6px solid var(--blue);
       border-radius:18px;
-      padding:22px 24px;
-      margin-bottom:18px;
-      box-shadow:0 8px 24px rgba(16,24,40,.05);
+      padding:30px;
+      margin-bottom:35px;
+      box-shadow:0 10px 30px rgba(16,24,40,.05);
     }
 
     .hero h1{
       margin:0;
       color:var(--navy);
-      font-size:26px;
+      font-size:30px;
       font-weight:900;
     }
 
     .hero p{
-      margin:7px 0 0;
+      margin:10px 0 0;
       color:var(--muted);
-      font-size:13px;
-      line-height:1.5;
+      font-size:14px;
+      line-height:1.6;
+      max-width:800px;
     }
 
     .barra-controle{
       background:#fff;
-      border:1px solid var(--line);
+      border:1px solid #dce3e8;
       border-radius:15px;
-      padding:16px;
+      padding:18px;
       display:flex;
       flex-wrap:wrap;
       align-items:end;
       gap:12px;
-      margin-bottom:16px;
+      margin-bottom:22px;
+      box-shadow:0 8px 24px rgba(16,24,40,.04);
     }
 
     .campo-data{
@@ -460,11 +468,19 @@
     }
 
     @media(max-width:800px){
-      .topo{padding:10px 15px}
-      .marca img{width:43px;height:43px}
-      .marca strong{font-size:14px}
-      .marca small{font-size:9px}
-      main{padding:25px 15px 50px}
+      .topo{
+        padding:10px 15px;
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      nav{
+        width:100%;
+        justify-content:flex-start;
+      }
+      .marca img{width:48px;height:48px}
+      .marca strong{font-size:17px}
+      .marca small{font-size:12px}
+      main{padding:35px 15px 60px}
       .indicadores{grid-template-columns:1fr}
       .form-grid{grid-template-columns:1fr}
       .campo-completo{grid-column:auto}
