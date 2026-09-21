@@ -1516,7 +1516,6 @@ footer{
 .visitantes-tabela-wrap{
   width:100%;
   overflow-x:auto;
-  -webkit-overflow-scrolling:touch;
 }
 
 .visitantes-tabela{
@@ -1614,6 +1613,17 @@ footer{
   font-weight:900;
   cursor:pointer;
   white-space:nowrap;
+}
+
+.btn-editar{
+  background:#f1f4f8;
+  color:var(--navy);
+  border:1px solid #d7e0e7 !important;
+}
+
+.btn-editar:hover{
+  background:#e6edf2;
+  border-color:#b9c9d5 !important;
 }
 
 .btn-apresentar{
@@ -2147,8 +2157,8 @@ footer{
       }
 
       let html = `
-        <div class="visitantes-tabela-wrap">
-          <table class="visitantes-tabela">
+        <div class="tabela-wrap">
+          <table>
             <thead>
               <tr>
                 <th>#</th>
@@ -2170,6 +2180,7 @@ footer{
             <td>${escaparHTML(item.observacao || '-')}</td>
             <td>
               <div class="acoes-linha">
+                <button type="button" class="btn-editar" onclick="editarVisitante(${index})">✏️ Editar</button>
                 <button type="button" class="btn-apresentar" onclick="abrirApresentacao(${index})">📱 Apresentar</button>
                 <button type="button" class="btn-excluir" onclick="excluirVisitante('${escaparJS(item.id)}')">Excluir</button>
               </div>
@@ -2198,12 +2209,16 @@ footer{
       }
 
       const botao = formVisitante.querySelector('button[type="submit"]');
+      const idEditando = botao.dataset.editandoId || "";
+
       botao.disabled = true;
-      statusFormulario.textContent = 'Salvando...';
+      statusFormulario.textContent =
+        idEditando ? 'Atualizando...' : 'Salvando...';
 
       try{
         const parametros = new URLSearchParams({
-          acao: 'cadastrar',
+          acao: idEditando ? 'editar' : 'cadastrar',
+          id: idEditando,
           data: data,
           nome: nomeValor,
           local: local.value.trim(),
@@ -2230,7 +2245,14 @@ footer{
         }
 
         formVisitante.reset();
-        statusFormulario.textContent = 'Visitante cadastrado com sucesso.';
+        delete botao.dataset.editandoId;
+        botao.textContent = '✅ Salvar visitante';
+
+        statusFormulario.textContent =
+          idEditando
+            ? 'Visitante atualizado com sucesso.'
+            : 'Visitante cadastrado com sucesso.';
+
         await carregarVisitantes();
         nome.focus();
       }catch(erro){
@@ -2240,6 +2262,39 @@ footer{
         botao.disabled = false;
       }
     });
+
+    async function editarVisitante(indice){
+
+      const item = visitantes[indice];
+
+      if(!item){
+        return;
+      }
+
+      dataCulto.value = item.data || dataCulto.value || hojeISO();
+      nome.value = item.nome || "";
+      local.value = item.local || "";
+      observacao.value = item.observacao || "";
+
+      const botaoSalvar =
+        formVisitante.querySelector('button[type="submit"]');
+
+      botaoSalvar.dataset.editandoId =
+        item.id || "";
+
+      botaoSalvar.textContent =
+        "✅ Atualizar visitante";
+
+      statusFormulario.textContent =
+        "Editando visitante. Altere os dados e clique em Atualizar.";
+
+      document.querySelector(".cadastro-visitante")?.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+
+      nome.focus();
+    }
 
     async function excluirVisitante(id){
       const item = visitantes.find(v => v.id === id);
@@ -2279,6 +2334,7 @@ footer{
       }
     }
 
+    window.editarVisitante = editarVisitante;
     window.excluirVisitante = excluirVisitante;
 
     function abrirApresentacao(indice=0){
