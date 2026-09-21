@@ -804,49 +804,6 @@ footer{
 }
 
 @media(max-width:650px){
-
-  .visitantes-cabecalho{
-    display:none;
-  }
-
-  .visitante-linha{
-    grid-template-columns:38px 1fr;
-    gap:10px 12px;
-    padding:14px;
-  }
-
-  .visitante-numero{
-    grid-row:1 / span 4;
-    align-self:start;
-    padding-top:2px;
-  }
-
-  .visitante-linha > div:nth-child(2),
-  .visitante-linha > div:nth-child(3),
-  .visitante-linha > div:nth-child(4),
-  .visitante-linha > div:nth-child(5){
-    min-width:0;
-  }
-
-  .visitante-campo-label{
-    display:block;
-  }
-
-  .visitante-nome{
-    font-size:15px;
-  }
-
-  .visitante-local,
-  .visitante-obs{
-    font-size:12px;
-  }
-
-  .acoes-linha button{
-    min-height:40px;
-    padding:9px 11px;
-  }
-
-
   .visitantes-tabela{
     min-width:860px;
   }
@@ -1558,79 +1515,92 @@ footer{
 
 .visitantes-tabela-wrap{
   width:100%;
+  overflow-x:auto;
 }
 
 .visitantes-tabela{
   width:100%;
+  min-width:900px;
+  border-collapse:separate;
+  border-spacing:0 8px;
+  table-layout:fixed;
 }
 
-.visitantes-cabecalho{
-  display:grid;
-  grid-template-columns:48px minmax(220px,1.35fr) minmax(180px,1fr) minmax(220px,1.2fr) 235px;
-  align-items:center;
-  gap:12px;
-  padding:0 14px 8px;
+.visitantes-tabela th,
+.visitantes-tabela td{
+  text-align:left;
+  vertical-align:middle;
+}
+
+.visitantes-tabela th{
+  padding:4px 12px 8px;
   color:#667085;
   font-size:11px;
   font-weight:900;
   text-transform:uppercase;
   letter-spacing:.2px;
+  background:transparent;
 }
 
-.visitante-linha{
-  display:grid;
-  grid-template-columns:48px minmax(220px,1.35fr) minmax(180px,1fr) minmax(220px,1.2fr) 235px;
-  align-items:center;
-  gap:12px;
-  padding:14px;
-  margin-bottom:9px;
+.visitantes-tabela td{
+  padding:13px 12px;
   background:#fff;
-  border:1px solid #e1e6ea;
-  border-radius:11px;
-  transition:.2s;
+  color:#344054;
+  font-size:13px;
+  font-weight:600;
+  line-height:1.4;
+  overflow-wrap:anywhere;
 }
 
-.visitante-linha:hover{
-  box-shadow:0 3px 12px rgba(0,0,0,.07);
+.visitantes-tabela tbody tr td{
+  border-top:1px solid #e8edf1;
+  border-bottom:1px solid #e8edf1;
 }
 
-.visitante-numero{
+.visitantes-tabela tbody tr td:first-child{
+  border-left:1px solid #e8edf1;
+  border-radius:10px 0 0 10px;
+}
+
+.visitantes-tabela tbody tr td:last-child{
+  border-right:1px solid #e8edf1;
+  border-radius:0 10px 10px 0;
+}
+
+.visitantes-tabela tbody tr:hover td{
+  background:#fbfdfe;
+}
+
+.visitantes-tabela td:first-child{
   color:#667085;
-  font-size:14px;
   font-weight:900;
-  text-align:center;
+  white-space:nowrap;
 }
 
-.visitante-nome{
+.visitantes-tabela td strong{
   color:var(--navy);
   font-size:14px;
   font-weight:900;
-  line-height:1.35;
-  overflow-wrap:anywhere;
 }
 
-.visitante-local,
-.visitante-obs{
-  color:#344054;
-  font-size:12px;
-  font-weight:600;
-  line-height:1.45;
-  overflow-wrap:anywhere;
-}
+.visitantes-tabela th:nth-child(1),
+.visitantes-tabela td:nth-child(1){width:5%}
 
-.visitante-campo-label{
-  display:none;
-  color:#667085;
-  font-size:10px;
-  font-weight:900;
-  text-transform:uppercase;
-  margin-bottom:3px;
-}
+.visitantes-tabela th:nth-child(2),
+.visitantes-tabela td:nth-child(2){width:27%}
+
+.visitantes-tabela th:nth-child(3),
+.visitantes-tabela td:nth-child(3){width:24%}
+
+.visitantes-tabela th:nth-child(4),
+.visitantes-tabela td:nth-child(4){width:24%}
+
+.visitantes-tabela th:nth-child(5),
+.visitantes-tabela td:nth-child(5){width:20%}
 
 .acoes-linha{
   display:flex;
   align-items:center;
-  justify-content:flex-start;
   gap:7px;
   flex-wrap:wrap;
 }
@@ -2176,48 +2146,38 @@ footer{
       }
 
       let html = `
-        <div class="visitantes-tabela-wrap">
-          <div class="visitantes-cabecalho">
-            <div>#</div>
-            <div>Nome</div>
-            <div>Congregação / cidade</div>
-            <div>Observação</div>
-            <div>Ações</div>
-          </div>
+        <div class="tabela-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Congregação / cidade</th>
+                <th>Observação</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
       `;
 
       visitantes.forEach((item,index) => {
         html += `
-          <div class="visitante-linha">
-            <div class="visitante-numero">${index+1}</div>
-
-            <div>
-              <div class="visitante-campo-label">Nome</div>
-              <div class="visitante-nome">${escaparHTML(item.nome)}</div>
-            </div>
-
-            <div>
-              <div class="visitante-campo-label">Congregação / cidade</div>
-              <div class="visitante-local">${escaparHTML(item.local || '-')}</div>
-            </div>
-
-            <div>
-              <div class="visitante-campo-label">Observação</div>
-              <div class="visitante-obs">${escaparHTML(item.observacao || '-')}</div>
-            </div>
-
-            <div>
-              <div class="visitante-campo-label">Ações</div>
+          <tr>
+            <td>${index+1}</td>
+            <td><strong>${escaparHTML(item.nome)}</strong></td>
+            <td>${escaparHTML(item.local || '-')}</td>
+            <td>${escaparHTML(item.observacao || '-')}</td>
+            <td>
               <div class="acoes-linha">
                 <button type="button" class="btn-apresentar" onclick="abrirApresentacao(${index})">📱 Apresentar</button>
                 <button type="button" class="btn-excluir" onclick="excluirVisitante('${escaparJS(item.id)}')">Excluir</button>
               </div>
-            </div>
-          </div>
+            </td>
+          </tr>
         `;
       });
 
-      html += '</div>';
+      html += '</tbody></table></div>';
       listaVisitantes.innerHTML = html;
     }
 
@@ -2382,6 +2342,7 @@ footer{
     document.getElementById('btnPdf').addEventListener('click',gerarPDF);
 
     async function gerarPDF(){
+
       if(!visitantes.length){
         alert('Não há visitantes para gerar o PDF nesta data.');
         return;
@@ -2393,51 +2354,246 @@ footer{
       }
 
       const { jsPDF } = window.jspdf;
-      const doc = new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
-
-      doc.setFont('helvetica','bold');
-      doc.setFontSize(15);
-      doc.text('ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM',14,18);
-
-      doc.setFont('helvetica','normal');
-      doc.setFontSize(10);
-      doc.text('SETOR 49 - JARDIM DOS PIMENTAS',14,24);
-
-      doc.setFont('helvetica','bold');
-      doc.setFontSize(13);
-      doc.text('LISTA DE VISITANTES DO CULTO',14,34);
-
-      doc.setFont('helvetica','normal');
-      doc.setFontSize(10);
-      doc.text(`Data: ${formatarData(dataCulto.value)}`,14,41);
-      doc.text(`Total de visitantes: ${visitantes.length}`,14,47);
-
-      if(typeof doc.autoTable !== 'function'){
-        alert('O módulo de tabela do PDF não foi carregado. Tente novamente.');
-        return;
-      }
-
-      doc.autoTable({
-        startY:54,
-        head:[['Nº','Visitante','Congregação / Cidade','Observação']],
-        body:visitantes.map((item,index)=>[
-          String(index+1),
-          item.nome || '',
-          item.local || '',
-          item.observacao || ''
-        ]),
-        styles:{font:'helvetica',fontSize:9,cellPadding:3},
-        headStyles:{fontStyle:'bold'},
-        columnStyles:{0:{cellWidth:10},1:{cellWidth:55},2:{cellWidth:55},3:{cellWidth:55}},
-        margin:{left:14,right:14}
+      const doc = new jsPDF({
+        orientation:'portrait',
+        unit:'mm',
+        format:'a4'
       });
 
-      const finalY = doc.lastAutoTable ? doc.lastAutoTable.finalY + 12 : 270;
-      doc.setFontSize(8);
-      doc.setTextColor(100);
-      doc.text('Portal AD Belém 49 - Lista de visitantes',14,Math.min(finalY,285));
+      const paginaW = 210;
+      const margem = 10;
+      const largura = paginaW - (margem * 2);
 
-      doc.save(`visitantes-${dataCulto.value || hojeISO()}.pdf`);
+      async function carregarLogo(src){
+        try{
+          const resposta = await fetch(src);
+          if(!resposta.ok) throw new Error('Logo não encontrada.');
+          const blob = await resposta.blob();
+
+          return await new Promise((resolve,reject)=>{
+            const leitor = new FileReader();
+            leitor.onload = ()=>resolve(leitor.result);
+            leitor.onerror = reject;
+            leitor.readAsDataURL(blob);
+          });
+        }catch(e){
+          return null;
+        }
+      }
+
+      function cabecalhoPagina(logoData){
+
+        doc.setDrawColor(7,60,102);
+        doc.setLineWidth(0.8);
+        doc.roundedRect(
+          margem,
+          8,
+          largura,
+          29,
+          2,
+          2,
+          'S'
+        );
+
+        doc.setDrawColor(210,218,225);
+        doc.setLineWidth(0.45);
+        doc.line(37,11,37,34);
+
+        doc.setTextColor(25,25,25);
+        doc.setFont('helvetica','bold');
+        doc.setFontSize(12.5);
+        doc.text(
+          'IGREJA EVANGÉLICA ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM',
+          121,
+          14,
+          {align:'center'}
+        );
+
+        doc.setTextColor(7,60,102);
+        doc.setFontSize(12);
+        doc.text(
+          'SETOR - 49',
+          121,
+          19.5,
+          {align:'center'}
+        );
+
+        doc.setTextColor(40,40,40);
+        doc.setFontSize(8.5);
+        doc.text(
+          'Pastor Setorial: Samuel Garcia',
+          121,
+          24.2,
+          {align:'center'}
+        );
+
+        doc.setFont('helvetica','normal');
+        doc.setFontSize(7.1);
+        doc.text(
+          'RUA ANTONIO BITTENCOURT, 684 - CEP 07260-040 - JARDIM DOS PIMENTAS - GUARULHOS (SP)',
+          121,
+          28.5,
+          {align:'center'}
+        );
+
+        if(logoData){
+          try{
+            doc.addImage(
+              logoData,
+              'PNG',
+              14,
+              11,
+              18,
+              22,
+              undefined,
+              'FAST'
+            );
+          }catch(e){}
+        }
+
+        doc.setDrawColor(249,196,20);
+        doc.setLineWidth(1.3);
+        doc.line(margem,40,paginaW-margem,40);
+
+        doc.setFillColor(7,60,102);
+        doc.roundedRect(
+          margem,
+          44,
+          largura,
+          10,
+          1.8,
+          1.8,
+          'F'
+        );
+
+        doc.setTextColor(255,255,255);
+        doc.setFont('helvetica','bold');
+        doc.setFontSize(12.2);
+        doc.text(
+          `LISTA DE VISITANTES DO CULTO - ${formatarData(dataCulto.value)}`,
+          paginaW/2,
+          50.6,
+          {align:'center'}
+        );
+      }
+
+      function desenharCampo(rotulo, valor, x, y, maxWidth){
+
+        const texto = String(valor || '-').trim() || '-';
+        const fonte = 11;
+        const gap = 1.6;
+
+        doc.setFont('helvetica','normal');
+        doc.setFontSize(fonte);
+
+        const larguraRotulo = doc.getTextWidth(rotulo);
+        const xValor = x + larguraRotulo + gap;
+        const larguraValor = Math.max(20,maxWidth-larguraRotulo-gap);
+
+        const linhas = doc.splitTextToSize(texto,larguraValor);
+
+        doc.setTextColor(30,30,30);
+        doc.setFont('helvetica','normal');
+        doc.setFontSize(fonte);
+        doc.text(rotulo,x,y);
+
+        doc.setFont('helvetica','bold');
+        doc.text(linhas,xValor,y);
+
+        return y + Math.max(5.8,linhas.length*5.2);
+      }
+
+      const logoData =
+        await carregarLogo('assets/Logo-Belem.png');
+
+      cabecalhoPagina(logoData);
+
+      let y = 62;
+
+      doc.setTextColor(95,95,95);
+      doc.setFont('helvetica','normal');
+      doc.setFontSize(9.5);
+      doc.text(
+        `Total de visitantes: ${visitantes.length}`,
+        margem,
+        y
+      );
+
+      y += 9;
+
+      visitantes.forEach((item,index)=>{
+
+        if(y > 267){
+
+          doc.addPage();
+          cabecalhoPagina(logoData);
+          y = 62;
+
+        }
+
+        y = desenharCampo(
+          'Nome:',
+          item.nome,
+          margem + 1,
+          y,
+          largura - 2
+        ) + 1.2;
+
+        y = desenharCampo(
+          'Acompanhando:',
+          item.observacao,
+          margem + 1,
+          y,
+          largura - 2
+        ) + 1.2;
+
+        y = desenharCampo(
+          'Nome da igreja/setor:',
+          item.local,
+          margem + 1,
+          y,
+          largura - 2
+        ) + 2.3;
+
+        if(index < visitantes.length - 1){
+
+          doc.setDrawColor(25,25,25);
+          doc.setLineWidth(0.45);
+          doc.line(
+            margem + 1,
+            y,
+            paginaW - margem - 1,
+            y
+          );
+
+          y += 4.5;
+
+        }
+
+      });
+
+      const paginas =
+        doc.internal.getNumberOfPages();
+
+      for(let pagina=1;pagina<=paginas;pagina++){
+
+        doc.setPage(pagina);
+        doc.setTextColor(120,120,120);
+        doc.setFont('helvetica','normal');
+        doc.setFontSize(7.5);
+
+        doc.text(
+          `Portal AD Belém 49 - Lista de visitantes · Página ${pagina}/${paginas}`,
+          paginaW/2,
+          289,
+          {align:'center'}
+        );
+
+      }
+
+      doc.save(
+        `visitantes-${dataCulto.value || hojeISO()}.pdf`
+      );
     }
 
     document.addEventListener('keydown',(event)=>{
