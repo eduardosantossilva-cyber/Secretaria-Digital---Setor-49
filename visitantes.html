@@ -1516,6 +1516,7 @@ footer{
 .visitantes-tabela-wrap{
   width:100%;
   overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
 }
 
 .visitantes-tabela{
@@ -2146,8 +2147,8 @@ footer{
       }
 
       let html = `
-        <div class="tabela-wrap">
-          <table>
+        <div class="visitantes-tabela-wrap">
+          <table class="visitantes-tabela">
             <thead>
               <tr>
                 <th>#</th>
