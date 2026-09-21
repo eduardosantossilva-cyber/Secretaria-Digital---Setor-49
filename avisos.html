@@ -200,6 +200,13 @@ main{
   padding-left:20px;
 }
 
+.notice-images{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin-top:20px;
+}
+
 .notice-img{
   display:block;
   width:100%;
@@ -207,9 +214,15 @@ main{
   height:auto;
   max-height:600px;
   object-fit:contain;
-  margin:20px auto 0;
+  margin:0 auto;
   border-radius:12px;
   border:1px solid #dce8ef;
+}
+
+@media(max-width:700px){
+  .notice-images{
+    grid-template-columns:1fr;
+  }
 }
 
 .avisos-secao{
@@ -1170,36 +1183,52 @@ function criarAviso(aviso){
   }
 
 
-  if(aviso.imagem){
-
-    let imagemURL =
-    String(aviso.imagem).trim();
-
-
-    const matchDrive =
-    imagemURL.match(
-      /(?:\/file\/d\/|id=|\/open\?id=)([a-zA-Z0-9_-]+)/
-    );
+  const imagens = [
+    aviso.imagem,
+    aviso.imagem2
+  ].filter(imagem => String(imagem || '').trim() !== '');
 
 
-    if(matchDrive){
+  if(imagens.length){
 
-      imagemURL =
-      `https://drive.google.com/thumbnail?id=${matchDrive[1]}&sz=w1200`;
-
-    }
+    conteudo += '<div class="notice-images">';
 
 
-    conteudo += `
+    imagens.forEach((imagem, indice) => {
 
-      <img
-        class="notice-img"
-        src="${imagemURL}"
-        alt="${escaparHTML(aviso.titulo)}"
-        loading="lazy"
-      >
+      let imagemURL =
+      String(imagem).trim();
 
-    `;
+
+      const matchDrive =
+      imagemURL.match(
+        /(?:\/file\/d\/|id=|\/open\?id=)([a-zA-Z0-9_-]+)/
+      );
+
+
+      if(matchDrive){
+
+        imagemURL =
+        `https://drive.google.com/thumbnail?id=${matchDrive[1]}&sz=w1200`;
+
+      }
+
+
+      conteudo += `
+
+        <img
+          class="notice-img"
+          src="${escaparHTML(imagemURL)}"
+          alt="${escaparHTML(aviso.titulo)}${indice ? ' - imagem 2' : ''}"
+          loading="lazy"
+        >
+
+      `;
+
+    });
+
+
+    conteudo += '</div>';
 
   }
 
