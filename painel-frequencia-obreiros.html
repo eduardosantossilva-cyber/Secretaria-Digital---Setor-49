@@ -450,6 +450,15 @@ html,body{max-width:100%;overflow-x:hidden}
 </footer>
 
 <script>
+/* =========================
+   PROTEÇÃO DA PÁGINA
+========================= */
+if(sessionStorage.getItem("acessoSecretaria") !== "autorizado"){
+  window.location.href = "area-restrita.html";
+}
+</script>
+
+<script>
 const API_URL='https://script.google.com/macros/s/AKfycbxAx9Hu8eTMGGGSIZqNLXfmSVopSYz8Gd5hWENdq8jM3WBBkITLh-yxANER0awn4UOD/exec';
 
 function chamarAPI(parametros, callback){
