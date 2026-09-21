@@ -50,7 +50,7 @@ footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font
 <body>
 <header><div class="cabecalho">
   <div class="titulo"><h1>📋 Painel de Solicitações</h1><p>Secretaria + Digital — AD Belém 49</p></div>
-  <div class="acoes-cabecalho"><a href="area-administrativa.html" class="btn-sair">← Sair</a><img src="assets/Logo-Belem.png" class="logo" alt="AD Belém"></div>
+  <div class="acoes-cabecalho"><a href="area-administrativa.html" class="btn-sair">← Área Administrativa</a><img src="assets/Logo-Belem.png" class="logo" alt="AD Belém"></div>
 </div></header>
 
 <main>
@@ -77,6 +77,13 @@ footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font
 <footer>ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM · SETOR 49 - JARDIM DOS PIMENTAS<br><small>PORTAL AD BELÉM - SETOR 49</small></footer>
 
 <script>
+/* =========================
+   PROTEÇÃO DA PÁGINA
+========================= */
+if(sessionStorage.getItem("acessoSecretaria") !== "autorizado"){
+  window.location.href = "area-restrita.html";
+}
+
 const API="https://script.google.com/macros/s/AKfycbzsJKoegOsOvPo3PhfHoZUd3A9Mfk4MrFO6DFe9t48VjDjo_2jt9xK-mw5sQRsnGR1Q/exec";
 let dados=[],tipoAtual="TODAS";
 
