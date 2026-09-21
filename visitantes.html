@@ -666,9 +666,22 @@
       apresentacaoData.textContent = `Visitantes do culto - ${formatarData(data)}`;
     }
 
-    async function chamarAPI(opcoes={}){
-      const resposta = await fetch(API_VISITANTES, opcoes);
-      if(!resposta.ok) throw new Error('Erro de comunicação com a API.');
+    async function chamarAPI(parametros={}){
+      const query = new URLSearchParams(parametros);
+      query.set('_t', Date.now().toString());
+
+      const resposta = await fetch(
+        API_VISITANTES + '?' + query.toString(),
+        {
+          method:'GET',
+          cache:'no-store'
+        }
+      );
+
+      if(!resposta.ok){
+        throw new Error('Erro de comunicação com a API.');
+      }
+
       return resposta.json();
     }
 
@@ -760,17 +773,28 @@
       statusFormulario.textContent = 'Salvando...';
 
       try{
-        const resultado = await chamarAPI({
-          method:'POST',
-          headers:{'Content-Type':'text/plain;charset=utf-8'},
-          body:JSON.stringify({
-            acao:'cadastrar',
-            data:data,
-            nome:nomeValor,
-            local:local.value.trim(),
-            observacao:observacao.value.trim()
-          })
+        const parametros = new URLSearchParams({
+          acao: 'cadastrar',
+          data: data,
+          nome: nomeValor,
+          local: local.value.trim(),
+          observacao: observacao.value.trim(),
+          _t: Date.now().toString()
         });
+
+        const respostaAPI = await fetch(
+          API_VISITANTES + '?' + parametros.toString(),
+          {
+            method: 'GET',
+            cache: 'no-store'
+          }
+        );
+
+        if(!respostaAPI.ok){
+          throw new Error('Erro de comunicação com a API.');
+        }
+
+        const resultado = await respostaAPI.json();
 
         if(!resultado.sucesso){
           throw new Error(resultado.mensagem || 'Não foi possível cadastrar.');
@@ -795,11 +819,25 @@
       if(!confirm(`Deseja excluir ${nomeItem}?`)) return;
 
       try{
-        const resultado = await chamarAPI({
-          method:'POST',
-          headers:{'Content-Type':'text/plain;charset=utf-8'},
-          body:JSON.stringify({acao:'excluir',id:id})
+        const parametros = new URLSearchParams({
+          acao: 'excluir',
+          id: id,
+          _t: Date.now().toString()
         });
+
+        const respostaAPI = await fetch(
+          API_VISITANTES + '?' + parametros.toString(),
+          {
+            method: 'GET',
+            cache: 'no-store'
+          }
+        );
+
+        if(!respostaAPI.ok){
+          throw new Error('Erro de comunicação com a API.');
+        }
+
+        const resultado = await respostaAPI.json();
 
         if(!resultado.sucesso){
           throw new Error(resultado.mensagem || 'Não foi possível excluir.');
