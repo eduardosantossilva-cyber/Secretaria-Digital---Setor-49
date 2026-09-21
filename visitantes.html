@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visitantes — Portal AD Belém 49</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
+  <style>
+    :root{
+      --blue:#159dd1;
+      --green:#079447;
+      --gold:#f9c414;
+      --orange:#f47a20;
+      --red:#b51e2a;
+      --navy:#073c66;
+      --muted:#667085;
+      --bg:#f6f8fa;
+      --line:#dce3e8;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
+      background:var(--bg);
+      color:#344054;
+    }
+
+    header{
+      background:#fff;
+      border-bottom:1px solid #e4e9ee;
+    }
+
+    .topo{
+      max-width:1180px;
+      margin:auto;
+      padding:11px 22px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }
+
+    .marca{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .marca img{
+      width:50px;
+      height:50px;
+      object-fit:contain;
+    }
+
+    .marca strong{
+      display:block;
+      color:var(--navy);
+      font-size:17px;
+      font-weight:900;
+    }
+
+    .marca small{
+      display:block;
+      margin-top:4px;
+      color:var(--muted);
+      font-weight:650;
+      font-size:11px;
+    }
+
+    nav{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:var(--navy);
+      font-size:12px;
+      font-weight:900;
+      padding:9px 12px;
+      border:1px solid #dce3e8;
+      border-radius:9px;
+      background:#fff;
+    }
+
+    nav a:hover{
+      background:#eef8fc;
+      border-color:var(--blue);
+    }
+
+    main{
+      max-width:1180px;
+      margin:auto;
+      padding:34px 22px 70px;
+    }
+
+    .hero{
+      background:#fff;
+      border:1px solid var(--line);
+      border-left:6px solid var(--green);
+      border-radius:18px;
+      padding:22px 24px;
+      margin-bottom:18px;
+      box-shadow:0 8px 24px rgba(16,24,40,.05);
+    }
+
+    .hero h1{
+      margin:0;
+      color:var(--navy);
+      font-size:26px;
+      font-weight:900;
+    }
+
+    .hero p{
+      margin:7px 0 0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .barra-controle{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:15px;
+      padding:16px;
+      display:flex;
+      flex-wrap:wrap;
+      align-items:end;
+      gap:12px;
+      margin-bottom:16px;
+    }
+
+    .campo-data{
+      flex:1 1 190px;
+    }
+
+    label{
+      display:block;
+      color:var(--navy);
+      font-size:11px;
+      font-weight:900;
+      margin-bottom:6px;
+    }
+
+    input,textarea{
+      width:100%;
+      border:1px solid #cfd8df;
+      border-radius:9px;
+      padding:10px 11px;
+      font-family:inherit;
+      font-size:13px;
+      outline:none;
+    }
+
+    input:focus,textarea:focus{
+      border-color:var(--blue);
+      box-shadow:0 0 0 3px rgba(21,157,209,.10);
+    }
+
+    textarea{
+      min-height:80px;
+      resize:vertical;
+    }
+
+    button{
+      border:0;
+      border-radius:9px;
+      padding:10px 14px;
+      font-family:inherit;
+      font-size:12px;
+      font-weight:900;
+      cursor:pointer;
+    }
+
+    .btn-principal{background:var(--green);color:#fff}
+    .btn-principal:hover{filter:brightness(.95)}
+    .btn-secundario{background:#fff;color:var(--navy);border:1px solid #d7e0e6}
+    .btn-secundario:hover{background:#f7fafc}
+    .btn-pdf{background:var(--orange);color:#fff}
+    .btn-apresentar{background:var(--blue);color:#fff}
+    .btn-excluir{background:#fff5f5;color:var(--red);border:1px solid #efc5c9}
+
+    .indicadores{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+      margin-bottom:16px;
+    }
+
+    .indicador{
+      background:#fff;
+      border:1px solid var(--line);
+      border-left:4px solid var(--green);
+      border-radius:12px;
+      padding:13px;
+    }
+
+    .indicador:nth-child(2){border-left-color:var(--blue)}
+    .indicador:nth-child(3){border-left-color:var(--orange)}
+
+    .indicador small{
+      display:block;
+      color:var(--muted);
+      font-size:10px;
+      font-weight:800;
+    }
+
+    .indicador strong{
+      display:block;
+      margin-top:4px;
+      color:var(--navy);
+      font-size:25px;
+      font-weight:900;
+    }
+
+    .painel{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:15px;
+      padding:16px;
+      box-shadow:0 7px 22px rgba(16,24,40,.05);
+      margin-bottom:16px;
+    }
+
+    .painel-cabecalho{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:12px;
+    }
+
+    .painel-cabecalho h2{
+      margin:0;
+      color:var(--navy);
+      font-size:17px;
+      font-weight:900;
+    }
+
+    .painel-cabecalho p{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:11px;
+    }
+
+    .botoes-cabecalho{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:1.4fr 1fr;
+      gap:12px;
+    }
+
+    .campo-completo{grid-column:1/-1}
+
+    .form-acoes{
+      grid-column:1/-1;
+      display:flex;
+      justify-content:flex-end;
+      gap:8px;
+      margin-top:2px;
+    }
+
+    .lista-vazia{
+      border:1px dashed #ccd7de;
+      border-radius:12px;
+      padding:22px;
+      text-align:center;
+      color:var(--muted);
+      font-size:12px;
+      background:#fbfcfd;
+    }
+
+    .tabela-wrap{
+      overflow:auto;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:680px;
+    }
+
+    th,td{
+      border-bottom:1px solid #edf1f3;
+      padding:10px 9px;
+      text-align:left;
+      vertical-align:middle;
+      font-size:11px;
+    }
+
+    th{
+      color:var(--navy);
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.3px;
+      background:#f8fafc;
+    }
+
+    td strong{color:var(--navy)}
+
+    .acoes-linha{
+      display:flex;
+      gap:6px;
+      flex-wrap:wrap;
+    }
+
+    .acoes-linha button{
+      padding:7px 9px;
+      font-size:10px;
+    }
+
+    .status-msg{
+      min-height:18px;
+      margin-top:8px;
+      color:var(--muted);
+      font-size:11px;
+    }
+
+    footer{
+      background:#20262b;
+      color:#d0d5dd;
+      padding:28px 20px;
+      text-align:center;
+      font-size:12px;
+    }
+
+    .modo-apresentacao{
+      position:fixed;
+      inset:0;
+      background:#0b1723;
+      color:#fff;
+      z-index:9999;
+      display:none;
+      flex-direction:column;
+    }
+
+    .modo-apresentacao.aberto{display:flex}
+
+    .apresentacao-topo{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding:16px 18px;
+      border-bottom:1px solid rgba(255,255,255,.12);
+    }
+
+    .apresentacao-topo strong{
+      font-size:13px;
+      letter-spacing:.4px;
+    }
+
+    .apresentacao-topo span{
+      display:block;
+      margin-top:3px;
+      color:#b9c7d3;
+      font-size:10px;
+    }
+
+    .btn-fechar-apresentacao{
+      background:rgba(255,255,255,.08);
+      color:#fff;
+      border:1px solid rgba(255,255,255,.2);
+    }
+
+    .apresentacao-conteudo{
+      flex:1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px;
+    }
+
+    .cartao-visitante{
+      width:min(760px,100%);
+      text-align:center;
+      padding:34px 24px;
+    }
+
+    .selo-visitante{
+      width:74px;
+      height:74px;
+      margin:0 auto 18px;
+      border-radius:50%;
+      background:rgba(21,157,209,.18);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:36px;
+    }
+
+    .cartao-visitante .rotulo{
+      color:#9fdaf1;
+      font-size:14px;
+      font-weight:900;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+    }
+
+    .cartao-visitante h2{
+      margin:14px 0 8px;
+      color:#fff;
+      font-size:clamp(30px,7vw,58px);
+      line-height:1.05;
+      font-weight:900;
+      word-break:break-word;
+    }
+
+    .cartao-visitante .local{
+      color:#d7e4ec;
+      font-size:clamp(16px,3vw,24px);
+      line-height:1.4;
+    }
+
+    .cartao-visitante .obs{
+      margin-top:16px;
+      color:#aebdc8;
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .apresentacao-rodape{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:12px;
+      padding:16px;
+      border-top:1px solid rgba(255,255,255,.12);
+    }
+
+    .apresentacao-rodape button{
+      min-width:120px;
+      background:#fff;
+      color:var(--navy);
+    }
+
+    .indice-apresentacao{
+      min-width:90px;
+      text-align:center;
+      color:#c2d0da;
+      font-size:11px;
+      font-weight:800;
+    }
+
+    @media(max-width:800px){
+      .topo{padding:10px 15px}
+      .marca img{width:43px;height:43px}
+      .marca strong{font-size:14px}
+      .marca small{font-size:9px}
+      main{padding:25px 15px 50px}
+      .indicadores{grid-template-columns:1fr}
+      .form-grid{grid-template-columns:1fr}
+      .campo-completo{grid-column:auto}
+      .form-acoes{grid-column:auto;justify-content:stretch}
+      .form-acoes button{flex:1}
+      .painel-cabecalho{align-items:flex-start;flex-direction:column}
+      .botoes-cabecalho{width:100%}
+      .botoes-cabecalho button{flex:1}
+      .apresentacao-conteudo{padding:18px}
+      .apresentacao-rodape{gap:7px}
+      .apresentacao-rodape button{min-width:0;flex:1}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="topo">
+      <div class="marca">
+        <img src="logo.png" alt="Assembleia de Deus — Ministério do Belém">
+        <div>
+          <strong>ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM</strong>
+          <small>SETOR 49 - JARDIM DOS PIMENTAS</small>
+        </div>
+      </div>
+
+      <nav>
+        <a href="area-administrativa.html" id="voltarAdmin">← Área Administrativa</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>👤 Visitantes do Culto</h1>
+      <p>Cadastre os visitantes, gere a lista em PDF e use o modo de apresentação no tablet do pastor.</p>
+    </section>
+
+    <section class="barra-controle">
+      <div class="campo-data">
+        <label for="dataCulto">Data do culto</label>
+        <input type="date" id="dataCulto">
+      </div>
+      <button type="button" class="btn-secundario" id="btnAtualizar">↻ Atualizar</button>
+      <button type="button" class="btn-pdf" id="btnPdf">📄 Gerar lista em PDF</button>
+      <button type="button" class="btn-apresentar" id="btnApresentar">📱 Modo apresentação</button>
+    </section>
+
+    <section class="indicadores">
+      <div class="indicador">
+        <small>Visitantes do culto</small>
+        <strong id="totalVisitantes">0</strong>
+      </div>
+      <div class="indicador">
+        <small>Data selecionada</small>
+        <strong id="dataSelecionadaTexto">--/--/----</strong>
+      </div>
+      <div class="indicador">
+        <small>Modo de uso</small>
+        <strong style="font-size:15px">Tablet do pastor</strong>
+      </div>
+    </section>
+
+    <section class="painel">
+      <div class="painel-cabecalho">
+        <div>
+          <h2>➕ Cadastrar visitante</h2>
+          <p>Preencha apenas as informações necessárias para a apresentação.</p>
+        </div>
+      </div>
+
+      <form id="formVisitante" class="form-grid">
+        <div>
+          <label for="nome">Nome do visitante *</label>
+          <input id="nome" name="nome" type="text" maxlength="120" required placeholder="Nome completo">
+        </div>
+
+        <div>
+          <label for="local">Congregação / cidade</label>
+          <input id="local" name="local" type="text" maxlength="120" placeholder="Ex.: Jd. dos Pimentas / Guarulhos">
+        </div>
+
+        <div class="campo-completo">
+          <label for="observacao">Observação</label>
+          <textarea id="observacao" name="observacao" maxlength="300" placeholder="Opcional"></textarea>
+        </div>
+
+        <div class="form-acoes">
+          <button type="submit" class="btn-principal">✅ Salvar visitante</button>
+        </div>
+      </form>
+
+      <div class="status-msg" id="statusFormulario"></div>
+    </section>
+
+    <section class="painel">
+      <div class="painel-cabecalho">
+        <div>
+          <h2>📋 Visitantes cadastrados</h2>
+          <p>Lista referente à data selecionada.</p>
+        </div>
+      </div>
+
+      <div id="listaVisitantes"></div>
+    </section>
+  </main>
+
+  <footer>
+    ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM · SETOR 49 - JARDIM DOS PIMENTAS
+    <br>
+    <small>PORTAL AD BELÉM - SETOR 49</small>
+  </footer>
+
+  <section class="modo-apresentacao" id="modoApresentacao" aria-hidden="true">
+    <div class="apresentacao-topo">
+      <div>
+        <strong>📱 MODO APRESENTAÇÃO</strong>
+        <span id="apresentacaoData">Visitantes do culto</span>
+      </div>
+      <button type="button" class="btn-fechar-apresentacao" id="btnFecharApresentacao">✕ Fechar</button>
+    </div>
+
+    <div class="apresentacao-conteudo">
+      <div class="cartao-visitante">
+        <div class="selo-visitante">👤</div>
+        <div class="rotulo">Seja bem-vindo!</div>
+        <h2 id="apresentacaoNome">Visitante</h2>
+        <div class="local" id="apresentacaoLocal"></div>
+        <div class="obs" id="apresentacaoObs"></div>
+      </div>
+    </div>
+
+    <div class="apresentacao-rodape">
+      <button type="button" id="btnAnterior">‹ Anterior</button>
+      <div class="indice-apresentacao" id="indiceApresentacao">0 / 0</div>
+      <button type="button" id="btnProximo">Próximo ›</button>
+    </div>
+  </section>
+
+  <script>
+    const API_VISITANTES = 'https://script.google.com/macros/s/AKfycbx2Nd9PX9UF0N0J8S7sfo1C_E6jusfTihtNx5g-1fHq0mXOvDAsO9ian9m2NG8SxkAr/exec';
+
+    const dataCulto = document.getElementById('dataCulto');
+    const nome = document.getElementById('nome');
+    const local = document.getElementById('local');
+    const observacao = document.getElementById('observacao');
+    const formVisitante = document.getElementById('formVisitante');
+    const listaVisitantes = document.getElementById('listaVisitantes');
+    const totalVisitantes = document.getElementById('totalVisitantes');
+    const dataSelecionadaTexto = document.getElementById('dataSelecionadaTexto');
+    const statusFormulario = document.getElementById('statusFormulario');
+
+    const modoApresentacao = document.getElementById('modoApresentacao');
+    const apresentacaoData = document.getElementById('apresentacaoData');
+    const apresentacaoNome = document.getElementById('apresentacaoNome');
+    const apresentacaoLocal = document.getElementById('apresentacaoLocal');
+    const apresentacaoObs = document.getElementById('apresentacaoObs');
+    const indiceApresentacao = document.getElementById('indiceApresentacao');
+    const btnAnterior = document.getElementById('btnAnterior');
+    const btnProximo = document.getElementById('btnProximo');
+
+    let visitantes = [];
+    let indiceAtual = 0;
+
+    function hojeISO(){
+      const agora = new Date();
+      const ano = agora.getFullYear();
+      const mes = String(agora.getMonth()+1).padStart(2,'0');
+      const dia = String(agora.getDate()).padStart(2,'0');
+      return `${ano}-${mes}-${dia}`;
+    }
+
+    function escaparHTML(texto){
+      const div = document.createElement('div');
+      div.textContent = texto ?? '';
+      return div.innerHTML;
+    }
+
+    function formatarData(data){
+      if(!data) return '';
+      const partes = String(data).split('-');
+      if(partes.length !== 3) return String(data);
+      return `${partes[2]}/${partes[1]}/${partes[0]}`;
+    }
+
+    function atualizarCabecalhoData(){
+      const data = dataCulto.value || hojeISO();
+      dataSelecionadaTexto.textContent = formatarData(data);
+      apresentacaoData.textContent = `Visitantes do culto - ${formatarData(data)}`;
+    }
+
+    async function chamarAPI(opcoes={}){
+      const resposta = await fetch(API_VISITANTES, opcoes);
+      if(!resposta.ok) throw new Error('Erro de comunicação com a API.');
+      return resposta.json();
+    }
+
+    async function carregarVisitantes(){
+      atualizarCabecalhoData();
+      listaVisitantes.innerHTML = '<div class="lista-vazia">Carregando visitantes...</div>';
+
+      try{
+        const data = dataCulto.value || hojeISO();
+        const resposta = await fetch(API_VISITANTES + '?data=' + encodeURIComponent(data), {
+          method:'GET',
+          cache:'no-store'
+        });
+        if(!resposta.ok) throw new Error('Erro de comunicação com a API.');
+        const resultado = await resposta.json();
+
+        visitantes = resultado.visitantes || [];
+        renderizarLista();
+      }catch(erro){
+        console.error(erro);
+        visitantes = [];
+        listaVisitantes.innerHTML = '<div class="lista-vazia">Não foi possível carregar os visitantes. Verifique a URL da API.</div>';
+        totalVisitantes.textContent = '0';
+      }
+    }
+
+    function renderizarLista(){
+      atualizarCabecalhoData();
+      totalVisitantes.textContent = visitantes.length;
+
+      if(!visitantes.length){
+        listaVisitantes.innerHTML = '<div class="lista-vazia">Nenhum visitante cadastrado para esta data.</div>';
+        return;
+      }
+
+      let html = `
+        <div class="tabela-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Congregação / cidade</th>
+                <th>Observação</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+      `;
+
+      visitantes.forEach((item,index) => {
+        html += `
+          <tr>
+            <td>${index+1}</td>
+            <td><strong>${escaparHTML(item.nome)}</strong></td>
+            <td>${escaparHTML(item.local || '-')}</td>
+            <td>${escaparHTML(item.observacao || '-')}</td>
+            <td>
+              <div class="acoes-linha">
+                <button type="button" class="btn-apresentar" onclick="abrirApresentacao(${index})">📱 Apresentar</button>
+                <button type="button" class="btn-excluir" onclick="excluirVisitante('${escaparJS(item.id)}')">Excluir</button>
+              </div>
+            </td>
+          </tr>
+        `;
+      });
+
+      html += '</tbody></table></div>';
+      listaVisitantes.innerHTML = html;
+    }
+
+    function escaparJS(texto){
+      return String(texto ?? '').replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+    }
+
+    formVisitante.addEventListener('submit', async (event)=>{
+      event.preventDefault();
+
+      const data = dataCulto.value || hojeISO();
+      const nomeValor = nome.value.trim();
+
+      if(!nomeValor){
+        statusFormulario.textContent = 'Informe o nome do visitante.';
+        return;
+      }
+
+      const botao = formVisitante.querySelector('button[type="submit"]');
+      botao.disabled = true;
+      statusFormulario.textContent = 'Salvando...';
+
+      try{
+        const resultado = await chamarAPI({
+          method:'POST',
+          headers:{'Content-Type':'text/plain;charset=utf-8'},
+          body:JSON.stringify({
+            acao:'cadastrar',
+            data:data,
+            nome:nomeValor,
+            local:local.value.trim(),
+            observacao:observacao.value.trim()
+          })
+        });
+
+        if(!resultado.sucesso){
+          throw new Error(resultado.mensagem || 'Não foi possível cadastrar.');
+        }
+
+        formVisitante.reset();
+        statusFormulario.textContent = 'Visitante cadastrado com sucesso.';
+        await carregarVisitantes();
+        nome.focus();
+      }catch(erro){
+        console.error(erro);
+        statusFormulario.textContent = erro.message || 'Erro ao cadastrar visitante.';
+      }finally{
+        botao.disabled = false;
+      }
+    });
+
+    async function excluirVisitante(id){
+      const item = visitantes.find(v => v.id === id);
+      const nomeItem = item ? item.nome : 'este visitante';
+
+      if(!confirm(`Deseja excluir ${nomeItem}?`)) return;
+
+      try{
+        const resultado = await chamarAPI({
+          method:'POST',
+          headers:{'Content-Type':'text/plain;charset=utf-8'},
+          body:JSON.stringify({acao:'excluir',id:id})
+        });
+
+        if(!resultado.sucesso){
+          throw new Error(resultado.mensagem || 'Não foi possível excluir.');
+        }
+
+        await carregarVisitantes();
+      }catch(erro){
+        console.error(erro);
+        alert(erro.message || 'Erro ao excluir visitante.');
+      }
+    }
+
+    window.excluirVisitante = excluirVisitante;
+
+    function abrirApresentacao(indice=0){
+      if(!visitantes.length){
+        alert('Não há visitantes cadastrados para esta data.');
+        return;
+      }
+
+      indiceAtual = Math.max(0, Math.min(indice, visitantes.length-1));
+      atualizarApresentacao();
+      modoApresentacao.classList.add('aberto');
+      modoApresentacao.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+
+      if(modoApresentacao.requestFullscreen){
+        modoApresentacao.requestFullscreen().catch(()=>{});
+      }
+    }
+
+    function fecharApresentacao(){
+      modoApresentacao.classList.remove('aberto');
+      modoApresentacao.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+
+      if(document.fullscreenElement && document.exitFullscreen){
+        document.exitFullscreen().catch(()=>{});
+      }
+    }
+
+    function atualizarApresentacao(){
+      const item = visitantes[indiceAtual];
+      if(!item) return;
+
+      apresentacaoNome.textContent = item.nome || 'Visitante';
+      apresentacaoLocal.textContent = item.local || '';
+      apresentacaoObs.textContent = item.observacao || '';
+      indiceApresentacao.textContent = `${indiceAtual+1} / ${visitantes.length}`;
+      btnAnterior.disabled = indiceAtual === 0;
+      btnProximo.disabled = indiceAtual === visitantes.length-1;
+    }
+
+    btnAnterior.addEventListener('click',()=>{
+      if(indiceAtual > 0){
+        indiceAtual--;
+        atualizarApresentacao();
+      }
+    });
+
+    btnProximo.addEventListener('click',()=>{
+      if(indiceAtual < visitantes.length-1){
+        indiceAtual++;
+        atualizarApresentacao();
+      }
+    });
+
+    document.getElementById('btnFecharApresentacao').addEventListener('click',fecharApresentacao);
+
+    document.getElementById('btnApresentar').addEventListener('click',()=>abrirApresentacao(0));
+    document.getElementById('btnAtualizar').addEventListener('click',carregarVisitantes);
+    dataCulto.addEventListener('change',carregarVisitantes);
+
+    document.getElementById('btnPdf').addEventListener('click',gerarPDF);
+
+    async function gerarPDF(){
+      if(!visitantes.length){
+        alert('Não há visitantes para gerar o PDF nesta data.');
+        return;
+      }
+
+      if(!window.jspdf || !window.jspdf.jsPDF){
+        alert('Não foi possível carregar o gerador de PDF. Verifique sua conexão com a internet e tente novamente.');
+        return;
+      }
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+
+      doc.setFont('helvetica','bold');
+      doc.setFontSize(15);
+      doc.text('ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM',14,18);
+
+      doc.setFont('helvetica','normal');
+      doc.setFontSize(10);
+      doc.text('SETOR 49 - JARDIM DOS PIMENTAS',14,24);
+
+      doc.setFont('helvetica','bold');
+      doc.setFontSize(13);
+      doc.text('LISTA DE VISITANTES DO CULTO',14,34);
+
+      doc.setFont('helvetica','normal');
+      doc.setFontSize(10);
+      doc.text(`Data: ${formatarData(dataCulto.value)}`,14,41);
+      doc.text(`Total de visitantes: ${visitantes.length}`,14,47);
+
+      if(typeof doc.autoTable !== 'function'){
+        alert('O módulo de tabela do PDF não foi carregado. Tente novamente.');
+        return;
+      }
+
+      doc.autoTable({
+        startY:54,
+        head:[['Nº','Visitante','Congregação / Cidade','Observação']],
+        body:visitantes.map((item,index)=>[
+          String(index+1),
+          item.nome || '',
+          item.local || '',
+          item.observacao || ''
+        ]),
+        styles:{font:'helvetica',fontSize:9,cellPadding:3},
+        headStyles:{fontStyle:'bold'},
+        columnStyles:{0:{cellWidth:10},1:{cellWidth:55},2:{cellWidth:55},3:{cellWidth:55}},
+        margin:{left:14,right:14}
+      });
+
+      const finalY = doc.lastAutoTable ? doc.lastAutoTable.finalY + 12 : 270;
+      doc.setFontSize(8);
+      doc.setTextColor(100);
+      doc.text('Portal AD Belém 49 - Lista de visitantes',14,Math.min(finalY,285));
+
+      doc.save(`visitantes-${dataCulto.value || hojeISO()}.pdf`);
+    }
+
+    document.addEventListener('keydown',(event)=>{
+      if(!modoApresentacao.classList.contains('aberto')) return;
+
+      if(event.key === 'Escape') fecharApresentacao();
+      if(event.key === 'ArrowLeft' && indiceAtual > 0){indiceAtual--; atualizarApresentacao();}
+      if(event.key === 'ArrowRight' && indiceAtual < visitantes.length-1){indiceAtual++; atualizarApresentacao();}
+    });
+
+    dataCulto.value = hojeISO();
+    carregarVisitantes();
+  </script>
+
+  <script>
+    if(sessionStorage.getItem('acessoSecretaria') !== 'autorizado'){
+      window.location.href = 'area-restrita.html';
+    }
+  </script>
+</body>
+</html>
