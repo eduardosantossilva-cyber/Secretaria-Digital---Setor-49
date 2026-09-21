@@ -1029,7 +1029,7 @@ async function carregarCongregacoes(){
   }
 
   try{
-    const url = API_URL_CONGREGACOES + '?acao=listar&callback=congPublicoCarregar';
+    const url = API_URL_CONGREGACOES + '?acao=listar';
     const resposta = await jsonp(url);
 
     if(!resposta.ok){
