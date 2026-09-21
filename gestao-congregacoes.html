@@ -3,40 +3,97 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gestão de Congregações — Setor 49</title>
+<title>Gestão de Congregações | AD Belém 49</title>
 <style>
-:root{--blue:#159dd1;--green:#079447;--yellow:#f9c414;--red:#b51e2a;--navy:#073c66;--bg:#f6f8fa;--muted:#667085;--ink:#17212b}
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink)}
-header{background:#fff;border-bottom:1px solid #e4e9ee}
-.topo{max-width:1200px;margin:auto;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.marca{display:flex;align-items:center;gap:14px}.marca img{width:58px;height:58px;object-fit:contain}.marca strong{display:block;color:var(--navy);font-size:19px;font-weight:900}.marca span{display:block;margin-top:5px;color:var(--muted);font-size:13px;font-weight:800}
-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap}nav a{padding:9px 11px;border-radius:9px;text-decoration:none;font-size:13px;font-weight:900;color:#344054}.btn-voltar{background:#eef8fc;border:1px solid #cfe7f0;color:var(--navy)!important}.btn-voltar:hover{background:#079447;color:#fff!important}
-main{max-width:1200px;margin:auto;padding:42px 22px 70px}.hero{background:#fff;border:1px solid #dce3e8;border-left:6px solid var(--green);border-radius:18px;padding:28px;box-shadow:0 10px 30px rgba(16,24,40,.05);margin-bottom:24px}.hero h1{margin:0;color:var(--navy);font-size:30px}.hero p{margin:8px 0 0;color:var(--muted);line-height:1.6;font-size:14px}
-.painel{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-bottom:22px}.box{background:#fff;border:1px solid #dce3e8;border-radius:18px;padding:22px;box-shadow:0 10px 30px rgba(16,24,40,.05)}.box h2{margin:0 0 16px;color:var(--navy);font-size:19px}
-.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.campo{display:flex;flex-direction:column;gap:6px}.campo.full{grid-column:1/-1}.campo label{font-size:12px;font-weight:900;color:#475467}.campo input,.campo select,.campo textarea{width:100%;padding:11px 12px;border:1px solid #d7dee4;border-radius:10px;background:#fff;font:inherit;outline:none}.campo textarea{min-height:90px;resize:vertical}.campo input:focus,.campo select:focus,.campo textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(21,157,209,.12)}
-.acoes{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.btn{border:0;border-radius:10px;padding:11px 15px;font-size:12px;font-weight:900;cursor:pointer}.btn-primary{background:var(--green);color:#fff}.btn-primary:hover{background:#057a3b}.btn-secondary{background:#fff;border:1px solid #d7dee4;color:#344054}.btn-danger{background:#fff0f1;color:var(--red);border:1px solid #f0c5ca}.status{font-size:12px;color:var(--muted);line-height:1.5}
-.tools{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:14px}.tools input{flex:1;min-width:220px;padding:12px 14px;border:1px solid #d7dee4;border-radius:10px;font:inherit}.tools select{width:260px;padding:12px 14px;border:1px solid #d7dee4;border-radius:10px;background:#fff;font:inherit}.count{font-size:12px;font-weight:900;color:var(--muted);white-space:nowrap}
-.table-wrap{overflow:auto;border:1px solid #e4e9ee;border-radius:12px}.table{width:100%;border-collapse:collapse;min-width:900px;background:#fff}.table th{background:#073c66;color:#fff;padding:11px 10px;text-align:left;font-size:11px;letter-spacing:.2px}.table td{padding:11px 10px;border-top:1px solid #edf0f3;font-size:12px;vertical-align:top}.table tr:hover td{background:#f8fbfd}.acoes-linha{display:flex;gap:6px;flex-wrap:wrap}.mini{padding:7px 9px;border-radius:8px;font-size:10px;font-weight:900;cursor:pointer;border:1px solid #d7dee4;background:#fff}.mini.editar{color:var(--navy)}.mini.excluir{color:var(--red)}
-.badge{display:inline-block;padding:5px 8px;border-radius:999px;font-size:10px;font-weight:900}.badge.ativa{background:#eaf7ef;color:#06743a}.badge.inativa{background:#fff0f1;color:var(--red)}.tipo{color:var(--muted);font-size:10px;font-weight:900}.loading,.empty,.erro{padding:25px;text-align:center;color:var(--muted);font-size:13px}.erro{color:var(--red);background:#fff5f5;text-align:left;border-left:4px solid var(--red);border-radius:8px}
-footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font-size:13px}
-.modal{display:none;position:fixed;inset:0;background:rgba(7,60,102,.45);align-items:center;justify-content:center;padding:20px;z-index:50}.modal.open{display:flex}.modal-card{width:min(620px,100%);background:#fff;border-radius:18px;padding:24px;box-shadow:0 25px 70px rgba(16,24,40,.25)}.modal-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.modal-top h3{margin:0;color:var(--navy);font-size:20px}.fechar{width:36px;height:36px;border-radius:9px;border:1px solid #d7dee4;background:#fff;font-size:20px;cursor:pointer}
-@media(max-width:850px){.painel{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.campo.full{grid-column:auto}.topo{flex-direction:column;align-items:flex-start}.marca strong{font-size:17px}nav{width:100%}}
-@media(max-width:650px){main{padding:25px 14px 55px}.hero{padding:22px}.hero h1{font-size:25px}.tools input,.tools select{width:100%;min-width:0}.tools{align-items:stretch}.count{width:100%}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#f6f8fa;color:#073c66}
+header{background:linear-gradient(135deg,#073c66,#159dd1);color:#fff;padding:22px 20px;box-shadow:0 3px 10px rgba(0,0,0,.15)}
+.cabecalho{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:30px}
+.titulo{flex:1}.titulo h1{font-size:30px;margin-bottom:6px;line-height:1.2}.titulo p{font-size:16px;opacity:.92}
+.acoes-cabecalho{display:flex;align-items:center;gap:18px}
+.btn-sair{display:inline-flex;align-items:center;justify-content:center;height:42px;padding:0 18px;background:#fff;color:#073c66;text-decoration:none;font-size:15px;font-weight:900;border-radius:9px;white-space:nowrap}
+.btn-sair:hover{background:#eef8fc}
+.logo{width:70px;height:70px;object-fit:contain;background:#fff;border-radius:14px;padding:5px}
+main{max-width:1200px;margin:26px auto;padding:0 20px 45px}
+.resumo{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:24px}
+.card{background:#fff;border-radius:14px;padding:22px;min-height:112px;display:flex;flex-direction:column;justify-content:center;box-shadow:0 3px 12px rgba(0,0,0,.08);border-left:5px solid #159dd1}
+.card h3{font-size:14px;color:#666;margin-bottom:10px}.numero{font-size:32px;font-weight:bold;color:#073c66}
+.card.ativas{border-left-color:#079447}.card.inativas{border-left-color:#f47a20}.card.regionais{border-left-color:#f9c414}
+.secao{background:#fff;border-radius:15px;padding:25px;border-top:4px solid #159dd1;box-shadow:0 3px 12px rgba(0,0,0,.08);margin-bottom:24px}
+.secao-titulo{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:20px}.secao-titulo h2{font-size:21px}
+.acoes-secao{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.campo{display:flex;flex-direction:column;gap:7px}.campo.full{grid-column:1/-1}.campo label{font-size:13px;font-weight:bold;color:#666}.campo input,.campo select,.campo textarea{width:100%;padding:12px 13px;border:1px solid #d9dfe3;border-radius:8px;background:#fff;font:inherit;color:#333;outline:none}.campo textarea{min-height:95px;resize:vertical}.campo input:focus,.campo select:focus,.campo textarea:focus{border-color:#159dd1;box-shadow:0 0 0 3px rgba(21,157,209,.12)}
+.botoes{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+button{border:none;border-radius:8px;padding:12px 20px;background:#159dd1;color:#fff;font-size:14px;font-weight:bold;cursor:pointer}
+button:hover{filter:brightness(.97)}button:disabled{opacity:.6;cursor:not-allowed}
+.btn-secundario{background:#fff;color:#073c66;border:1px solid #d9dfe3}.btn-secundario:hover{background:#f6f8fa}
+.btn-salvar{background:#079447}.btn-salvar:hover{background:#057a3b}
+.btn-link{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;background:#159dd1;color:#fff;border-radius:8px;padding:12px 16px;font-size:14px;font-weight:bold}
+.btn-link:hover{background:#117fad}
+.status-msg{margin-top:14px;font-size:13px;color:#667085;line-height:1.5}
+.busca{display:flex;gap:10px;margin-bottom:18px;background:#f6f8fa;padding:12px;border-radius:10px;align-items:center}.busca input{flex:1;padding:13px 15px;border:1px solid #ddd;border-radius:8px;background:#fff;font-size:15px;outline:none}.busca select{width:270px;padding:13px 15px;border:1px solid #ddd;border-radius:8px;background:#fff;font-size:15px;outline:none;color:#333}.busca input:focus,.busca select:focus{border-color:#159dd1;box-shadow:0 0 0 3px rgba(21,157,209,.12)}
+.contador{font-size:13px;font-weight:900;color:#667085;white-space:nowrap}
+.table-wrap{overflow:auto;border:1px solid #e4e4e4;border-radius:10px}.table{width:100%;border-collapse:collapse;min-width:950px;background:#fff}.table th{background:#073c66;color:#fff;padding:12px 10px;text-align:left;font-size:12px}.table td{padding:12px 10px;border-top:1px solid #edf0f3;font-size:13px;color:#333;vertical-align:top}.table tr:hover td{background:#f9fbfc}.tipo{display:inline-flex;margin-top:6px;padding:5px 10px;border-radius:20px;background:#eef8fc;color:#159dd1;font-size:11px;font-weight:900}
+.status-badge{display:inline-flex;padding:6px 11px;border-radius:20px;font-size:12px;font-weight:bold}.status-ativa{background:#eefaf3;color:#079447}.status-inativa{background:#fff3e8;color:#f47a20}
+.acoes-linha{display:flex;gap:6px;flex-wrap:wrap}.mini{padding:8px 10px;border-radius:8px;font-size:11px;font-weight:900;cursor:pointer}.mini.editar{background:#e9f7fd;color:#159dd1;border:1px solid #cfe7f0}.mini.excluir{background:#fff0f1;color:#b51e2a;border:1px solid #f0c5ca}
+.carregando{text-align:center;padding:35px;color:#777}.vazio{text-align:center;padding:45px 20px;color:#777}.vazio .icone{font-size:42px;margin-bottom:12px}.erro{padding:18px;color:#b51e2a;background:#fff5f5;border-left:4px solid #b51e2a;border-radius:8px;font-size:13px;line-height:1.5}
+.selo{font-size:12px;color:#667085;line-height:1.5}
+footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font-size:13px;margin-top:0}
+.modal{display:none;position:fixed;inset:0;background:rgba(7,60,102,.45);align-items:center;justify-content:center;padding:20px;z-index:50}.modal.open{display:flex}.modal-card{width:min(620px,100%);background:#fff;border-radius:15px;padding:25px;box-shadow:0 25px 70px rgba(16,24,40,.25);border-top:4px solid #159dd1}.modal-top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:20px}.modal-top h3{font-size:21px;color:#073c66}.fechar{width:38px;height:38px;padding:0;border:1px solid #d9dfe3;background:#fff;color:#073c66;font-size:21px;line-height:1}.fechar:hover{background:#f6f8fa}
+@media(max-width:800px){.cabecalho{align-items:flex-start}.titulo h1{font-size:22px}main{padding:0 14px 35px}.resumo{grid-template-columns:repeat(2,1fr)}.secao{padding:18px}.form-grid{grid-template-columns:1fr}.campo.full{grid-column:auto}.busca{flex-direction:column;align-items:stretch}.busca select{width:100%}.contador{width:100%}}
+@media(max-width:500px){.logo{width:58px;height:58px}.titulo h1{font-size:20px}.titulo p{font-size:13px}.resumo{grid-template-columns:1fr}.secao-titulo{align-items:stretch;flex-direction:column}.secao-titulo button,.acoes-secao a{width:100%}.busca{padding:10px}.botoes{flex-direction:column}.botoes button{width:100%}.cabecalho{flex-direction:column}.acoes-cabecalho{width:100%;justify-content:space-between}.btn-sair{flex:1}}
 </style>
 </head>
 <body>
-<header><div class="topo"><div class="marca"><img src="assets/Logo-Belem.png" alt="AD Belém"><div><strong>ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM</strong><span>SETOR 49 - JARDIM DOS PIMENTAS</span></div></div><nav><a class="btn-voltar" href="area-administrativa.html">← Área Administrativa</a><a href="congregacoes.html">⛪ Ver congregações</a><a href="#" id="sair">🚪 Sair</a></nav></div></header>
+<header><div class="cabecalho">
+  <div class="titulo"><h1>⛪ Gestão de Congregações</h1><p>Secretaria Digital — AD Belém 49</p></div>
+  <div class="acoes-cabecalho"><a href="area-administrativa.html" class="btn-sair">← Sair</a><img src="assets/Logo-Belem.png" class="logo" alt="AD Belém"></div>
+</div></header>
+
 <main>
-<section class="hero"><h1>⛪ Gestão de Congregações</h1><p>Cadastre, edite e mantenha atualizados os nomes, endereços, regionais e situação das congregações exibidas no portal.</p></section>
-<div class="painel">
-<section class="box"><h2 id="tituloFormulario">➕ Nova congregação</h2><form id="formCong"><input type="hidden" id="id"><div class="form-grid"><div class="campo"><label for="congregacao">Congregação</label><input id="congregacao" required placeholder="Ex.: JD. ALICE"></div><div class="campo"><label for="tipo">Tipo</label><select id="tipo"><option>Sede</option><option selected>Congregação</option></select></div><div class="campo"><label for="regional">Regional</label><select id="regional"><option value="">Selecione</option><option>Regional 01 — Siquém</option><option>Regional 02 — Betel</option><option>Regional 03 — Hebron</option><option>Regional 04 — Moriá</option></select></div><div class="campo"><label for="status">Status</label><select id="status"><option selected>Ativa</option><option>Inativa</option></select></div><div class="campo full"><label for="endereco">Endereço</label><input id="endereco" required placeholder="Rua, número, bairro"></div><div class="campo"><label for="cidade">Cidade</label><input id="cidade" value="Guarulhos"></div><div class="campo"><label for="estado">Estado</label><input id="estado" value="SP"></div><div class="campo full"><label for="observacoes">Observações</label><textarea id="observacoes" placeholder="Informações adicionais (opcional)"></textarea></div></div><div class="acoes"><button class="btn btn-primary" type="submit" id="btnSalvar">💾 Salvar congregação</button><button class="btn btn-secondary" type="button" id="btnLimpar">Limpar</button></div></form></section>
-<section class="box"><h2>🔧 Conexão</h2><p class="status">A página usa a mesma API das congregações. Depois de publicar o Apps Script, coloque a URL /exec no campo <strong>API_URL</strong> deste arquivo.</p><div class="acoes"><button class="btn btn-secondary" type="button" id="btnAtualizar">🔄 Atualizar lista</button></div><div id="mensagem" class="status" style="margin-top:14px"></div></section>
-</div>
-<section class="box"><div class="tools"><input id="busca" placeholder="🔎 Pesquisar nome ou endereço..."><select id="filtroRegional"><option value="">Todas as regionais</option></select><div class="count" id="count">0 congregações</div></div><div id="lista" class="loading">Carregando congregações...</div></section>
+  <section class="resumo">
+    <div class="card"><h3>Total de congregações</h3><div class="numero" id="totalCongregacoes">0</div></div>
+    <div class="card ativas"><h3>Ativas</h3><div class="numero" id="totalAtivas">0</div></div>
+    <div class="card inativas"><h3>Inativas</h3><div class="numero" id="totalInativas">0</div></div>
+    <div class="card regionais"><h3>Regionais</h3><div class="numero" id="totalRegionais">0</div></div>
+  </section>
+
+  <section class="secao">
+    <div class="secao-titulo">
+      <h2 id="tituloFormulario">➕ Nova congregação</h2>
+      <div class="acoes-secao"><a class="btn-link" href="congregacoes.html">⛪ Ver congregações</a><button type="button" onclick="carregar()">↻ Atualizar lista</button></div>
+    </div>
+    <form id="formCong">
+      <input type="hidden" id="id">
+      <div class="form-grid">
+        <div class="campo"><label for="congregacao">Congregação</label><input id="congregacao" required placeholder="Ex.: JD. ALICE"></div>
+        <div class="campo"><label for="tipo">Tipo</label><select id="tipo"><option>Sede</option><option selected>Congregação</option></select></div>
+        <div class="campo"><label for="regional">Regional</label><select id="regional"><option value="">Selecione</option><option>Regional 01 — Siquém</option><option>Regional 02 — Betel</option><option>Regional 03 — Hebron</option><option>Regional 04 — Moriá</option></select></div>
+        <div class="campo"><label for="status">Status</label><select id="status"><option selected>Ativa</option><option>Inativa</option></select></div>
+        <div class="campo full"><label for="endereco">Endereço</label><input id="endereco" required placeholder="Rua, número, bairro"></div>
+        <div class="campo"><label for="cidade">Cidade</label><input id="cidade" value="Guarulhos"></div>
+        <div class="campo"><label for="estado">Estado</label><input id="estado" value="SP"></div>
+        <div class="campo full"><label for="observacoes">Observações</label><textarea id="observacoes" placeholder="Informações adicionais (opcional)"></textarea></div>
+      </div>
+      <div class="botoes">
+        <button class="btn-salvar" type="submit" id="btnSalvar">💾 Salvar congregação</button>
+        <button class="btn-secundario" type="button" id="btnLimpar">Limpar formulário</button>
+      </div>
+    </form>
+    <div id="mensagem" class="status-msg">Conectado à API de Congregações.</div>
+  </section>
+
+  <section class="secao">
+    <div class="secao-titulo"><h2>📋 Congregações cadastradas</h2><span class="selo">Os dados abaixo são carregados diretamente da planilha.</span></div>
+    <div class="busca"><input id="busca" placeholder="🔎 Digite nome, endereço ou cidade..."><select id="filtroRegional"><option value="">Todas as regionais</option></select><div class="contador" id="count">0 congregações</div></div>
+    <div id="lista" class="carregando">Carregando congregações...</div>
+  </section>
 </main>
+
 <footer>ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM · SETOR 49 - JARDIM DOS PIMENTAS<br><small>PORTAL AD BELÉM - SETOR 49</small></footer>
-<div class="modal" id="modal"><div class="modal-card"><div class="modal-top"><h3>Editar congregação</h3><button class="fechar" id="fecharModal">×</button></div><div id="modalConteudo"></div></div></div>
+
+<div class="modal" id="modal"><div class="modal-card"><div class="modal-top"><h3>Editar congregação</h3><button type="button" class="fechar" id="fecharModal">×</button></div><div id="modalConteudo"></div></div></div>
+
 <script>
 const API_URL = "https://script.google.com/macros/s/AKfycbyXcmVW-dEGXuRLh2g9gzcQIXACQHPaqsw-Prwvwuyi2y3DPkcdQXzkg7v4ftPDLtW-cw/exec";
 let dados=[];
@@ -45,15 +102,17 @@ function autorizado(){if(sessionStorage.getItem("acessoSecretaria")!=="autorizad
 function normalizar(v){return String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().trim()}
 function jsonp(url){return new Promise((resolve,reject)=>{const nome='congCb_'+Date.now()+'_'+Math.floor(Math.random()*10000);const s=document.createElement('script');let timer=setTimeout(()=>{delete window[nome];s.remove();reject(new Error('Tempo esgotado ao conectar com a API.'))},15000);window[nome]=r=>{clearTimeout(timer);delete window[nome];s.remove();resolve(r)};s.onerror=()=>{clearTimeout(timer);delete window[nome];s.remove();reject(new Error('Não foi possível acessar a API.'))};s.src=url+(url.includes('?')?'&':'?')+'callback='+nome;document.body.appendChild(s)})}
 function montarUrl(acao,params={}){const q=new URLSearchParams({acao,...params});return API_URL+'?'+q.toString()}
-function preencherRegionais(){const select=$('filtroRegional');const atuais=[...new Set(dados.map(x=>x.regional).filter(Boolean))].sort();select.innerHTML='<option value="">Todas as regionais</option>'+atuais.map(x=>'<option>'+esc(x)+'</option>').join('')}
+function preencherRegionais(){const select=$('filtroRegional');const atuais=[...new Set(dados.map(x=>x.regional).filter(Boolean))].sort();const atual=select.value;select.innerHTML='<option value="">Todas as regionais</option>'+atuais.map(x=>'<option>'+esc(x)+'</option>').join('');if(atuais.includes(atual))select.value=atual}
 function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
-function render(){const q=normalizar($('busca').value);const reg=$('filtroRegional').value;const filtrados=dados.filter(x=>(!q||normalizar(x.congregacao+' '+x.endereco+' '+x.cidade).includes(q))&&(!reg||x.regional===reg));$('count').textContent=filtrados.length+(filtrados.length===1?' congregação':' congregações');if(!filtrados.length){$('lista').innerHTML='<div class="empty">Nenhuma congregação encontrada.</div>';return}let h='<div class="table-wrap"><table class="table"><thead><tr><th>ID</th><th>Congregação</th><th>Regional</th><th>Endereço</th><th>Status</th><th>Ações</th></tr></thead><tbody>';h+=filtrados.map(x=>`<tr><td>${esc(x.id)}</td><td><strong>${esc(x.congregacao)}</strong><div class="tipo">${esc(x.tipo)}</div></td><td>${esc(x.regional)}</td><td>${esc(x.endereco)}<br><span style="color:#667085">${esc(x.cidade)} — ${esc(x.estado)}</span></td><td><span class="badge ${normalizar(x.status)==='ATIVA'?'ativa':'inativa'}">${esc(x.status)}</span></td><td><div class="acoes-linha"><button class="mini editar" onclick="editar('${esc(x.id)}')">✏️ Editar</button><button class="mini excluir" onclick="excluirRegistro('${esc(x.id)}')">🗑️ Excluir</button></div></td></tr>`).join('');h+='</tbody></table></div>';$('lista').innerHTML=h}
-async function carregar(){if(API_URL.startsWith('COLE_')){$('lista').innerHTML='<div class="erro">Configure a URL da API neste arquivo antes de usar a gestão.</div>';return} $('lista').innerHTML='<div class="loading">Carregando congregações...</div>';try{const r=await jsonp(montarUrl('listar'));if(!r.ok)throw new Error(r.mensagem||'Erro da API');dados=r.dados||[];preencherRegionais();render();$('mensagem').textContent=`${dados.length} registros carregados.`}catch(e){$('lista').innerHTML='<div class="erro">'+esc(e.message)+'</div>';$('mensagem').textContent=e.message}}
+function atualizarResumo(){const ativas=dados.filter(x=>normalizar(x.status)==='ATIVA').length;const inativas=dados.filter(x=>normalizar(x.status)==='INATIVA').length;const regionais=new Set(dados.map(x=>x.regional).filter(Boolean));$('totalCongregacoes').textContent=dados.length;$('totalAtivas').textContent=ativas;$('totalInativas').textContent=inativas;$('totalRegionais').textContent=regionais.size}
+function render(){const q=normalizar($('busca').value);const reg=$('filtroRegional').value;const filtrados=dados.filter(x=>(!q||normalizar(x.congregacao+' '+x.endereco+' '+x.cidade).includes(q))&&(!reg||x.regional===reg));$('count').textContent=filtrados.length+(filtrados.length===1?' congregação':' congregações');if(!filtrados.length){$('lista').innerHTML='<div class="vazio"><div class="icone">⛪</div><strong>Nenhuma congregação encontrada</strong><p>Não há registros para os filtros selecionados.</p></div>';return}let h='<div class="table-wrap"><table class="table"><thead><tr><th>ID</th><th>Congregação</th><th>Regional</th><th>Endereço</th><th>Status</th><th>Ações</th></tr></thead><tbody>';h+=filtrados.map(x=>`<tr><td>${esc(x.id)}</td><td><strong>${esc(x.congregacao)}</strong><div class="tipo">${esc(x.tipo)}</div></td><td>${esc(x.regional)}</td><td>${esc(x.endereco)}<br><span style="color:#667085">${esc(x.cidade)} — ${esc(x.estado)}</span></td><td><span class="status-badge ${normalizar(x.status)==='ATIVA'?'status-ativa':'status-inativa'}">${esc(x.status)}</span></td><td><div class="acoes-linha"><button class="mini editar" onclick="editar('${escAttr(x.id)}')">✏️ Editar</button><button class="mini excluir" onclick="excluirRegistro('${escAttr(x.id)}')">🗑️ Excluir</button></div></td></tr>`).join('');h+='</tbody></table></div>';$('lista').innerHTML=h}
+async function carregar(){ $('lista').innerHTML='<div class="carregando">Carregando congregações...</div>';try{const r=await jsonp(montarUrl('listar'));if(!r.ok)throw new Error(r.mensagem||'Erro da API');dados=r.dados||[];atualizarResumo();preencherRegionais();render();$('mensagem').textContent=`${dados.length} registros carregados com sucesso.`}catch(e){$('lista').innerHTML='<div class="erro">'+esc(e.message)+'</div>';$('mensagem').textContent=e.message}}
 function limpar(){['id','congregacao','endereco','observacoes'].forEach(id=>$(id).value='');$('tipo').value='Congregação';$('regional').value='';$('status').value='Ativa';$('cidade').value='Guarulhos';$('estado').value='SP';$('tituloFormulario').textContent='➕ Nova congregação';$('btnSalvar').textContent='💾 Salvar congregação'}
 function editar(id){const x=dados.find(r=>String(r.id)===String(id));if(!x)return;$('id').value=x.id;$('congregacao').value=x.congregacao;$('tipo').value=x.tipo||'Congregação';$('regional').value=x.regional||'';$('status').value=x.status||'Ativa';$('endereco').value=x.endereco||'';$('cidade').value=x.cidade||'Guarulhos';$('estado').value=x.estado||'SP';$('observacoes').value=x.observacoes||'';$('tituloFormulario').textContent='✏️ Editar congregação';$('btnSalvar').textContent='💾 Atualizar congregação';window.scrollTo({top:0,behavior:'smooth'})}
 async function excluirRegistro(id){const x=dados.find(r=>String(r.id)===String(id));if(!x)return;if(!confirm('Excluir a congregação “'+x.congregacao+'”?'))return;try{const r=await jsonp(montarUrl('excluir',{id:x.id}));if(!r.ok)throw new Error(r.mensagem||'Não foi possível excluir.');$('mensagem').textContent=r.mensagem;await carregar()}catch(e){alert(e.message)}}
-$('formCong').addEventListener('submit',async e=>{e.preventDefault();if(API_URL.startsWith('COLE_')){alert('Configure a URL da API primeiro.');return}const params={id:$('id').value,congregacao:$('congregacao').value,tipo:$('tipo').value,regional:$('regional').value,endereco:$('endereco').value,cidade:$('cidade').value,estado:$('estado').value,status:$('status').value,observacoes:$('observacoes').value};$('btnSalvar').disabled=true;try{const r=await jsonp(montarUrl('salvar',params));if(!r.ok)throw new Error(r.mensagem||'Erro ao salvar.');$('mensagem').textContent=r.mensagem;limpar();await carregar()}catch(e){alert(e.message)}finally{$('btnSalvar').disabled=false}});
-$('btnLimpar').onclick=limpar;$('btnAtualizar').onclick=carregar;$('busca').addEventListener('input',render);$('filtroRegional').addEventListener('change',render);$('sair').onclick=e=>{e.preventDefault();sessionStorage.removeItem('acessoSecretaria');window.location.href='index.html'};
+$('formCong').addEventListener('submit',async e=>{e.preventDefault();const params={id:$('id').value,congregacao:$('congregacao').value,tipo:$('tipo').value,regional:$('regional').value,endereco:$('endereco').value,cidade:$('cidade').value,estado:$('estado').value,status:$('status').value,observacoes:$('observacoes').value};$('btnSalvar').disabled=true;$('btnSalvar').textContent='⏳ Salvando...';try{const r=await jsonp(montarUrl('salvar',params));if(!r.ok)throw new Error(r.mensagem||'Erro ao salvar.');$('mensagem').textContent=r.mensagem;limpar();await carregar()}catch(e){alert(e.message)}finally{$('btnSalvar').disabled=false;if(!$('id').value)$('btnSalvar').textContent='💾 Salvar congregação';else $('btnSalvar').textContent='💾 Atualizar congregação'}});
+$('btnLimpar').onclick=limpar;$('busca').addEventListener('input',render);$('filtroRegional').addEventListener('change',render);$('sair').onclick=e=>{e.preventDefault();sessionStorage.removeItem('acessoSecretaria');window.location.href='index.html'};
+function escAttr(v){return String(v??'').replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/\n/g,' ')}
 $('fecharModal').onclick=()=>$('modal').classList.remove('open');
 if(autorizado())carregar();
 </script>
