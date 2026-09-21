@@ -1,13 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="pt-BR">
-
 <head>
-
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>Congregações — Setor 49</title>
-
 <style>
 
 :root{
@@ -675,283 +672,130 @@ footer{
 
 }
 
+
+/* CONGREGAÇÕES DINÂMICAS */
+.loading{padding:35px;text-align:center;color:#667085;font-size:13px}.church-card .church-body{min-width:0}.erro{padding:16px;border-radius:10px;background:#fff5f5;border-left:4px solid #b51e2a;color:#667085;font-size:12px;line-height:1.5}.empty[style]{margin-top:0}
 </style>
-
 </head>
-
 <body>
-
-
 <!-- =========================
      BOTÃO DE ATENDIMENTO
 ========================= -->
-
-<button
-  class="atendimento-botao"
-  id="atendimentoBotao"
-  type="button"
->
+<button class="atendimento-botao" id="atendimentoBotao" type="button">
   💬 Atendimento
 </button>
-
-
 <!-- =========================
      JANELA DE ATENDIMENTO
 ========================= -->
-
-<div
-  class="atendimento-chat"
-  id="atendimentoChat"
->
-
-  <div class="atendimento-header">
-
-    <div>
-
-      <strong>
+<div class="atendimento-chat" id="atendimentoChat">
+<div class="atendimento-header">
+<div>
+<strong>
         💬 Atendimento
       </strong>
-
-      <small>
+<small>
         Secretaria Digital — Setor 49
       </small>
-
-    </div>
-
-    <button
-      class="atendimento-fechar"
-      id="atendimentoFechar"
-      type="button"
-    >
+</div>
+<button class="atendimento-fechar" id="atendimentoFechar" type="button">
       ×
     </button>
-
-  </div>
-
-
-  <div class="atendimento-corpo">
-
-    <div
-      class="atendimento-opcoes"
-      id="atendimentoOpcoes"
-    >
-
-      <button
-        type="button"
-        class="atendimento-opcao"
-        id="novaSolicitacao"
-      >
+</div>
+<div class="atendimento-corpo">
+<div class="atendimento-opcoes" id="atendimentoOpcoes">
+<button class="atendimento-opcao" id="novaSolicitacao" type="button">
         💬 Fazer uma solicitação
       </button>
-
-      <button
-        type="button"
-        class="atendimento-opcao"
-        id="consultarProtocolo"
-      >
+<button class="atendimento-opcao" id="consultarProtocolo" type="button">
         🔎 Consultar protocolo
       </button>
-
-    </div>
-
-
-    <div
-      id="formularioAtendimento"
-      style="display:none;"
-    >
-
-      <p>
+</div>
+<div id="formularioAtendimento" style="display:none;">
+<p>
         Olá! Como podemos ajudar?
         Preencha os dados abaixo para enviar sua solicitação.
       </p>
-
-
-      <div class="atendimento-campo">
-
-        <label for="atendimentoNome">
+<div class="atendimento-campo">
+<label for="atendimentoNome">
           Nome
         </label>
-
-        <input
-          type="text"
-          id="atendimentoNome"
-          placeholder="Digite seu nome"
-        >
-
-      </div>
-
-
-      <div class="atendimento-campo">
-
-        <label for="atendimentoWhatsapp">
+<input id="atendimentoNome" placeholder="Digite seu nome" type="text"/>
+</div>
+<div class="atendimento-campo">
+<label for="atendimentoWhatsapp">
           WhatsApp
         </label>
-
-        <input
-          type="tel"
-          id="atendimentoWhatsapp"
-          placeholder="(11) 99999-9999"
-        >
-
-      </div>
-
-
-      <div class="atendimento-campo">
-
-        <label for="atendimentoTipo">
+<input id="atendimentoWhatsapp" placeholder="(11) 99999-9999" type="tel"/>
+</div>
+<div class="atendimento-campo">
+<label for="atendimentoTipo">
           Tipo de atendimento
         </label>
-
-        <select id="atendimentoTipo">
-
-          <option value="">
+<select id="atendimentoTipo">
+<option value="">
             Selecione uma opção
           </option>
-
-          <option value="Dúvida">
+<option value="Dúvida">
             Dúvida
           </option>
-
-          <option value="Solicitação">
+<option value="Solicitação">
             Solicitação
           </option>
-
-          <option value="Informação">
+<option value="Informação">
             Informação
           </option>
-
-          <option value="Outro">
+<option value="Outro">
             Outro
           </option>
-
-        </select>
-
-      </div>
-
-
-      <div class="atendimento-campo">
-
-        <label for="atendimentoAssunto">
+</select>
+</div>
+<div class="atendimento-campo">
+<label for="atendimentoAssunto">
           Assunto
         </label>
-
-        <input
-          type="text"
-          id="atendimentoAssunto"
-          placeholder="Sobre o que você precisa?"
-        >
-
-      </div>
-
-
-      <div class="atendimento-campo">
-
-        <label for="atendimentoMensagem">
+<input id="atendimentoAssunto" placeholder="Sobre o que você precisa?" type="text"/>
+</div>
+<div class="atendimento-campo">
+<label for="atendimentoMensagem">
           Mensagem
         </label>
-
-        <textarea
-          id="atendimentoMensagem"
-          placeholder="Digite sua dúvida ou solicitação..."
-        ></textarea>
-
-      </div>
-
-
-      <button
-        class="atendimento-enviar"
-        id="atendimentoEnviar"
-        type="button"
-      >
+<textarea id="atendimentoMensagem" placeholder="Digite sua dúvida ou solicitação..."></textarea>
+</div>
+<button class="atendimento-enviar" id="atendimentoEnviar" type="button">
         ENVIAR SOLICITAÇÃO →
       </button>
-
-
-      <button
-        type="button"
-        class="atendimento-voltar"
-        id="voltarSolicitacao"
-      >
+<button class="atendimento-voltar" id="voltarSolicitacao" type="button">
         ← Voltar
       </button>
-
-    </div>
-
-
-    <div
-      id="consultaProtocolo"
-      style="display:none;"
-    >
-
-      <p>
+</div>
+<div id="consultaProtocolo" style="display:none;">
+<p>
         Digite seu protocolo para consultar
         o andamento da sua solicitação.
       </p>
-
-
-      <div class="atendimento-campo">
-
-        <label for="numeroProtocolo">
+<div class="atendimento-campo">
+<label for="numeroProtocolo">
           Número do protocolo
         </label>
-
-        <input
-          type="text"
-          id="numeroProtocolo"
-          placeholder="ATD-2026-000001"
-        >
-
-      </div>
-
-
-      <button
-        type="button"
-        class="atendimento-enviar"
-        id="botaoConsultar"
-      >
+<input id="numeroProtocolo" placeholder="ATD-2026-000001" type="text"/>
+</div>
+<button class="atendimento-enviar" id="botaoConsultar" type="button">
         CONSULTAR PROTOCOLO →
       </button>
-
-
-      <button
-        type="button"
-        class="atendimento-voltar"
-        id="voltarAtendimento"
-      >
+<button class="atendimento-voltar" id="voltarAtendimento" type="button">
         ← Voltar
       </button>
-
-    </div>
-
-
-    <div
-      id="resultadoProtocolo"
-      style="display:none;"
-    ></div>
-
-  </div>
-
 </div>
-
-
+<div id="resultadoProtocolo" style="display:none;"></div>
+</div>
+</div>
 <!-- =========================
      CABEÇALHO
 ========================= -->
-
 <header>
-
 <div class="nav">
-
-<a
-  class="brand"
-  href="index.html"
->
-
-<img
-  src="logo.png"
-  onerror="this.style.display='none'"
->
-
+<a class="brand" href="index.html">
+<img onerror="this.style.display='none'" src="logo.png"/>
 <span>
 
 ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM
@@ -959,2026 +803,254 @@ ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM
 <small>
 SETOR 49 - JARDIM DOS PIMENTAS
 </small>
-
 </span>
-
 </a>
-
-
 <nav>
-
 <a href="index.html">
 Início
 </a>
-
-<a
-  href="area-restrita.html"
-  class="area-restrita-link"
->
+<a class="area-restrita-link" href="area-restrita.html">
 🔒 Área Restrita
 </a>
-
 </nav>
-
-
-<button
-  class="menu-toggle"
-  id="menuToggle"
-  aria-label="Abrir menu"
-  aria-expanded="false"
->
+<button aria-expanded="false" aria-label="Abrir menu" class="menu-toggle" id="menuToggle">
 ☰
 </button>
-
-
-<div
-  class="mobile-menu"
-  id="mobileMenu"
->
-
+<div class="mobile-menu" id="mobileMenu">
 <a href="index.html">
 Início
 </a>
-
-<a
-  href="area-restrita.html"
-  class="area-restrita-link"
->
+<a class="area-restrita-link" href="area-restrita.html">
 🔒 Área Restrita
 </a>
-
 </div>
-
 </div>
-
 </header>
-
 <!-- =========================
      BANNER
 ========================= -->
-
 <section class="hero">
-
-  <div class="hero-inner">
-
-    <div class="eyebrow">
+<div class="hero-inner">
+<div class="eyebrow">
       PORTAL AD BELÉM - SETOR 49
     </div>
-
-    <h1>
+<h1>
       Nossas Congregações
     </h1>
-
-    <p>
+<p>
       Consulte os endereços das congregações do Setor 49 e abra diretamente a rota no Google Maps.
     </p>
-
-  </div>
-
+</div>
 </section>
-
-
 <!-- =========================
      CONTEÚDO
 ========================= -->
-
 <main>
-
-  <div class="tools">
-
-    <input
-      id="search"
-      type="search"
-      placeholder="🔎 Pesquisar pelo nome ou endereço..."
-      aria-label="Pesquisar congregação ou endereço"
-    >
-
-
-    <select
-      id="regionalFilter"
-      aria-label="Filtrar por regional"
-    >
-
-      <option value="">
+<div class="tools">
+<input aria-label="Pesquisar congregação ou endereço" id="search" placeholder="🔎 Pesquisar pelo nome ou endereço..." type="search"/>
+<select aria-label="Filtrar por regional" id="regionalFilter">
+<option value="">
         Todas as regionais
       </option>
-
-      <option value="regional-01">
+<option value="regional-01">
         Regional 01 — Siquém
       </option>
-
-      <option value="regional-02">
+<option value="regional-02">
         Regional 02 — Betel
       </option>
-
-      <option value="regional-03">
+<option value="regional-03">
         Regional 03 — Hebron
       </option>
-
-      <option value="regional-04">
+<option value="regional-04">
         Regional 04 — Moriá
       </option>
-
-    </select>
-
-
-    <div
-      class="count"
-      id="count"
-    >
+</select>
+<div class="count" id="count">
       37 congregações
     </div>
-
-  </div>
-
-
-  <section
-    class="grid"
-    id="grid"
-  >
-
-
-    <!-- =========================
-         PARQUE SÃO MIGUEL
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="parque são miguel - sede"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          SEDE · REGIONAL 01 — SIQUÉM
-        </div>
-
-        <h2>
-          PARQUE SÃO MIGUEL
-        </h2>
-
-        <p>
-          RUA ANTONIO BITTENCOURT, 684 - JARDIM DOS PIMENTAS - PARQUE SÃO MIGUEL
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20ANTONIO%20BITTENCOURT%2C%20684%20-%20JARDIM%20DOS%20PIMENTAS%20-%20PARQUE%20S%C3%83O%20MIGUEL%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. ALICE
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. alice"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. ALICE
-        </h2>
-
-        <p>
-          RUA JOÃO MORETTI, 233 - JD MARIA ALICE
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20JO%C3%83O%20MORETTI%2C%20233%20-%20JD%20MARIA%20ALICE%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. ALZIRA
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. alzira"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. ALZIRA
-        </h2>
-
-        <p>
-          RUA MARIA EMILIA, 55 - VILA ALZIRA
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20MARIA%20EMILIA%2C%2055%20-%20VILA%20ALZIRA%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. ANGÉLICA
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. angélica"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. ANGÉLICA
-        </h2>
-
-        <p>
-          RUA CRUZ DAS GRAÇAS, 161 - JD ANGÉLICA
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20CRUZ%20DAS%20GRA%C3%87AS%2C%20161%20-%20JD%20ANG%C3%89LICA%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. ARAPONGAS
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. arapongas"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. ARAPONGAS
-        </h2>
-
-        <p>
-          RUA LAGOA DA CANOA, 205 - JD ARAPONGAS
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20LAGOA%20DA%20CANOA%2C%20205%20-%20JD%20ARAPONGAS%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. CUMBICA
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. cumbica"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. CUMBICA
-        </h2>
-
-        <p>
-          RUA PIRENÓPOLIS, 261 - JARDIM CUMBICA
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20PIREN%C3%93POLIS%2C%20261%20-%20JARDIM%20CUMBICA%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. DAS OLIVAS
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. das olivas"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. DAS OLIVAS
-        </h2>
-
-        <p>
-          RUA DO COMÉRCIO, 191 - JD DAS OLIVAS
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20DO%20COM%C3%89RCIO%2C%20191%20-%20JD%20DAS%20OLIVAS%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. DINAMARCA
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. dinamarca"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. DINAMARCA
-        </h2>
-
-        <p>
-          RUA MIGUEL ALVES, 249 - JD DINAMARCA
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20MIGUEL%20ALVES%2C%20249%20-%20JD%20DINAMARCA%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. DONA LUIZA
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. dona luiza"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. DONA LUIZA
-        </h2>
-
-        <p>
-          AV. ROTEIRO, 166 - PIMENTAS
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=AV.%20ROTEIRO%2C%20166%20-%20PIMENTAS%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. GUILHERMINO
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. guilhermino"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. GUILHERMINO
-        </h2>
-
-        <p>
-          RUA NELSON MANDELA, 11 - JD GUILHERMINO
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20NELSON%20MANDELA%2C%2011%20-%20JD%20GUILHERMINO%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. GUARACY
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. guaracy"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. GUARACY
-        </h2>
-
-        <p>
-          AV. ESTRADA DO ITAIM, 2525 - JD IZILDINHA
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=AV.%20ESTRADA%20DO%20ITAIM%2C%202525%20-%20JD%20IZILDINHA%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. JACY
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. jacy"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. JACY
-        </h2>
-
-        <p>
-          RUA ITAPURAS, 227 - JD JACY
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20ITAPURAS%2C%20227%20-%20JD%20JACY%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. LEBLON
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. leblon"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. LEBLON
-        </h2>
-
-        <p>
-          RUA CANAPI, 175 - JD LEBLON
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20CANAPI%2C%20175%20-%20JD%20LEBLON%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. MARCOS FREIRE
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. marcos freire"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. MARCOS FREIRE
-        </h2>
-
-        <p>
-          AVENIDA MARGINAL SUL, 344 - MARCOS FREIRE
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=AVENIDA%20MARGINAL%20SUL%2C%20344%20-%20MARCOS%20FREIRE%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. MARIA DO CARMO
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. maria do carmo"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. MARIA DO CARMO
-        </h2>
-
-        <p>
-          RUA PÉROLA NEGRA, 168 - JD. TUPINAMBÁ
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20P%C3%89ROLA%20NEGRA%2C%20168%20-%20JD.%20TUPINAMB%C3%81%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. MONTE ALEGRE
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. monte alegre"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. MONTE ALEGRE
-        </h2>
-
-        <p>
-          RUA JUPIATA, 212 - JD MONTE ALEGRE
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20JUPIATA%2C%20212%20-%20JD%20MONTE%20ALEGRE%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. NORMANDIA 1
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. normandia 1"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. NORMANDIA 1
-        </h2>
-
-        <p>
-          AVENIDA MACEIO, 481 - JD NORMANDIA
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=AVENIDA%20MACEIO%2C%20481%20-%20JD%20NORMANDIA%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. NOVA CIDADE
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. nova cidade"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. NOVA CIDADE
-        </h2>
-
-        <p>
-          RUA SETE Nº 80 - JARDIM NOVA CIDADE
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20SETE%20N%C2%BA%2080%20-%20JARDIM%20NOVA%20CIDADE%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. NOVA CUMBICA
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. nova cumbica"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. NOVA CUMBICA
-        </h2>
-
-        <p>
-          R. DAMALAU, 68 - VILA NOVA CUMBICA
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=R.%20DAMALAU%2C%2068%20-%20VILA%20NOVA%20CUMBICA%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. OTTAWA
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. ottawa"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. OTTAWA
-        </h2>
-
-        <p>
-          RUA WAMBES, 92 - JD OTTAWA
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20WAMBES%2C%2092%20-%20JD%20OTTAWA%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. PARAÍSO
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. paraíso"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. PARAÍSO
-        </h2>
-
-        <p>
-          RUA SANTA BÁRBARA, 177 - VILA PARAÍSO
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20SANTA%20B%C3%81RBARA%2C%20177%20-%20VILA%20PARA%C3%8DSO%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. PAULISTA
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. paulista"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. PAULISTA
-        </h2>
-
-        <p>
-          RUA POXEREU, 508 - JD ARUJA
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20POXEREU%2C%20508%20-%20JD%20ARUJA%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. PIRATININGA
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. piratininga"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. PIRATININGA
-        </h2>
-
-        <p>
-          RUA HAROLDO DE CAMPOS, 90 - PQ. PIRATININGA
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20HAROLDO%20DE%20CAMPOS%2C%2090%20-%20PQ.%20PIRATININGA%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. POR DO SOL
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. por do sol"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. POR DO SOL
-        </h2>
-
-        <p>
-          RUA LAGEADO, 297 - JD. JACY
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20LAGEADO%2C%20297%20-%20JD.%20JACY%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. SANTA MARIA
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. santa maria"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. SANTA MARIA
-        </h2>
-
-        <p>
-          RUA SCHOROEDER, 91 - JD. SANTA MARIA
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20SCHOROEDER%2C%2091%20-%20JD.%20SANTA%20MARIA%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. SANTO AFONSO
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. santo afonso"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. SANTO AFONSO
-        </h2>
-
-        <p>
-          RUA MORENO, 177 - JD. SANTO AFONSO
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20MORENO%2C%20177%20-%20JD.%20SANTO%20AFONSO%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. SÃO FRANCISCO
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. são francisco"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. SÃO FRANCISCO
-        </h2>
-
-        <p>
-          AV. NORTE SUL, 415 - JD. SÃO FRANCISCO
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=AV.%20NORTE%20SUL%2C%20415%20-%20JD.%20S%C3%83O%20FRANCISCO%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. SÃO GABRIEL
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. são gabriel"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. SÃO GABRIEL
-        </h2>
-
-        <p>
-          RUA SÃO FRANCISCO DO SUL, 11 - JD SÃO GABRIEL
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20S%C3%83O%20FRANCISCO%20DO%20SUL%2C%2011%20-%20JD%20S%C3%83O%20GABRIEL%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. TERRA BOA
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. terra boa"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. TERRA BOA
-        </h2>
-
-        <p>
-          RUA MUNHOZ, 444 - JD TERRA BOA
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20MUNHOZ%2C%20444%20-%20JD%20TERRA%20BOA%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. TIJUCO PRETO
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. tijuco preto"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. TIJUCO PRETO
-        </h2>
-
-        <p>
-          RUA TAQUARITINGA DO NORTE, 375 - JD TIJUCO PRETO
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20TAQUARITINGA%20DO%20NORTE%2C%20375%20-%20JD%20TIJUCO%20PRETO%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         JD. VERMELHÃO
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="jd. vermelhão"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          JD. VERMELHÃO
-        </h2>
-
-        <p>
-          RUA DA PÁTRIA, 14 - JD VERMELHÃO
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20DA%20P%C3%81TRIA%2C%2014%20-%20JD%20VERMELH%C3%83O%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         PQ. BRASÍLIA
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="pq. brasília"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          PQ. BRASÍLIA
-        </h2>
-
-        <p>
-          RUA SÃO JOSÉ DA LAJE, 964 - PQ ALVORADA
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20S%C3%83O%20JOS%C3%89%20DA%20LAJE%2C%20964%20-%20PQ%20ALVORADA%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         PQ. ESTELA
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="pq. estela"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          PQ. ESTELA
-        </h2>
-
-        <p>
-          RUA ESTRADA DO MOINHO VELHO, 99 - PQ ESTELA
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20ESTRADA%20DO%20MOINHO%20VELHO%2C%2099%20-%20PQ%20ESTELA%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         PQ. JUREMA
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="pq. jurema"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          PQ. JUREMA
-        </h2>
-
-        <p>
-          RUA CAPIBARIBE, 206 - PQ. JUREMA
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20CAPIBARIBE%2C%20206%20-%20PQ.%20JUREMA%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         VILA ANY
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="vila any"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          VILA ANY
-        </h2>
-
-        <p>
-          RUA PASTOR ORIAS XAVIER DE MENDONÇA, 97 - VILA ANY
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20PASTOR%20ORIAS%20XAVIER%20DE%20MENDON%C3%87A%2C%2097%20-%20VILA%20ANY%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         VILA ISABEL
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="vila isabel"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          VILA ISABEL
-        </h2>
-
-        <p>
-          RUA UM, 519 - VILA ISABEL
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20UM%2C%20519%20-%20VILA%20ISABEL%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         VILA REAL
-    ========================== -->
-
-    <article
-      class="church-card"
-      data-name="vila real"
-    >
-
-      <div class="church-icon">
-        ⌖
-      </div>
-
-      <div class="church-body">
-
-        <div class="count-label">
-          CONGREGAÇÃO
-        </div>
-
-        <h2>
-          VILA REAL
-        </h2>
-
-        <p>
-          RUA BÁLSAMO, 149 - PARQUE MARIA HELENA
-          <br>
-          <strong>
-            Guarulhos — SP
-          </strong>
-        </p>
-
-        <a
-          class="map-btn"
-          href="https://www.google.com/maps/search/?api=1&query=RUA%20B%C3%81LSAMO%2C%20149%20-%20PARQUE%20MARIA%20HELENA%2C%20Guarulhos%20-%20SP"
-          target="_blank"
-          rel="noopener"
-        >
-          COMO CHEGAR →
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- =========================
-         SEM RESULTADOS
-    ========================== -->
-
-    <div
-      class="empty"
-      id="empty"
-    >
-
-      <strong>
-        Nenhuma congregação encontrada.
-      </strong>
-
-      <br>
-
-      Confira o nome digitado e tente novamente.
-
-    </div>
-
-
-  </section>
-
+</div>
+<section class="grid" id="grid"><div class="loading" id="loading">Carregando congregações...</div><div class="empty" id="empty" style="display:none;"><strong>Nenhuma congregação encontrada.</strong><br/>Confira o nome digitado e tente novamente.</div></section>
 </main>
-
-
 <!-- =========================
      RODAPÉ
 ========================= -->
-
 <footer>
 
   ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM
   · SETOR 49 - JARDIM DOS PIMENTAS
 
-  <br>
-
-  <small>
+  <br/>
+<small>
     PORTAL AD BELÉM - SETOR 49
   </small>
-
 </footer>
-
 <script>
 
 /* =====================================================
-   FILTRO DAS CONGREGAÇÕES
+   CONGREGAÇÕES — DADOS DA PLANILHA
 ===================================================== */
+
+const API_URL_CONGREGACOES = "COLE_AQUI_A_URL_DA_API";
+let congregacoes = [];
 
 const input = document.getElementById('search');
 const regionalFilter = document.getElementById('regionalFilter');
 const count = document.getElementById('count');
 const empty = document.getElementById('empty');
+const grid = document.getElementById('grid');
 
-const cards = Array.from(
-  document.querySelectorAll('.church-card')
-);
-
-
-const regionais = {
-
-  'regional-01': [
-    'JD. DINAMARCA',
-    'JD. LEBLON',
-    'JD. MARIA DO CARMO',
-    'JD. NORMANDIA 1',
-    'JD. NOVA CIDADE',
-    'JD. PAULISTA',
-    'VILA REAL',
-    'PARQUE SÃO MIGUEL'
-  ],
-
-  'regional-02': [
-    'JD. ALICE',
-    'JD. DAS OLIVAS',
-    'JD. GUARACY',
-    'JD. JACY',
-    'JD. MARCOS FREIRE',
-    'JD. PIRATININGA',
-    'JD. POR DO SOL',
-    'VILA ANY',
-    'JD. SÃO FRANCISCO'
-  ],
-
-  'regional-03': [
-    'JD. ANGÉLICA',
-    'JD. CUMBICA',
-    'JD. GUILHERMINO',
-    'JD. MONTE ALEGRE',
-    'JD. PARAÍSO',
-    'JD. SANTA MARIA',
-    'PQ. BRASÍLIA',
-    'PQ. ESTELA',
-    'PQ. JUREMA',
-    'VILA ISABEL'
-  ],
-
-  'regional-04': [
-    'JD. ALZIRA',
-    'JD. ARAPONGAS',
-    'JD. DONA LUIZA',
-    'JD. NOVA CUMBICA',
-    'JD. OTTAWA',
-    'JD. SANTO AFONSO',
-    'JD. SÃO GABRIEL',
-    'JD. TERRA BOA',
-    'JD. TIJUCO PRETO',
-    'JD. VERMELHÃO'
-  ]
-
-};
-
-
-function normalizar(texto) {
-
-  return texto
+function normalizar(texto){
+  return String(texto || '')
     .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[\u0300-\u036f]/g,'')
     .toUpperCase()
     .trim();
-
 }
 
-
-function obterRegional(card) {
-
-  const nome =
-    card.querySelector('h2')?.textContent || '';
-
-  const nomeNormalizado =
-    normalizar(nome);
-
-  for (const regional in regionais) {
-
-    const lista =
-      regionais[regional].map(normalizar);
-
-    if (lista.includes(nomeNormalizado)) {
-      return regional;
-    }
-
-  }
-
-  return '';
-
+function esc(v){
+  return String(v ?? '')
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#39;');
 }
 
+function mapaUrl(item){
+  const consulta = [item.endereco,item.cidade,item.estado]
+    .filter(Boolean)
+    .join(', ');
+  return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(consulta);
+}
 
-function filter() {
+function jsonp(url){
+  return new Promise((resolve,reject)=>{
+    const nome='congPublicCb_'+Date.now()+'_'+Math.floor(Math.random()*10000);
+    const script=document.createElement('script');
+    const timer=setTimeout(()=>{
+      delete window[nome];
+      script.remove();
+      reject(new Error('Tempo esgotado ao carregar as congregações.'));
+    },15000);
 
-  const q =
-    normalizar(input.value);
+    window[nome]=(resposta)=>{
+      clearTimeout(timer);
+      delete window[nome];
+      script.remove();
+      resolve(resposta);
+    };
 
-  const regionalSelecionada =
-    regionalFilter.value;
+    script.onerror=()=>{
+      clearTimeout(timer);
+      delete window[nome];
+      script.remove();
+      reject(new Error('Não foi possível conectar à planilha.'));
+    };
 
-  let n = 0;
+    script.src=url+(url.includes('?')?'&':'?')+'callback='+nome;
+    document.body.appendChild(script);
+  });
+}
 
+function preencherRegionais(){
+  const atuais=[...new Set(
+    congregacoes
+      .filter(x => String(x.status).toUpperCase() !== 'INATIVA')
+      .map(x=>x.regional)
+      .filter(Boolean)
+  )].sort();
 
-  cards.forEach(card => {
+  regionalFilter.innerHTML = '<option value="">Todas as regionais</option>' +
+    atuais.map(x=>'<option value="'+esc(x)+'">'+esc(x)+'</option>').join('');
+}
 
-    const texto =
-      normalizar(card.innerText);
+function render(){
+  const q=normalizar(input.value);
+  const reg=regionalFilter.value;
 
-    const regional =
-      obterRegional(card);
+  const filtradas=congregacoes.filter(item=>{
+    const status=normalizar(item.status);
+    if(status==='INATIVA') return false;
 
+    const texto=normalizar([
+      item.congregacao,
+      item.endereco,
+      item.cidade,
+      item.estado,
+      item.regional
+    ].join(' '));
 
-    const correspondePesquisa =
-      !q || texto.includes(q);
+    const okBusca=!q || texto.includes(q);
+    const okRegional=!reg || item.regional===reg;
 
-
-    const correspondeRegional =
-      !regionalSelecionada ||
-      regional === regionalSelecionada;
-
-
-    const mostrar =
-      correspondePesquisa &&
-      correspondeRegional;
-
-
-    card.style.display =
-      mostrar ? 'flex' : 'none';
-
-
-    if (mostrar) {
-      n++;
-    }
-
+    return okBusca && okRegional;
   });
 
+  count.textContent = filtradas.length +
+    (filtradas.length===1?' congregação':' congregações');
 
-  count.textContent =
-    n +
-    (n === 1
-      ? ' congregação'
-      : ' congregações');
+  if(!filtradas.length){
+    grid.innerHTML='';
+    empty.style.display='block';
+    return;
+  }
 
+  empty.style.display='none';
 
-  empty.style.display =
-    n ? 'none' : 'block';
+  grid.innerHTML=filtradas.map(item=>{
+    const destaque = item.tipo === 'Sede'
+      ? 'SEDE · '
+      : '';
 
+    return `
+      <article class="church-card">
+        <div class="church-icon">⌖</div>
+        <div class="church-body">
+          <div class="count-label">${esc(destaque + (item.regional || 'CONGREGAÇÃO').toUpperCase())}</div>
+          <h2>${esc(item.congregacao)}</h2>
+          <p>
+            ${esc(item.endereco)}
+            <br>
+            <strong>${esc(item.cidade)} — ${esc(item.estado)}</strong>
+          </p>
+          <a class="map-btn" href="${mapaUrl(item)}" target="_blank" rel="noopener">
+            COMO CHEGAR →
+          </a>
+        </div>
+      </article>
+    `;
+  }).join('');
 }
 
+async function carregarCongregacoes(){
+  if(API_URL_CONGREGACOES.startsWith('COLE_')){
+    document.getElementById('loading').outerHTML = '<div class="erro">A URL da API ainda não foi configurada neste arquivo.</div>';
+    return;
+  }
 
-input.addEventListener(
-  'input',
-  filter
-);
+  try{
+    const url = API_URL_CONGREGACOES + '?acao=listar&callback=congPublicoCarregar';
+    const resposta = await jsonp(url);
 
-regionalFilter.addEventListener(
-  'change',
-  filter
-);
+    if(!resposta.ok){
+      throw new Error(resposta.mensagem || 'Erro ao carregar os dados.');
+    }
 
-filter();
+    congregacoes = resposta.dados || [];
+    preencherRegionais();
+    render();
+  }catch(err){
+    const loading=document.getElementById('loading');
+    if(loading){
+      loading.outerHTML='<div class="erro">'+esc(err.message)+'</div>';
+    }
+  }
+}
+
+input.addEventListener('input', render);
+regionalFilter.addEventListener('change', render);
+
+carregarCongregacoes();
 
 
 /* =====================================================
