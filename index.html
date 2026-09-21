@@ -871,13 +871,14 @@ nav a:hover{
 <section class="panel">
 <h2>📅 Próximos eventos</h2>
 <p class="panel-sub">Principais eventos setoriais.</p>
-<div class="events">
-<div class="event"><div class="date"><b>13</b>SET</div><div><strong>SANTA CEIA SETORIAL</strong><span>13 de setembro</span></div></div>
-<div class="event"><div class="date"><b>03</b>OUT</div><div><strong>KIDS</strong><span>03 de outubro</span></div></div>
-<div class="event"><div class="date"><b>11</b>OUT</div><div><strong>SANTA CEIA SETORIAL</strong><span>11 de outubro</span></div></div>
-<div class="event"><div class="date"><b>23</b>OUT</div><div><strong>UFADEB</strong><span>23 a 25 de outubro</span></div></div>
-<div class="event"><div class="date"><b>08</b>NOV</div><div><strong>SANTA CEIA SETORIAL</strong><span>08 de Novembro</span></div></div>
-<div class="event"><div class="date"><b>27</b>NOV</div><div><strong>UMADEB</strong><span>27 a 29 de novembro</span></div></div>
+<div class="events" id="eventosInicio">
+  <div class="event">
+    <div class="date"><b>—</b><small>...</small></div>
+    <div>
+      <strong>Carregando eventos...</strong>
+      <span>Aguarde um momento.</span>
+    </div>
+  </div>
 </div>
 </section>
 </div>
@@ -1181,6 +1182,354 @@ fetch(API_AVISOS)
 
 </script>
   
+
+<script>
+
+/* =========================================
+   PRÓXIMOS EVENTOS — MESMA API DA AGENDA
+   ========================================= */
+
+const API_AGENDA =
+  "https://script.google.com/macros/s/AKfycbxGOYL24cx626bkV-MNojA44BQLGptATA1d1B6EuKDst1WlwufsuhSmz-BVA6n1oknC2A/exec";
+
+const eventosInicio =
+  document.getElementById("eventosInicio");
+
+const mesesInicio = {
+  "01": "janeiro",
+  "02": "fevereiro",
+  "03": "março",
+  "04": "abril",
+  "05": "maio",
+  "06": "junho",
+  "07": "julho",
+  "08": "agosto",
+  "09": "setembro",
+  "10": "outubro",
+  "11": "novembro",
+  "12": "dezembro"
+};
+
+const abreviacoesInicio = {
+  "01": "JAN",
+  "02": "FEV",
+  "03": "MAR",
+  "04": "ABR",
+  "05": "MAI",
+  "06": "JUN",
+  "07": "JUL",
+  "08": "AGO",
+  "09": "SET",
+  "10": "OUT",
+  "11": "NOV",
+  "12": "DEZ"
+};
+
+/* MESMO PADRÃO DE DATA USADO NA AGENDA */
+function obterDataInicio(data) {
+
+  if (!data) return null;
+
+  const texto = String(data).trim();
+  const partes = texto.split("/");
+
+  if (partes.length !== 3) {
+    return null;
+  }
+
+  const dia = Number(partes[0]);
+  const mes = Number(partes[1]);
+  const ano = Number(partes[2]);
+
+  if (
+    !Number.isInteger(dia) ||
+    !Number.isInteger(mes) ||
+    !Number.isInteger(ano) ||
+    mes < 1 ||
+    mes > 12 ||
+    dia < 1 ||
+    dia > 31
+  ) {
+    return null;
+  }
+
+  return {
+    dia: String(dia).padStart(2, "0"),
+    mes: String(mes).padStart(2, "0"),
+    ano: ano,
+    data: new Date(ano, mes - 1, dia)
+  };
+}
+
+function inicioDoDia(data) {
+  return new Date(
+    data.getFullYear(),
+    data.getMonth(),
+    data.getDate()
+  );
+}
+
+/* TEXTO DA DATA, INCLUINDO EVENTOS COM PERÍODO */
+function textoDataEvento(inicio, fim) {
+
+  if (
+    fim &&
+    fim.data.getTime() !== inicio.data.getTime()
+  ) {
+
+    if (fim.mes === inicio.mes && fim.ano === inicio.ano) {
+      return `${inicio.dia} a ${fim.dia} de ${mesesInicio[inicio.mes]}`;
+    }
+
+    return `${inicio.dia} de ${mesesInicio[inicio.mes]} a ${fim.dia} de ${mesesInicio[fim.mes]}`;
+  }
+
+  return `${inicio.dia} de ${mesesInicio[inicio.mes]}`;
+}
+
+/* MONTA UM EVENTO NO MESMO PADRÃO VISUAL DA PÁGINA */
+function criarEventoInicio(evento) {
+
+  const inicio =
+    obterDataInicio(evento["DATA DE INÍCIO"]);
+
+  if (!inicio) {
+    return null;
+  }
+
+  const fim =
+    obterDataInicio(evento["DATA DE FIM"]);
+
+  const card =
+    document.createElement("div");
+
+  card.className = "event";
+
+  const data =
+    document.createElement("div");
+
+  data.className = "date";
+
+  let diaExibido = inicio.dia;
+
+  if (
+    fim &&
+    fim.data.getTime() !== inicio.data.getTime() &&
+    fim.mes === inicio.mes &&
+    fim.ano === inicio.ano
+  ) {
+    diaExibido = inicio.dia + "–" + fim.dia;
+  }
+
+  const dia =
+    document.createElement("b");
+
+  dia.textContent = diaExibido;
+
+  const mes =
+    document.createElement("small");
+
+  mes.textContent =
+    abreviacoesInicio[inicio.mes];
+
+  data.appendChild(dia);
+  data.appendChild(mes);
+
+  const conteudo =
+    document.createElement("div");
+
+  const titulo =
+    document.createElement("strong");
+
+  titulo.textContent =
+    evento["EVENTO"] || "Evento";
+
+  const periodo =
+    document.createElement("span");
+
+  periodo.textContent =
+    textoDataEvento(inicio, fim);
+
+  conteudo.appendChild(titulo);
+  conteudo.appendChild(periodo);
+
+  /* Mantém a informação de local/horário quando existir */
+  let detalhe = "";
+
+  if (evento["LOCAL"]) {
+    detalhe = String(evento["LOCAL"]).trim();
+  }
+
+  if (evento["HORÁRIO"]) {
+
+    if (detalhe) {
+      detalhe += " · ";
+    }
+
+    detalhe += String(evento["HORÁRIO"]).trim();
+  }
+
+  if (detalhe) {
+
+    const detalheElemento =
+      document.createElement("span");
+
+    detalheElemento.textContent =
+      detalhe;
+
+    detalheElemento.style.marginTop = "2px";
+
+    conteudo.appendChild(
+      detalheElemento
+    );
+  }
+
+  card.appendChild(data);
+  card.appendChild(conteudo);
+
+  return {
+    card,
+    dataInicio: inicio.data,
+    dataFim: fim ? fim.data : inicio.data
+  };
+}
+
+/* CARREGA E FILTRA OS 5 PRÓXIMOS */
+async function carregarProximosEventos() {
+
+  if (!eventosInicio) return;
+
+  try {
+
+    const resposta =
+      await fetch(API_AGENDA);
+
+    if (!resposta.ok) {
+      throw new Error(
+        "Erro HTTP: " + resposta.status
+      );
+    }
+
+    const lista =
+      await resposta.json();
+
+    if (!Array.isArray(lista)) {
+      throw new Error(
+        "Formato de dados inválido."
+      );
+    }
+
+    const hoje =
+      inicioDoDia(new Date());
+
+    const futuros =
+      lista
+        .map(evento => {
+
+          const inicio =
+            obterDataInicio(
+              evento["DATA DE INÍCIO"]
+            );
+
+          const fim =
+            obterDataInicio(
+              evento["DATA DE FIM"]
+            );
+
+          if (!inicio) {
+            return null;
+          }
+
+          return {
+            evento,
+            inicio: inicio.data,
+            fim: fim ? fim.data : inicio.data
+          };
+
+        })
+        .filter(item => {
+
+          if (!item) return false;
+
+          /*
+            Evento de período:
+            continua sendo "próximo" até a sua data final.
+          */
+          return item.fim >= hoje;
+
+        })
+        .sort((a, b) => {
+
+          return (
+            a.inicio.getTime() -
+            b.inicio.getTime()
+          );
+
+        })
+        .slice(0, 5);
+
+    eventosInicio.innerHTML = "";
+
+    if (futuros.length === 0) {
+
+      eventosInicio.innerHTML = `
+        <div class="event">
+          <div class="date">
+            <b>—</b>
+            <small>AGENDA</small>
+          </div>
+          <div>
+            <strong>Nenhum próximo evento.</strong>
+            <span>Não há eventos futuros cadastrados.</span>
+          </div>
+        </div>
+      `;
+
+      return;
+    }
+
+    futuros.forEach(item => {
+
+      const resultado =
+        criarEventoInicio(
+          item.evento
+        );
+
+      if (resultado) {
+        eventosInicio.appendChild(
+          resultado.card
+        );
+      }
+
+    });
+
+  } catch (erro) {
+
+    console.error(
+      "Erro ao carregar próximos eventos:",
+      erro
+    );
+
+    eventosInicio.innerHTML = `
+      <div class="event">
+        <div class="date">
+          <b>!</b>
+          <small>AGENDA</small>
+        </div>
+        <div>
+          <strong>Não foi possível carregar os eventos.</strong>
+          <span>Consulte a Agenda completa.</span>
+        </div>
+      </div>
+    `;
+
+  }
+}
+
+carregarProximosEventos();
+
+</script>
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
