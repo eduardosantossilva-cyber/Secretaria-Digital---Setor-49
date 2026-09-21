@@ -804,6 +804,49 @@ footer{
 }
 
 @media(max-width:650px){
+
+  .visitantes-cabecalho{
+    display:none;
+  }
+
+  .visitante-linha{
+    grid-template-columns:38px 1fr;
+    gap:10px 12px;
+    padding:14px;
+  }
+
+  .visitante-numero{
+    grid-row:1 / span 4;
+    align-self:start;
+    padding-top:2px;
+  }
+
+  .visitante-linha > div:nth-child(2),
+  .visitante-linha > div:nth-child(3),
+  .visitante-linha > div:nth-child(4),
+  .visitante-linha > div:nth-child(5){
+    min-width:0;
+  }
+
+  .visitante-campo-label{
+    display:block;
+  }
+
+  .visitante-nome{
+    font-size:15px;
+  }
+
+  .visitante-local,
+  .visitante-obs{
+    font-size:12px;
+  }
+
+  .acoes-linha button{
+    min-height:40px;
+    padding:9px 11px;
+  }
+
+
   .visitantes-tabela{
     min-width:860px;
   }
@@ -1515,92 +1558,79 @@ footer{
 
 .visitantes-tabela-wrap{
   width:100%;
-  overflow-x:auto;
 }
 
 .visitantes-tabela{
   width:100%;
-  min-width:900px;
-  border-collapse:separate;
-  border-spacing:0 8px;
-  table-layout:fixed;
 }
 
-.visitantes-tabela th,
-.visitantes-tabela td{
-  text-align:left;
-  vertical-align:middle;
-}
-
-.visitantes-tabela th{
-  padding:4px 12px 8px;
+.visitantes-cabecalho{
+  display:grid;
+  grid-template-columns:48px minmax(220px,1.35fr) minmax(180px,1fr) minmax(220px,1.2fr) 235px;
+  align-items:center;
+  gap:12px;
+  padding:0 14px 8px;
   color:#667085;
   font-size:11px;
   font-weight:900;
   text-transform:uppercase;
   letter-spacing:.2px;
-  background:transparent;
 }
 
-.visitantes-tabela td{
-  padding:13px 12px;
+.visitante-linha{
+  display:grid;
+  grid-template-columns:48px minmax(220px,1.35fr) minmax(180px,1fr) minmax(220px,1.2fr) 235px;
+  align-items:center;
+  gap:12px;
+  padding:14px;
+  margin-bottom:9px;
   background:#fff;
-  color:#344054;
-  font-size:13px;
-  font-weight:600;
-  line-height:1.4;
-  overflow-wrap:anywhere;
+  border:1px solid #e1e6ea;
+  border-radius:11px;
+  transition:.2s;
 }
 
-.visitantes-tabela tbody tr td{
-  border-top:1px solid #e8edf1;
-  border-bottom:1px solid #e8edf1;
+.visitante-linha:hover{
+  box-shadow:0 3px 12px rgba(0,0,0,.07);
 }
 
-.visitantes-tabela tbody tr td:first-child{
-  border-left:1px solid #e8edf1;
-  border-radius:10px 0 0 10px;
-}
-
-.visitantes-tabela tbody tr td:last-child{
-  border-right:1px solid #e8edf1;
-  border-radius:0 10px 10px 0;
-}
-
-.visitantes-tabela tbody tr:hover td{
-  background:#fbfdfe;
-}
-
-.visitantes-tabela td:first-child{
+.visitante-numero{
   color:#667085;
+  font-size:14px;
   font-weight:900;
-  white-space:nowrap;
+  text-align:center;
 }
 
-.visitantes-tabela td strong{
+.visitante-nome{
   color:var(--navy);
   font-size:14px;
   font-weight:900;
+  line-height:1.35;
+  overflow-wrap:anywhere;
 }
 
-.visitantes-tabela th:nth-child(1),
-.visitantes-tabela td:nth-child(1){width:5%}
+.visitante-local,
+.visitante-obs{
+  color:#344054;
+  font-size:12px;
+  font-weight:600;
+  line-height:1.45;
+  overflow-wrap:anywhere;
+}
 
-.visitantes-tabela th:nth-child(2),
-.visitantes-tabela td:nth-child(2){width:27%}
-
-.visitantes-tabela th:nth-child(3),
-.visitantes-tabela td:nth-child(3){width:24%}
-
-.visitantes-tabela th:nth-child(4),
-.visitantes-tabela td:nth-child(4){width:24%}
-
-.visitantes-tabela th:nth-child(5),
-.visitantes-tabela td:nth-child(5){width:20%}
+.visitante-campo-label{
+  display:none;
+  color:#667085;
+  font-size:10px;
+  font-weight:900;
+  text-transform:uppercase;
+  margin-bottom:3px;
+}
 
 .acoes-linha{
   display:flex;
   align-items:center;
+  justify-content:flex-start;
   gap:7px;
   flex-wrap:wrap;
 }
@@ -2146,38 +2176,48 @@ footer{
       }
 
       let html = `
-        <div class="tabela-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Nome</th>
-                <th>Congregação / cidade</th>
-                <th>Observação</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody>
+        <div class="visitantes-tabela-wrap">
+          <div class="visitantes-cabecalho">
+            <div>#</div>
+            <div>Nome</div>
+            <div>Congregação / cidade</div>
+            <div>Observação</div>
+            <div>Ações</div>
+          </div>
       `;
 
       visitantes.forEach((item,index) => {
         html += `
-          <tr>
-            <td>${index+1}</td>
-            <td><strong>${escaparHTML(item.nome)}</strong></td>
-            <td>${escaparHTML(item.local || '-')}</td>
-            <td>${escaparHTML(item.observacao || '-')}</td>
-            <td>
+          <div class="visitante-linha">
+            <div class="visitante-numero">${index+1}</div>
+
+            <div>
+              <div class="visitante-campo-label">Nome</div>
+              <div class="visitante-nome">${escaparHTML(item.nome)}</div>
+            </div>
+
+            <div>
+              <div class="visitante-campo-label">Congregação / cidade</div>
+              <div class="visitante-local">${escaparHTML(item.local || '-')}</div>
+            </div>
+
+            <div>
+              <div class="visitante-campo-label">Observação</div>
+              <div class="visitante-obs">${escaparHTML(item.observacao || '-')}</div>
+            </div>
+
+            <div>
+              <div class="visitante-campo-label">Ações</div>
               <div class="acoes-linha">
                 <button type="button" class="btn-apresentar" onclick="abrirApresentacao(${index})">📱 Apresentar</button>
                 <button type="button" class="btn-excluir" onclick="excluirVisitante('${escaparJS(item.id)}')">Excluir</button>
               </div>
-            </td>
-          </tr>
+            </div>
+          </div>
         `;
       });
 
-      html += '</tbody></table></div>';
+      html += '</div>';
       listaVisitantes.innerHTML = html;
     }
 
