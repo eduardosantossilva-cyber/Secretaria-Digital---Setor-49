@@ -813,27 +813,19 @@ footer{
   }
 
   .visitantes-tabela td{
-    padding:12px 10px;
+    padding:15px 10px;
     font-size:12px;
+    line-height:1.5;
   }
 
   .visitantes-tabela td strong{
     font-size:13px;
   }
 
-  .acoes-linha{
-    flex-wrap:wrap;
-  }
-
   .acoes-linha button{
     min-height:36px;
     padding:8px 9px;
     font-size:10px;
-  }
-
-  .visitantes-tabela th:last-child,
-  .visitantes-tabela td:last-child{
-    min-width:0;
   }
 
 
@@ -1529,9 +1521,9 @@ footer{
 
 .visitantes-tabela{
   width:100%;
-  min-width:900px;
+  min-width:1180px;
   border-collapse:separate;
-  border-spacing:0 8px;
+  border-spacing:0 16px;
   table-layout:fixed;
 }
 
@@ -1542,7 +1534,7 @@ footer{
 }
 
 .visitantes-tabela th{
-  padding:4px 12px 8px;
+  padding:4px 14px 10px;
   color:#667085;
   font-size:11px;
   font-weight:900;
@@ -1552,12 +1544,12 @@ footer{
 }
 
 .visitantes-tabela td{
-  padding:13px 12px;
+  padding:18px 14px;
   background:#fff;
   color:#344054;
   font-size:13px;
   font-weight:600;
-  line-height:1.4;
+  line-height:1.55;
   overflow-wrap:anywhere;
 }
 
@@ -1568,12 +1560,16 @@ footer{
 
 .visitantes-tabela tbody tr td:first-child{
   border-left:1px solid #e8edf1;
-  border-radius:10px 0 0 10px;
+  border-radius:11px 0 0 11px;
+  padding-left:16px;
+  padding-right:10px;
 }
 
 .visitantes-tabela tbody tr td:last-child{
   border-right:1px solid #e8edf1;
-  border-radius:0 10px 10px 0;
+  border-radius:0 11px 11px 0;
+  white-space:nowrap;
+  min-width:330px;
 }
 
 .visitantes-tabela tbody tr:hover td{
@@ -1590,6 +1586,7 @@ footer{
   color:var(--navy);
   font-size:14px;
   font-weight:900;
+  line-height:1.5;
 }
 
 .visitantes-tabela th:nth-child(1),
@@ -1617,7 +1614,7 @@ footer{
 }
 
 .acoes-linha button{
-  min-height:38px;
+  min-height:40px;
   border-radius:8px;
   padding:8px 10px;
   font-size:11px;
@@ -1625,12 +1622,6 @@ footer{
   cursor:pointer;
   white-space:nowrap;
   flex:0 0 auto;
-}
-
-.visitantes-tabela th:last-child,
-.visitantes-tabela td:last-child{
-  white-space:nowrap;
-  min-width:330px;
 }
 
 .btn-editar{
