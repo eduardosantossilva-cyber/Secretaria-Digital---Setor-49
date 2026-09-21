@@ -821,10 +821,19 @@ footer{
     font-size:13px;
   }
 
+  .acoes-linha{
+    flex-wrap:wrap;
+  }
+
   .acoes-linha button{
     min-height:36px;
     padding:8px 9px;
     font-size:10px;
+  }
+
+  .visitantes-tabela th:last-child,
+  .visitantes-tabela td:last-child{
+    min-width:0;
   }
 
 
@@ -1587,32 +1596,41 @@ footer{
 .visitantes-tabela td:nth-child(1){width:5%}
 
 .visitantes-tabela th:nth-child(2),
-.visitantes-tabela td:nth-child(2){width:27%}
+.visitantes-tabela td:nth-child(2){width:25%}
 
 .visitantes-tabela th:nth-child(3),
-.visitantes-tabela td:nth-child(3){width:24%}
+.visitantes-tabela td:nth-child(3){width:22%}
 
 .visitantes-tabela th:nth-child(4),
-.visitantes-tabela td:nth-child(4){width:24%}
+.visitantes-tabela td:nth-child(4){width:20%}
 
 .visitantes-tabela th:nth-child(5),
-.visitantes-tabela td:nth-child(5){width:20%}
+.visitantes-tabela td:nth-child(5){width:28%}
 
 .acoes-linha{
   display:flex;
   align-items:center;
-  gap:7px;
-  flex-wrap:wrap;
+  justify-content:flex-start;
+  gap:8px;
+  flex-wrap:nowrap;
+  white-space:nowrap;
 }
 
 .acoes-linha button{
   min-height:38px;
   border-radius:8px;
-  padding:8px 11px;
+  padding:8px 10px;
   font-size:11px;
   font-weight:900;
   cursor:pointer;
   white-space:nowrap;
+  flex:0 0 auto;
+}
+
+.visitantes-tabela th:last-child,
+.visitantes-tabela td:last-child{
+  white-space:nowrap;
+  min-width:330px;
 }
 
 .btn-editar{
