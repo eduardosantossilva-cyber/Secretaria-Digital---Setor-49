@@ -58,7 +58,7 @@
   display:block;
 }
 }
-    
+
   .instagram-section{
   margin-top:38px;
 }
@@ -545,6 +545,20 @@
       opacity:.9;
     }
 
+
+    .social-loading{
+      grid-column:1/-1;
+      width:100%;
+      padding:24px 18px;
+      border:1px dashed #d7e1e8;
+      border-radius:12px;
+      background:#fbfcfd;
+      color:#667085;
+      font-size:13px;
+      line-height:1.5;
+      text-align:center;
+    }
+
     /* FOOTER */
 
   footer{
@@ -853,7 +867,7 @@
   }
 
 }
-    
+
   </style>
 
 </head>
@@ -1081,32 +1095,8 @@
     <h2 class="section-title">📸 Publicações do Instagram</h2>
   </div>
 
-<div class="instagram-grid">
-
-  <article class="instagram-post">
-    <blockquote
-      class="instagram-media"
-      data-instgrm-permalink="https://www.instagram.com/reel/Dc7S6SHAMJz/"
-      data-instgrm-version="14">
-    </blockquote>
-  </article>
-
-  <article class="instagram-post">
-    <blockquote
-      class="instagram-media"
-      data-instgrm-permalink="https://www.instagram.com/p/Dc5_rUkxWqp/"
-      data-instgrm-version="14">
-    </blockquote>
-  </article>
-
-  <article class="instagram-post">
-    <blockquote
-      class="instagram-media"
-      data-instgrm-permalink="https://www.instagram.com/p/DcR1IXsPfTA/"
-      data-instgrm-version="14">
-    </blockquote>
-  </article>
-
+<div class="instagram-grid" id="instagramGrid">
+  <p class="social-loading">Carregando publicações do Instagram...</p>
 </div>
 
   <div class="instagram-footer">
@@ -1125,35 +1115,8 @@
     <h2 class="section-title">🎵 Vídeos do TikTok</h2>
   </div>
 
-<div class="tiktok-grid">
-
-  <article class="tiktok-post">
-    <iframe
-      class="tiktok-player"
-      src="https://www.tiktok.com/player/v1/7663063207724027152"
-      allow="fullscreen"
-      title="Vídeo do TikTok - AD Belém 49">
-    </iframe>
-  </article>
-
-  <article class="tiktok-post">
-    <iframe
-      class="tiktok-player"
-      src="https://www.tiktok.com/player/v1/7665095737574722834"
-      allow="fullscreen"
-      title="Vídeo do TikTok - AD Belém 49">
-    </iframe>
-  </article>
-
-  <article class="tiktok-post">
-    <iframe
-      class="tiktok-player"
-      src="https://www.tiktok.com/player/v1/7678726647356411152"
-      allow="fullscreen"
-      title="Vídeo do TikTok - AD Belém 49">
-    </iframe>
-  </article>
-
+<div class="tiktok-grid" id="tiktokGrid">
+  <p class="social-loading">Carregando vídeos do TikTok...</p>
 </div>
 
   <div class="tiktok-footer">
@@ -1183,6 +1146,7 @@
     <div class="video-box">
 
       <iframe
+        id="youtubeDestaqueIframe"
         src="https://www.youtube.com/embed/kP_cwCU7l00"
         title="AD Belém 49 — Vídeo em destaque"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -1206,121 +1170,9 @@
     </p>
 
 
-    <div class="videos-grid">
-
-
-      <!-- VÍDEO 01 -->
-
-      <div class="video-card">
-
-        <a
-          href="https://www.youtube.com/watch?v=ZuqklsQS7xo"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-
-          <div class="video-thumb">
-
-            <img
-              src="https://img.youtube.com/vi/ZuqklsQS7xo/hqdefault.jpg"
-              alt="Vídeo do canal AD Belém 49"
-            >
-
-          </div>
-
-        </a>
-
-
-        <h3>Vídeo do Canal AD Belém 49</h3>
-
-
-        <a
-          class="video-btn"
-          href="https://www.youtube.com/watch?v=ZuqklsQS7xo"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          ASSISTIR NO YOUTUBE →
-        </a>
-
-      </div>
-
-
-      <!-- VÍDEO 02 -->
-
-      <div class="video-card">
-
-        <a
-          href="https://www.youtube.com/watch?v=fYyyERA-j6k"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-
-          <div class="video-thumb">
-
-            <img
-              src="https://img.youtube.com/vi/fYyyERA-j6k/hqdefault.jpg"
-              alt="Vídeo do canal AD Belém 49"
-            >
-
-          </div>
-
-        </a>
-
-
-        <h3>Vídeo do Canal AD Belém 49</h3>
-
-
-        <a
-          class="video-btn"
-          href="https://www.youtube.com/watch?v=fYyyERA-j6k"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          ASSISTIR NO YOUTUBE →
-        </a>
-
-      </div>
-
-
-      <!-- VÍDEO 03 -->
-
-      <div class="video-card">
-
-        <a
-          href="https://www.youtube.com/watch?v=c4mFC0zxHMo"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-
-          <div class="video-thumb">
-
-            <img
-              src="https://img.youtube.com/vi/Uie1-00iNd0/hqdefault.jpg"
-              alt="Vídeo do canal AD Belém 49"
-            >
-
-          </div>
-
-        </a>
-
-
-        <h3>Vídeo do Canal AD Belém 49</h3>
-
-
-        <a
-          class="video-btn"
-          href="https://www.youtube.com/watch?v=Uie1-00iNd0"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          ASSISTIR NO YOUTUBE →
-        </a>
-
-      </div>
-
-
-    </div>
+    <div class="videos-grid" id="videosRecentesGrid">
+  <p class="social-loading">Carregando vídeos recentes do YouTube...</p>
+</div>
 
   </section>
 
@@ -1571,7 +1423,7 @@
   </div>
 
 </div>
-  
+
 <script>
 
   function toggleMenu(){
@@ -2210,7 +2062,333 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 <script async src="https://www.instagram.com/embed.js"></script>
-  
+
+
+<script>
+(function(){
+  "use strict";
+
+  const API_REDES_SOCIAIS =
+    "https://script.google.com/macros/s/AKfycby3kMMfqDoYmKAxnjFr7jMZfZpTQ0epl-tk7qE5BH5294PEw_cUw1VeIvr05AD8hKuGfA/exec";
+
+  const FALLBACK = [
+    {plataforma:"YOUTUBE", tipo:"DESTAQUE", titulo:"Vídeo em destaque", link:"https://www.youtube.com/watch?v=kP_cwCU7l00", ordem:1},
+    {plataforma:"YOUTUBE", tipo:"PUBLICACAO", titulo:"Vídeo do Canal AD Belém 49", link:"https://www.youtube.com/watch?v=ZuqklsQS7xo", ordem:1},
+    {plataforma:"YOUTUBE", tipo:"PUBLICACAO", titulo:"Vídeo do Canal AD Belém 49", link:"https://www.youtube.com/watch?v=fYyyERA-j6k", ordem:2},
+    {plataforma:"YOUTUBE", tipo:"PUBLICACAO", titulo:"Vídeo do Canal AD Belém 49", link:"https://www.youtube.com/watch?v=c4mFC0zxHMo", ordem:3},
+    {plataforma:"INSTAGRAM", tipo:"PUBLICACAO", titulo:"Publicação Instagram 1", link:"https://www.instagram.com/reel/Dc7S6SHAMJz/", ordem:1},
+    {plataforma:"INSTAGRAM", tipo:"PUBLICACAO", titulo:"Publicação Instagram 2", link:"https://www.instagram.com/p/Dc5_rUkxWqp/", ordem:2},
+    {plataforma:"INSTAGRAM", tipo:"PUBLICACAO", titulo:"Publicação Instagram 3", link:"https://www.instagram.com/p/DcR1IXsPfTA/", ordem:3},
+    {plataforma:"TIKTOK", tipo:"PUBLICACAO", titulo:"Vídeo TikTok 1", link:"https://www.tiktok.com/player/v1/7663063207724027152", ordem:1},
+    {plataforma:"TIKTOK", tipo:"PUBLICACAO", titulo:"Vídeo TikTok 2", link:"https://www.tiktok.com/player/v1/7665095737574722834", ordem:2},
+    {plataforma:"TIKTOK", tipo:"PUBLICACAO", titulo:"Vídeo TikTok 3", link:"https://www.tiktok.com/player/v1/7678726647356411152", ordem:3}
+  ];
+
+  const youtubeDestaque = document.getElementById("youtubeDestaqueIframe");
+  const instagramGrid = document.getElementById("instagramGrid");
+  const tiktokGrid = document.getElementById("tiktokGrid");
+  const videosGrid = document.getElementById("videosRecentesGrid");
+
+  function normalizar(valor){
+    return String(valor || "")
+      .trim()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toUpperCase();
+  }
+
+  function urlValida(valor, dominiosPermitidos){
+    try{
+      const url = new URL(String(valor || "").trim());
+      if(url.protocol !== "https:") return null;
+      const host = url.hostname.toLowerCase();
+      const permitido = dominiosPermitidos.some(function(dominio){
+        return host === dominio || host.endsWith("." + dominio);
+      });
+      return permitido ? url : null;
+    }catch(erro){
+      return null;
+    }
+  }
+
+  function idYouTube(link){
+    const url = urlValida(link, ["youtube.com", "youtu.be"]);
+    if(!url) return "";
+    let id = "";
+
+    if(url.hostname.toLowerCase() === "youtu.be"){
+      id = url.pathname.split("/").filter(Boolean)[0] || "";
+    }else{
+      id = url.searchParams.get("v") || "";
+      if(!id){
+        const partes = url.pathname.match(/^\/(?:embed|shorts|live)\/([^/?]+)/i);
+        if(partes) id = partes[1];
+      }
+    }
+
+    return /^[A-Za-z0-9_-]{6,}$/.test(id) ? id : "";
+  }
+
+  function linkYouTube(id){
+    return "https://www.youtube.com/watch?v=" + encodeURIComponent(id);
+  }
+
+  function criarMensagem(container, texto){
+    const p = document.createElement("p");
+    p.className = "social-loading";
+    p.textContent = texto;
+    container.replaceChildren(p);
+  }
+
+  function processarInstagram(){
+    if(window.instgrm && window.instgrm.Embeds){
+      window.instgrm.Embeds.process();
+      return;
+    }
+
+    const scriptInstagram =
+      document.querySelector('script[src*="instagram.com/embed.js"]');
+
+    if(scriptInstagram && !scriptInstagram.dataset.processListener){
+      scriptInstagram.dataset.processListener = "1";
+      scriptInstagram.addEventListener("load", function(){
+        if(window.instgrm && window.instgrm.Embeds){
+          window.instgrm.Embeds.process();
+        }
+      }, {once:true});
+    }
+  }
+
+  function renderizarInstagram(publicacoes){
+    instagramGrid.replaceChildren();
+
+    if(!publicacoes.length){
+      criarMensagem(instagramGrid, "Nenhuma publicação ativa do Instagram foi cadastrada na planilha.");
+      return;
+    }
+
+    publicacoes.forEach(function(item){
+      const url = urlValida(item.link, ["instagram.com"]);
+      if(!url) return;
+
+      const article = document.createElement("article");
+      article.className = "instagram-post";
+
+      const blockquote = document.createElement("blockquote");
+      blockquote.className = "instagram-media";
+      blockquote.setAttribute("data-instgrm-permalink", url.href);
+      blockquote.setAttribute("data-instgrm-version", "14");
+      blockquote.setAttribute("aria-label", item.titulo || "Publicação do Instagram");
+
+      article.appendChild(blockquote);
+      instagramGrid.appendChild(article);
+    });
+
+    if(!instagramGrid.children.length){
+      criarMensagem(instagramGrid, "Os links do Instagram na planilha não parecem válidos.");
+      return;
+    }
+    processarInstagram();
+  }
+
+  function renderizarTikTok(publicacoes){
+    tiktokGrid.replaceChildren();
+
+    if(!publicacoes.length){
+      criarMensagem(tiktokGrid, "Nenhum vídeo ativo do TikTok foi cadastrado na planilha.");
+      return;
+    }
+
+    publicacoes.forEach(function(item){
+      const url = urlValida(item.link, ["tiktok.com"]);
+      if(!url) return;
+
+      let videoId = "";
+      const match = url.pathname.match(/\/(?:player\/v1|video)\/(\d+)/i);
+      if(match) videoId = match[1];
+
+      if(!videoId){
+        const matchQuery = url.searchParams.get("video_id") || "";
+        if(/^\d+$/.test(matchQuery)) videoId = matchQuery;
+      }
+
+      const article = document.createElement("article");
+      article.className = "tiktok-post";
+
+      const iframe = document.createElement("iframe");
+      iframe.className = "tiktok-player";
+      iframe.title = item.titulo || "Vídeo do TikTok - AD Belém 49";
+      iframe.allow = "fullscreen";
+      iframe.setAttribute("allowfullscreen", "");
+      iframe.loading = "lazy";
+
+      if(videoId){
+        iframe.src = "https://www.tiktok.com/player/v1/" + videoId;
+      }else{
+        const link = document.createElement("a");
+        link.href = url.href;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.className = "tiktok-button";
+        link.textContent = item.titulo || "Assistir no TikTok";
+        article.style.height = "auto";
+        article.style.padding = "20px";
+        article.appendChild(link);
+        tiktokGrid.appendChild(article);
+        return;
+      }
+
+      article.appendChild(iframe);
+      tiktokGrid.appendChild(article);
+    });
+
+    if(!tiktokGrid.children.length){
+      criarMensagem(tiktokGrid, "Os links do TikTok na planilha não parecem válidos.");
+    }
+  }
+
+  function renderizarYouTube(publicacoes){
+    const destaques = publicacoes
+      .filter(function(item){
+        return normalizar(item.plataforma) === "YOUTUBE" &&
+               normalizar(item.tipo) === "DESTAQUE";
+      })
+      .sort(function(a,b){ return (Number(a.ordem)||0) - (Number(b.ordem)||0); });
+
+    if(destaques.length && youtubeDestaque){
+      const id = idYouTube(destaques[0].link);
+      if(id){
+        youtubeDestaque.src = "https://www.youtube.com/embed/" + id;
+        youtubeDestaque.title = destaques[0].titulo || "AD Belém 49 — Vídeo em destaque";
+      }
+    }
+
+    const videos = publicacoes
+      .filter(function(item){
+        return normalizar(item.plataforma) === "YOUTUBE" &&
+               normalizar(item.tipo) !== "DESTAQUE";
+      })
+      .sort(function(a,b){ return (Number(a.ordem)||0) - (Number(b.ordem)||0); });
+
+    videosGrid.replaceChildren();
+
+    if(!videos.length){
+      criarMensagem(videosGrid, "Nenhum vídeo recente ativo do YouTube foi cadastrado na planilha.");
+      return;
+    }
+
+    videos.forEach(function(item){
+      const id = idYouTube(item.link);
+      const url = id ? linkYouTube(id) : urlValida(item.link, ["youtube.com","youtu.be"])?.href;
+
+      if(!id || !url) return;
+
+      const card = document.createElement("article");
+      card.className = "video-card";
+
+      const linkImagem = document.createElement("a");
+      linkImagem.href = url;
+      linkImagem.target = "_blank";
+      linkImagem.rel = "noopener noreferrer";
+
+      const thumb = document.createElement("div");
+      thumb.className = "video-thumb";
+
+      const img = document.createElement("img");
+      img.src = "https://img.youtube.com/vi/" + encodeURIComponent(id) + "/hqdefault.jpg";
+      img.alt = item.titulo || "Vídeo do canal AD Belém 49";
+      img.loading = "lazy";
+      thumb.appendChild(img);
+      linkImagem.appendChild(thumb);
+
+      const titulo = document.createElement("h3");
+      titulo.textContent = item.titulo || "Vídeo do Canal AD Belém 49";
+
+      const botao = document.createElement("a");
+      botao.className = "video-btn";
+      botao.href = url;
+      botao.target = "_blank";
+      botao.rel = "noopener noreferrer";
+      botao.textContent = "ASSISTIR NO YOUTUBE →";
+
+      card.appendChild(linkImagem);
+      card.appendChild(titulo);
+      card.appendChild(botao);
+      videosGrid.appendChild(card);
+    });
+
+    if(!videosGrid.children.length){
+      criarMensagem(videosGrid, "Não foi possível reconhecer os links dos vídeos do YouTube. Confira os links na planilha.");
+    }
+  }
+
+  function renderizarTudo(publicacoes){
+    renderizarInstagram(publicacoes.filter(function(item){
+      return normalizar(item.plataforma) === "INSTAGRAM";
+    }));
+    renderizarTikTok(publicacoes.filter(function(item){
+      return normalizar(item.plataforma) === "TIKTOK";
+    }));
+    renderizarYouTube(publicacoes.filter(function(item){
+      return normalizar(item.plataforma) === "YOUTUBE";
+    }));
+  }
+
+  function consultarApi(){
+    return new Promise(function(resolve,reject){
+      const nomeCallback = "adBelem49RedesSociaisCallback";
+      const script = document.createElement("script");
+      let finalizado = false;
+
+      function limpar(){
+        if(finalizado) return;
+        finalizado = true;
+        script.remove();
+        try{ delete window[nomeCallback]; }catch(erro){ window[nomeCallback] = undefined; }
+      }
+
+      window[nomeCallback] = function(resposta){
+        limpar();
+        if(resposta && resposta.sucesso && Array.isArray(resposta.publicacoes)){
+          resolve(resposta.publicacoes);
+        }else{
+          reject(new Error((resposta && resposta.mensagem) || "A API não retornou publicações."));
+        }
+      };
+
+      script.onerror = function(){
+        limpar();
+        reject(new Error("Não foi possível acessar a API das redes sociais."));
+      };
+
+      script.src = API_REDES_SOCIAIS +
+        "?callback=" + encodeURIComponent(nomeCallback) +
+        "&_t=" + Date.now();
+
+      document.head.appendChild(script);
+
+      window.setTimeout(function(){
+        if(finalizado) return;
+        limpar();
+        reject(new Error("A API das redes sociais demorou para responder."));
+      }, 12000);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function(){
+    consultarApi()
+      .then(function(publicacoes){
+        renderizarTudo(publicacoes);
+      })
+      .catch(function(erro){
+        console.warn("Redes sociais: usando conteúdos de reserva.", erro);
+        renderizarTudo(FALLBACK);
+      });
+  });
+})();
+</script>
+
+
 </body>
 
 </html>
