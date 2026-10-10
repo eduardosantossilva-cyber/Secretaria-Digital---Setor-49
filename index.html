@@ -508,7 +508,6 @@ nav a:hover{
   background:#079447 !important;
   border-color:#079447 !important;
 }
-  
 
 /* =============================
    NO QUE CREMOS
@@ -587,6 +586,122 @@ nav a:hover{
   }
 }
 
+/* =============================
+   DESTAQUE DE CULTO AO VIVO
+   Controlado pela planilha de Redes Sociais
+============================= */
+.live-culto{
+  max-width:1180px;
+  margin:22px auto 0;
+  padding:0 22px;
+}
+.live-culto[hidden]{
+  display:none !important;
+}
+.live-culto-inner{
+  display:grid;
+  grid-template-columns:.82fr 1.18fr;
+  align-items:center;
+  gap:26px;
+  padding:25px;
+  background:linear-gradient(135deg,#fff 0%,#fff5f5 100%);
+  border:2px solid #e5484d;
+  border-radius:22px;
+  box-shadow:0 10px 28px rgba(181,30,42,.12);
+}
+.live-culto-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 11px;
+  margin-bottom:14px;
+  border-radius:999px;
+  background:#fff;
+  border:1px solid #ffc9cc;
+  color:#b51e2a;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.05em;
+}
+.live-culto-dot{
+  width:9px;
+  height:9px;
+  flex:0 0 9px;
+  border-radius:50%;
+  background:#e5484d;
+  box-shadow:0 0 0 4px rgba(229,72,77,.13);
+  animation:liveCultoPulse 1.5s infinite;
+}
+@keyframes liveCultoPulse{
+  0%,100%{box-shadow:0 0 0 3px rgba(229,72,77,.12)}
+  50%{box-shadow:0 0 0 7px rgba(229,72,77,.04)}
+}
+.live-culto-copy h2{
+  margin:0 0 10px;
+  color:#8f1821;
+  font-size:clamp(24px,3vw,34px);
+  line-height:1.15;
+}
+.live-culto-copy p{
+  margin:0 0 12px;
+  color:#5e6672;
+  font-size:14px;
+  line-height:1.65;
+}
+.live-culto-nome{
+  display:block;
+  margin:0 0 17px;
+  color:#273444;
+  font-size:15px;
+  font-weight:800;
+  line-height:1.5;
+}
+.live-culto-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:12px 16px;
+  border-radius:10px;
+  background:#c62828;
+  color:#fff !important;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:900;
+  transition:.2s;
+}
+
+.live-culto-link:hover{
+  background:#9f1d24;
+  transform:translateY(-2px);
+}
+.live-culto-video{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  overflow:hidden;
+  border-radius:16px;
+  background:#111;
+  box-shadow:0 8px 22px rgba(16,24,40,.16);
+}
+.live-culto-video iframe{
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+}
+@media(max-width:800px){
+  .live-culto{
+    margin-top:16px;
+    padding:0 16px;
+  }
+  .live-culto-inner{
+    grid-template-columns:1fr;
+    gap:18px;
+    padding:18px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -649,7 +764,7 @@ nav a:hover{
 </div>
 
 <div id="formularioAtendimento" style="display:none;">
-    
+
     <p>
       Olá! Como podemos ajudar?
       Preencha os dados abaixo para enviar sua solicitação.
@@ -819,11 +934,11 @@ nav a:hover{
   id="resultadoProtocolo"
   style="display:none;"
 ></div>
-    
+
   </div>
 
 </div>
-  
+
 <header><div class="nav">
 <a class="brand" href="index.html"><img src="logo.png" onerror="this.style.display='none'"><span>ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM<small>SETOR 49 - JARDIM DOS PIMENTAS</small></span></a>
 <nav>
@@ -832,6 +947,22 @@ nav a:hover{
   <a href="area-restrita.html" class="area-restrita-link">🔒 Área Restrita</a>
 </div>
 </div></header>
+
+<!-- DESTAQUE DE CULTO AO VIVO: exibido quando a planilha tiver YOUTUBE / LIVE / ATIVO = SIM -->
+<section class="live-culto" id="liveCultoSection" hidden aria-labelledby="liveCultoHeading">
+  <div class="live-culto-inner">
+    <div class="live-culto-copy">
+      <span class="live-culto-badge"><span class="live-culto-dot" aria-hidden="true"></span> TRANSMISSÃO AO VIVO</span>
+      <h2 id="liveCultoHeading">Estamos em culto agora!</h2>
+      <p id="liveCultoDescricao">Acompanhe a transmissão ao vivo da AD Belém 49. Participe conosco!</p>
+      <span class="live-culto-nome" id="liveCultoNome"></span>
+      <a class="live-culto-link" id="liveCultoLink" href="https://www.youtube.com/@adbelem49" target="_blank" rel="noopener noreferrer">▶ ASSISTIR NO YOUTUBE</a>
+    </div>
+    <div class="live-culto-video">
+      <iframe id="liveCultoIframe" title="Transmissão ao vivo — AD Belém 49" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+  </div>
+</section>
 
 <section class="hero"><div class="hero-inner">
 <div class="eyebrow">Assembleia de Deus - Ministério do Belém</div>
@@ -1181,7 +1312,7 @@ fetch(API_AVISOS)
   });
 
 </script>
-  
+
 
 <script>
 
@@ -1889,8 +2020,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
       /* ENVIA */
-
-      form.submit();
+          form.submit();
 
 
       /* CONFIRMAÇÃO */
@@ -1978,22 +2108,22 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
 
         `;
-const voltarConfirmacao =
-  document.getElementById("voltarConfirmacao");
 
-if (voltarConfirmacao) {
+        const voltarConfirmacao =
+          document.getElementById("voltarConfirmacao");
 
-  voltarConfirmacao.addEventListener("click", function () {
+        if (voltarConfirmacao) {
 
-    location.reload();
+          voltarConfirmacao.addEventListener("click", function () {
 
-  });
+            location.reload();
 
-}
+          });
+
+        }
 
         form.remove();
         iframe.remove();
-
 
       }, 1500);
 
@@ -2113,17 +2243,17 @@ if (voltarConfirmacao) {
           "#fff9e5";
 
 
-       if (
-  status === "RESPONDIDO" ||
-  status === "CONCLUÍDO" ||
-  status === "CONCLUIDO" ||
-  status === "FINALIZADO"
-) {
+        if (
+          status === "RESPONDIDO" ||
+          status === "CONCLUÍDO" ||
+          status === "CONCLUIDO" ||
+          status === "FINALIZADO"
+        ) {
 
-  corStatus = "#079447";
-  fundoStatus = "#eefaf3";
+          corStatus = "#079447";
+          fundoStatus = "#eefaf3";
 
-}
+        }
 
 
         if (
@@ -2393,9 +2523,164 @@ if (voltarConfirmacao) {
     });
 
   }
-  
+
 });
 </script>
-  
+
+
+<script>
+/* =========================================
+   DESTAQUE AUTOMÁTICO DE CULTO AO VIVO
+   Usa a mesma API/planilha da página Redes Sociais.
+   Para exibir: PLATAFORMA=YOUTUBE, TIPO=LIVE, ATIVO=SIM.
+========================================= */
+(function(){
+  "use strict";
+
+  const API_REDES_SOCIAIS =
+    "https://script.google.com/macros/s/AKfycby3kMMfqDoYmKAxnjFr7jMZfZpTQ0epl-tk7qE5BH5294PEw_cUw1VeIvr05AD8hKuGfA/exec";
+
+  const secao = document.getElementById("liveCultoSection");
+  const iframe = document.getElementById("liveCultoIframe");
+  const nome = document.getElementById("liveCultoNome");
+  const descricao = document.getElementById("liveCultoDescricao");
+  const linkAssistir = document.getElementById("liveCultoLink");
+
+  if(!secao || !iframe || !nome || !descricao || !linkAssistir) return;
+
+  function normalizar(valor){
+    return String(valor || "")
+      .trim()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toUpperCase();
+  }
+
+  function obterUrlYoutube(valor){
+    try{
+      const url = new URL(String(valor || "").trim());
+      if(url.protocol !== "https:") return null;
+      const host = url.hostname.toLowerCase();
+      if(host !== "youtube.com" && !host.endsWith(".youtube.com") &&
+         host !== "youtu.be" && !host.endsWith(".youtu.be")) return null;
+      return url;
+    }catch(erro){
+      return null;
+    }
+  }
+
+  function obterIdYoutube(valor){
+    const url = obterUrlYoutube(valor);
+    if(!url) return "";
+
+    let id = "";
+    if(url.hostname.toLowerCase() === "youtu.be"){
+      id = url.pathname.split("/").filter(Boolean)[0] || "";
+    }else{
+      id = url.searchParams.get("v") || "";
+      if(!id){
+        const partes = url.pathname.match(/^\/(?:embed|live|shorts|v)\/([^/?]+)/i);
+        if(partes) id = partes[1];
+      }
+    }
+
+    return /^[A-Za-z0-9_-]{6,}$/.test(id) ? id : "";
+  }
+
+  function exibirLive(publicacoes){
+    if(!Array.isArray(publicacoes)) return;
+
+    const lives = publicacoes
+      .filter(function(item){
+        return normalizar(item.plataforma) === "YOUTUBE" &&
+               normalizar(item.tipo) === "LIVE";
+      })
+      .filter(function(item){
+        const ativo = normalizar(item.ativo);
+        // A API já entrega apenas itens ativos; este teste protege caso a API mude.
+        return !ativo || ["SIM","S","TRUE","1","ATIVO"].includes(ativo);
+      })
+      .map(function(item){
+        return {item:item, id:obterIdYoutube(item.link)};
+      })
+      .filter(function(registro){ return Boolean(registro.id); })
+      .sort(function(a,b){
+        return (Number(a.item.ordem)||0) - (Number(b.item.ordem)||0);
+      });
+
+    if(!lives.length){
+      secao.hidden = true;
+      iframe.removeAttribute("src");
+      return;
+    }
+
+    const transmissao = lives[0].item;
+    const id = lives[0].id;
+    const titulo = String(transmissao.titulo || "Culto ao Vivo — AD Belém 49").trim();
+    const urlCompleta = "https://www.youtube.com/watch?v=" + encodeURIComponent(id);
+
+    nome.textContent = titulo;
+    descricao.textContent = "A transmissão ao vivo da AD Belém 49 está disponível neste momento. Assista e participe conosco!";
+    linkAssistir.href = urlCompleta;
+    iframe.title = titulo;
+    iframe.src = "https://www.youtube.com/embed/" + encodeURIComponent(id) + "?rel=0";
+    secao.hidden = false;
+  }
+
+  function carregarLives(){
+    const callbackName = "adBelem49HomeLiveCallback";
+    const script = document.createElement("script");
+    let finalizado = false;
+    let timeoutId;
+
+    function limpar(){
+      if(finalizado) return;
+      finalizado = true;
+      if(timeoutId) window.clearTimeout(timeoutId);
+      script.remove();
+      try{ delete window[callbackName]; }
+      catch(erro){ window[callbackName] = undefined; }
+    }
+
+    window[callbackName] = function(resposta){
+      limpar();
+      if(resposta && resposta.sucesso && Array.isArray(resposta.publicacoes)){
+        exibirLive(resposta.publicacoes);
+      }else{
+        secao.hidden = true;
+        iframe.removeAttribute("src");
+        console.warn("Não foi possível carregar o destaque de culto ao vivo.");
+      }
+    };
+
+    script.onerror = function(){
+      limpar();
+      secao.hidden = true;
+      iframe.removeAttribute("src");
+      console.warn("A API das redes sociais não respondeu na página inicial.");
+    };
+
+    script.src = API_REDES_SOCIAIS +
+      "?callback=" + encodeURIComponent(callbackName) +
+      "&_t=" + Date.now();
+    document.head.appendChild(script);
+
+    timeoutId = window.setTimeout(function(){
+      if(finalizado) return;
+      limpar();
+      secao.hidden = true;
+      iframe.removeAttribute("src");
+      console.warn("Tempo esgotado ao carregar o destaque de culto ao vivo.");
+    }, 12000);
+  }
+
+  if(document.readyState === "loading"){
+    document.addEventListener("DOMContentLoaded", carregarLives, {once:true});
+  }else{
+    carregarLives();
+  }
+})();
+</script>
+
 </body>
 </html>
