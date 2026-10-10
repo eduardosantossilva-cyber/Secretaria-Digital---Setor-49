@@ -1,2068 +1,627 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Redes Sociais | AD Belém 49</title>
 
   <style>
-.tiktok-footer{
-  width:100%;
-  text-align:center;
-  margin-top:24px;
-  clear:both;
-}
+.tiktok-footer{width:100%;text-align:center;margin-top:24px;clear:both}
+.tiktok-button{display:inline-block;background:#073c66;color:#fff!important;padding:11px 20px;border-radius:10px;font-size:13px;font-weight:800;text-decoration:none!important}
+.tiktok-button:hover{background:#159dd1}
+.tiktok-section{margin-top:38px}
+.tiktok-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px;align-items:start}
+.tiktok-post{background:#fff;border:1px solid #e8edf2;border-radius:16px;overflow:hidden;box-shadow:0 6px 18px rgba(16,24,40,.05);height:620px}
+.tiktok-player{width:100%;height:100%;border:0;display:block}
 
-.tiktok-button{
-  display:inline-block;
-  background:#073c66;
-  color:#fff !important;
-  padding:11px 20px;
-  border-radius:10px;
-  font-size:13px;
-  font-weight:800;
-  text-decoration:none !important;
-}
+.instagram-section{margin-top:38px}
+.instagram-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px;align-items:start}
+.instagram-post{background:#fff;border:1px solid #e8edf2;border-radius:16px;overflow:hidden;box-shadow:0 6px 18px rgba(16,24,40,.05);transition:.2s;height:560px}
+.instagram-post:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(16,24,40,.08)}
+.instagram-post .instagram-media{margin:0!important;width:100%!important;min-width:0!important}
+.instagram-post img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+.instagram-content{padding:16px}
+.instagram-content h3{margin:0 0 7px;font-size:16px;color:#073c66}
+.instagram-content p{margin:0 0 12px;color:#667085;font-size:13px;line-height:1.5}
+.instagram-date{display:block;margin-bottom:10px;color:#98a2b3;font-size:11px}
+.instagram-link{display:inline-block;color:#159dd1;font-size:12px;font-weight:800;text-decoration:none}
+.instagram-link:hover{text-decoration:underline}
+.instagram-footer{text-align:center;margin-top:24px}
+.instagram-button{display:inline-block;background:#079447;color:#fff;padding:11px 18px;border-radius:10px;font-size:13px;font-weight:800;text-decoration:none}
+.instagram-button:hover{background:#057a3a}
 
-.tiktok-button:hover{
-  background:#159dd1;
+:root{
+  --blue:#159dd1;
+  --green:#079447;
+  --gold:#f9c414;
+  --navy:#073c66;
+  --ink:#17212b;
+  --muted:#667085;
+  --bg:#f6f8fa;
 }
-.tiktok-section{
-  margin-top:38px;
-}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink)}
 
-.tiktok-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-  margin-top:18px;
-  align-items:start;
-}
+header{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid #e6edf2}
+.nav{max-width:1180px;margin:auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--navy);font-weight:800;font-size:14px}
+.brand img{width:42px;height:42px;object-fit:contain}
+.brand span{display:flex;flex-direction:column;line-height:1.15}
+.brand small{display:block;margin-top:4px;font-size:11px;font-weight:700;letter-spacing:.03em;color:#667085}
+nav{display:flex;align-items:center;gap:18px}
+nav a{text-decoration:none;color:#344054;font-size:12px;font-weight:700}
+nav a:hover{color:var(--blue)}
+.area-restrita-link{color:#073c66!important;background:#eef8fc!important;border:1px solid #cfe7f0!important;border-radius:9px!important;padding:8px 11px!important;font-weight:900!important;transition:.2s;display:inline-flex;align-items:center;justify-content:center}
+.area-restrita-link:hover{color:#fff!important;background:#079447!important;border-color:#079447!important}
+.menu{display:none;font-size:25px;cursor:pointer;color:var(--navy)}
 
-.tiktok-post{
-  background:#fff;
-  border:1px solid #e8edf2;
-  border-radius:16px;
-  overflow:hidden;
-  box-shadow:0 6px 18px rgba(16,24,40,.05);
-  height:620px;
-}
+.hero{background:linear-gradient(135deg,var(--navy),var(--blue),var(--green));padding:58px 22px;color:#fff}
+.hero-inner{max-width:1180px;margin:auto}
+.hero small{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;margin-bottom:10px;opacity:.9}
+.hero h1{font-size:38px;margin-bottom:10px}
+.hero p{font-size:15px;opacity:.95;max-width:700px;line-height:1.6}
 
-.tiktok-player{
-  width:100%;
-  height:100%;
-  border:0;
-  display:block;
-}
-}
+main{max-width:1180px;margin:35px auto;padding:0 22px}
+.intro{background:#fff;border:1px solid #e1e8ed;border-radius:20px;padding:28px;margin-bottom:25px;box-shadow:0 6px 20px rgba(7,60,102,.05)}
+.intro h2{color:var(--navy);margin-bottom:10px;font-size:23px}
+.intro p{color:var(--muted);line-height:1.7;font-size:14px}
 
-  .instagram-section{
-  margin-top:38px;
-}
+.social-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.social-card{background:#fff;border:1px solid #e1e8ed;border-radius:20px;padding:25px;min-height:230px;box-shadow:0 8px 24px rgba(7,60,102,.06);display:flex;flex-direction:column;justify-content:space-between}
+.social-top{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.social-icon{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;font-size:28px;background:#f4f7f9}
+.social-card h2{color:var(--navy);font-size:20px;margin-bottom:4px}
+.social-user{color:var(--muted);font-size:12px;font-weight:700}
+.social-card p{color:var(--muted);font-size:13px;line-height:1.6;margin-bottom:20px}
+.social-btn{display:inline-block;width:max-content;padding:11px 17px;color:#fff;text-decoration:none;border-radius:9px;font-size:11px;font-weight:800;transition:.2s}
+.social-btn:hover{transform:translateY(-2px);opacity:.9}
+.instagram-btn{background:#d62976}
+.tiktok-btn{background:#111}
+.youtube-btn{background:#ff0000}
 
-.instagram-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-  margin-top:18px;
-  align-items:start;
-}
+/* DESTAQUE DE TRANSMISSÃO AO VIVO */
+.live-culto{max-width:1180px;margin:24px auto 0;padding:0 22px}
+.live-culto[hidden]{display:none!important}
+.live-culto-inner{display:grid;grid-template-columns:.82fr 1.18fr;align-items:center;gap:26px;padding:25px;background:linear-gradient(135deg,#fff 0%,#fff5f5 100%);border:2px solid #e5484d;border-radius:22px;box-shadow:0 10px 28px rgba(181,30,42,.12)}
+.live-culto-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 11px;margin-bottom:14px;border-radius:999px;background:#fff;border:1px solid #ffc9cc;color:#b51e2a;font-size:11px;font-weight:900;letter-spacing:.05em}
+.live-culto-dot{width:9px;height:9px;border-radius:50%;background:#e5484d;box-shadow:0 0 0 4px rgba(229,72,77,.13);animation:livePulse 1.5s infinite}
+@keyframes livePulse{0%,100%{box-shadow:0 0 0 3px rgba(229,72,77,.12)}50%{box-shadow:0 0 0 7px rgba(229,72,77,.04)}}
+.live-culto-copy h2{margin:0 0 10px;color:#8f1821;font-size:clamp(24px,3vw,34px);line-height:1.15}
+.live-culto-copy p{margin:0 0 12px;color:#5e6672;font-size:14px;line-height:1.65}
+.live-culto-nome{display:block;margin:0 0 17px;color:#273444;font-size:15px;font-weight:800;line-height:1.5}
+.live-culto-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;border-radius:10px;background:#c62828;color:#fff!important;text-decoration:none;font-size:12px;font-weight:900;transition:.2s}
+.live-culto-link:hover{background:#9f1d24;transform:translateY(-2px)}
+.live-culto-video{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:16px;background:#111;box-shadow:0 8px 22px rgba(16,24,40,.16)}
+.live-culto-video iframe{width:100%;height:100%;border:0;display:block}
 
-.instagram-post{
-  background:#fff;
-  border:1px solid #e8edf2;
-  border-radius:16px;
-  overflow:hidden;
-  box-shadow:0 6px 18px rgba(16,24,40,.05);
-  transition:.2s;
-  height:560px;
-}
+.youtube-section{margin-top:25px;background:#fff;border:1px solid #e1e8ed;border-radius:20px;padding:25px;box-shadow:0 8px 24px rgba(7,60,102,.05)}
+.youtube-section h2{color:var(--navy);font-size:21px;margin-bottom:8px}
+.youtube-section p{color:var(--muted);font-size:13px;margin-bottom:18px}
+.video-box{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:15px;background:#111}
+.video-box iframe{width:100%;height:100%;border:0}
+.videos-recentes{margin-top:25px}
+.videos-recentes h2{color:var(--navy);font-size:21px;margin-bottom:8px}
+.videos-recentes>p{color:var(--muted);font-size:13px;margin-bottom:18px}
+.videos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.video-card{background:#fff;border:1px solid #e1e8ed;border-radius:20px;padding:16px;box-shadow:0 8px 24px rgba(7,60,102,.05);overflow:hidden}
+.video-thumb{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:14px;background:#111}
+.video-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.video-card h3{color:var(--navy);font-size:16px;margin:15px 0 12px}
+.video-btn{display:inline-block;padding:10px 15px;background:#ff0000;color:#fff;text-decoration:none;border-radius:8px;font-weight:800;font-size:11px;transition:.2s}
+.video-btn:hover{transform:translateY(-2px);opacity:.9}
+.social-loading{grid-column:1/-1;width:100%;padding:24px 18px;border:1px dashed #d7e1e8;border-radius:12px;background:#fbfcfd;color:#667085;font-size:13px;line-height:1.5;text-align:center}
 
-.instagram-post:hover{
-  transform:translateY(-3px);
-  box-shadow:0 10px 22px rgba(16,24,40,.08);
-}
+footer{background:#20262b;color:#d0d5dd;padding:30px 22px;text-align:center;font-size:13px}
 
-.instagram-post .instagram-media{
-  margin:0 !important;
-  width:100% !important;
-  min-width:0 !important;
+@media(max-width:900px){
+  .social-grid,.videos-grid{grid-template-columns:1fr}
 }
-
-.instagram-post:hover{
-  transform:translateY(-3px);
-  box-shadow:0 12px 28px rgba(16,24,40,.09);
-}
-
-.instagram-post img{
-  width:100%;
-  aspect-ratio:1/1;
-  object-fit:cover;
-  display:block;
-}
-
-.instagram-content{
-  padding:16px;
-}
-
-.instagram-content h3{
-  margin:0 0 7px;
-  font-size:16px;
-  color:#073c66;
-}
-
-.instagram-content p{
-  margin:0 0 12px;
-  color:#667085;
-  font-size:13px;
-  line-height:1.5;
-}
-
-.instagram-date{
-  display:block;
-  margin-bottom:10px;
-  color:#98a2b3;
-  font-size:11px;
-}
-
-.instagram-link{
-  display:inline-block;
-  color:#159dd1;
-  font-size:12px;
-  font-weight:800;
-  text-decoration:none;
-}
-
-.instagram-link:hover{
-  text-decoration:underline;
-}
-
-.instagram-footer{
-  text-align:center;
-  margin-top:24px;
-}
-
-.instagram-button{
-  display:inline-block;
-  background:#079447;
-  color:#fff;
-  padding:11px 18px;
-  border-radius:10px;
-  font-size:13px;
-  font-weight:800;
-  text-decoration:none;
-}
-
-.instagram-button:hover{
-  background:#057a3a;
-}
-
 @media(max-width:800px){
-  .instagram-grid{
-    grid-template-columns:1fr;
-  }
+  nav{display:none;position:absolute;top:67px;left:0;right:0;background:#fff;padding:20px;flex-direction:column;border-bottom:1px solid #e6edf2}
+  nav.active{display:flex}
+  .menu{display:block}
+  .hero{padding:45px 20px}
+  .hero h1{font-size:30px}
+  main{margin:25px auto}
+  .intro,.social-card,.youtube-section{padding:22px}
+  .instagram-grid{grid-template-columns:1fr}
+  .live-culto-inner{grid-template-columns:1fr;gap:18px;padding:18px}
+  .live-culto{margin-top:18px;padding:0 16px}
+  .tiktok-grid{grid-template-columns:1fr!important;gap:20px}
+  .tiktok-post{width:100%;height:auto!important;aspect-ratio:9/16}
+  .tiktok-player{width:100%;height:100%;display:block;border:0}
 }
 
-    :root{
-      --blue:#159dd1;
-      --green:#079447;
-      --gold:#f9c414;
-      --navy:#073c66;
-      --ink:#17212b;
-      --muted:#667085;
-      --bg:#f6f8fa;
-    }
-
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-    }
-
-    body{
-      font-family:Arial, Helvetica, sans-serif;
-      background:var(--bg);
-      color:var(--ink);
-    }
-
-    /* HEADER */
-
-    header{
-      position:sticky;
-      top:0;
-      z-index:1000;
-      background:#fff;
-      border-bottom:1px solid #e6edf2;
-    }
-
-    .nav{
-      max-width:1180px;
-      margin:auto;
-      padding:12px 22px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      text-decoration:none;
-      color:var(--navy);
-      font-weight:800;
-      font-size:14px;
-    }
-
-    .brand img{
-      width:42px;
-      height:42px;
-      object-fit:contain;
-    }
-
-    .brand span{
-      display:flex;
-      flex-direction:column;
-      line-height:1.15;
-    }
-
-    .brand small{
-      display:block;
-      margin-top:4px;
-      font-size:11px;
-      font-weight:700;
-      letter-spacing:.03em;
-      color:#667085;
-    }
-
-    nav{
-      display:flex;
-      align-items:center;
-      gap:18px;
-    }
-
-    nav a{
-      text-decoration:none;
-      color:#344054;
-      font-size:12px;
-      font-weight:700;
-    }
-
-    nav a:hover{
-      color:var(--blue);
-    }
-
-    .area-restrita-link{
-  color:#073c66 !important;
-  background:#eef8fc !important;
-  border:1px solid #cfe7f0 !important;
-  border-radius:9px !important;
-  padding:8px 11px !important;
-  font-weight:900 !important;
-  transition:.2s;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.area-restrita-link:hover{
-  color:#fff !important;
-  background:#079447 !important;
-  border-color:#079447 !important;
-}
-
-    .menu{
-      display:none;
-      font-size:25px;
-      cursor:pointer;
-      color:var(--navy);
-    }
-
-    /* HERO */
-
-    .hero{
-      background:linear-gradient(
-        135deg,
-        var(--navy),
-        var(--blue),
-        var(--green)
-      );
-      padding:58px 22px;
-      color:#fff;
-    }
-
-    .hero-inner{
-      max-width:1180px;
-      margin:auto;
-    }
-
-    .hero small{
-      display:block;
-      font-size:12px;
-      font-weight:700;
-      letter-spacing:.08em;
-      margin-bottom:10px;
-      opacity:.9;
-    }
-
-    .hero h1{
-      font-size:38px;
-      margin-bottom:10px;
-    }
-
-    .hero p{
-      font-size:15px;
-      opacity:.95;
-      max-width:700px;
-      line-height:1.6;
-    }
-
-    /* MAIN */
-
-    main{
-      max-width:1180px;
-      margin:35px auto;
-      padding:0 22px;
-    }
-
-    .intro{
-      background:#fff;
-      border:1px solid #e1e8ed;
-      border-radius:20px;
-      padding:28px;
-      margin-bottom:25px;
-      box-shadow:0 6px 20px rgba(7,60,102,.05);
-    }
-
-    .intro h2{
-      color:var(--navy);
-      margin-bottom:10px;
-      font-size:23px;
-    }
-
-    .intro p{
-      color:var(--muted);
-      line-height:1.7;
-      font-size:14px;
-    }
-
-    /* REDES */
-
-    .social-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:20px;
-    }
-
-    .social-card{
-      background:#fff;
-      border:1px solid #e1e8ed;
-      border-radius:20px;
-      padding:25px;
-      min-height:230px;
-      box-shadow:0 8px 24px rgba(7,60,102,.06);
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-    }
-
-    .social-top{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      margin-bottom:18px;
-    }
-
-    .social-icon{
-      width:52px;
-      height:52px;
-      border-radius:15px;
-      display:grid;
-      place-items:center;
-      font-size:28px;
-      background:#f4f7f9;
-    }
-
-    .social-card h2{
-      color:var(--navy);
-      font-size:20px;
-      margin-bottom:4px;
-    }
-
-    .social-user{
-      color:var(--muted);
-      font-size:12px;
-      font-weight:700;
-    }
-
-    .social-card p{
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.6;
-      margin-bottom:20px;
-    }
-
-    .social-btn{
-      display:inline-block;
-      width:max-content;
-      padding:11px 17px;
-      color:#fff;
-      text-decoration:none;
-      border-radius:9px;
-      font-size:11px;
-      font-weight:800;
-      transition:.2s;
-    }
-
-    .social-btn:hover{
-      transform:translateY(-2px);
-      opacity:.9;
-    }
-
-    .instagram-btn{
-      background:#d62976;
-    }
-
-    .tiktok-btn{
-      background:#111;
-    }
-
-    .youtube-btn{
-      background:#ff0000;
-    }
-
-    /* YOUTUBE */
-
-    .youtube-section{
-      margin-top:25px;
-      background:#fff;
-      border:1px solid #e1e8ed;
-      border-radius:20px;
-      padding:25px;
-      box-shadow:0 8px 24px rgba(7,60,102,.05);
-    }
-
-    .youtube-section h2{
-      color:var(--navy);
-      font-size:21px;
-      margin-bottom:8px;
-    }
-
-    .youtube-section p{
-      color:var(--muted);
-      font-size:13px;
-      margin-bottom:18px;
-    }
-
-    .video-box{
-      position:relative;
-      width:100%;
-      aspect-ratio:16/9;
-      overflow:hidden;
-      border-radius:15px;
-      background:#111;
-    }
-
-    .video-box iframe{
-      width:100%;
-      height:100%;
-      border:0;
-    }
-
-    /* ÚLTIMOS VÍDEOS */
-
-    .videos-recentes{
-      margin-top:25px;
-    }
-
-    .videos-recentes h2{
-      color:var(--navy);
-      font-size:21px;
-      margin-bottom:8px;
-    }
-
-    .videos-recentes > p{
-      color:var(--muted);
-      font-size:13px;
-      margin-bottom:18px;
-    }
-
-    .videos-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:20px;
-    }
-
-    .video-card{
-      background:#fff;
-      border:1px solid #e1e8ed;
-      border-radius:20px;
-      padding:16px;
-      box-shadow:0 8px 24px rgba(7,60,102,.05);
-      overflow:hidden;
-    }
-
-    .video-thumb{
-      position:relative;
-      width:100%;
-      aspect-ratio:16/9;
-      overflow:hidden;
-      border-radius:14px;
-      background:#111;
-    }
-
-    .video-thumb img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-
-    .video-card h3{
-      color:var(--navy);
-      font-size:16px;
-      margin:15px 0 12px;
-    }
-
-    .video-btn{
-      display:inline-block;
-      padding:10px 15px;
-      background:#ff0000;
-      color:#fff;
-      text-decoration:none;
-      border-radius:8px;
-      font-weight:800;
-      font-size:11px;
-      transition:.2s;
-    }
-
-    .video-btn:hover{
-      transform:translateY(-2px);
-      opacity:.9;
-    }
-
-
-    .social-loading{
-      grid-column:1/-1;
-      width:100%;
-      padding:24px 18px;
-      border:1px dashed #d7e1e8;
-      border-radius:12px;
-      background:#fbfcfd;
-      color:#667085;
-      font-size:13px;
-      line-height:1.5;
-      text-align:center;
-    }
-
-    /* FOOTER */
-
-  footer{
-  background:#20262b;
-  color:#d0d5dd;
-  padding:30px 22px;
-  text-align:center;
-  font-size:13px
-}
-
-    /* MOBILE */
-
-    @media(max-width:900px){
-
-      .social-grid{
-        grid-template-columns:1fr;
-      }
-
-      .videos-grid{
-        grid-template-columns:1fr;
-      }
-
-    }
-
-    @media(max-width:800px){
-
-      nav{
-        display:none;
-        position:absolute;
-        top:67px;
-        left:0;
-        right:0;
-        background:#fff;
-        padding:20px;
-        flex-direction:column;
-        border-bottom:1px solid #e6edf2;
-      }
-
-      nav.active{
-        display:flex;
-      }
-
-      .menu{
-        display:block;
-      }
-
-      .hero{
-        padding:45px 20px;
-      }
-
-      .hero h1{
-        font-size:30px;
-      }
-
-      main{
-        margin:25px auto;
-      }
-
-      .intro,
-      .social-card,
-      .youtube-section{
-        padding:22px;
-      }
-
-    }
-@media(max-width:800px){
-
-  .tiktok-grid{
-    grid-template-columns:1fr !important;
-    gap:20px;
-  }
-
-  .tiktok-post{
-    width:100%;
-    height:auto !important;
-    aspect-ratio:9 / 16;
-  }
-
-  .tiktok-player{
-    width:100%;
-    height:100%;
-    display:block;
-    border:0;
-  }
-
-}
-
-/* =============================
-   CHAT DE ATENDIMENTO
-============================= */
-
-.atendimento-botao{
-  position:fixed;
-  right:22px;
-  bottom:22px;
-  z-index:1000;
-  border:0;
-  background:var(--blue);
-  color:#fff;
-  border-radius:50px;
-  padding:14px 20px;
-  font-size:14px;
-  font-weight:900;
-  cursor:pointer;
-  box-shadow:0 8px 24px rgba(7,60,102,.25);
-  transition:.2s;
-}
-
-.atendimento-botao:hover{
-  transform:translateY(-3px);
-  background:var(--green);
-}
-
-.atendimento-chat{
-  position:fixed;
-  right:22px;
-  bottom:82px;
-  width:360px;
-  max-width:calc(100vw - 30px);
-  max-height:calc(100vh - 110px);
-  background:#fff;
-  border:1px solid #e4e9ee;
-  border-radius:20px;
-  box-shadow:0 18px 45px rgba(16,24,40,.20);
-  z-index:999;
-  overflow:hidden;
-  display:none;
-}
-
-.atendimento-chat.aberto{
-  display:block;
-}
-
-.atendimento-header{
-  background:linear-gradient(
-    135deg,
-    var(--navy),
-    var(--blue)
-  );
-  color:#fff;
-  padding:18px 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.atendimento-header strong{
-  display:block;
-  font-size:16px;
-}
-
-.atendimento-header small{
-  display:block;
-  margin-top:3px;
-  opacity:.85;
-  font-size:11px;
-}
-
-.atendimento-fechar{
-  border:0;
-  background:rgba(255,255,255,.15);
-  color:#fff;
-  width:32px;
-  height:32px;
-  border-radius:9px;
-  cursor:pointer;
-  font-size:18px;
-}
-
-.atendimento-corpo{
-  padding:18px;
-  overflow-y:auto;
-  max-height:calc(100vh - 180px);
-}
-
-.atendimento-corpo p{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.5;
-  margin:0 0 15px;
-}
-
-.atendimento-campo{
-  margin-bottom:12px;
-}
-
-.atendimento-campo label{
-  display:block;
-  font-size:11px;
-  font-weight:800;
-  color:#344054;
-  margin-bottom:5px;
-}
-
-.atendimento-campo input,
-.atendimento-campo select,
-.atendimento-campo textarea{
-  width:100%;
-  border:1px solid #dce3e8;
-  border-radius:9px;
-  padding:10px 11px;
-  font-family:inherit;
-  font-size:12px;
-  outline:none;
-}
-
-.atendimento-campo input:focus,
-.atendimento-campo select:focus,
-.atendimento-campo textarea:focus{
-  border-color:var(--blue);
-  box-shadow:0 0 0 3px rgba(21,157,209,.10);
-}
-
-.atendimento-campo textarea{
-  resize:vertical;
-  min-height:80px;
-}
-
-.atendimento-enviar{
-  width:100%;
-  border:0;
-  border-radius:10px;
-  padding:12px;
-  background:var(--green);
-  color:#fff;
-  font-weight:900;
-  font-size:12px;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.atendimento-enviar:hover{
-  background:var(--blue);
-}
-
-.atendimento-opcoes{
-  display:grid;
-  gap:10px;
-  margin-bottom:18px;
-}
-
-.atendimento-opcao{
-  width:100%;
-  border:1px solid #dce3e8;
-  border-radius:10px;
-  padding:13px 15px;
-  background:#f8fafc;
-  color:#073c66;
-  font-family:inherit;
-  font-size:13px;
-  font-weight:800;
-  text-align:left;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.atendimento-opcao:hover{
-  background:#eef8fc;
-  border-color:#159dd1;
-  transform:translateY(-1px);
-}
-
-.atendimento-voltar{
-  width:100%;
-  margin-top:8px;
-  padding:10px;
-  border:0;
-  background:transparent;
-  color:#073c66;
-  font-family:inherit;
-  font-size:13px;
-  font-weight:800;
-  cursor:pointer;
-}
-
-.atendimento-voltar:hover{
-  color:#159dd1;
-}
-
+/* CHAT DE ATENDIMENTO */
+.atendimento-botao{position:fixed;right:22px;bottom:22px;z-index:1000;border:0;background:var(--blue);color:#fff;border-radius:50px;padding:14px 20px;font-size:14px;font-weight:900;cursor:pointer;box-shadow:0 8px 24px rgba(7,60,102,.25);transition:.2s}
+.atendimento-botao:hover{transform:translateY(-3px);background:var(--green)}
+.atendimento-chat{position:fixed;right:22px;bottom:82px;width:360px;max-width:calc(100vw - 30px);max-height:calc(100vh - 110px);background:#fff;border:1px solid #e4e9ee;border-radius:20px;box-shadow:0 18px 45px rgba(16,24,40,.20);z-index:999;overflow:hidden;display:none}
+.atendimento-chat.aberto{display:block}
+.atendimento-header{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;padding:18px 20px;display:flex;align-items:center;justify-content:space-between}
+.atendimento-header strong{display:block;font-size:16px}
+.atendimento-header small{display:block;margin-top:3px;opacity:.85;font-size:11px}
+.atendimento-fechar{border:0;background:rgba(255,255,255,.15);color:#fff;width:32px;height:32px;border-radius:9px;cursor:pointer;font-size:18px}
+.atendimento-corpo{padding:18px;overflow-y:auto;max-height:calc(100vh - 180px)}
+.atendimento-corpo p{color:var(--muted);font-size:12px;line-height:1.5;margin:0 0 15px}
+.atendimento-campo{margin-bottom:12px}
+.atendimento-campo label{display:block;font-size:11px;font-weight:800;color:#344054;margin-bottom:5px}
+.atendimento-campo input,.atendimento-campo select,.atendimento-campo textarea{width:100%;border:1px solid #dce3e8;border-radius:9px;padding:10px 11px;font-family:inherit;font-size:12px;outline:none}
+.atendimento-campo input:focus,.atendimento-campo select:focus,.atendimento-campo textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(21,157,209,.10)}
+.atendimento-campo textarea{resize:vertical;min-height:80px}
+.atendimento-enviar{width:100%;border:0;border-radius:10px;padding:12px;background:var(--green);color:#fff;font-weight:900;font-size:12px;cursor:pointer;transition:.2s}
+.atendimento-enviar:hover{background:var(--blue)}
+.atendimento-opcoes{display:grid;gap:10px;margin-bottom:18px}
+.atendimento-opcao{width:100%;border:1px solid #dce3e8;border-radius:10px;padding:13px 15px;background:#f8fafc;color:#073c66;font-family:inherit;font-size:13px;font-weight:800;text-align:left;cursor:pointer;transition:.2s}
+.atendimento-opcao:hover{background:#eef8fc;border-color:#159dd1;transform:translateY(-1px)}
+.atendimento-voltar{width:100%;margin-top:8px;padding:10px;border:0;background:transparent;color:#073c66;font-family:inherit;font-size:13px;font-weight:800;cursor:pointer}
+.atendimento-voltar:hover{color:#159dd1}
 @media(max-width:500px){
-
-  .atendimento-botao{
-    right:15px;
-    bottom:15px;
-    padding:13px 17px;
-  }
-
-  .atendimento-chat{
-    right:15px;
-    bottom:75px;
-    width:calc(100vw - 30px);
-    max-height:calc(100vh - 95px);
-    border-radius:18px;
-  }
-
-  .atendimento-header{
-    padding:14px 16px;
-  }
-
-  .atendimento-corpo{
-    padding:15px;
-  }
-
-  .atendimento-campo{
-    margin-bottom:10px;
-  }
-
+  .atendimento-botao{right:15px;bottom:15px;padding:13px 17px}
+  .atendimento-chat{right:15px;bottom:75px;width:calc(100vw - 30px);max-height:calc(100vh - 95px);border-radius:18px}
+  .atendimento-header{padding:14px 16px}
+  .atendimento-corpo{padding:15px}
+  .atendimento-campo{margin-bottom:10px}
 }
-
   </style>
-
 </head>
 
-
 <body>
-
-
 <header>
-
   <div class="nav">
-
     <a href="index.html" class="brand">
-
       <img src="logo.png" alt="Logo Assembleia de Deus">
-
       <span>
         ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM
         <small>SETOR 49 - JARDIM DOS PIMENTAS</small>
       </span>
-
     </a>
-
-
     <div class="menu" onclick="toggleMenu()">☰</div>
-
-
-   <nav id="menu">
-
-  <a href="index.html">Início</a>
-
-  <a
-    href="area-restrita.html"
-    class="area-restrita-link"
-  >
-    🔒 Área Restrita
-  </a>
-
-</nav>
+    <nav id="menu">
+      <a href="index.html">Início</a>
+      <a href="area-restrita.html" class="area-restrita-link">🔒 Área Restrita</a>
+    </nav>
   </div>
-
 </header>
 
-
 <section class="hero">
-
   <div class="hero-inner">
-
     <small>PORTAL AD BELÉM - SETOR 49</small>
-
     <h1>Redes Sociais</h1>
-
-    <p>
-      Acompanhe o Setor 49 — Jardim dos Pimentas, pelas nossas redes oficiais.
-    </p>
-
+    <p>Acompanhe o Setor 49 — Jardim dos Pimentas, pelas nossas redes oficiais.</p>
   </div>
-
 </section>
 
+<!-- DESTAQUE AUTOMÁTICO: aparece somente quando houver YOUTUBE com TIPO=LIVE e ATIVO=SIM na planilha -->
+<section class="live-culto" id="liveCultoSection" hidden aria-labelledby="liveCultoHeading">
+  <div class="live-culto-inner">
+    <div class="live-culto-copy">
+      <span class="live-culto-badge"><span class="live-culto-dot" aria-hidden="true"></span> TRANSMISSÃO AO VIVO</span>
+      <h2 id="liveCultoHeading">Estamos em culto agora!</h2>
+      <p id="liveCultoDescricao">Acompanhe a transmissão ao vivo da AD Belém 49. Participe conosco!</p>
+      <span class="live-culto-nome" id="liveCultoNome"></span>
+      <a class="live-culto-link" id="liveCultoLink" href="https://www.youtube.com/@adbelem49" target="_blank" rel="noopener noreferrer">▶ ASSISTIR NO YOUTUBE</a>
+    </div>
+    <div class="live-culto-video">
+      <iframe id="liveCultoIframe" title="Transmissão ao vivo — AD Belém 49" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+  </div>
+</section>
 
 <main>
-
-
-  <!-- INTRO -->
-
   <section class="intro">
-
     <h2>📱 Conecte-se conosco</h2>
-
-    <p>
-      Acompanhe os cultos, eventos, congressos, avisos,
-      transmissões e demais conteúdos da igreja através
-      das nossas redes sociais oficiais.
-    </p>
-
+    <p>Acompanhe os cultos, eventos, congressos, avisos, transmissões e demais conteúdos da igreja através das nossas redes sociais oficiais.</p>
   </section>
 
-
-  <!-- REDES SOCIAIS -->
-
   <section class="social-grid">
-
-
-    <!-- INSTAGRAM -->
-
     <div class="social-card">
-
       <div>
-
         <div class="social-top">
-
-          <div class="social-icon">
-            📸
-          </div>
-
+          <div class="social-icon">📸</div>
           <div>
-
             <h2>Instagram</h2>
-
-            <div class="social-user">
-              @adbelempimentas
-            </div>
-
+            <div class="social-user">@adbelempimentas</div>
           </div>
-
         </div>
-
-
-        <p>
-          Acompanhe fotos, vídeos, eventos, cultos
-          e novidades do Setor 49.
-        </p>
-
+        <p>Acompanhe fotos, vídeos, eventos, cultos e novidades do Setor 49.</p>
       </div>
-
-
-      <a
-        class="social-btn instagram-btn"
-        href="https://www.instagram.com/adbelempimentas/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        ACESSAR INSTAGRAM →
-      </a>
-
+      <a class="social-btn instagram-btn" href="https://www.instagram.com/adbelempimentas/" target="_blank" rel="noopener noreferrer">ACESSAR INSTAGRAM →</a>
     </div>
 
-
-    <!-- TIKTOK -->
-
     <div class="social-card">
-
       <div>
-
         <div class="social-top">
-
-          <div class="social-icon">
-            🎵
-          </div>
-
+          <div class="social-icon">🎵</div>
           <div>
-
             <h2>TikTok</h2>
-
-            <div class="social-user">
-              @adbelempimentas
-            </div>
-
+            <div class="social-user">@adbelempimentas</div>
           </div>
-
         </div>
-
-
-        <p>
-          Confira vídeos curtos, momentos especiais
-          e conteúdos da igreja.
-        </p>
-
+        <p>Confira vídeos curtos, momentos especiais e conteúdos da igreja.</p>
       </div>
-
-
-      <a
-        class="social-btn tiktok-btn"
-        href="https://www.tiktok.com/@adbelempimentas"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        ACESSAR TIKTOK →
-      </a>
-
+      <a class="social-btn tiktok-btn" href="https://www.tiktok.com/@adbelempimentas" target="_blank" rel="noopener noreferrer">ACESSAR TIKTOK →</a>
     </div>
-
-
-    <!-- YOUTUBE -->
 
     <div class="social-card">
-
       <div>
-
         <div class="social-top">
-
-          <div class="social-icon">
-            📺
-          </div>
-
+          <div class="social-icon">📺</div>
           <div>
-
             <h2>YouTube</h2>
-
-            <div class="social-user">
-              AD Belém 49
-            </div>
-
+            <div class="social-user">AD Belém 49</div>
           </div>
-
         </div>
-
-
-        <p>
-          Acompanhe cultos, congressos, transmissões
-          e conteúdos completos do Setor 49.
-        </p>
-
+        <p>Acompanhe cultos, congressos, transmissões e conteúdos completos do Setor 49.</p>
       </div>
-
-
-      <a
-        class="social-btn youtube-btn"
-        href="https://www.youtube.com/@adbelem49"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        ACESSAR YOUTUBE →
-      </a>
-
+      <a class="social-btn youtube-btn" href="https://www.youtube.com/@adbelem49" target="_blank" rel="noopener noreferrer">ACESSAR YOUTUBE →</a>
     </div>
-
-
   </section>
 
   <section class="instagram-section">
+    <div class="section-head">
+      <h2 class="section-title">📸 Publicações do Instagram</h2>
+    </div>
+    <div class="instagram-grid" id="instagramGrid">
+      <p class="social-loading">Carregando publicações do Instagram...</p>
+    </div>
+    <div class="instagram-footer">
+      <a class="instagram-button" href="https://www.instagram.com/adbelempimentas/" target="_blank">Ver todas as publicações no Instagram</a>
+    </div>
+  </section>
 
-  <div class="section-head">
-    <h2 class="section-title">📸 Publicações do Instagram</h2>
-  </div>
-
-<div class="instagram-grid" id="instagramGrid">
-  <p class="social-loading">Carregando publicações do Instagram...</p>
-</div>
-
-  <div class="instagram-footer">
-    <a class="instagram-button"
-       href="https://www.instagram.com/adbelempimentas/"
-       target="_blank">
-      Ver todas as publicações no Instagram
-    </a>
-  </div>
-
-</section>
-
-<section class="tiktok-section">
-
-  <div class="section-head">
-    <h2 class="section-title">🎵 Vídeos do TikTok</h2>
-  </div>
-
-<div class="tiktok-grid" id="tiktokGrid">
-  <p class="social-loading">Carregando vídeos do TikTok...</p>
-</div>
-
-  <div class="tiktok-footer">
-    <a
-  class="tiktok-button"
-  href="https://www.tiktok.com/@adbelempimentas"
-  target="_blank">
-  Ver mais vídeos no TikTok
-</a>
-  </div>
-
-</section>
-
-
-  <!-- YOUTUBE EM DESTAQUE -->
+  <section class="tiktok-section">
+    <div class="section-head">
+      <h2 class="section-title">🎵 Vídeos do TikTok</h2>
+    </div>
+    <div class="tiktok-grid" id="tiktokGrid">
+      <p class="social-loading">Carregando vídeos do TikTok...</p>
+    </div>
+    <div class="tiktok-footer">
+      <a class="tiktok-button" href="https://www.tiktok.com/@adbelempimentas" target="_blank">Ver mais vídeos no TikTok</a>
+    </div>
+  </section>
 
   <section class="youtube-section">
-
     <h2>🎥 Vídeo em destaque</h2>
-
-    <p>
-      Confira um dos conteúdos publicados pelo canal oficial
-      da Assembleia de Deus — Ministério do Belém, Setor 49.
-    </p>
-
-
+    <p>Confira um dos conteúdos publicados pelo canal oficial da Assembleia de Deus — Ministério do Belém, Setor 49.</p>
     <div class="video-box">
-
-      <iframe
-        id="youtubeDestaqueIframe"
-        src="https://www.youtube.com/embed/kP_cwCU7l00"
-        title="AD Belém 49 — Vídeo em destaque"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-      </iframe>
-
+      <iframe id="youtubeDestaqueIframe" src="https://www.youtube.com/embed/kP_cwCU7l00" title="AD Belém 49 — Vídeo em destaque" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
-
   </section>
-
-
-  <!-- ÚLTIMOS VÍDEOS -->
 
   <section class="videos-recentes">
-
     <h2>🎬 Últimos vídeos</h2>
-
-    <p>
-      Confira outros conteúdos publicados pelo canal oficial
-      da Assembleia de Deus — Ministério do Belém, Setor 49.
-    </p>
-
-
+    <p>Confira outros conteúdos publicados pelo canal oficial da Assembleia de Deus — Ministério do Belém, Setor 49.</p>
     <div class="videos-grid" id="videosRecentesGrid">
-  <p class="social-loading">Carregando vídeos recentes do YouTube...</p>
-</div>
-
+      <p class="social-loading">Carregando vídeos recentes do YouTube...</p>
+    </div>
   </section>
-
-
 </main>
 
-
 <footer>
-
   <div class="footer-content">
-
     <div class="footer-title">
       ASSEMBLEIA DE DEUS - MINISTÉRIO DO BELÉM · SETOR 49 - JARDIM DOS PIMENTAS
     </div>
-
-    <div class="footer-subtitle">
-      PORTAL AD BELÉM - SETOR 49
-    </div>
-
+    <div class="footer-subtitle">PORTAL AD BELÉM - SETOR 49</div>
   </div>
-
 </footer>
 
-<!-- =============================
-     ATENDIMENTO
-============================= -->
+<!-- CHAT DE ATENDIMENTO -->
+<button class="atendimento-botao" id="atendimentoBotao" type="button">💬 Atendimento</button>
 
-<button
-  class="atendimento-botao"
-  id="atendimentoBotao"
-  type="button"
->
-  💬 Atendimento
-</button>
-
-<div
-  class="atendimento-chat"
-  id="atendimentoChat"
->
-
+<div class="atendimento-chat" id="atendimentoChat">
   <div class="atendimento-header">
-
     <div>
       <strong>💬 Atendimento</strong>
       <small>Secretaria Digital — Setor 49</small>
     </div>
-
-    <button
-      class="atendimento-fechar"
-      id="atendimentoFechar"
-      type="button"
-    >
-      ×
-    </button>
-
+    <button class="atendimento-fechar" id="atendimentoFechar" type="button">×</button>
   </div>
 
   <div class="atendimento-corpo">
-
-    <div
-      class="atendimento-opcoes"
-      id="atendimentoOpcoes"
-    >
-
-      <button
-        type="button"
-        class="atendimento-opcao"
-        id="novaSolicitacao"
-      >
-        💬 Fazer uma solicitação
-      </button>
-
-      <button
-        type="button"
-        class="atendimento-opcao"
-        id="consultarProtocolo"
-      >
-        🔎 Consultar protocolo
-      </button>
-
+    <div class="atendimento-opcoes" id="atendimentoOpcoes">
+      <button type="button" class="atendimento-opcao" id="novaSolicitacao">💬 Fazer uma solicitação</button>
+      <button type="button" class="atendimento-opcao" id="consultarProtocolo">🔎 Consultar protocolo</button>
     </div>
 
-
-    <div
-      id="formularioAtendimento"
-      style="display:none;"
-    >
-
-      <p>
-        Olá! Como podemos ajudar?
-        Preencha os dados abaixo para enviar sua solicitação.
-      </p>
+    <div id="formularioAtendimento" style="display:none;">
+      <p>Olá! Como podemos ajudar? Preencha os dados abaixo para enviar sua solicitação.</p>
 
       <div class="atendimento-campo">
         <label for="atendimentoNome">Nome</label>
-
-        <input
-          type="text"
-          id="atendimentoNome"
-          placeholder="Digite seu nome"
-        >
+        <input type="text" id="atendimentoNome" placeholder="Digite seu nome">
       </div>
 
-
       <div class="atendimento-campo">
-        <label for="atendimentoWhatsapp">
-          WhatsApp
-        </label>
-
-        <input
-          type="tel"
-          id="atendimentoWhatsapp"
-          placeholder="(11) 99999-9999"
-        >
+        <label for="atendimentoWhatsapp">WhatsApp</label>
+        <input type="tel" id="atendimentoWhatsapp" placeholder="(11) 99999-9999">
       </div>
 
-
       <div class="atendimento-campo">
-
-        <label for="atendimentoTipo">
-          Tipo de atendimento
-        </label>
-
+        <label for="atendimentoTipo">Tipo de atendimento</label>
         <select id="atendimentoTipo">
-
-          <option value="">
-            Selecione uma opção
-          </option>
-
-          <option value="Dúvida">
-            Dúvida
-          </option>
-
-          <option value="Solicitação">
-            Solicitação
-          </option>
-
-          <option value="Informação">
-            Informação
-          </option>
-
-          <option value="Outro">
-            Outro
-          </option>
-
+          <option value="">Selecione uma opção</option>
+          <option value="Dúvida">Dúvida</option>
+          <option value="Solicitação">Solicitação</option>
+          <option value="Informação">Informação</option>
+          <option value="Outro">Outro</option>
         </select>
-
       </div>
-
 
       <div class="atendimento-campo">
-
-        <label for="atendimentoAssunto">
-          Assunto
-        </label>
-
-        <input
-          type="text"
-          id="atendimentoAssunto"
-          placeholder="Sobre o que você precisa?"
-        >
-
+        <label for="atendimentoAssunto">Assunto</label>
+        <input type="text" id="atendimentoAssunto" placeholder="Sobre o que você precisa?">
       </div>
-
 
       <div class="atendimento-campo">
-
-        <label for="atendimentoMensagem">
-          Mensagem
-        </label>
-
-        <textarea
-          id="atendimentoMensagem"
-          placeholder="Digite sua dúvida ou solicitação..."
-        ></textarea>
-
+        <label for="atendimentoMensagem">Mensagem</label>
+        <textarea id="atendimentoMensagem" placeholder="Digite sua dúvida ou solicitação..."></textarea>
       </div>
 
-
-      <button
-        class="atendimento-enviar"
-        id="atendimentoEnviar"
-        type="button"
-      >
-        ENVIAR SOLICITAÇÃO →
-      </button>
-
-
-      <button
-        type="button"
-        class="atendimento-voltar"
-        id="voltarSolicitacao"
-      >
-        ← Voltar
-      </button>
-
+      <button class="atendimento-enviar" id="atendimentoEnviar" type="button">ENVIAR SOLICITAÇÃO →</button>
+      <button type="button" class="atendimento-voltar" id="voltarSolicitacao">← Voltar</button>
     </div>
 
-
-    <div
-      id="consultaProtocolo"
-      style="display:none;"
-    >
-
-      <p>
-        Digite seu protocolo para consultar
-        o andamento da sua solicitação.
-      </p>
-
+    <div id="consultaProtocolo" style="display:none;">
+      <p>Digite seu protocolo para consultar o andamento da sua solicitação.</p>
       <div class="atendimento-campo">
-
-        <label for="numeroProtocolo">
-          Número do protocolo
-        </label>
-
-        <input
-          type="text"
-          id="numeroProtocolo"
-          placeholder="ATD-2026-000001"
-        >
-
+        <label for="numeroProtocolo">Número do protocolo</label>
+        <input type="text" id="numeroProtocolo" placeholder="ATD-2026-000001">
       </div>
-
-      <button
-        type="button"
-        class="atendimento-enviar"
-        id="botaoConsultar"
-      >
-        CONSULTAR PROTOCOLO →
-      </button>
-
-      <button
-        type="button"
-        class="atendimento-voltar"
-        id="voltarAtendimento"
-      >
-        ← Voltar
-      </button>
-
+      <button type="button" class="atendimento-enviar" id="botaoConsultar">CONSULTAR PROTOCOLO →</button>
+      <button type="button" class="atendimento-voltar" id="voltarAtendimento">← Voltar</button>
     </div>
 
-
-    <div
-      id="resultadoProtocolo"
-      style="display:none;"
-    ></div>
-
+    <div id="resultadoProtocolo" style="display:none;"></div>
   </div>
-
 </div>
 
 <script>
-
-  function toggleMenu(){
-
-    document.getElementById("menu").classList.toggle("active");
-
-  }
-
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("active");
+}
 </script>
 
 <script>
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  const botaoChat =
-    document.getElementById("atendimentoBotao");
-
-  const chat =
-    document.getElementById("atendimentoChat");
-
-  const fecharChat =
-    document.getElementById("atendimentoFechar");
-
-  const opcoes =
-    document.getElementById("atendimentoOpcoes");
-
-  const formulario =
-    document.getElementById("formularioAtendimento");
-
-  const consulta =
-    document.getElementById("consultaProtocolo");
-
-  const resultado =
-    document.getElementById("resultadoProtocolo");
-
-  const novaSolicitacao =
-    document.getElementById("novaSolicitacao");
-
-  const consultarProtocolo =
-    document.getElementById("consultarProtocolo");
-
-  const voltarSolicitacao =
-    document.getElementById("voltarSolicitacao");
-
-  const voltarAtendimento =
-    document.getElementById("voltarAtendimento");
-
-  const botaoEnviar =
-    document.getElementById("atendimentoEnviar");
-
-  const botaoConsultar =
-    document.getElementById("botaoConsultar");
-
+document.addEventListener("DOMContentLoaded", function(){
+  const botaoChat = document.getElementById("atendimentoBotao");
+  const chat = document.getElementById("atendimentoChat");
+  const fecharChat = document.getElementById("atendimentoFechar");
+  const opcoes = document.getElementById("atendimentoOpcoes");
+  const formulario = document.getElementById("formularioAtendimento");
+  const consulta = document.getElementById("consultaProtocolo");
+  const resultado = document.getElementById("resultadoProtocolo");
+  const novaSolicitacao = document.getElementById("novaSolicitacao");
+  const consultarProtocolo = document.getElementById("consultarProtocolo");
+  const voltarSolicitacao = document.getElementById("voltarSolicitacao");
+  const voltarAtendimento = document.getElementById("voltarAtendimento");
+  const botaoEnviar = document.getElementById("atendimentoEnviar");
+  const botaoConsultar = document.getElementById("botaoConsultar");
 
   const API_ATENDIMENTO =
     "https://script.google.com/macros/s/AKfycbwJzijPbbP3PSZuTh2rpTpwmYIcBj44pZR2BaXOJwhZOZLGOQkDDPywJTMxy_90LbYb/exec";
 
-
-  /* ABRIR */
-
-  botaoChat.addEventListener("click", function(){
-
-    chat.classList.add("aberto");
-
-  });
-
-
-  /* FECHAR */
-
-  fecharChat.addEventListener("click", function(){
-
-    chat.classList.remove("aberto");
-
-  });
-
-
-  /* MOSTRAR OPÇÕES */
+  botaoChat.addEventListener("click", () => chat.classList.add("aberto"));
+  fecharChat.addEventListener("click", () => chat.classList.remove("aberto"));
 
   function mostrarOpcoes(){
-
     opcoes.style.display = "grid";
     formulario.style.display = "none";
     consulta.style.display = "none";
     resultado.style.display = "none";
-    resultado.innerHTML = "";
-
+    resultado.textContent = "";
   }
 
-
-  /* NOVA SOLICITAÇÃO */
-
   function mostrarFormulario(){
-
     opcoes.style.display = "none";
     formulario.style.display = "block";
     consulta.style.display = "none";
     resultado.style.display = "none";
-
   }
 
-
-  /* CONSULTAR */
-
   function mostrarConsulta(){
-
     opcoes.style.display = "none";
     formulario.style.display = "none";
     consulta.style.display = "block";
     resultado.style.display = "none";
-
   }
 
-
-  novaSolicitacao.addEventListener(
-    "click",
-    mostrarFormulario
-  );
-
-
-  consultarProtocolo.addEventListener(
-    "click",
-    mostrarConsulta
-  );
-
-
-  voltarSolicitacao.addEventListener(
-    "click",
-    mostrarOpcoes
-  );
-
-
-  voltarAtendimento.addEventListener(
-    "click",
-    mostrarOpcoes
-  );
-
-
-  /* ENVIAR */
-
-  botaoEnviar.addEventListener(
-    "click",
-    function(){
-
-      const nome =
-        document.getElementById(
-          "atendimentoNome"
-        ).value.trim();
-
-      const whatsapp =
-        document.getElementById(
-          "atendimentoWhatsapp"
-        ).value.trim();
-
-      const tipo =
-        document.getElementById(
-          "atendimentoTipo"
-        ).value;
-
-      const assunto =
-        document.getElementById(
-          "atendimentoAssunto"
-        ).value.trim();
-
-      const mensagem =
-        document.getElementById(
-          "atendimentoMensagem"
-        ).value.trim();
-
-
-      if(!nome){
-        alert("Digite seu nome.");
-        return;
-      }
-
-      if(!whatsapp){
-        alert("Digite seu WhatsApp.");
-        return;
-      }
-
-      if(!tipo){
-        alert("Selecione o tipo de atendimento.");
-        return;
-      }
-
-      if(!assunto){
-        alert("Digite o assunto.");
-        return;
-      }
-
-      if(!mensagem){
-        alert("Digite sua mensagem.");
-        return;
-      }
-
-
-      const agora = new Date();
-
-      const protocolo =
-        "ATD-" +
-        agora.getFullYear() +
-        "-" +
-        String(agora.getTime()).slice(-6);
-
-
-      botaoEnviar.disabled = true;
-
-      botaoEnviar.textContent =
-        "ENVIANDO...";
-
-
-      const iframe =
-        document.createElement("iframe");
-
-      iframe.name =
-        "atendimento_envio";
-
-      iframe.style.display =
-        "none";
-
-      document.body.appendChild(iframe);
-
-
-      const form =
-        document.createElement("form");
-
-      form.method = "POST";
-
-      form.action =
-        API_ATENDIMENTO;
-
-      form.target =
-        "atendimento_envio";
-
-      form.style.display =
-        "none";
-
-
-      function campo(nomeCampo, valor){
-
-        const input =
-          document.createElement("input");
-
-        input.type = "hidden";
-
-        input.name = nomeCampo;
-
-        input.value = valor;
-
-        form.appendChild(input);
-
-      }
-
-
-      campo("protocolo", protocolo);
-      campo("nome", nome);
-      campo("whatsapp", whatsapp);
-      campo("tipo", tipo);
-      campo("assunto", assunto);
-      campo("mensagem", mensagem);
-
-
-      document.body.appendChild(form);
-
-      form.submit();
-
-
-      setTimeout(function(){
-
-        document.querySelector(
-          ".atendimento-corpo"
-        ).innerHTML = `
-
-          <div style="
-            text-align:center;
-            padding:25px 10px;
-          ">
-
-            <div style="
-              font-size:42px;
-              margin-bottom:12px;
-            ">
-              ✅
-            </div>
-
-            <h3 style="
-              color:#073c66;
-              margin:0 0 8px;
-            ">
-              Solicitação enviada!
-            </h3>
-
-            <p style="
-              color:#667085;
-              line-height:1.5;
-            ">
-              Sua solicitação foi registrada
-              com sucesso.
-            </p>
-
-            <div style="
-              margin:20px 0;
-              padding:15px;
-              background:#eef8fc;
-              border-radius:12px;
-            ">
-
-              <small style="
-                display:block;
-                color:#667085;
-                margin-bottom:5px;
-              ">
-                Seu protocolo
-              </small>
-
-              <strong style="
-                font-size:22px;
-                color:#073c66;
-              ">
-                ${protocolo}
-              </strong>
-
-            </div>
-
-            <p style="
-              color:#667085;
-              font-size:12px;
-              margin:0;
-            ">
-              Guarde este número para
-              acompanhar sua solicitação.
-            </p>
-
-            <button
-              type="button"
-              class="atendimento-voltar"
-              id="voltarConfirmacao"
-              style="margin-top:18px;"
-            >
-              ← Voltar ao Atendimento
-            </button>
-
-          </div>
-
-        `;
-
-
-        document
-          .getElementById(
-            "voltarConfirmacao"
-          )
-          .addEventListener(
-            "click",
-            function(){
-
-              location.reload();
-
-            }
-          );
-
-
-        form.remove();
-        iframe.remove();
-
-      },1500);
-
+  novaSolicitacao.addEventListener("click", mostrarFormulario);
+  consultarProtocolo.addEventListener("click", mostrarConsulta);
+  voltarSolicitacao.addEventListener("click", mostrarOpcoes);
+  voltarAtendimento.addEventListener("click", mostrarOpcoes);
+
+  botaoEnviar.addEventListener("click", function(){
+    const nome = document.getElementById("atendimentoNome").value.trim();
+    const whatsapp = document.getElementById("atendimentoWhatsapp").value.trim();
+    const tipo = document.getElementById("atendimentoTipo").value;
+    const assunto = document.getElementById("atendimentoAssunto").value.trim();
+    const mensagem = document.getElementById("atendimentoMensagem").value.trim();
+
+    if(!nome){alert("Digite seu nome.");return;}
+    if(!whatsapp){alert("Digite seu WhatsApp.");return;}
+    if(!tipo){alert("Selecione o tipo de atendimento.");return;}
+    if(!assunto){alert("Digite o assunto.");return;}
+    if(!mensagem){alert("Digite sua mensagem.");return;}
+
+    const protocolo = "ATD-" + new Date().getFullYear() + "-" +
+      String(Date.now()).slice(-6);
+
+    botaoEnviar.disabled = true;
+    botaoEnviar.textContent = "ENVIANDO...";
+
+    const iframe = document.createElement("iframe");
+    iframe.name = "atendimento_envio";
+    iframe.style.display = "none";
+    document.body.appendChild(iframe);
+
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = API_ATENDIMENTO;
+    form.target = "atendimento_envio";
+    form.style.display = "none";
+
+    function campo(nomeCampo, valor){
+      const input = document.createElement("input");
+      input.type = "hidden";
+      input.name = nomeCampo;
+      input.value = valor;
+      form.appendChild(input);
     }
-  );
 
-
-  /* CONSULTAR PROTOCOLO */
-
-  botaoConsultar.addEventListener(
-    "click",
-    async function(){
-
-      const campo =
-        document.getElementById(
-          "numeroProtocolo"
-        );
-
-      const protocolo =
-        campo.value
-          .trim()
-          .toUpperCase();
-
-
-      if(!protocolo){
-
-        alert(
-          "Digite o número do protocolo."
-        );
-
-        campo.focus();
-
-        return;
-
-      }
-
-
-      botaoConsultar.disabled = true;
-
-      botaoConsultar.textContent =
-        "CONSULTANDO...";
-
-
-      try{
-
-        const resposta =
-          await fetch(
-            API_ATENDIMENTO +
-            "?protocolo=" +
-            encodeURIComponent(protocolo)
-          );
-
-
-        const dados =
-          await resposta.json();
-
-
-        if(
-          !dados.sucesso ||
-          !dados.encontrado
-        ){
-
-          resultado.style.display =
-            "block";
-
-          resultado.innerHTML = `
-
-            <div style="
-              margin-top:18px;
-              padding:16px;
-              background:#fff5f5;
-              border-left:4px solid #b51e2a;
-              border-radius:10px;
-            ">
-
-              <strong style="
-                color:#b51e2a;
-                display:block;
-                margin-bottom:5px;
-              ">
-                Protocolo não encontrado
-              </strong>
-
-              <span style="
-                color:#667085;
-                font-size:12px;
-              ">
-                Verifique o número informado
-                e tente novamente.
-              </span>
-
-            </div>
-
-          `;
-
-          return;
-
-        }
-
-
-        const status =
-          String(
-            dados.status || "PENDENTE"
-          )
-          .trim()
-          .toUpperCase();
-
-
-        let corStatus = "#f9c414";
-        let fundoStatus = "#fff9e5";
-
-
-        if(
-          status === "RESPONDIDO" ||
-          status === "CONCLUÍDO" ||
-          status === "CONCLUIDO" ||
-          status === "FINALIZADO"
-        ){
-
-          corStatus = "#079447";
-          fundoStatus = "#eefaf3";
-
-        }
-
-
-        if(
-          status === "EM ANÁLISE" ||
-          status === "EM ANALISE"
-        ){
-
-          corStatus = "#159dd1";
-          fundoStatus = "#eef8fc";
-
-        }
-
-
-        if(status === "ENCERRADO"){
-
-          corStatus = "#b51e2a";
-          fundoStatus = "#fff5f5";
-
-        }
-
-
-        let respostaHtml = "";
-
-
-        if(dados.resposta){
-
-          respostaHtml = `
-
-            <div style="
-              margin-top:15px;
-              padding:15px;
-              background:#eefaf3;
-              border-radius:10px;
-              border-left:4px solid #079447;
-            ">
-
-              <strong style="
-                color:#079447;
-                display:block;
-                margin-bottom:6px;
-              ">
-                Resposta da Secretaria
-              </strong>
-
-              <span style="
-                color:#475467;
-                font-size:12px;
-                line-height:1.5;
-              ">
-                ${dados.resposta}
-              </span>
-
-            </div>
-
-          `;
-
-        }
-
-
-        resultado.style.display =
-          "block";
-
-
-        resultado.innerHTML = `
-
-          <div style="
-            margin-top:18px;
-            padding:16px;
-            background:${fundoStatus};
-            border-left:4px solid ${corStatus};
-            border-radius:10px;
-          ">
-
-            <strong style="
-              color:#073c66;
-              display:block;
-              margin-bottom:10px;
-            ">
-              Protocolo: ${dados.protocolo}
-            </strong>
-
-            <div style="
-              font-size:12px;
-              color:#667085;
-              line-height:1.7;
-            ">
-
-              <strong>Status:</strong>
-
-              <span style="
-                color:${corStatus};
-                font-weight:900;
-              ">
-                ${dados.status}
-              </span>
-
-              <br>
-
-              <strong>Assunto:</strong>
-              ${dados.assunto}
-
-            </div>
-
-            ${respostaHtml}
-
-          </div>
-
-        `;
-
-
-      }catch(erro){
-
-        resultado.style.display =
-          "block";
-
-        resultado.innerHTML = `
-
-          <div style="
-            margin-top:18px;
-            padding:16px;
-            background:#fff5f5;
-            border-left:4px solid #b51e2a;
-            border-radius:10px;
-          ">
-
-            <strong style="
-              color:#b51e2a;
-            ">
-              Não foi possível consultar.
-            </strong>
-
-          </div>
-
-        `;
-
-      }finally{
-
-        botaoConsultar.disabled =
-          false;
-
-        botaoConsultar.textContent =
-          "CONSULTAR PROTOCOLO →";
-
-      }
-
+    campo("protocolo", protocolo);
+    campo("nome", nome);
+    campo("whatsapp", whatsapp);
+    campo("tipo", tipo);
+    campo("assunto", assunto);
+    campo("mensagem", mensagem);
+
+    document.body.appendChild(form);
+    form.submit();
+
+    setTimeout(function(){
+      const corpo = document.querySelector(".atendimento-corpo");
+      corpo.replaceChildren();
+
+      const confirmacao = document.createElement("div");
+      confirmacao.style.cssText = "text-align:center;padding:25px 10px;";
+
+      const icone = document.createElement("div");
+      icone.style.cssText = "font-size:42px;margin-bottom:12px;";
+      icone.textContent = "✅";
+
+      const titulo = document.createElement("h3");
+      titulo.style.cssText = "color:#073c66;margin:0 0 8px;";
+      titulo.textContent = "Solicitação enviada!";
+
+      const texto = document.createElement("p");
+      texto.style.cssText = "color:#667085;line-height:1.5;";
+      texto.textContent = "Sua solicitação foi registrada. Guarde o número para acompanhar o atendimento.";
+
+      const caixaProtocolo = document.createElement("div");
+      caixaProtocolo.style.cssText = "margin:20px 0;padding:15px;background:#eef8fc;border-radius:12px;";
+
+      const rotulo = document.createElement("small");
+      rotulo.style.cssText = "display:block;color:#667085;margin-bottom:5px;";
+      rotulo.textContent = "Seu protocolo";
+
+      const numero = document.createElement("strong");
+      numero.style.cssText = "font-size:22px;color:#073c66;";
+      numero.textContent = protocolo;
+
+      const voltar = document.createElement("button");
+      voltar.type = "button";
+      voltar.className = "atendimento-voltar";
+      voltar.style.marginTop = "18px";
+      voltar.textContent = "← Voltar ao Atendimento";
+      voltar.addEventListener("click", function(){ location.reload(); });
+
+      caixaProtocolo.append(rotulo, numero);
+      confirmacao.append(icone, titulo, texto, caixaProtocolo, voltar);
+      corpo.appendChild(confirmacao);
+
+      form.remove();
+      iframe.remove();
+    }, 1500);
+  });
+
+  botaoConsultar.addEventListener("click", async function(){
+    const campo = document.getElementById("numeroProtocolo");
+    const protocolo = campo.value.trim().toUpperCase();
+
+    if(!protocolo){
+      alert("Digite o número do protocolo.");
+      campo.focus();
+      return;
     }
-  );
 
+    botaoConsultar.disabled = true;
+    botaoConsultar.textContent = "CONSULTANDO...";
+
+    try{
+      const resposta = await fetch(
+        API_ATENDIMENTO + "?protocolo=" + encodeURIComponent(protocolo)
+      );
+      const dados = await resposta.json();
+
+      resultado.style.display = "block";
+      resultado.replaceChildren();
+
+      if(!dados.sucesso || !dados.encontrado){
+        const erro = document.createElement("p");
+        erro.style.cssText = "margin-top:18px;padding:16px;background:#fff5f5;border-left:4px solid #b51e2a;border-radius:10px;color:#b51e2a;";
+        erro.textContent = "Protocolo não encontrado. Verifique o número informado e tente novamente.";
+        resultado.appendChild(erro);
+        return;
+      }
+
+      const status = String(dados.status || "PENDENTE").trim().toUpperCase();
+      let corStatus = "#f9c414";
+      let fundoStatus = "#fff9e5";
+
+      if(["RESPONDIDO","CONCLUÍDO","CONCLUIDO","FINALIZADO"].includes(status)){
+        corStatus = "#079447";
+        fundoStatus = "#eefaf3";
+      }else if(["EM ANÁLISE","EM ANALISE"].includes(status)){
+        corStatus = "#159dd1";
+        fundoStatus = "#eef8fc";
+      }else if(status === "ENCERRADO"){
+        corStatus = "#b51e2a";
+        fundoStatus = "#fff5f5";
+      }
+
+      const caixa = document.createElement("div");
+      caixa.style.cssText = "margin-top:18px;padding:16px;background:" + fundoStatus + ";border-left:4px solid " + corStatus + ";border-radius:10px;";
+
+      const titulo = document.createElement("strong");
+      titulo.style.cssText = "color:#073c66;display:block;margin-bottom:10px;";
+      titulo.textContent = "Protocolo: " + (dados.protocolo || protocolo);
+
+      const statusTexto = document.createElement("p");
+      statusTexto.style.cssText = "font-size:12px;color:#667085;line-height:1.7;";
+      const rotuloStatus = document.createElement("strong");
+      rotuloStatus.textContent = "Status: ";
+      const valorStatus = document.createElement("span");
+      valorStatus.style.cssText = "color:" + corStatus + ";font-weight:900;";
+      valorStatus.textContent = dados.status || "PENDENTE";
+      statusTexto.append(rotuloStatus, valorStatus, document.createElement("br"));
+
+      const rotuloAssunto = document.createElement("strong");
+      rotuloAssunto.textContent = "Assunto: ";
+      const valorAssunto = document.createTextNode(dados.assunto || "Não informado");
+      statusTexto.append(rotuloAssunto, valorAssunto);
+
+      caixa.append(titulo, statusTexto);
+
+      if(dados.resposta){
+        const respostaTitulo = document.createElement("strong");
+        respostaTitulo.style.cssText = "display:block;color:#079447;margin-bottom:6px;";
+        respostaTitulo.textContent = "Resposta da Secretaria";
+
+        const respostaTexto = document.createElement("p");
+        respostaTexto.style.cssText = "font-size:12px;line-height:1.5;color:#475467;";
+        respostaTexto.textContent = dados.resposta;
+
+        const respostaCaixa = document.createElement("div");
+        respostaCaixa.style.cssText = "margin-top:15px;padding:15px;background:#eefaf3;border-radius:10px;border-left:4px solid #079447;";
+        respostaCaixa.append(respostaTitulo, respostaTexto);
+        caixa.appendChild(respostaCaixa);
+      }
+
+      resultado.appendChild(caixa);
+    }catch(erro){
+      resultado.style.display = "block";
+      resultado.textContent = "Não foi possível consultar o protocolo. Tente novamente.";
+    }finally{
+      botaoConsultar.disabled = false;
+      botaoConsultar.textContent = "CONSULTAR PROTOCOLO →";
+    }
+  });
 });
-
 </script>
 
 <script async src="https://www.instagram.com/embed.js"></script>
-
 
 <script>
 (function(){
@@ -2072,28 +631,33 @@ document.addEventListener("DOMContentLoaded", function () {
     "https://script.google.com/macros/s/AKfycby3kMMfqDoYmKAxnjFr7jMZfZpTQ0epl-tk7qE5BH5294PEw_cUw1VeIvr05AD8hKuGfA/exec";
 
   const FALLBACK = [
-    {plataforma:"YOUTUBE", tipo:"DESTAQUE", titulo:"Vídeo em destaque", link:"https://www.youtube.com/watch?v=kP_cwCU7l00", ordem:1},
-    {plataforma:"YOUTUBE", tipo:"PUBLICACAO", titulo:"Vídeo do Canal AD Belém 49", link:"https://www.youtube.com/watch?v=ZuqklsQS7xo", ordem:1},
-    {plataforma:"YOUTUBE", tipo:"PUBLICACAO", titulo:"Vídeo do Canal AD Belém 49", link:"https://www.youtube.com/watch?v=fYyyERA-j6k", ordem:2},
-    {plataforma:"YOUTUBE", tipo:"PUBLICACAO", titulo:"Vídeo do Canal AD Belém 49", link:"https://www.youtube.com/watch?v=c4mFC0zxHMo", ordem:3},
-    {plataforma:"INSTAGRAM", tipo:"PUBLICACAO", titulo:"Publicação Instagram 1", link:"https://www.instagram.com/reel/Dc7S6SHAMJz/", ordem:1},
-    {plataforma:"INSTAGRAM", tipo:"PUBLICACAO", titulo:"Publicação Instagram 2", link:"https://www.instagram.com/p/Dc5_rUkxWqp/", ordem:2},
-    {plataforma:"INSTAGRAM", tipo:"PUBLICACAO", titulo:"Publicação Instagram 3", link:"https://www.instagram.com/p/DcR1IXsPfTA/", ordem:3},
-    {plataforma:"TIKTOK", tipo:"PUBLICACAO", titulo:"Vídeo TikTok 1", link:"https://www.tiktok.com/player/v1/7663063207724027152", ordem:1},
-    {plataforma:"TIKTOK", tipo:"PUBLICACAO", titulo:"Vídeo TikTok 2", link:"https://www.tiktok.com/player/v1/7665095737574722834", ordem:2},
-    {plataforma:"TIKTOK", tipo:"PUBLICACAO", titulo:"Vídeo TikTok 3", link:"https://www.tiktok.com/player/v1/7678726647356411152", ordem:3}
+    {plataforma:"YOUTUBE",tipo:"DESTAQUE",titulo:"Vídeo em destaque",link:"https://www.youtube.com/watch?v=kP_cwCU7l00",ordem:1},
+    {plataforma:"YOUTUBE",tipo:"PUBLICACAO",titulo:"Vídeo do Canal AD Belém 49",link:"https://www.youtube.com/watch?v=ZuqklsQS7xo",ordem:1},
+    {plataforma:"YOUTUBE",tipo:"PUBLICACAO",titulo:"Vídeo do Canal AD Belém 49",link:"https://www.youtube.com/watch?v=fYyyERA-j6k",ordem:2},
+    {plataforma:"YOUTUBE",tipo:"PUBLICACAO",titulo:"Vídeo do Canal AD Belém 49",link:"https://www.youtube.com/watch?v=c4mFC0zxHMo",ordem:3},
+    {plataforma:"INSTAGRAM",tipo:"PUBLICACAO",titulo:"Publicação Instagram 1",link:"https://www.instagram.com/reel/Dc7S6SHAMJz/",ordem:1},
+    {plataforma:"INSTAGRAM",tipo:"PUBLICACAO",titulo:"Publicação Instagram 2",link:"https://www.instagram.com/p/Dc5_rUkxWqp/",ordem:2},
+    {plataforma:"INSTAGRAM",tipo:"PUBLICACAO",titulo:"Publicação Instagram 3",link:"https://www.instagram.com/p/DcR1IXsPfTA/",ordem:3},
+    {plataforma:"TIKTOK",tipo:"PUBLICACAO",titulo:"Vídeo TikTok 1",link:"https://www.tiktok.com/player/v1/7663063207724027152",ordem:1},
+    {plataforma:"TIKTOK",tipo:"PUBLICACAO",titulo:"Vídeo TikTok 2",link:"https://www.tiktok.com/player/v1/7665095737574722834",ordem:2},
+    {plataforma:"TIKTOK",tipo:"PUBLICACAO",titulo:"Vídeo TikTok 3",link:"https://www.tiktok.com/player/v1/7678726647356411152",ordem:3}
   ];
 
   const youtubeDestaque = document.getElementById("youtubeDestaqueIframe");
   const instagramGrid = document.getElementById("instagramGrid");
   const tiktokGrid = document.getElementById("tiktokGrid");
   const videosGrid = document.getElementById("videosRecentesGrid");
+  const liveSection = document.getElementById("liveCultoSection");
+  const liveIframe = document.getElementById("liveCultoIframe");
+  const liveDescricao = document.getElementById("liveCultoDescricao");
+  const liveNome = document.getElementById("liveCultoNome");
+  const liveLink = document.getElementById("liveCultoLink");
 
   function normalizar(valor){
     return String(valor || "")
       .trim()
       .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[\u0300-\u036f]/g,"")
       .toUpperCase();
   }
 
@@ -2101,10 +665,12 @@ document.addEventListener("DOMContentLoaded", function () {
     try{
       const url = new URL(String(valor || "").trim());
       if(url.protocol !== "https:") return null;
+
       const host = url.hostname.toLowerCase();
       const permitido = dominiosPermitidos.some(function(dominio){
         return host === dominio || host.endsWith("." + dominio);
       });
+
       return permitido ? url : null;
     }catch(erro){
       return null;
@@ -2112,14 +678,16 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function idYouTube(link){
-    const url = urlValida(link, ["youtube.com", "youtu.be"]);
+    const url = urlValida(link,["youtube.com","youtu.be"]);
     if(!url) return "";
+
     let id = "";
 
     if(url.hostname.toLowerCase() === "youtu.be"){
       id = url.pathname.split("/").filter(Boolean)[0] || "";
     }else{
       id = url.searchParams.get("v") || "";
+
       if(!id){
         const partes = url.pathname.match(/^\/(?:embed|shorts|live)\/([^/?]+)/i);
         if(partes) id = partes[1];
@@ -2133,7 +701,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return "https://www.youtube.com/watch?v=" + encodeURIComponent(id);
   }
 
-  function criarMensagem(container, texto){
+  function criarMensagem(container,texto){
     const p = document.createElement("p");
     p.className = "social-loading";
     p.textContent = texto;
@@ -2151,11 +719,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if(scriptInstagram && !scriptInstagram.dataset.processListener){
       scriptInstagram.dataset.processListener = "1";
-      scriptInstagram.addEventListener("load", function(){
+
+      scriptInstagram.addEventListener("load",function(){
         if(window.instgrm && window.instgrm.Embeds){
           window.instgrm.Embeds.process();
         }
-      }, {once:true});
+      },{once:true});
     }
   }
 
@@ -2163,12 +732,12 @@ document.addEventListener("DOMContentLoaded", function () {
     instagramGrid.replaceChildren();
 
     if(!publicacoes.length){
-      criarMensagem(instagramGrid, "Nenhuma publicação ativa do Instagram foi cadastrada na planilha.");
+      criarMensagem(instagramGrid,"Nenhuma publicação ativa do Instagram foi cadastrada na planilha.");
       return;
     }
 
     publicacoes.forEach(function(item){
-      const url = urlValida(item.link, ["instagram.com"]);
+      const url = urlValida(item.link,["instagram.com"]);
       if(!url) return;
 
       const article = document.createElement("article");
@@ -2176,18 +745,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const blockquote = document.createElement("blockquote");
       blockquote.className = "instagram-media";
-      blockquote.setAttribute("data-instgrm-permalink", url.href);
-      blockquote.setAttribute("data-instgrm-version", "14");
-      blockquote.setAttribute("aria-label", item.titulo || "Publicação do Instagram");
+      blockquote.setAttribute("data-instgrm-permalink",url.href);
+      blockquote.setAttribute("data-instgrm-version","14");
+      blockquote.setAttribute("aria-label",item.titulo || "Publicação do Instagram");
 
       article.appendChild(blockquote);
       instagramGrid.appendChild(article);
     });
 
     if(!instagramGrid.children.length){
-      criarMensagem(instagramGrid, "Os links do Instagram na planilha não parecem válidos.");
+      criarMensagem(instagramGrid,"Os links do Instagram na planilha não parecem válidos.");
       return;
     }
+
     processarInstagram();
   }
 
@@ -2195,12 +765,12 @@ document.addEventListener("DOMContentLoaded", function () {
     tiktokGrid.replaceChildren();
 
     if(!publicacoes.length){
-      criarMensagem(tiktokGrid, "Nenhum vídeo ativo do TikTok foi cadastrado na planilha.");
+      criarMensagem(tiktokGrid,"Nenhum vídeo ativo do TikTok foi cadastrado na planilha.");
       return;
     }
 
     publicacoes.forEach(function(item){
-      const url = urlValida(item.link, ["tiktok.com"]);
+      const url = urlValida(item.link,["tiktok.com"]);
       if(!url) return;
 
       let videoId = "";
@@ -2219,7 +789,7 @@ document.addEventListener("DOMContentLoaded", function () {
       iframe.className = "tiktok-player";
       iframe.title = item.titulo || "Vídeo do TikTok - AD Belém 49";
       iframe.allow = "fullscreen";
-      iframe.setAttribute("allowfullscreen", "");
+      iframe.setAttribute("allowfullscreen","");
       iframe.loading = "lazy";
 
       if(videoId){
@@ -2243,8 +813,40 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     if(!tiktokGrid.children.length){
-      criarMensagem(tiktokGrid, "Os links do TikTok na planilha não parecem válidos.");
+      criarMensagem(tiktokGrid,"Os links do TikTok na planilha não parecem válidos.");
     }
+  }
+
+   function renderizarLive(publicacoes){
+    // O destaque aparece quando houver YOUTUBE + LIVE ativo na planilha.
+    liveSection.hidden = true;
+    liveIframe.removeAttribute("src");
+
+    const transmissao = publicacoes
+      .filter(function(item){
+        return normalizar(item.plataforma) === "YOUTUBE" &&
+               normalizar(item.tipo) === "LIVE";
+      })
+      .sort(function(a,b){
+        return (Number(a.ordem)||0) - (Number(b.ordem)||0);
+      })
+      .find(function(item){
+        return Boolean(idYouTube(item.link));
+      });
+
+    if(!transmissao) return;
+
+    const id = idYouTube(transmissao.link);
+    const url = linkYouTube(id);
+
+    liveIframe.src = "https://www.youtube.com/embed/" + encodeURIComponent(id);
+    liveIframe.title = transmissao.titulo || "Transmissão ao vivo — AD Belém 49";
+    liveNome.textContent = transmissao.titulo || "Culto da AD Belém 49";
+    liveDescricao.textContent =
+      "A transmissão ao vivo da AD Belém 49 está disponível neste momento. Assista e participe conosco!";
+    liveLink.href = url;
+
+    liveSection.hidden = false;
   }
 
   function renderizarYouTube(publicacoes){
@@ -2253,33 +855,42 @@ document.addEventListener("DOMContentLoaded", function () {
         return normalizar(item.plataforma) === "YOUTUBE" &&
                normalizar(item.tipo) === "DESTAQUE";
       })
-      .sort(function(a,b){ return (Number(a.ordem)||0) - (Number(b.ordem)||0); });
+      .sort(function(a,b){
+        return (Number(a.ordem)||0) - (Number(b.ordem)||0);
+      });
 
     if(destaques.length && youtubeDestaque){
       const id = idYouTube(destaques[0].link);
+
       if(id){
         youtubeDestaque.src = "https://www.youtube.com/embed/" + id;
-        youtubeDestaque.title = destaques[0].titulo || "AD Belém 49 — Vídeo em destaque";
+        youtubeDestaque.title =
+          destaques[0].titulo || "AD Belém 49 — Vídeo em destaque";
       }
     }
 
     const videos = publicacoes
       .filter(function(item){
         return normalizar(item.plataforma) === "YOUTUBE" &&
-               normalizar(item.tipo) !== "DESTAQUE";
+               normalizar(item.tipo) !== "DESTAQUE" &&
+               normalizar(item.tipo) !== "LIVE";
       })
-      .sort(function(a,b){ return (Number(a.ordem)||0) - (Number(b.ordem)||0); });
+      .sort(function(a,b){
+        return (Number(a.ordem)||0) - (Number(b.ordem)||0);
+      });
 
     videosGrid.replaceChildren();
 
     if(!videos.length){
-      criarMensagem(videosGrid, "Nenhum vídeo recente ativo do YouTube foi cadastrado na planilha.");
+      criarMensagem(videosGrid,"Nenhum vídeo recente ativo do YouTube foi cadastrado na planilha.");
       return;
     }
 
     videos.forEach(function(item){
       const id = idYouTube(item.link);
-      const url = id ? linkYouTube(id) : urlValida(item.link, ["youtube.com","youtu.be"])?.href;
+      const url = id
+        ? linkYouTube(id)
+        : urlValida(item.link,["youtube.com","youtu.be"])?.href;
 
       if(!id || !url) return;
 
@@ -2295,9 +906,11 @@ document.addEventListener("DOMContentLoaded", function () {
       thumb.className = "video-thumb";
 
       const img = document.createElement("img");
-      img.src = "https://img.youtube.com/vi/" + encodeURIComponent(id) + "/hqdefault.jpg";
+      img.src = "https://img.youtube.com/vi/" +
+        encodeURIComponent(id) + "/hqdefault.jpg";
       img.alt = item.titulo || "Vídeo do canal AD Belém 49";
       img.loading = "lazy";
+
       thumb.appendChild(img);
       linkImagem.appendChild(thumb);
 
@@ -2314,21 +927,26 @@ document.addEventListener("DOMContentLoaded", function () {
       card.appendChild(linkImagem);
       card.appendChild(titulo);
       card.appendChild(botao);
+
       videosGrid.appendChild(card);
     });
 
     if(!videosGrid.children.length){
-      criarMensagem(videosGrid, "Não foi possível reconhecer os links dos vídeos do YouTube. Confira os links na planilha.");
+      criarMensagem(videosGrid,"Não foi possível reconhecer os links dos vídeos do YouTube. Confira os links na planilha.");
     }
   }
 
   function renderizarTudo(publicacoes){
+    renderizarLive(publicacoes);
+
     renderizarInstagram(publicacoes.filter(function(item){
       return normalizar(item.plataforma) === "INSTAGRAM";
     }));
+
     renderizarTikTok(publicacoes.filter(function(item){
       return normalizar(item.plataforma) === "TIKTOK";
     }));
+
     renderizarYouTube(publicacoes.filter(function(item){
       return normalizar(item.plataforma) === "YOUTUBE";
     }));
@@ -2344,15 +962,25 @@ document.addEventListener("DOMContentLoaded", function () {
         if(finalizado) return;
         finalizado = true;
         script.remove();
-        try{ delete window[nomeCallback]; }catch(erro){ window[nomeCallback] = undefined; }
+
+        try{
+          delete window[nomeCallback];
+        }catch(erro){
+          window[nomeCallback] = undefined;
+        }
       }
 
       window[nomeCallback] = function(resposta){
         limpar();
-        if(resposta && resposta.sucesso && Array.isArray(resposta.publicacoes)){
+
+        if(resposta && resposta.sucesso &&
+           Array.isArray(resposta.publicacoes)){
           resolve(resposta.publicacoes);
         }else{
-          reject(new Error((resposta && resposta.mensagem) || "A API não retornou publicações."));
+          reject(new Error(
+            (resposta && resposta.mensagem) ||
+            "A API não retornou publicações."
+          ));
         }
       };
 
@@ -2369,26 +997,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
       window.setTimeout(function(){
         if(finalizado) return;
+
         limpar();
         reject(new Error("A API das redes sociais demorou para responder."));
-      }, 12000);
+      },12000);
     });
   }
 
-  document.addEventListener("DOMContentLoaded", function(){
+  document.addEventListener("DOMContentLoaded",function(){
     consultarApi()
       .then(function(publicacoes){
         renderizarTudo(publicacoes);
       })
       .catch(function(erro){
-        console.warn("Redes sociais: usando conteúdos de reserva.", erro);
+        console.warn("Redes sociais: usando conteúdos de reserva.",erro);
         renderizarTudo(FALLBACK);
       });
   });
 })();
 </script>
 
-
 </body>
-
 </html>
