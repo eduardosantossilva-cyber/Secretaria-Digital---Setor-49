@@ -117,5 +117,11 @@ function escAttr(v){return String(v??'').replace(/\\/g,'\\\\').replace(/'/g,"\\'
 $('fecharModal').onclick=()=>$('modal').classList.remove('open');
 if(autorizado())carregar();
 </script>
+<!-- Vercel Web Analytics -->
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+
 </body>
 </html>
